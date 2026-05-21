@@ -7,7 +7,7 @@ from pathlib import Path
 from phistory import __version__
 from phistory.registry import AGENTS, parse_agent_ids
 from phistory.render import render_index
-from phistory.workflow import backfill, capture_latest
+from phistory.workflow import capture_latest, iter_backfill
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -59,7 +59,8 @@ def main(argv: list[str] | None = None) -> int:
         return _print_results(results)
 
     if args.command == "backfill":
-        results = backfill(
+        failed = False
+        for result in iter_backfill(
             args.agent,
             start=args.start,
             end=args.end,
@@ -69,8 +70,9 @@ def main(argv: list[str] | None = None) -> int:
             keep_tap=args.keep_tap,
             limit=args.limit,
             include_prerelease=args.include_prerelease,
-        )
-        return _print_results(results)
+        ):
+            failed = _print_result(result) or failed
+        return 1 if failed else 0
 
     if args.command == "render-index":
         render_index(root, Path(args.output))
@@ -83,15 +85,20 @@ def main(argv: list[str] | None = None) -> int:
 def _print_results(results) -> int:
     failed = False
     for result in results:
-        print(f"{result.agent_id} {result.version}: {result.status}")
-        if result.prompt_path:
-            print(f"  prompt: {result.prompt_path}")
-        if result.trace_path:
-            print(f"  trace:  {result.trace_path}")
-        if result.error:
-            print(f"  error:  {result.error}", file=sys.stderr)
-            failed = True
+        failed = _print_result(result) or failed
     return 1 if failed else 0
+
+
+def _print_result(result) -> bool:
+    print(f"{result.agent_id} {result.version}: {result.status}", flush=True)
+    if result.prompt_path:
+        print(f"  prompt: {result.prompt_path}", flush=True)
+    if result.trace_path:
+        print(f"  trace:  {result.trace_path}", flush=True)
+    if result.error:
+        print(f"  error:  {result.error}", file=sys.stderr, flush=True)
+        return True
+    return False
 
 
 if __name__ == "__main__":

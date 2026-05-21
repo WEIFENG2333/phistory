@@ -6,10 +6,10 @@
   "published_at": "2026-05-21T17:16:38.999Z",
   "tarball_url": "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-2.1.147.tgz",
   "binary_version": "2.1.147 (Claude Code)",
-  "captured_at": "2026-05-21T23:07:43.633606+00:00",
+  "captured_at": "2026-05-21T23:52:56.479785+00:00",
   "tap_client": "claude",
   "target": "local dummy upstream",
-  "duration_seconds": 2.235,
+  "duration_seconds": 3.151,
   "command": [
     "python",
     "-m",
