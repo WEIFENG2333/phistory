@@ -76,6 +76,16 @@ def capture_target(
                 *target.agent.run_args,
             ]
             result = run(argv, cwd=Path(work_dir), env=env, timeout=180, check=False)
+            if _needs_claude_session_persistence_retry(target, result):
+                remove_if_exists(tap_output_dir)
+                prompt_path.unlink(missing_ok=True)
+                argv = _without_arg(argv, "--no-session-persistence")
+                result = run(argv, cwd=Path(work_dir), env=env, timeout=180, check=False)
+            if _needs_codex_api_key_retry(target, result):
+                remove_if_exists(tap_output_dir)
+                prompt_path.unlink(missing_ok=True)
+                env = {**env, "OPENAI_API_KEY": "phistory-fake-api-key"}
+                result = run(argv, cwd=Path(work_dir), env=env, timeout=180, check=False)
         if result.returncode != 0 or not prompt_path.exists():
             detail = (result.stderr or result.stdout).strip()[-4000:]
             raise RuntimeError(f"capture command failed ({result.returncode})\n{detail}")
@@ -111,6 +121,8 @@ def capture_target(
             target.agent.id, target.version.version, "captured", target.prompt_path, target.trace_path, target.meta_path
         )
     except Exception as exc:
+        if not keep_tap:
+            remove_if_exists(target.version_dir)
         return CaptureResult(target.agent.id, target.version.version, "failed", error=str(exc))
 
 
@@ -137,6 +149,24 @@ def _capture_env(target: CaptureTarget, bin_dir: Path, home_dir: Path | None = N
     if target.agent.fake_chatgpt_auth:
         env.update({"OPENAI_API_KEY": "", "CODEX_API_KEY": "", "CODEX_ACCESS_TOKEN": ""})
     return env
+
+
+def _needs_claude_session_persistence_retry(target: CaptureTarget, result) -> bool:
+    if target.agent.id != "claude-code" or result.returncode == 0:
+        return False
+    output = f"{result.stderr}\n{result.stdout}"
+    return "unknown option '--no-session-persistence'" in output
+
+
+def _needs_codex_api_key_retry(target: CaptureTarget, result) -> bool:
+    if target.agent.id != "codex" or result.returncode == 0:
+        return False
+    output = f"{result.stderr}\n{result.stdout}"
+    return "Missing OpenAI API key" in output
+
+
+def _without_arg(argv: list[str], value: str) -> list[str]:
+    return [arg for arg in argv if arg != value]
 
 
 def _write_fake_chatgpt_auth(home: Path) -> None:

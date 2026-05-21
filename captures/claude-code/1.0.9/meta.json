@@ -1,0 +1,33 @@
+{
+  "agent_id": "claude-code",
+  "agent": "Claude Code",
+  "package": "@anthropic-ai/claude-code",
+  "version": "1.0.9",
+  "published_at": "2025-06-02T20:37:14.617Z",
+  "tarball_url": null,
+  "binary_version": "1.0.9 (Claude Code)",
+  "captured_at": "2026-05-21T23:31:03.251030+00:00",
+  "tap_client": "claude",
+  "target": "local dummy upstream",
+  "duration_seconds": 12.965,
+  "command": [
+    "python",
+    "-m",
+    "claude_tap",
+    "run",
+    "claude",
+    "-t",
+    "http://127.0.0.1:<dummy>",
+    "--export-prompt",
+    "prompt.md",
+    "--no-live",
+    "--no-open",
+    "--no-update-check",
+    "-o",
+    ".tap",
+    "--no-yolo",
+    "--",
+    "-p",
+    "Reply with one short sentence."
+  ]
+}

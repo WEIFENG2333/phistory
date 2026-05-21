@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from collections.abc import Iterable
+from collections.abc import Iterable, Iterator
 from pathlib import Path
 
 from phistory import npm
@@ -47,3 +47,23 @@ def backfill(
         capture_target(CaptureTarget(agent, version, root), cache_dir=cache_dir, force=force, keep_tap=keep_tap)
         for version in versions
     ]
+
+
+def iter_backfill(
+    agent_id: str,
+    *,
+    start: str,
+    end: str,
+    root: Path,
+    cache_dir: Path,
+    force: bool = False,
+    keep_tap: bool = False,
+    limit: int | None = None,
+    include_prerelease: bool = False,
+) -> Iterator[CaptureResult]:
+    agent = get_agent(agent_id)
+    versions: list[VersionInfo] = npm.versions_between(agent, start, end, include_prerelease=include_prerelease)
+    if limit is not None:
+        versions = versions[:limit]
+    for version in versions:
+        yield capture_target(CaptureTarget(agent, version, root), cache_dir=cache_dir, force=force, keep_tap=keep_tap)
