@@ -6,10 +6,10 @@
   "published_at": "2026-05-21T17:13:06.253Z",
   "tarball_url": "https://registry.npmjs.org/@openai/codex/-/codex-0.133.0.tgz",
   "binary_version": "codex-cli 0.133.0",
-  "captured_at": "2026-05-21T23:02:35.736432+00:00",
+  "captured_at": "2026-05-21T23:07:53.583744+00:00",
   "tap_client": "codex",
   "target": "local dummy upstream",
-  "duration_seconds": 9.11,
+  "duration_seconds": 8.74,
   "command": [
     "python",
     "-m",

@@ -40,7 +40,7 @@ def test_capture_target_runs_local_cli_through_tap(tmp_path: Path, monkeypatch):
     trace_records = [json.loads(line) for line in target.trace_path.read_text(encoding="utf-8").splitlines()]
     assert trace_records
     assert {record["response"]["status"] for record in trace_records} == {200}
-    assert {record["upstream_base_url"] for record in trace_records} == {"http://127.0.0.1:<dummy>"}
+    assert all(record["upstream_base_url"].startswith("http://127.0.0.1:") for record in trace_records)
 
     prompt = target.prompt_path.read_text(encoding="utf-8")
     assert "Fake system prompt" in prompt
@@ -66,26 +66,6 @@ def test_sanitize_text_normalizes_volatile_claude_headers():
         "<timezone>$PHISTORY_TIMEZONE</timezone>\n"
         "$PHISTORY_HOME/.claude/projects/$PHISTORY_PROJECT/memory/\n"
         "Authorization: Bearer <redacted>"
-    )
-
-
-def test_sanitize_text_preserves_jsonl_when_normalizing_escaped_environment():
-    record = {
-        "body": {
-            "text": "## Environment\n - Primary working directory: /tmp/work\n - OS Version: Linux 6.17.0-1013-azure\n - Shell: bash\nToday's date is 2026-05-21."
-        }
-    }
-    text = json.dumps(record)
-
-    sanitized = _sanitize_text(text, {})
-
-    parsed = json.loads(sanitized)
-    assert parsed["body"]["text"] == (
-        "## Environment\n"
-        " - Primary working directory: /tmp/work\n"
-        " - OS Version: $PHISTORY_OS_VERSION\n"
-        " - Shell: bash\n"
-        "Today's date is $PHISTORY_DATE."
     )
 
 

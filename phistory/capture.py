@@ -88,7 +88,6 @@ def capture_target(
             upstream: "http://127.0.0.1:<dummy>",
         }
         _sanitize_file(prompt_path, replacements)
-        _sanitize_file(target.trace_path, replacements)
         write_meta(
             target,
             {
