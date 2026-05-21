@@ -1,17 +1,6 @@
-# Prompt Snapshot
-
-- **Provider**: anthropic
-- **Model**: claude-opus-4-7
-- **Path**: /v1/messages?beta=true
-- **Upstream**: http://127.0.0.1:<dummy>
-- **Turn**: 2
-- **Request ID**: req_601a217b7c1c
-- **Captured**: 2026-05-21T17:34:41.188365+00:00
-- **Tools**: 3
-
 # System Prompt
 
-x-anthropic-billing-header: cc_version=2.1.145.57f; cc_entrypoint=sdk-cli; cch=acaa9;
+x-anthropic-billing-header: cc_version=2.1.145.57f; cc_entrypoint=sdk-cli; cch=<normalized>;
 
 You are a Claude agent, built on Anthropic's Claude Agent SDK.
 
@@ -19,9 +8,9 @@ You are a Claude agent, built on Anthropic's Claude Agent SDK.
 
 <system-reminder>
 As you answer the user's questions, you can use the following context:
-# currentDate
+## currentDate
 Today's date is 2026/05/22.
-# Environment
+## Environment
 You have been invoked in the following environment: 
  - Primary working directory: $PHISTORY_WORKSPACE
  - Is a git repository: false
