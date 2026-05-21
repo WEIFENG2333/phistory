@@ -1,0 +1,32 @@
+name: Capture prompts
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 2 * * *"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync --all-groups
+      - run: uv run ruff format --check phistory tests
+      - run: uv run ruff check phistory tests
+      - run: uv run pytest
+      - run: uv run phistory capture --latest --agents claude-code,codex
+      - run: uv run phistory render-index
+      - uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "Capture latest prompt snapshots"
+          title: "Capture latest prompt snapshots"
+          body: "Automated prompt snapshot capture."
+          branch: bot/capture-latest-prompts

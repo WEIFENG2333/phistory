@@ -1,0 +1,6 @@
+.venv/
+.phistory-cache/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/

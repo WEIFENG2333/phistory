@@ -1,0 +1,41 @@
+[project]
+name = "phistory"
+version = "0.1.0"
+description = "Versioned prompt snapshots for agent CLIs."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{ name = "WEIFENG2333" }]
+dependencies = [
+    "claude-tap @ git+https://github.com/WEIFENG2333/claude-tap.git@main",
+]
+
+[project.scripts]
+phistory = "phistory.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.11",
+]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = ["-q"]
