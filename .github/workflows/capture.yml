@@ -25,7 +25,7 @@ jobs:
       - run: uv run ruff format --check phistory tests
       - run: uv run ruff check phistory tests
       - run: uv run pytest
-      - run: uv run phistory capture --latest --agents claude-code,codex --root /tmp/phistory-smoke --cache-dir /tmp/phistory-smoke-cache --force
+      - run: uv run phistory --root /tmp/phistory-smoke --cache-dir /tmp/phistory-smoke-cache capture --latest --agents claude-code,codex --force
       - run: uv run phistory capture --latest --agents claude-code,codex
       - run: uv run phistory render-index
       - uses: peter-evans/create-pull-request@v8
