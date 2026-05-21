@@ -6,10 +6,10 @@
   "published_at": "2026-05-18T19:57:54.760Z",
   "tarball_url": null,
   "binary_version": "2.1.144 (Claude Code)",
-  "captured_at": "2026-05-21T17:53:24.690966+00:00",
+  "captured_at": "2026-05-21T22:12:56.659518+00:00",
   "tap_client": "claude",
   "target": "local dummy upstream",
-  "duration_seconds": 2.678,
+  "duration_seconds": 3.836,
   "command": [
     "python",
     "-m",
@@ -27,9 +27,7 @@
     ".tap",
     "--no-yolo",
     "--",
-    "--bare",
     "--no-session-persistence",
-    "--exclude-dynamic-system-prompt-sections",
     "-p",
     "Reply with one short sentence."
   ]

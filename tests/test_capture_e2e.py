@@ -48,10 +48,14 @@ def test_capture_target_runs_local_cli_through_tap(tmp_path: Path, monkeypatch):
 
 
 def test_sanitize_text_normalizes_volatile_claude_headers():
-    text = "x-anthropic-billing-header: cc_version=2.1.146.6c9; cc_entrypoint=sdk-cli; cch=abc123;"
+    text = (
+        "x-anthropic-billing-header: cc_version=2.1.146.6c9; cc_entrypoint=sdk-cli; cch=abc123;\n"
+        "$PHISTORY_HOME/.claude/projects/-tmp-phistory-work-abc123/memory/"
+    )
 
     assert _sanitize_text(text, {}) == (
-        "x-anthropic-billing-header: cc_version=2.1.146.6c9; cc_entrypoint=sdk-cli; cch=<normalized>;"
+        "x-anthropic-billing-header: cc_version=2.1.146.6c9; cc_entrypoint=sdk-cli; cch=<normalized>;\n"
+        "$PHISTORY_HOME/.claude/projects/$PHISTORY_PROJECT/memory/"
     )
 
 

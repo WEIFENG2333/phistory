@@ -14,8 +14,9 @@ def test_get_agent_has_capture_contract():
     assert "--" in agent.run_args
 
 
-def test_claude_code_runs_in_bare_mode():
+def test_claude_code_uses_full_prompt_surface_with_isolated_sessions():
     agent = get_agent("claude-code")
 
-    assert "--bare" in agent.run_args
-    assert "--exclude-dynamic-system-prompt-sections" in agent.run_args
+    assert "--no-session-persistence" in agent.run_args
+    assert "--bare" not in agent.run_args
+    assert "--exclude-dynamic-system-prompt-sections" not in agent.run_args

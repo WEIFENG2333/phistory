@@ -13,7 +13,13 @@ from phistory.models import CaptureResult, CaptureTarget
 from phistory.storage import copy_trace, is_captured, latest_trace, prepare_version_dir, remove_if_exists, write_meta
 from phistory.subprocesses import run
 
-_VOLATILE_TEXT_PATTERNS = ((re.compile(r"\bcch=[^;\s]+"), "cch=<normalized>"),)
+_VOLATILE_TEXT_PATTERNS = (
+    (re.compile(r"\bcch=[^;\s]+"), "cch=<normalized>"),
+    (
+        re.compile(r"\$PHISTORY_HOME/\.claude/projects/-tmp-phistory-work-[^/\s]+"),
+        "$PHISTORY_HOME/.claude/projects/$PHISTORY_PROJECT",
+    ),
+)
 
 
 def capture_target(

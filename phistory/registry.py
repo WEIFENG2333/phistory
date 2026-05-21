@@ -16,9 +16,7 @@ CLAUDE_CODE = AgentSpec(
     run_args=(
         "--no-yolo",
         "--",
-        "--bare",
         "--no-session-persistence",
-        "--exclude-dynamic-system-prompt-sections",
         "-p",
         "Reply with one short sentence.",
     ),
