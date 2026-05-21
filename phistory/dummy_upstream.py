@@ -1,3 +1,10 @@
+"""Local fake LLM API used to capture prompts without calling real services.
+
+phistory's job is to observe the real CLI request shape. The upstream response
+only needs to be valid enough for that CLI to finish cleanly; otherwise clients
+like Codex retry failed requests and produce noisy traces.
+"""
+
 from __future__ import annotations
 
 import json
