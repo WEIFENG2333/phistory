@@ -2,7 +2,7 @@ import json
 import stat
 from pathlib import Path
 
-from phistory.capture import capture_target
+from phistory.capture import _sanitize_text, capture_target
 from phistory.models import AgentSpec, CaptureTarget, VersionInfo
 
 
@@ -45,6 +45,14 @@ def test_capture_target_runs_local_cli_through_tap(tmp_path: Path, monkeypatch):
     prompt = target.prompt_path.read_text(encoding="utf-8")
     assert "Fake system prompt" in prompt
     assert str(tmp_path) not in prompt
+
+
+def test_sanitize_text_normalizes_volatile_claude_headers():
+    text = "x-anthropic-billing-header: cc_version=2.1.146.6c9; cc_entrypoint=sdk-cli; cch=abc123;"
+
+    assert _sanitize_text(text, {}) == (
+        "x-anthropic-billing-header: cc_version=2.1.146.6c9; cc_entrypoint=sdk-cli; cch=<normalized>;"
+    )
 
 
 _FAKE_CODEX = """#!/usr/bin/env python3

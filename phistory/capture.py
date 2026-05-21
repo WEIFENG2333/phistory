@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import re
 import sys
 import time
 from pathlib import Path
@@ -11,6 +12,8 @@ from phistory.dummy_upstream import dummy_upstream
 from phistory.models import CaptureResult, CaptureTarget
 from phistory.storage import copy_trace, is_captured, latest_trace, prepare_version_dir, remove_if_exists, write_meta
 from phistory.subprocesses import run
+
+_VOLATILE_TEXT_PATTERNS = ((re.compile(r"\bcch=[^;\s]+"), "cch=<normalized>"),)
 
 
 def capture_target(
@@ -146,7 +149,14 @@ def _portable_command(argv: list[str], version_dir: Path) -> list[str]:
 
 def _sanitize_file(path: Path, replacements: dict[str, str]) -> None:
     text = path.read_text(encoding="utf-8")
-    path.write_text(_replace_many(text, replacements), encoding="utf-8")
+    path.write_text(_sanitize_text(text, replacements), encoding="utf-8")
+
+
+def _sanitize_text(text: str, replacements: dict[str, str]) -> str:
+    text = _replace_many(text, replacements)
+    for pattern, replacement in _VOLATILE_TEXT_PATTERNS:
+        text = pattern.sub(replacement, text)
+    return text
 
 
 def _replace_many(text: str, replacements: dict[str, str]) -> str:
