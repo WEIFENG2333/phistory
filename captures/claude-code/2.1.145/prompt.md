@@ -5,13 +5,13 @@
 - **Path**: /v1/messages?beta=true
 - **Upstream**: http://127.0.0.1:<dummy>
 - **Turn**: 2
-- **Request ID**: req_2f46909c5d1c
-- **Captured**: 2026-05-21T17:34:43.659346+00:00
+- **Request ID**: req_601a217b7c1c
+- **Captured**: 2026-05-21T17:34:41.188365+00:00
 - **Tools**: 3
 
 # System Prompt
 
-x-anthropic-billing-header: cc_version=2.1.146.6c9; cc_entrypoint=sdk-cli; cch=0ec28;
+x-anthropic-billing-header: cc_version=2.1.145.57f; cc_entrypoint=sdk-cli; cch=acaa9;
 
 You are a Claude agent, built on Anthropic's Claude Agent SDK.
 
