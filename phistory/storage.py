@@ -9,7 +9,7 @@ from phistory.models import CaptureTarget
 
 
 def is_captured(target: CaptureTarget) -> bool:
-    return target.prompt_path.exists() and target.meta_path.exists()
+    return target.prompt_path.exists() and target.trace_path.exists() and target.meta_path.exists()
 
 
 def prepare_version_dir(target: CaptureTarget, *, force: bool) -> None:

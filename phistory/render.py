@@ -1,7 +1,10 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
+
+_VERSION_PART_RE = re.compile(r"\d+|[A-Za-z]+")
 
 
 def render_index(root: Path, output: Path) -> None:
@@ -59,7 +62,7 @@ def render_index(root: Path, output: Path) -> None:
     else:
         lines.append("| Agent | Version | Published | Captured | Prompt | Trace |")
         lines.append("| --- | --- | --- | --- | --- | --- |")
-        for row in sorted(rows, key=lambda item: (item["agent_id"], item["version"]), reverse=True):
+        for row in sorted(rows, key=lambda item: (item["agent_id"], _version_key(item["version"])), reverse=True):
             prompt = _rel(row["prompt"], output.parent)
             trace = _rel(row["trace"], output.parent)
             lines.append(
@@ -75,3 +78,13 @@ def _rel(path: Path, base: Path) -> str:
         return path.resolve().relative_to(base.resolve()).as_posix()
     except ValueError:
         return path.as_posix()
+
+
+def _version_key(version: str) -> tuple:
+    parts: list[tuple[int, int | str]] = []
+    for part in _VERSION_PART_RE.findall(version):
+        if part.isdigit():
+            parts.append((1, int(part)))
+        else:
+            parts.append((0, part))
+    return tuple(parts)

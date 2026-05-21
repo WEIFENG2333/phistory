@@ -120,7 +120,9 @@ def _binary_version(target: CaptureTarget, bin_dir: Path) -> str | None:
     executable = bin_dir / target.agent.tap_client
     if not executable.exists():
         return None
-    result = run([str(executable), "--version"], env=_capture_env(target, bin_dir), timeout=30, check=False)
+    with TemporaryDirectory(prefix="phistory-version-home-") as home_dir:
+        env = _capture_env(target, bin_dir, Path(home_dir))
+        result = run([str(executable), "--version"], env=env, timeout=30, check=False)
     text = (result.stdout or result.stderr).strip()
     return text or None
 

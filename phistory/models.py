@@ -13,7 +13,6 @@ class AgentSpec:
     tap_client: str
     fake_env: dict[str, str]
     run_args: tuple[str, ...]
-    dist_tag: str = "latest"
     install_command: tuple[str, ...] = ("npm", "install", "--no-audit", "--no-fund")
     extra_env: dict[str, str] = field(default_factory=dict)
 
