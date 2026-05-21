@@ -37,7 +37,14 @@ def test_capture_paths_and_index(tmp_path: Path):
     render_index(tmp_path / "captures", out)
     text = out.read_text(encoding="utf-8")
     assert "Agent" in text
+    assert "archives versioned system prompt snapshots" in text
+    assert "claude-tap" in text
+    assert "GitHub Actions runs this on a schedule" in text
+    assert "## Latest Captures" in text
+    assert "- Agent: `1.0.0` published 2026-05-22 00:00 UTC, captured 2026-05-22 01:00 UTC" in text
     assert "captures/agent/1.0.0/prompt.md" in text
+    assert "[agent 1.0.0, published 2026-05-22 00:00 UTC]" in text
+    assert "2026-05-22 01:00 UTC" in text
 
 
 def test_capture_is_incomplete_without_trace(tmp_path: Path):
