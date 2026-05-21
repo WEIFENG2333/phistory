@@ -25,6 +25,12 @@ jobs:
       - run: uv run ruff check phistory tests
       - run: uv run pytest
       - run: uv run phistory --root /tmp/phistory-smoke --cache-dir /tmp/phistory-smoke-cache capture --latest --agents claude-code,codex --force
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: smoke-captures
+          path: /tmp/phistory-smoke
+          retention-days: 7
       - run: uv run phistory capture --latest --agents claude-code,codex
       - run: uv run phistory render-index
       - name: Commit capture updates
