@@ -17,6 +17,10 @@ from phistory.subprocesses import run
 
 _VOLATILE_TEXT_PATTERNS = (
     (re.compile(r"\bcch=[^;\s]+"), "cch=<normalized>"),
+    (re.compile(r" - OS Version: .+"), " - OS Version: $PHISTORY_OS_VERSION"),
+    (re.compile(r"Today's date is \d{4}[-/]\d{2}[-/]\d{2}\."), "Today's date is $PHISTORY_DATE."),
+    (re.compile(r"<current_date>\d{4}-\d{2}-\d{2}</current_date>"), "<current_date>$PHISTORY_DATE</current_date>"),
+    (re.compile(r"<timezone>[^<]+</timezone>"), "<timezone>$PHISTORY_TIMEZONE</timezone>"),
     (
         re.compile(r"\$PHISTORY_HOME/\.claude/projects/-tmp-phistory-work-[^/\s]+"),
         "$PHISTORY_HOME/.claude/projects/$PHISTORY_PROJECT",
@@ -126,6 +130,9 @@ def _capture_env(target: CaptureTarget, bin_dir: Path, home_dir: Path | None = N
         "XDG_DATA_HOME": str(home / ".local" / "share"),
         "CODEX_HOME": str(home / ".codex"),
         "CLAUDE_CONFIG_DIR": str(home / ".claude"),
+        "CI": "true",
+        "GITHUB_ACTIONS": "true",
+        "TZ": "Etc/UTC",
     }
     if target.agent.fake_chatgpt_auth:
         env.update({"OPENAI_API_KEY": "", "CODEX_API_KEY": "", "CODEX_ACCESS_TOKEN": ""})

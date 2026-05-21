@@ -50,12 +50,20 @@ def test_capture_target_runs_local_cli_through_tap(tmp_path: Path, monkeypatch):
 def test_sanitize_text_normalizes_volatile_claude_headers():
     text = (
         "x-anthropic-billing-header: cc_version=2.1.146.6c9; cc_entrypoint=sdk-cli; cch=abc123;\n"
+        " - OS Version: Linux 6.17.0-1013-azure\n"
+        "Today's date is 2026-05-21.\n"
+        "<current_date>2026-05-21</current_date>\n"
+        "<timezone>Etc/UTC</timezone>\n"
         "$PHISTORY_HOME/.claude/projects/-tmp-phistory-work-abc123/memory/\n"
         "Authorization: Bearer phistory-fake-access-token"
     )
 
     assert _sanitize_text(text, {}) == (
         "x-anthropic-billing-header: cc_version=2.1.146.6c9; cc_entrypoint=sdk-cli; cch=<normalized>;\n"
+        " - OS Version: $PHISTORY_OS_VERSION\n"
+        "Today's date is $PHISTORY_DATE.\n"
+        "<current_date>$PHISTORY_DATE</current_date>\n"
+        "<timezone>$PHISTORY_TIMEZONE</timezone>\n"
         "$PHISTORY_HOME/.claude/projects/$PHISTORY_PROJECT/memory/\n"
         "Authorization: Bearer <redacted>"
     )
@@ -79,6 +87,9 @@ def test_capture_env_writes_fake_chatgpt_auth(tmp_path: Path):
     assert auth["auth_mode"] == "chatgpt"
     assert auth["tokens"]["access_token"] == "phistory-fake-access-token"
     assert env["OPENAI_API_KEY"] == ""
+    assert env["CI"] == "true"
+    assert env["GITHUB_ACTIONS"] == "true"
+    assert env["TZ"] == "Etc/UTC"
 
 
 _FAKE_CODEX = """#!/usr/bin/env python3

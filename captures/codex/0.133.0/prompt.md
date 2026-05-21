@@ -197,8 +197,8 @@ A skill is a set of local instructions to follow that is stored in a `SKILL.md` 
 <environment_context>
   <cwd>$PHISTORY_WORKSPACE</cwd>
   <shell>bash</shell>
-  <current_date>2026-05-22</current_date>
-  <timezone>Asia/Shanghai</timezone>
+  <current_date>$PHISTORY_DATE</current_date>
+  <timezone>$PHISTORY_TIMEZONE</timezone>
 </environment_context>
 
 Reply with one short sentence.
