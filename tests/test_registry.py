@@ -12,3 +12,10 @@ def test_get_agent_has_capture_contract():
     assert agent.tap_client == "codex"
     assert "OPENAI_API_KEY" in agent.fake_env
     assert "--" in agent.run_args
+
+
+def test_claude_code_runs_in_bare_mode():
+    agent = get_agent("claude-code")
+
+    assert "--bare" in agent.run_args
+    assert "--exclude-dynamic-system-prompt-sections" in agent.run_args

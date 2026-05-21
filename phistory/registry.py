@@ -13,7 +13,15 @@ CLAUDE_CODE = AgentSpec(
         "DISABLE_UPDATES": "1",
         "CI": "1",
     },
-    run_args=("--no-yolo", "--", "-p", "Reply with one short sentence."),
+    run_args=(
+        "--no-yolo",
+        "--",
+        "--bare",
+        "--no-session-persistence",
+        "--exclude-dynamic-system-prompt-sections",
+        "-p",
+        "Reply with one short sentence.",
+    ),
 )
 
 CODEX = AgentSpec(

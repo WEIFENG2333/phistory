@@ -4,6 +4,7 @@ import os
 import sys
 import time
 from pathlib import Path
+from tempfile import TemporaryDirectory
 
 from phistory import npm
 from phistory.dummy_upstream import dummy_upstream
@@ -34,8 +35,12 @@ def capture_target(
     try:
         bin_dir = npm.install_agent(target.agent, target.version.version, install_dir)
         binary_version = _binary_version(target, bin_dir)
-        env = _capture_env(target, bin_dir)
-        with dummy_upstream() as upstream:
+        with (
+            TemporaryDirectory(prefix="phistory-home-") as home_dir,
+            TemporaryDirectory(prefix="phistory-work-") as work_dir,
+            dummy_upstream() as upstream,
+        ):
+            env = _capture_env(target, bin_dir, Path(home_dir))
             argv = [
                 sys.executable,
                 "-m",
@@ -53,13 +58,20 @@ def capture_target(
                 str(tap_output_dir),
                 *target.agent.run_args,
             ]
-            result = run(argv, cwd=version_dir, env=env, timeout=180, check=False)
+            result = run(argv, cwd=Path(work_dir), env=env, timeout=180, check=False)
         if result.returncode != 0 or not prompt_path.exists():
             detail = (result.stderr or result.stdout).strip()[-4000:]
             raise RuntimeError(f"capture command failed ({result.returncode})\n{detail}")
 
         trace = latest_trace(tap_output_dir)
         copy_trace(trace, target)
+        replacements = {
+            str(home_dir): "$PHISTORY_HOME",
+            str(work_dir): "$PHISTORY_WORKSPACE",
+            upstream: "http://127.0.0.1:<dummy>",
+        }
+        _sanitize_file(prompt_path, replacements)
+        _sanitize_file(target.trace_path, replacements)
         write_meta(
             target,
             {
@@ -72,9 +84,9 @@ def capture_target(
                 "binary_version": binary_version,
                 "captured_at": _iso_now(),
                 "tap_client": target.agent.tap_client,
-                "target": upstream,
+                "target": "local dummy upstream",
                 "duration_seconds": round(time.time() - started, 3),
-                "command": _portable_command(argv, version_dir),
+                "command": [_replace_many(part, replacements) for part in _portable_command(argv, version_dir)],
             },
         )
         if not keep_tap:
@@ -86,11 +98,20 @@ def capture_target(
         return CaptureResult(target.agent.id, target.version.version, "failed", error=str(exc))
 
 
-def _capture_env(target: CaptureTarget, bin_dir: Path) -> dict[str, str]:
+def _capture_env(target: CaptureTarget, bin_dir: Path, home_dir: Path | None = None) -> dict[str, str]:
+    home = home_dir or target.version_dir / ".home"
+    for path in (home, home / ".config", home / ".cache", home / ".local" / "share", home / ".codex", home / ".claude"):
+        path.mkdir(parents=True, exist_ok=True)
     env = {
         **target.agent.fake_env,
         **target.agent.extra_env,
         "PATH": f"{bin_dir}{os.pathsep}{os.environ.get('PATH', '')}",
+        "HOME": str(home),
+        "XDG_CONFIG_HOME": str(home / ".config"),
+        "XDG_CACHE_HOME": str(home / ".cache"),
+        "XDG_DATA_HOME": str(home / ".local" / "share"),
+        "CODEX_HOME": str(home / ".codex"),
+        "CLAUDE_CONFIG_DIR": str(home / ".claude"),
     }
     return env
 
@@ -119,6 +140,17 @@ def _portable_command(argv: list[str], version_dir: Path) -> list[str]:
                 pass
         out.append(arg)
     return out
+
+
+def _sanitize_file(path: Path, replacements: dict[str, str]) -> None:
+    text = path.read_text(encoding="utf-8")
+    path.write_text(_replace_many(text, replacements), encoding="utf-8")
+
+
+def _replace_many(text: str, replacements: dict[str, str]) -> str:
+    for source, replacement in replacements.items():
+        text = text.replace(source, replacement)
+    return text
 
 
 def _iso_now() -> str:
