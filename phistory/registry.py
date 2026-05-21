@@ -27,12 +27,13 @@ CODEX = AgentSpec(
     display_name="Codex CLI",
     package="@openai/codex",
     tap_client="codex",
-    fake_env={"OPENAI_API_KEY": "fake"},
+    fake_env={},
     extra_env={
         "DISABLE_AUTOUPDATER": "1",
         "DISABLE_UPDATES": "1",
         "CI": "1",
     },
+    fake_chatgpt_auth=True,
     run_args=(
         "--no-yolo",
         "--",

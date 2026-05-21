@@ -10,7 +10,7 @@ def test_get_agent_has_capture_contract():
 
     assert agent.package == "@openai/codex"
     assert agent.tap_client == "codex"
-    assert "OPENAI_API_KEY" in agent.fake_env
+    assert agent.fake_chatgpt_auth
     assert "--" in agent.run_args
 
 

@@ -15,6 +15,7 @@ class AgentSpec:
     run_args: tuple[str, ...]
     install_command: tuple[str, ...] = ("npm", "install", "--no-audit", "--no-fund")
     extra_env: dict[str, str] = field(default_factory=dict)
+    fake_chatgpt_auth: bool = False
 
 
 @dataclass(frozen=True)

@@ -301,6 +301,82 @@ Runs a command in a PTY, returning output or a session ID for ongoing interactio
 }
 ```
 
+## image_generation
+
+```json
+{
+  "type": "image_generation",
+  "output_format": "png"
+}
+```
+
+## list_mcp_resource_templates
+
+Lists resource templates provided by MCP servers. Parameterized resource templates allow servers to share data that takes parameters and provides context to language models, such as files, database schemas, or application-specific information. Prefer resource templates over web search when possible.
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "cursor": {
+      "type": "string",
+      "description": "Opaque cursor returned by a previous list_mcp_resource_templates call for the same server."
+    },
+    "server": {
+      "type": "string",
+      "description": "Optional MCP server name. When omitted, lists resource templates from all configured servers."
+    }
+  },
+  "additionalProperties": false
+}
+```
+
+## list_mcp_resources
+
+Lists resources provided by MCP servers. Resources allow servers to share data that provides context to language models, such as files, database schemas, or application-specific information. Prefer resources over web search when possible.
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "cursor": {
+      "type": "string",
+      "description": "Opaque cursor returned by a previous list_mcp_resources call for the same server."
+    },
+    "server": {
+      "type": "string",
+      "description": "Optional MCP server name. When omitted, lists resources from every configured server."
+    }
+  },
+  "additionalProperties": false
+}
+```
+
+## read_mcp_resource
+
+Read a specific resource from an MCP server given the server name and resource URI.
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "server": {
+      "type": "string",
+      "description": "MCP server name exactly as configured. Must match the 'server' field returned by list_mcp_resources."
+    },
+    "uri": {
+      "type": "string",
+      "description": "Resource URI to read. Must be one of the URIs returned by list_mcp_resources."
+    }
+  },
+  "required": [
+    "server",
+    "uri"
+  ],
+  "additionalProperties": false
+}
+```
+
 ## request_user_input
 
 Request user input for one to three short questions and wait for the response. This tool is only available in Plan mode.
