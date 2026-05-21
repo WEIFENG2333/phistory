@@ -1,8 +1,10 @@
 # phistory
 
-`phistory` captures versioned prompt snapshots from agent CLIs.
+`phistory` archives versioned system prompt snapshots from agent CLIs.
 
-It installs a specific CLI version, runs it once through `claude-tap`, and archives the prompt-bearing request body as Markdown. The upstream target is a local dummy server, so the model request is never sent to the real provider.
+It installs a specific CLI release, runs it once through [`claude-tap`](https://github.com/WEIFENG2333/claude-tap), captures the prompt-bearing HTTP request, and writes a comparison-friendly Markdown snapshot. The upstream target is a local dummy server, so the captured run does not send a model request to the real provider.
+
+GitHub Actions runs this on a schedule and updates the repository when a new supported CLI version appears.
 
 ## Usage
 
@@ -21,18 +23,23 @@ uv run phistory render-index
 
 Each capture is stored under `captures/<agent>/<version>/`:
 
-- `prompt.md`: normalized prompt snapshot
-- `trace.jsonl`: raw captured HTTP trace
+- `prompt.md`: normalized prompt snapshot for reading and diffing
+- `trace.jsonl`: raw captured HTTP trace, kept unnormalized as evidence
 - `meta.json`: package, version, command, and capture metadata
+
+## Latest Captures
+
+- Claude Code: `2.1.147` published 2026-05-21 17:16 UTC, captured 2026-05-21 23:07 UTC
+- Codex CLI: `0.133.0` published 2026-05-21 17:13 UTC, captured 2026-05-21 23:07 UTC
 
 ## Captures
 
-| Agent | Version | Published | Captured | Prompt | Trace |
+| Agent | Version | Published | Captured | Snapshot | Raw Trace |
 | --- | --- | --- | --- | --- | --- |
-| Codex CLI | `0.133.0` | 2026-05-21T17:13:06.253Z | 2026-05-21T23:07:53.583744+00:00 | [prompt](captures/codex/0.133.0/prompt.md) | [trace](captures/codex/0.133.0/trace.jsonl) |
-| Codex CLI | `0.132.0` | 2026-05-20T02:39:00.388Z | 2026-05-21T22:42:22.957539+00:00 | [prompt](captures/codex/0.132.0/prompt.md) | [trace](captures/codex/0.132.0/trace.jsonl) |
-| Codex CLI | `0.131.0` | 2026-05-18T18:08:19.710Z | 2026-05-21T22:42:14.141699+00:00 | [prompt](captures/codex/0.131.0/prompt.md) | [trace](captures/codex/0.131.0/trace.jsonl) |
-| Claude Code | `2.1.147` | 2026-05-21T17:16:38.999Z | 2026-05-21T23:07:43.633606+00:00 | [prompt](captures/claude-code/2.1.147/prompt.md) | [trace](captures/claude-code/2.1.147/trace.jsonl) |
-| Claude Code | `2.1.146` | 2026-05-20T20:14:13.615Z | 2026-05-21T22:13:02.585486+00:00 | [prompt](captures/claude-code/2.1.146/prompt.md) | [trace](captures/claude-code/2.1.146/trace.jsonl) |
-| Claude Code | `2.1.145` | 2026-05-19T17:40:52.477Z | 2026-05-21T22:12:59.918803+00:00 | [prompt](captures/claude-code/2.1.145/prompt.md) | [trace](captures/claude-code/2.1.145/trace.jsonl) |
-| Claude Code | `2.1.144` | 2026-05-18T19:57:54.760Z | 2026-05-21T22:12:56.659518+00:00 | [prompt](captures/claude-code/2.1.144/prompt.md) | [trace](captures/claude-code/2.1.144/trace.jsonl) |
+| Codex CLI | `0.133.0` | 2026-05-21 17:13 UTC | 2026-05-21 23:07 UTC | [codex 0.133.0, published 2026-05-21 17:13 UTC](captures/codex/0.133.0/prompt.md) | [trace.jsonl](captures/codex/0.133.0/trace.jsonl) |
+| Codex CLI | `0.132.0` | 2026-05-20 02:39 UTC | 2026-05-21 22:42 UTC | [codex 0.132.0, published 2026-05-20 02:39 UTC](captures/codex/0.132.0/prompt.md) | [trace.jsonl](captures/codex/0.132.0/trace.jsonl) |
+| Codex CLI | `0.131.0` | 2026-05-18 18:08 UTC | 2026-05-21 22:42 UTC | [codex 0.131.0, published 2026-05-18 18:08 UTC](captures/codex/0.131.0/prompt.md) | [trace.jsonl](captures/codex/0.131.0/trace.jsonl) |
+| Claude Code | `2.1.147` | 2026-05-21 17:16 UTC | 2026-05-21 23:07 UTC | [claude-code 2.1.147, published 2026-05-21 17:16 UTC](captures/claude-code/2.1.147/prompt.md) | [trace.jsonl](captures/claude-code/2.1.147/trace.jsonl) |
+| Claude Code | `2.1.146` | 2026-05-20 20:14 UTC | 2026-05-21 22:13 UTC | [claude-code 2.1.146, published 2026-05-20 20:14 UTC](captures/claude-code/2.1.146/prompt.md) | [trace.jsonl](captures/claude-code/2.1.146/trace.jsonl) |
+| Claude Code | `2.1.145` | 2026-05-19 17:40 UTC | 2026-05-21 22:12 UTC | [claude-code 2.1.145, published 2026-05-19 17:40 UTC](captures/claude-code/2.1.145/prompt.md) | [trace.jsonl](captures/claude-code/2.1.145/trace.jsonl) |
+| Claude Code | `2.1.144` | 2026-05-18 19:57 UTC | 2026-05-21 22:12 UTC | [claude-code 2.1.144, published 2026-05-18 19:57 UTC](captures/claude-code/2.1.144/prompt.md) | [trace.jsonl](captures/claude-code/2.1.144/trace.jsonl) |
