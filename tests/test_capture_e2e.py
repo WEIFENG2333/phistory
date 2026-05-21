@@ -69,6 +69,26 @@ def test_sanitize_text_normalizes_volatile_claude_headers():
     )
 
 
+def test_sanitize_text_preserves_jsonl_when_normalizing_escaped_environment():
+    record = {
+        "body": {
+            "text": "## Environment\n - Primary working directory: /tmp/work\n - OS Version: Linux 6.17.0-1013-azure\n - Shell: bash\nToday's date is 2026-05-21."
+        }
+    }
+    text = json.dumps(record)
+
+    sanitized = _sanitize_text(text, {})
+
+    parsed = json.loads(sanitized)
+    assert parsed["body"]["text"] == (
+        "## Environment\n"
+        " - Primary working directory: /tmp/work\n"
+        " - OS Version: $PHISTORY_OS_VERSION\n"
+        " - Shell: bash\n"
+        "Today's date is $PHISTORY_DATE."
+    )
+
+
 def test_capture_env_writes_fake_chatgpt_auth(tmp_path: Path):
     agent = AgentSpec(
         id="codex",
