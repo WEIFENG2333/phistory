@@ -2,7 +2,7 @@ import json
 import stat
 from pathlib import Path
 
-from phistory.capture import _sanitize_text, capture_target
+from phistory.capture import _capture_env, _sanitize_text, capture_target
 from phistory.models import AgentSpec, CaptureTarget, VersionInfo
 
 
@@ -50,13 +50,35 @@ def test_capture_target_runs_local_cli_through_tap(tmp_path: Path, monkeypatch):
 def test_sanitize_text_normalizes_volatile_claude_headers():
     text = (
         "x-anthropic-billing-header: cc_version=2.1.146.6c9; cc_entrypoint=sdk-cli; cch=abc123;\n"
-        "$PHISTORY_HOME/.claude/projects/-tmp-phistory-work-abc123/memory/"
+        "$PHISTORY_HOME/.claude/projects/-tmp-phistory-work-abc123/memory/\n"
+        "Authorization: Bearer phistory-fake-access-token"
     )
 
     assert _sanitize_text(text, {}) == (
         "x-anthropic-billing-header: cc_version=2.1.146.6c9; cc_entrypoint=sdk-cli; cch=<normalized>;\n"
-        "$PHISTORY_HOME/.claude/projects/$PHISTORY_PROJECT/memory/"
+        "$PHISTORY_HOME/.claude/projects/$PHISTORY_PROJECT/memory/\n"
+        "Authorization: Bearer <redacted>"
     )
+
+
+def test_capture_env_writes_fake_chatgpt_auth(tmp_path: Path):
+    agent = AgentSpec(
+        id="codex",
+        display_name="Codex",
+        package="@openai/codex",
+        tap_client="codex",
+        fake_env={},
+        run_args=(),
+        fake_chatgpt_auth=True,
+    )
+    target = CaptureTarget(agent, VersionInfo("1.0.0"), tmp_path / "captures")
+
+    env = _capture_env(target, tmp_path / "bin", tmp_path / "home")
+
+    auth = json.loads((tmp_path / "home" / ".codex" / "auth.json").read_text(encoding="utf-8"))
+    assert auth["auth_mode"] == "chatgpt"
+    assert auth["tokens"]["access_token"] == "phistory-fake-access-token"
+    assert env["OPENAI_API_KEY"] == ""
 
 
 _FAKE_CODEX = """#!/usr/bin/env python3

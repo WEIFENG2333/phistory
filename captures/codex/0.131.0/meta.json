@@ -6,10 +6,10 @@
   "published_at": "2026-05-18T18:08:19.710Z",
   "tarball_url": null,
   "binary_version": "codex-cli 0.131.0",
-  "captured_at": "2026-05-21T17:51:37.478129+00:00",
+  "captured_at": "2026-05-21T22:42:14.141699+00:00",
   "tap_client": "codex",
   "target": "local dummy upstream",
-  "duration_seconds": 7.364,
+  "duration_seconds": 9.21,
   "command": [
     "python",
     "-m",

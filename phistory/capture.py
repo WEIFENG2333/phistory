@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import base64
+import json
 import os
 import re
 import sys
@@ -19,6 +21,7 @@ _VOLATILE_TEXT_PATTERNS = (
         re.compile(r"\$PHISTORY_HOME/\.claude/projects/-tmp-phistory-work-[^/\s]+"),
         "$PHISTORY_HOME/.claude/projects/$PHISTORY_PROJECT",
     ),
+    (re.compile(r"Bearer phistory-[A-Za-z0-9_-]+"), "Bearer <redacted>"),
 )
 
 
@@ -111,6 +114,8 @@ def _capture_env(target: CaptureTarget, bin_dir: Path, home_dir: Path | None = N
     home = home_dir or target.version_dir / ".home"
     for path in (home, home / ".config", home / ".cache", home / ".local" / "share", home / ".codex", home / ".claude"):
         path.mkdir(parents=True, exist_ok=True)
+    if target.agent.fake_chatgpt_auth:
+        _write_fake_chatgpt_auth(home)
     env = {
         **target.agent.fake_env,
         **target.agent.extra_env,
@@ -122,7 +127,45 @@ def _capture_env(target: CaptureTarget, bin_dir: Path, home_dir: Path | None = N
         "CODEX_HOME": str(home / ".codex"),
         "CLAUDE_CONFIG_DIR": str(home / ".claude"),
     }
+    if target.agent.fake_chatgpt_auth:
+        env.update({"OPENAI_API_KEY": "", "CODEX_API_KEY": "", "CODEX_ACCESS_TOKEN": ""})
     return env
+
+
+def _write_fake_chatgpt_auth(home: Path) -> None:
+    codex_home = home / ".codex"
+    codex_home.mkdir(parents=True, exist_ok=True)
+    auth = {
+        "auth_mode": "chatgpt",
+        "tokens": {
+            "id_token": _fake_chatgpt_jwt(),
+            "access_token": "phistory-fake-access-token",
+            "refresh_token": "phistory-fake-refresh-token",
+            "account_id": "phistory-account",
+        },
+        "last_refresh": "2026-01-01T00:00:00Z",
+    }
+    (codex_home / "auth.json").write_text(json.dumps(auth, separators=(",", ":")), encoding="utf-8")
+
+
+def _fake_chatgpt_jwt() -> str:
+    header = {"alg": "none", "typ": "JWT"}
+    payload = {
+        "exp": 4102444800,
+        "email": "phistory@example.invalid",
+        "https://api.openai.com/auth": {
+            "chatgpt_plan_type": "plus",
+            "chatgpt_user_id": "phistory-user",
+            "chatgpt_account_id": "phistory-account",
+            "chatgpt_account_is_fedramp": False,
+        },
+    }
+    return f"{_b64url_json(header)}.{_b64url_json(payload)}.phistory-signature"
+
+
+def _b64url_json(value: dict) -> str:
+    raw = json.dumps(value, separators=(",", ":")).encode("utf-8")
+    return base64.urlsafe_b64encode(raw).decode("ascii").rstrip("=")
 
 
 def _binary_version(target: CaptureTarget, bin_dir: Path) -> str | None:

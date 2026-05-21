@@ -66,8 +66,9 @@ def _response_for_path(path: str) -> dict:
             ],
             "usage": {"input_tokens": 1, "output_tokens": 1, "total_tokens": 2},
         }
-    if path.startswith("/v1/models"):
-        return {"object": "list", "data": [{"id": "gpt-5.4", "object": "model"}]}
+    if path.startswith(("/v1/models", "/models")):
+        models = [{"id": "gpt-5.5", "object": "model"}, {"id": "gpt-5.4", "object": "model"}]
+        return {"object": "list", "data": models, "models": models}
     return {"ok": True, "path": path}
 
 
