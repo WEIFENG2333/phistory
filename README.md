@@ -51,7 +51,7 @@ Each capture is stored under `captures/<agent>/<version>/`:
 
 - Claude Code: `2.1.148` published 2026-05-22 00:10 UTC, captured 2026-05-22 05:06 UTC
 - Codex CLI: `0.133.0` published 2026-05-21 17:13 UTC, captured 2026-05-21 23:53 UTC
-- Hermes Agent: `v2026.5.16` published 2026-05-16 09:59 UTC, captured 2026-05-22 11:56 UTC
+- Hermes Agent: `v2026.5.16` published 2026-05-16 09:59 UTC, captured 2026-05-22 12:31 UTC
 - OpenClaw: `2026.5.20` published 2026-05-21 20:41 UTC, captured 2026-05-22 11:56 UTC
 
 ## Captures
@@ -59,7 +59,72 @@ Each capture is stored under `captures/<agent>/<version>/`:
 | Agent | Version | Published | Captured | Snapshot | Raw Trace |
 | --- | --- | --- | --- | --- | --- |
 | OpenClaw | `2026.5.20` | 2026-05-21 20:41 UTC | 2026-05-22 11:56 UTC | [openclaw 2026.5.20, published 2026-05-21 20:41 UTC](captures/openclaw/2026.5.20/prompt.md) | [trace.jsonl](captures/openclaw/2026.5.20/trace.jsonl) |
-| Hermes Agent | `v2026.5.16` | 2026-05-16 09:59 UTC | 2026-05-22 11:56 UTC | [hermes v2026.5.16, published 2026-05-16 09:59 UTC](captures/hermes/v2026.5.16/prompt.md) | [trace.jsonl](captures/hermes/v2026.5.16/trace.jsonl) |
+| OpenClaw | `2026.5.19` | 2026-05-20 20:20 UTC | 2026-05-22 12:42 UTC | [openclaw 2026.5.19, published 2026-05-20 20:20 UTC](captures/openclaw/2026.5.19/prompt.md) | [trace.jsonl](captures/openclaw/2026.5.19/trace.jsonl) |
+| OpenClaw | `2026.5.18` | 2026-05-18 18:53 UTC | 2026-05-22 12:41 UTC | [openclaw 2026.5.18, published 2026-05-18 18:53 UTC](captures/openclaw/2026.5.18/prompt.md) | [trace.jsonl](captures/openclaw/2026.5.18/trace.jsonl) |
+| OpenClaw | `2026.5.12` | 2026-05-14 18:26 UTC | 2026-05-22 12:40 UTC | [openclaw 2026.5.12, published 2026-05-14 18:26 UTC](captures/openclaw/2026.5.12/prompt.md) | [trace.jsonl](captures/openclaw/2026.5.12/trace.jsonl) |
+| OpenClaw | `2026.5.7` | 2026-05-07 20:38 UTC | 2026-05-22 12:40 UTC | [openclaw 2026.5.7, published 2026-05-07 20:38 UTC](captures/openclaw/2026.5.7/prompt.md) | [trace.jsonl](captures/openclaw/2026.5.7/trace.jsonl) |
+| OpenClaw | `2026.5.6` | 2026-05-06 17:33 UTC | 2026-05-22 12:39 UTC | [openclaw 2026.5.6, published 2026-05-06 17:33 UTC](captures/openclaw/2026.5.6/prompt.md) | [trace.jsonl](captures/openclaw/2026.5.6/trace.jsonl) |
+| OpenClaw | `2026.5.5` | 2026-05-06 08:46 UTC | 2026-05-22 12:39 UTC | [openclaw 2026.5.5, published 2026-05-06 08:46 UTC](captures/openclaw/2026.5.5/prompt.md) | [trace.jsonl](captures/openclaw/2026.5.5/trace.jsonl) |
+| OpenClaw | `2026.5.4` | 2026-05-05 08:11 UTC | 2026-05-22 12:39 UTC | [openclaw 2026.5.4, published 2026-05-05 08:11 UTC](captures/openclaw/2026.5.4/prompt.md) | [trace.jsonl](captures/openclaw/2026.5.4/trace.jsonl) |
+| OpenClaw | `2026.5.3` | 2026-05-04 07:46 UTC | 2026-05-22 12:38 UTC | [openclaw 2026.5.3, published 2026-05-04 07:46 UTC](captures/openclaw/2026.5.3/prompt.md) | [trace.jsonl](captures/openclaw/2026.5.3/trace.jsonl) |
+| OpenClaw | `2026.5.2` | 2026-05-03 00:24 UTC | 2026-05-22 12:38 UTC | [openclaw 2026.5.2, published 2026-05-03 00:24 UTC](captures/openclaw/2026.5.2/prompt.md) | [trace.jsonl](captures/openclaw/2026.5.2/trace.jsonl) |
+| OpenClaw | `2026.4.27` | 2026-04-29 22:28 UTC | 2026-05-22 12:35 UTC | [openclaw 2026.4.27, published 2026-04-29 22:28 UTC](captures/openclaw/2026.4.27/prompt.md) | [trace.jsonl](captures/openclaw/2026.4.27/trace.jsonl) |
+| OpenClaw | `2026.4.23` | 2026-04-24 16:30 UTC | 2026-05-22 13:12 UTC | [openclaw 2026.4.23, published 2026-04-24 16:30 UTC](captures/openclaw/2026.4.23/prompt.md) | [trace.jsonl](captures/openclaw/2026.4.23/trace.jsonl) |
+| OpenClaw | `2026.4.22` | 2026-04-23 14:21 UTC | 2026-05-22 13:11 UTC | [openclaw 2026.4.22, published 2026-04-23 14:21 UTC](captures/openclaw/2026.4.22/prompt.md) | [trace.jsonl](captures/openclaw/2026.4.22/trace.jsonl) |
+| OpenClaw | `2026.4.21` | 2026-04-22 02:44 UTC | 2026-05-22 13:10 UTC | [openclaw 2026.4.21, published 2026-04-22 02:44 UTC](captures/openclaw/2026.4.21/prompt.md) | [trace.jsonl](captures/openclaw/2026.4.21/trace.jsonl) |
+| OpenClaw | `2026.4.20` | 2026-04-21 19:58 UTC | 2026-05-22 13:08 UTC | [openclaw 2026.4.20, published 2026-04-21 19:58 UTC](captures/openclaw/2026.4.20/prompt.md) | [trace.jsonl](captures/openclaw/2026.4.20/trace.jsonl) |
+| OpenClaw | `2026.4.15` | 2026-04-16 22:11 UTC | 2026-05-22 13:06 UTC | [openclaw 2026.4.15, published 2026-04-16 22:11 UTC](captures/openclaw/2026.4.15/prompt.md) | [trace.jsonl](captures/openclaw/2026.4.15/trace.jsonl) |
+| OpenClaw | `2026.4.14` | 2026-04-14 13:13 UTC | 2026-05-22 13:01 UTC | [openclaw 2026.4.14, published 2026-04-14 13:13 UTC](captures/openclaw/2026.4.14/prompt.md) | [trace.jsonl](captures/openclaw/2026.4.14/trace.jsonl) |
+| OpenClaw | `2026.4.12` | 2026-04-13 12:51 UTC | 2026-05-22 12:56 UTC | [openclaw 2026.4.12, published 2026-04-13 12:51 UTC](captures/openclaw/2026.4.12/prompt.md) | [trace.jsonl](captures/openclaw/2026.4.12/trace.jsonl) |
+| OpenClaw | `2026.4.11` | 2026-04-12 00:41 UTC | 2026-05-22 13:20 UTC | [openclaw 2026.4.11, published 2026-04-12 00:41 UTC](captures/openclaw/2026.4.11/prompt.md) | [trace.jsonl](captures/openclaw/2026.4.11/trace.jsonl) |
+| OpenClaw | `2026.4.10` | 2026-04-11 03:26 UTC | 2026-05-22 12:47 UTC | [openclaw 2026.4.10, published 2026-04-11 03:26 UTC](captures/openclaw/2026.4.10/prompt.md) | [trace.jsonl](captures/openclaw/2026.4.10/trace.jsonl) |
+| OpenClaw | `2026.4.9` | 2026-04-09 02:41 UTC | 2026-05-22 12:43 UTC | [openclaw 2026.4.9, published 2026-04-09 02:41 UTC](captures/openclaw/2026.4.9/prompt.md) | [trace.jsonl](captures/openclaw/2026.4.9/trace.jsonl) |
+| OpenClaw | `2026.4.8` | 2026-04-08 05:18 UTC | 2026-05-22 12:40 UTC | [openclaw 2026.4.8, published 2026-04-08 05:18 UTC](captures/openclaw/2026.4.8/prompt.md) | [trace.jsonl](captures/openclaw/2026.4.8/trace.jsonl) |
+| OpenClaw | `2026.4.7` | 2026-04-08 02:24 UTC | 2026-05-22 13:20 UTC | [openclaw 2026.4.7, published 2026-04-08 02:24 UTC](captures/openclaw/2026.4.7/prompt.md) | [trace.jsonl](captures/openclaw/2026.4.7/trace.jsonl) |
+| OpenClaw | `2026.4.2` | 2026-04-02 19:02 UTC | 2026-05-22 12:32 UTC | [openclaw 2026.4.2, published 2026-04-02 19:02 UTC](captures/openclaw/2026.4.2/prompt.md) | [trace.jsonl](captures/openclaw/2026.4.2/trace.jsonl) |
+| OpenClaw | `2026.4.1` | 2026-04-01 17:29 UTC | 2026-05-22 12:43 UTC | [openclaw 2026.4.1, published 2026-04-01 17:29 UTC](captures/openclaw/2026.4.1/prompt.md) | [trace.jsonl](captures/openclaw/2026.4.1/trace.jsonl) |
+| OpenClaw | `2026.3.31` | 2026-03-31 21:28 UTC | 2026-05-22 12:41 UTC | [openclaw 2026.3.31, published 2026-03-31 21:28 UTC](captures/openclaw/2026.3.31/prompt.md) | [trace.jsonl](captures/openclaw/2026.3.31/trace.jsonl) |
+| OpenClaw | `2026.3.28` | 2026-03-29 02:02 UTC | 2026-05-22 12:39 UTC | [openclaw 2026.3.28, published 2026-03-29 02:02 UTC](captures/openclaw/2026.3.28/prompt.md) | [trace.jsonl](captures/openclaw/2026.3.28/trace.jsonl) |
+| OpenClaw | `2026.3.24` | 2026-03-25 16:57 UTC | 2026-05-22 12:35 UTC | [openclaw 2026.3.24, published 2026-03-25 16:57 UTC](captures/openclaw/2026.3.24/prompt.md) | [trace.jsonl](captures/openclaw/2026.3.24/trace.jsonl) |
+| OpenClaw | `2026.3.23` | 2026-03-23 23:15 UTC | 2026-05-22 12:34 UTC | [openclaw 2026.3.23, published 2026-03-23 23:15 UTC](captures/openclaw/2026.3.23/prompt.md) | [trace.jsonl](captures/openclaw/2026.3.23/trace.jsonl) |
+| OpenClaw | `2026.3.22` | 2026-03-23 11:10 UTC | 2026-05-22 12:34 UTC | [openclaw 2026.3.22, published 2026-03-23 11:10 UTC](captures/openclaw/2026.3.22/prompt.md) | [trace.jsonl](captures/openclaw/2026.3.22/trace.jsonl) |
+| OpenClaw | `2026.3.13` | 2026-03-14 05:36 UTC | 2026-05-22 12:34 UTC | [openclaw 2026.3.13, published 2026-03-14 05:36 UTC](captures/openclaw/2026.3.13/prompt.md) | [trace.jsonl](captures/openclaw/2026.3.13/trace.jsonl) |
+| OpenClaw | `2026.3.12` | 2026-03-13 04:13 UTC | 2026-05-22 12:33 UTC | [openclaw 2026.3.12, published 2026-03-13 04:13 UTC](captures/openclaw/2026.3.12/prompt.md) | [trace.jsonl](captures/openclaw/2026.3.12/trace.jsonl) |
+| OpenClaw | `2026.3.11` | 2026-03-12 05:05 UTC | 2026-05-22 12:33 UTC | [openclaw 2026.3.11, published 2026-03-12 05:05 UTC](captures/openclaw/2026.3.11/prompt.md) | [trace.jsonl](captures/openclaw/2026.3.11/trace.jsonl) |
+| OpenClaw | `2026.3.8` | 2026-03-09 07:44 UTC | 2026-05-22 12:33 UTC | [openclaw 2026.3.8, published 2026-03-09 07:44 UTC](captures/openclaw/2026.3.8/prompt.md) | [trace.jsonl](captures/openclaw/2026.3.8/trace.jsonl) |
+| OpenClaw | `2026.3.7` | 2026-03-08 05:46 UTC | 2026-05-22 12:33 UTC | [openclaw 2026.3.7, published 2026-03-08 05:46 UTC](captures/openclaw/2026.3.7/prompt.md) | [trace.jsonl](captures/openclaw/2026.3.7/trace.jsonl) |
+| OpenClaw | `2026.3.2` | 2026-03-03 04:36 UTC | 2026-05-22 12:32 UTC | [openclaw 2026.3.2, published 2026-03-03 04:36 UTC](captures/openclaw/2026.3.2/prompt.md) | [trace.jsonl](captures/openclaw/2026.3.2/trace.jsonl) |
+| OpenClaw | `2026.3.1` | 2026-03-02 04:50 UTC | 2026-05-22 12:32 UTC | [openclaw 2026.3.1, published 2026-03-02 04:50 UTC](captures/openclaw/2026.3.1/prompt.md) | [trace.jsonl](captures/openclaw/2026.3.1/trace.jsonl) |
+| OpenClaw | `2026.2.26` | 2026-02-26 23:59 UTC | 2026-05-22 12:32 UTC | [openclaw 2026.2.26, published 2026-02-26 23:59 UTC](captures/openclaw/2026.2.26/prompt.md) | [trace.jsonl](captures/openclaw/2026.2.26/trace.jsonl) |
+| OpenClaw | `2026.2.25` | 2026-02-26 04:16 UTC | 2026-05-22 12:32 UTC | [openclaw 2026.2.25, published 2026-02-26 04:16 UTC](captures/openclaw/2026.2.25/prompt.md) | [trace.jsonl](captures/openclaw/2026.2.25/trace.jsonl) |
+| OpenClaw | `2026.2.24` | 2026-02-25 02:50 UTC | 2026-05-22 12:37 UTC | [openclaw 2026.2.24, published 2026-02-25 02:50 UTC](captures/openclaw/2026.2.24/prompt.md) | [trace.jsonl](captures/openclaw/2026.2.24/trace.jsonl) |
+| OpenClaw | `2026.2.23` | 2026-02-24 05:40 UTC | 2026-05-22 12:36 UTC | [openclaw 2026.2.23, published 2026-02-24 05:40 UTC](captures/openclaw/2026.2.23/prompt.md) | [trace.jsonl](captures/openclaw/2026.2.23/trace.jsonl) |
+| OpenClaw | `2026.2.22` | 2026-02-23 00:36 UTC | 2026-05-22 12:36 UTC | [openclaw 2026.2.22, published 2026-02-23 00:36 UTC](captures/openclaw/2026.2.22/prompt.md) | [trace.jsonl](captures/openclaw/2026.2.22/trace.jsonl) |
+| OpenClaw | `2026.2.21` | 2026-02-21 16:02 UTC | 2026-05-22 12:36 UTC | [openclaw 2026.2.21, published 2026-02-21 16:02 UTC](captures/openclaw/2026.2.21/prompt.md) | [trace.jsonl](captures/openclaw/2026.2.21/trace.jsonl) |
+| OpenClaw | `2026.2.19` | 2026-02-19 16:05 UTC | 2026-05-22 12:35 UTC | [openclaw 2026.2.19, published 2026-02-19 16:05 UTC](captures/openclaw/2026.2.19/prompt.md) | [trace.jsonl](captures/openclaw/2026.2.19/trace.jsonl) |
+| OpenClaw | `2026.2.17` | 2026-02-18 02:47 UTC | 2026-05-22 12:35 UTC | [openclaw 2026.2.17, published 2026-02-18 02:47 UTC](captures/openclaw/2026.2.17/prompt.md) | [trace.jsonl](captures/openclaw/2026.2.17/trace.jsonl) |
+| OpenClaw | `2026.2.15` | 2026-02-16 03:56 UTC | 2026-05-22 12:35 UTC | [openclaw 2026.2.15, published 2026-02-16 03:56 UTC](captures/openclaw/2026.2.15/prompt.md) | [trace.jsonl](captures/openclaw/2026.2.15/trace.jsonl) |
+| OpenClaw | `2026.2.14` | 2026-02-15 02:59 UTC | 2026-05-22 12:34 UTC | [openclaw 2026.2.14, published 2026-02-15 02:59 UTC](captures/openclaw/2026.2.14/prompt.md) | [trace.jsonl](captures/openclaw/2026.2.14/trace.jsonl) |
+| OpenClaw | `2026.2.13` | 2026-02-14 03:20 UTC | 2026-05-22 12:34 UTC | [openclaw 2026.2.13, published 2026-02-14 03:20 UTC](captures/openclaw/2026.2.13/prompt.md) | [trace.jsonl](captures/openclaw/2026.2.13/trace.jsonl) |
+| OpenClaw | `2026.2.12` | 2026-02-13 01:53 UTC | 2026-05-22 12:34 UTC | [openclaw 2026.2.12, published 2026-02-13 01:53 UTC](captures/openclaw/2026.2.12/prompt.md) | [trace.jsonl](captures/openclaw/2026.2.12/trace.jsonl) |
+| OpenClaw | `2026.2.9` | 2026-02-09 19:01 UTC | 2026-05-22 12:33 UTC | [openclaw 2026.2.9, published 2026-02-09 19:01 UTC](captures/openclaw/2026.2.9/prompt.md) | [trace.jsonl](captures/openclaw/2026.2.9/trace.jsonl) |
+| OpenClaw | `2026.2.6` | 2026-02-07 01:50 UTC | 2026-05-22 12:33 UTC | [openclaw 2026.2.6, published 2026-02-07 01:50 UTC](captures/openclaw/2026.2.6/prompt.md) | [trace.jsonl](captures/openclaw/2026.2.6/trace.jsonl) |
+| OpenClaw | `2026.2.3` | 2026-02-05 01:38 UTC | 2026-05-22 12:33 UTC | [openclaw 2026.2.3, published 2026-02-05 01:38 UTC](captures/openclaw/2026.2.3/prompt.md) | [trace.jsonl](captures/openclaw/2026.2.3/trace.jsonl) |
+| OpenClaw | `2026.2.2` | 2026-02-04 00:56 UTC | 2026-05-22 12:33 UTC | [openclaw 2026.2.2, published 2026-02-04 00:56 UTC](captures/openclaw/2026.2.2/prompt.md) | [trace.jsonl](captures/openclaw/2026.2.2/trace.jsonl) |
+| OpenClaw | `2026.2.1` | 2026-02-02 11:45 UTC | 2026-05-22 12:32 UTC | [openclaw 2026.2.1, published 2026-02-02 11:45 UTC](captures/openclaw/2026.2.1/prompt.md) | [trace.jsonl](captures/openclaw/2026.2.1/trace.jsonl) |
+| OpenClaw | `2026.1.30` | 2026-01-31 13:11 UTC | 2026-05-22 12:32 UTC | [openclaw 2026.1.30, published 2026-01-31 13:11 UTC](captures/openclaw/2026.1.30/prompt.md) | [trace.jsonl](captures/openclaw/2026.1.30/trace.jsonl) |
+| OpenClaw | `2026.1.29` | 2026-01-30 04:49 UTC | 2026-05-22 12:32 UTC | [openclaw 2026.1.29, published 2026-01-30 04:49 UTC](captures/openclaw/2026.1.29/prompt.md) | [trace.jsonl](captures/openclaw/2026.1.29/trace.jsonl) |
+| Hermes Agent | `v2026.5.16` | 2026-05-16 09:59 UTC | 2026-05-22 12:31 UTC | [hermes v2026.5.16, published 2026-05-16 09:59 UTC](captures/hermes/v2026.5.16/prompt.md) | [trace.jsonl](captures/hermes/v2026.5.16/trace.jsonl) |
+| Hermes Agent | `v2026.5.7` | 2026-05-07 16:23 UTC | 2026-05-22 12:31 UTC | [hermes v2026.5.7, published 2026-05-07 16:23 UTC](captures/hermes/v2026.5.7/prompt.md) | [trace.jsonl](captures/hermes/v2026.5.7/trace.jsonl) |
+| Hermes Agent | `v2026.4.30` | 2026-04-30 18:31 UTC | 2026-05-22 12:31 UTC | [hermes v2026.4.30, published 2026-04-30 18:31 UTC](captures/hermes/v2026.4.30/prompt.md) | [trace.jsonl](captures/hermes/v2026.4.30/trace.jsonl) |
+| Hermes Agent | `v2026.4.23` | 2026-04-23 22:32 UTC | 2026-05-22 12:31 UTC | [hermes v2026.4.23, published 2026-04-23 22:32 UTC](captures/hermes/v2026.4.23/prompt.md) | [trace.jsonl](captures/hermes/v2026.4.23/trace.jsonl) |
+| Hermes Agent | `v2026.4.16` | 2026-04-16 19:53 UTC | 2026-05-22 12:31 UTC | [hermes v2026.4.16, published 2026-04-16 19:53 UTC](captures/hermes/v2026.4.16/prompt.md) | [trace.jsonl](captures/hermes/v2026.4.16/trace.jsonl) |
+| Hermes Agent | `v2026.4.13` | 2026-04-13 18:52 UTC | 2026-05-22 12:31 UTC | [hermes v2026.4.13, published 2026-04-13 18:52 UTC](captures/hermes/v2026.4.13/prompt.md) | [trace.jsonl](captures/hermes/v2026.4.13/trace.jsonl) |
+| Hermes Agent | `v2026.4.8` | 2026-04-08 11:56 UTC | 2026-05-22 12:31 UTC | [hermes v2026.4.8, published 2026-04-08 11:56 UTC](captures/hermes/v2026.4.8/prompt.md) | [trace.jsonl](captures/hermes/v2026.4.8/trace.jsonl) |
+| Hermes Agent | `v2026.4.3` | 2026-04-03 18:15 UTC | 2026-05-22 12:31 UTC | [hermes v2026.4.3, published 2026-04-03 18:15 UTC](captures/hermes/v2026.4.3/prompt.md) | [trace.jsonl](captures/hermes/v2026.4.3/trace.jsonl) |
+| Hermes Agent | `v2026.3.30` | 2026-03-30 15:30 UTC | 2026-05-22 12:31 UTC | [hermes v2026.3.30, published 2026-03-30 15:30 UTC](captures/hermes/v2026.3.30/prompt.md) | [trace.jsonl](captures/hermes/v2026.3.30/trace.jsonl) |
+| Hermes Agent | `v2026.3.28` | 2026-03-28 20:12 UTC | 2026-05-22 12:30 UTC | [hermes v2026.3.28, published 2026-03-28 20:12 UTC](captures/hermes/v2026.3.28/prompt.md) | [trace.jsonl](captures/hermes/v2026.3.28/trace.jsonl) |
+| Hermes Agent | `v2026.3.23` | 2026-03-24 05:34 UTC | 2026-05-22 12:30 UTC | [hermes v2026.3.23, published 2026-03-24 05:34 UTC](captures/hermes/v2026.3.23/prompt.md) | [trace.jsonl](captures/hermes/v2026.3.23/trace.jsonl) |
 | Codex CLI | `0.133.0` | 2026-05-21 17:13 UTC | 2026-05-21 23:53 UTC | [codex 0.133.0, published 2026-05-21 17:13 UTC](captures/codex/0.133.0/prompt.md) | [trace.jsonl](captures/codex/0.133.0/trace.jsonl) |
 | Codex CLI | `0.132.0` | 2026-05-20 02:39 UTC | 2026-05-21 23:45 UTC | [codex 0.132.0, published 2026-05-20 02:39 UTC](captures/codex/0.132.0/prompt.md) | [trace.jsonl](captures/codex/0.132.0/trace.jsonl) |
 | Codex CLI | `0.131.0` | 2026-05-18 18:08 UTC | 2026-05-21 23:45 UTC | [codex 0.131.0, published 2026-05-18 18:08 UTC](captures/codex/0.131.0/prompt.md) | [trace.jsonl](captures/codex/0.131.0/trace.jsonl) |

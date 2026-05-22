@@ -52,8 +52,8 @@ def capture_target(
         bin_dir = packages.install_agent(target.agent, target.version.version, install_dir)
         binary_version = _binary_version(target, bin_dir)
         with (
-            TemporaryDirectory(prefix="phistory-home-") as home_dir,
-            TemporaryDirectory(prefix="phistory-work-") as work_dir,
+            TemporaryDirectory(prefix="phistory-home-", ignore_cleanup_errors=True) as home_dir,
+            TemporaryDirectory(prefix="phistory-work-", ignore_cleanup_errors=True) as work_dir,
         ):
             env = _capture_env(target, bin_dir, Path(home_dir))
             argv = [
@@ -231,9 +231,8 @@ def _write_hermes_config(home: Path) -> None:
         "\n".join(
             [
                 "model:",
-                "  provider: custom",
+                "  provider: openrouter",
                 "  default: phistory-dummy",
-                "  base_url: http://127.0.0.1:9/v1",
                 "agent:",
                 "  max_turns: 1",
                 "display:",

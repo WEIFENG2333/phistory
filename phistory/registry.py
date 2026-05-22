@@ -80,7 +80,7 @@ HERMES = AgentSpec(
     tap_client="hermes",
     fake_env={
         "OPENAI_API_KEY": "phistory-fake-api-key",
-        "CUSTOM_API_KEY": "phistory-fake-api-key",
+        "OPENROUTER_API_KEY": "phistory-fake-api-key",
     },
     extra_env={
         "DISABLE_AUTOUPDATER": "1",
@@ -92,12 +92,13 @@ HERMES = AgentSpec(
     run_args=(
         "--no-yolo",
         "--",
-        "--yolo",
-        "--accept-hooks",
-        "-z",
+        "chat",
+        "-q",
         "Reply with one short sentence.",
+        "--yolo",
+        "-Q",
         "--provider",
-        "custom",
+        "openrouter",
         "--model",
         "phistory-dummy",
     ),

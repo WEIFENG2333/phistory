@@ -34,4 +34,6 @@ def test_new_agents_define_install_and_capture_profiles():
     assert hermes.source == "github-release"
     assert hermes.package == "NousResearch/hermes-agent"
     assert hermes.home_profile == "hermes"
-    assert "-z" in hermes.run_args
+    assert "chat" in hermes.run_args
+    assert "-q" in hermes.run_args
+    assert "openrouter" in hermes.run_args

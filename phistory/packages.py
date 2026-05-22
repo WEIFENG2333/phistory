@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import os
 import re
+import shutil
 import urllib.request
 from http.client import IncompleteRead
 from pathlib import Path
@@ -126,6 +127,8 @@ def _install_pypi(agent: AgentSpec, version: str, install_dir: Path) -> Path:
     bin_dir = install_dir / "bin"
     if (bin_dir / agent.tap_client).exists():
         return bin_dir
+    if install_dir.exists():
+        shutil.rmtree(install_dir)
     install_dir.mkdir(parents=True, exist_ok=True)
     run(["uv", "venv", str(install_dir)], timeout=120)
     run(["uv", "pip", "install", "--python", str(bin_dir / "python"), f"{agent.package}=={version}"], timeout=300)
@@ -155,6 +158,8 @@ def _install_github_release(agent: AgentSpec, version: str, install_dir: Path) -
     bin_dir = install_dir / "bin"
     if (bin_dir / agent.tap_client).exists():
         return bin_dir
+    if install_dir.exists():
+        shutil.rmtree(install_dir)
     install_dir.mkdir(parents=True, exist_ok=True)
     run(["uv", "venv", str(install_dir)], timeout=120)
     package_ref = f"https://github.com/{agent.package}/archive/refs/tags/{version}.tar.gz"
