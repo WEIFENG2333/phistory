@@ -121,10 +121,11 @@ def test_render_site_writes_static_html_manifest(tmp_path: Path):
     assert "<!doctype html>" in text
     assert "Phistory" in text
     assert "captures/agent/1.1.0/prompt.md" in text
-    assert "2026-05-22 00:00" in text
+    assert "2026-05-22" in text
     assert "monaco-editor" in text
     assert "createDiffEditor" in text
     assert "URLSearchParams" in text
     assert "# Prompt 1.1.0" not in text
     assert "captured_at" not in text
     assert "is_latest" not in text
+    assert "published_display" not in text

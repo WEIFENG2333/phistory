@@ -6,7 +6,7 @@ It installs a specific CLI release, runs it once through [`claude-tap`](https://
 
 GitHub Actions checks for new supported CLI versions every hour and updates the repository when one appears.
 
-[Open the prompt diff viewer](http://bkfeng.top/phistory/)
+[Open the prompt diff viewer](https://phistory.cc/)
 
 ![Phistory prompt diff viewer](docs/screenshot.png)
 
@@ -23,7 +23,7 @@ uv run phistory render-site
 
 `index.html` is a static prompt viewer with version navigation and Monaco-powered prompt diffs. GitHub Pages deploys it from the repository contents.
 
-The viewer is optimized for comparing prompt changes across releases. Top controls choose the agent and the two versions; the `Raw` link opens the selected prompt Markdown directly.
+The viewer is optimized for comparing prompt changes across releases. Top controls choose the agent and the two versions.
 
 ## Supported Agents
 

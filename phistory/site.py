@@ -53,7 +53,6 @@ def _capture_row(meta_path: Path) -> dict | None:
         "agent": meta.get("agent") or agent_id,
         "version": meta.get("version") or version_dir.name,
         "published_compact": _compact_date(published_at),
-        "published_display": _display_time(published_at),
         "prompt": prompt_path,
     }
 
@@ -63,13 +62,6 @@ def _compact_date(value: str) -> str:
     if dt is None:
         return value[:10] if value else "unknown"
     return dt.strftime("%Y-%m-%d")
-
-
-def _display_time(value: str) -> str:
-    dt = _parse_time(value)
-    if dt is None:
-        return value[:16] if value else "unknown"
-    return dt.strftime("%Y-%m-%d %H:%M")
 
 
 def _parse_time(value: str) -> datetime | None:
@@ -100,13 +92,13 @@ _HTML = r"""<!doctype html>
 <meta property="og:title" content="Phistory">
 <meta property="og:description" content="Automatically archived system prompt snapshots and diffs for agent CLIs like Claude Code and Codex.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="http://bkfeng.top/phistory/">
-<meta property="og:image" content="http://bkfeng.top/phistory/docs/screenshot.png">
+<meta property="og:url" content="https://phistory.cc/">
+<meta property="og:image" content="https://phistory.cc/docs/screenshot.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Phistory">
 <meta name="twitter:description" content="Automatically archived system prompt snapshots and diffs for agent CLIs like Claude Code and Codex.">
-<meta name="twitter:image" content="http://bkfeng.top/phistory/docs/screenshot.png">
-<link rel="canonical" href="http://bkfeng.top/phistory/">
+<meta name="twitter:image" content="https://phistory.cc/docs/screenshot.png">
+<link rel="canonical" href="https://phistory.cc/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f1115'/%3E%3Cpath d='M8 10h16M8 16h10M8 22h14' stroke='%237cc7ff' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
 <title>Phistory - Agent CLI System Prompt Diff History</title>
 <style>
@@ -119,12 +111,12 @@ _HTML = r"""<!doctype html>
   --text: #f2f2f3;
   --muted: #a0a0a7;
   --accent: #7ab7e6;
-  --control: rgba(255, 255, 255, .045);
-  --control-hover: rgba(255, 255, 255, .085);
-  --control-active: rgba(255, 255, 255, .13);
-  --menu-active: rgba(255, 255, 255, .16);
+  --control-bg: rgba(255, 255, 255, .055);
+  --control-hover: rgba(255, 255, 255, .075);
+  --control-active: rgba(255, 255, 255, .14);
+  --menu-active: rgba(255, 255, 255, .11);
+  --focus-line: rgba(255, 255, 255, .34);
   --scrollbar: rgba(255, 255, 255, .22);
-  --shadow: 0 22px 54px rgba(0, 0, 0, .46), 0 0 0 1px rgba(255, 255, 255, .08);
 }
 :root[data-theme="light"] {
   color-scheme: light;
@@ -135,12 +127,12 @@ _HTML = r"""<!doctype html>
   --text: #1d1d1f;
   --muted: #73737a;
   --accent: #0a66b2;
-  --control: rgba(0, 0, 0, .035);
-  --control-hover: rgba(0, 0, 0, .065);
-  --control-active: rgba(0, 0, 0, .09);
-  --menu-active: rgba(0, 0, 0, .11);
+  --control-bg: rgba(0, 0, 0, .045);
+  --control-hover: rgba(0, 0, 0, .052);
+  --control-active: rgba(0, 0, 0, .095);
+  --menu-active: rgba(0, 0, 0, .07);
+  --focus-line: rgba(0, 0, 0, .30);
   --scrollbar: rgba(0, 0, 0, .22);
-  --shadow: 0 22px 54px rgba(0, 0, 0, .16), 0 0 0 1px rgba(0, 0, 0, .06);
 }
 * { box-sizing: border-box; }
 html, body { height: 100%; }
@@ -153,7 +145,7 @@ body {
 }
 button, input { font: inherit; }
 a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
+a:hover { text-decoration: none; }
 .shell {
   height: 100vh;
   display: grid;
@@ -165,9 +157,18 @@ a:hover { text-decoration: underline; }
   border-bottom: 1px solid var(--line);
   padding: 7px 14px;
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
   gap: 18px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.left-tools {
+  display: flex;
+  align-items: center;
+  justify-self: start;
+  gap: 18px;
+  min-width: 0;
 }
 .brand {
   display: flex;
@@ -184,17 +185,21 @@ a:hover { text-decoration: underline; }
 .compare {
   min-width: 0;
   display: grid;
-  grid-template-columns: 128px 190px auto 190px;
-  gap: 6px;
+  grid-template-columns: 176px 24px 176px;
+  gap: 0;
   align-items: center;
-  justify-content: start;
+  justify-content: center;
+  padding: 2px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--control-bg);
 }
 .control {
   min-width: 0;
-  height: 28px;
-  border: 1px solid transparent;
-  border-radius: 6px;
-  background: var(--control);
+  height: 30px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
   color: var(--text);
   padding: 0 9px;
   display: flex;
@@ -202,11 +207,45 @@ a:hover { text-decoration: underline; }
   justify-content: space-between;
   gap: 7px;
   cursor: pointer;
+  box-shadow: none;
 }
 .control:hover { background: var(--control-hover); }
 .control[aria-expanded="true"] {
   background: var(--control-active);
-  border-color: var(--line);
+  box-shadow: none;
+}
+.agent-control {
+  width: auto;
+  height: 30px;
+  min-width: 136px;
+  padding: 0 9px 0 10px;
+  gap: 10px;
+  border: 1px solid var(--line);
+  background: var(--control-bg);
+}
+.agent-control:hover,
+.agent-control[aria-expanded="true"] {
+  color: var(--text);
+  background: var(--control-hover);
+}
+.agent-control strong {
+  max-width: 128px;
+}
+.agent-control::after {
+  content: "⌄";
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1;
+  transform: translateY(-1px);
+}
+.version-control {
+  width: 176px;
+}
+.control:focus-visible,
+.icon-button:focus-visible,
+.option:focus-visible {
+  outline: 1px solid var(--focus-line);
+  outline-offset: 2px;
 }
 .control strong {
   min-width: 0;
@@ -214,44 +253,53 @@ a:hover { text-decoration: underline; }
   text-overflow: ellipsis;
   white-space: nowrap;
   font-weight: 600;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
 }
 .control small {
   color: var(--muted);
   flex-shrink: 0;
   font-size: 12px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
 }
 .arrow {
   color: var(--muted);
-  font-size: 12px;
+  font-size: 14px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
 }
 .actions {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  justify-self: end;
   gap: 4px;
 }
 .icon-button {
-  width: 28px;
+  width: 26px;
   height: 28px;
   border: 0;
-  border-radius: 6px;
+  border-radius: 0;
   background: transparent;
-  color: var(--text);
+  color: var(--muted);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  box-shadow: inset 0 -1px 0 transparent;
 }
 .icon-button:hover {
-  background: var(--control-hover);
+  color: var(--text);
+  box-shadow: none;
   text-decoration: none;
-}
-.raw {
-  width: auto;
-  padding: 0 8px;
-  gap: 6px;
-  color: var(--muted);
-  font-weight: 600;
 }
 .github-mark {
   width: 17px;
@@ -276,8 +324,8 @@ a:hover { text-decoration: underline; }
   max-height: min(420px, calc(100vh - 24px));
   background: var(--popover);
   border: 1px solid var(--line);
-  border-radius: 8px;
-  box-shadow: var(--shadow);
+  border-radius: 10px;
+  box-shadow: none;
   overflow: hidden;
   display: none;
   backdrop-filter: blur(18px);
@@ -306,7 +354,7 @@ a:hover { text-decoration: underline; }
 .option {
   width: 100%;
   border: 0;
-  border-radius: 5px;
+  border-radius: 7px;
   background: transparent;
   color: var(--text);
   padding: 6px 7px;
@@ -318,7 +366,20 @@ a:hover { text-decoration: underline; }
   cursor: pointer;
 }
 .option:hover { background: var(--control-hover); }
-.option.active { background: var(--menu-active); }
+.option.active {
+  background: var(--menu-active);
+  box-shadow: none;
+}
+.agent-option {
+  grid-template-columns: minmax(0, 1fr);
+  padding: 8px 9px;
+}
+.agent-option small {
+  display: block;
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .option strong { font-weight: 600; }
 .option span {
   min-width: 0;
@@ -347,7 +408,9 @@ a:hover { text-decoration: underline; }
     grid-column: 1 / -1;
     grid-template-columns: 1fr;
     gap: 8px;
+    padding: 6px;
   }
+  .version-control { width: 100%; }
   .arrow { display: none; }
   .actions { grid-column: 2; grid-row: 1; }
   .popover {
@@ -361,17 +424,18 @@ a:hover { text-decoration: underline; }
 <body>
 <div class="shell">
   <header class="topbar">
-    <div class="brand">
-      <h1>Phistory</h1>
+    <div class="left-tools">
+      <div class="brand">
+        <h1>Phistory</h1>
+      </div>
+      <button id="agent" class="control agent-control" type="button" aria-haspopup="listbox"></button>
     </div>
     <div class="compare">
-      <button id="agent" class="control" type="button" aria-haspopup="listbox"></button>
-      <button id="from" class="control" type="button" aria-haspopup="listbox"></button>
-      <span class="arrow">to</span>
-      <button id="to" class="control" type="button" aria-haspopup="listbox"></button>
+      <button id="from" class="control version-control" type="button" aria-haspopup="listbox"></button>
+      <span class="arrow" aria-hidden="true">→</span>
+      <button id="to" class="control version-control" type="button" aria-haspopup="listbox"></button>
     </div>
     <div class="actions">
-      <a id="raw" class="icon-button raw" target="_blank" rel="noreferrer" title="Open selected prompt">Raw</a>
       <button id="theme" class="icon-button" type="button" title="Toggle theme"></button>
       <a class="icon-button" href="https://github.com/WEIFENG2333/phistory" target="_blank" rel="noreferrer" aria-label="Open GitHub project" title="Open GitHub project">
         <svg class="github-mark" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.65 7.65 0 0 1 8 3.86c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
@@ -394,7 +458,6 @@ const els = {
   agent: document.getElementById('agent'),
   from: document.getElementById('from'),
   to: document.getElementById('to'),
-  raw: document.getElementById('raw'),
   theme: document.getElementById('theme'),
   diff: document.getElementById('diff'),
   popover: document.getElementById('popover'),
@@ -465,8 +528,6 @@ function renderControls() {
   els.agent.innerHTML = `<strong>${escapeHtml(agent.name)}</strong>`;
   els.from.innerHTML = versionLabel(from);
   els.to.innerHTML = versionLabel(to);
-  els.raw.href = to.prompt;
-  els.raw.title = `Open prompt ${to.version}`;
 }
 
 function versionLabel(item) {
@@ -494,7 +555,8 @@ function closePicker() {
 
 function positionPopover(anchor) {
   const rect = anchor.getBoundingClientRect();
-  const width = Math.min(rect.width, innerWidth - 24);
+  const minWidth = state.picker === 'agent' ? 260 : rect.width;
+  const width = Math.min(Math.max(rect.width, minWidth), innerWidth - 24);
   const left = Math.max(12, Math.min(rect.left, innerWidth - width - 12));
   els.popover.style.width = `${width}px`;
   els.popover.style.left = `${left}px`;
@@ -516,9 +578,9 @@ function optionHtml(item) {
   const isAgent = state.picker === 'agent';
   const primary = isAgent ? item.name : item.version;
   if (isAgent) {
-    return `<button class="option${active ? ' active' : ''}" type="button" role="option" aria-selected="${active}" data-value="${escapeHtml(value)}"><span><strong>${escapeHtml(primary)}</strong></span></button>`;
+    return `<button class="option agent-option${active ? ' active' : ''}" type="button" role="option" aria-selected="${active}" data-value="${escapeHtml(value)}"><span><strong>${escapeHtml(primary)}</strong><small>${escapeHtml(item.id)}</small></span></button>`;
   }
-  const secondary = item.published_display;
+  const secondary = item.published_compact;
   return `<button class="option${active ? ' active' : ''}" type="button" role="option" aria-selected="${active}" data-value="${escapeHtml(value)}"><span><strong>${escapeHtml(primary)}</strong></span><small>${escapeHtml(secondary)}</small></button>`;
 }
 
