@@ -49,7 +49,7 @@ Each capture is stored under `captures/<agent>/<version>/`:
 
 ## Latest Captures
 
-- Claude Code: `2.1.149` published 2026-05-22 18:27 UTC, captured 2026-05-22 22:17 UTC
+- Claude Code: `2.1.150` published 2026-05-23 02:27 UTC, captured 2026-05-23 04:08 UTC
 - Codex CLI: `0.133.0` published 2026-05-21 17:13 UTC, captured 2026-05-21 23:53 UTC
 - Hermes Agent: `v2026.5.16` published 2026-05-16 09:59 UTC, captured 2026-05-22 12:31 UTC
 - OpenClaw: `2026.5.20` published 2026-05-21 20:41 UTC, captured 2026-05-22 11:56 UTC
@@ -155,6 +155,7 @@ Each capture is stored under `captures/<agent>/<version>/`:
 | Codex CLI | `0.102.0` | 2026-02-17 20:03 UTC | 2026-05-21 23:38 UTC | [codex 0.102.0, published 2026-02-17 20:03 UTC](captures/codex/0.102.0/prompt.md) | [trace.jsonl](captures/codex/0.102.0/trace.jsonl) |
 | Codex CLI | `0.101.0` | 2026-02-12 20:06 UTC | 2026-05-21 23:38 UTC | [codex 0.101.0, published 2026-02-12 20:06 UTC](captures/codex/0.101.0/prompt.md) | [trace.jsonl](captures/codex/0.101.0/trace.jsonl) |
 | Codex CLI | `0.100.0` | 2026-02-12 18:30 UTC | 2026-05-21 23:38 UTC | [codex 0.100.0, published 2026-02-12 18:30 UTC](captures/codex/0.100.0/prompt.md) | [trace.jsonl](captures/codex/0.100.0/trace.jsonl) |
+| Claude Code | `2.1.150` | 2026-05-23 02:27 UTC | 2026-05-23 04:08 UTC | [claude-code 2.1.150, published 2026-05-23 02:27 UTC](captures/claude-code/2.1.150/prompt.md) | [trace.jsonl](captures/claude-code/2.1.150/trace.jsonl) |
 | Claude Code | `2.1.149` | 2026-05-22 18:27 UTC | 2026-05-22 22:17 UTC | [claude-code 2.1.149, published 2026-05-22 18:27 UTC](captures/claude-code/2.1.149/prompt.md) | [trace.jsonl](captures/claude-code/2.1.149/trace.jsonl) |
 | Claude Code | `2.1.148` | 2026-05-22 00:10 UTC | 2026-05-22 05:06 UTC | [claude-code 2.1.148, published 2026-05-22 00:10 UTC](captures/claude-code/2.1.148/prompt.md) | [trace.jsonl](captures/claude-code/2.1.148/trace.jsonl) |
 | Claude Code | `2.1.147` | 2026-05-21 17:16 UTC | 2026-05-21 23:52 UTC | [claude-code 2.1.147, published 2026-05-21 17:16 UTC](captures/claude-code/2.1.147/prompt.md) | [trace.jsonl](captures/claude-code/2.1.147/trace.jsonl) |
