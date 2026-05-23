@@ -238,7 +238,8 @@ a:hover { text-decoration: none; }
 .popover {
   position: fixed;
   z-index: 20;
-  max-height: min(420px, calc(100vh - 24px));
+  --popover-max-height: min(420px, calc(100vh - 24px));
+  max-height: var(--popover-max-height);
   background: var(--popover);
   border: 1px solid var(--line);
   border-radius: 10px;
@@ -251,9 +252,11 @@ a:hover { text-decoration: none; }
 .options {
   overflow: auto;
   padding: 4px;
-  max-height: min(420px, calc(100vh - 24px));
+  max-height: var(--popover-max-height);
   scrollbar-width: thin;
   scrollbar-color: var(--scrollbar) transparent;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 .options::-webkit-scrollbar {
   width: 6px;
@@ -309,31 +312,66 @@ a:hover { text-decoration: none; }
   white-space: nowrap;
 }
 @media (max-width: 880px) {
-  body { overflow: auto; }
+  body { overflow: hidden; }
   .shell {
-    min-height: 100vh;
-    height: auto;
-    grid-template-rows: auto 72vh;
+    height: 100vh;
+    height: 100dvh;
+    grid-template-rows: auto minmax(0, 1fr);
   }
   .topbar {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: minmax(0, 1fr) auto;
     align-items: stretch;
-    gap: 12px;
-    padding: 12px 14px;
+    gap: 9px 10px;
+    padding: 10px 12px 9px;
+  }
+  .left-tools {
+    gap: 10px;
+  }
+  .brand h1 {
+    font-size: 17px;
+  }
+  .agent-control {
+    min-width: 0;
+    max-width: min(190px, 52vw);
+    height: 34px;
+    padding-inline: 10px;
   }
   .compare {
     grid-column: 1 / -1;
-    grid-template-columns: 1fr;
-    gap: 8px;
-    padding: 6px;
+    grid-template-columns: minmax(0, 1fr) 22px minmax(0, 1fr);
+    gap: 6px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
   }
-  .version-control { width: 100%; }
-  .arrow { display: none; }
+  .version-control {
+    width: 100%;
+    height: 40px;
+    padding: 0 10px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--control-bg);
+  }
+  .version-control small {
+    font-size: 11px;
+  }
+  .arrow {
+    display: inline-flex;
+    height: 40px;
+    font-size: 13px;
+  }
   .actions { grid-column: 2; grid-row: 1; }
   .popover {
-    inset: 12px !important;
-    width: auto;
-    max-height: none;
+    border-radius: 12px;
+  }
+  .options {
+    padding: 5px;
+  }
+  .option {
+    min-height: 42px;
+    padding: 9px 10px;
+    border-radius: 8px;
   }
 }
 </style>
@@ -472,12 +510,23 @@ function closePicker() {
 
 function positionPopover(anchor) {
   const rect = anchor.getBoundingClientRect();
+  const margin = 12;
+  const isMobile = matchMedia('(max-width: 880px)').matches;
   const minWidth = state.picker === 'agent' ? 260 : rect.width;
-  const width = Math.min(Math.max(rect.width, minWidth), innerWidth - 24);
-  const left = Math.max(12, Math.min(rect.left, innerWidth - width - 12));
+  const width = isMobile && state.picker !== 'agent'
+    ? innerWidth - margin * 2
+    : Math.min(Math.max(rect.width, minWidth), innerWidth - margin * 2);
+  const left = Math.max(margin, Math.min(rect.left, innerWidth - width - margin));
+  let top = rect.bottom + (isMobile ? 8 : 5);
+  let maxHeight = Math.min(isMobile ? 460 : 420, innerHeight - top - margin);
+  if (maxHeight < 180) {
+    maxHeight = Math.min(isMobile ? 460 : 420, innerHeight - margin * 2);
+    top = Math.max(margin, innerHeight - maxHeight - margin);
+  }
   els.popover.style.width = `${width}px`;
   els.popover.style.left = `${left}px`;
-  els.popover.style.top = `${Math.min(rect.bottom + 5, innerHeight - 120)}px`;
+  els.popover.style.top = `${top}px`;
+  els.popover.style.setProperty('--popover-max-height', `${Math.max(160, maxHeight)}px`);
 }
 
 function renderPickerOptions() {
@@ -486,6 +535,9 @@ function renderPickerOptions() {
   els.options.innerHTML = items.map(optionHtml).join('');
   els.options.querySelectorAll('.option').forEach(button => {
     button.addEventListener('click', () => selectOption(button.dataset.value));
+  });
+  requestAnimationFrame(() => {
+    els.options.querySelector('.option.active')?.scrollIntoView({ block: 'nearest' });
   });
 }
 
@@ -559,17 +611,20 @@ async function renderDiff() {
   }
 
   els.diff.innerHTML = '';
+  const isNarrow = matchMedia('(max-width: 880px)').matches;
   state.editor = monaco.editor.createDiffEditor(els.diff, {
     automaticLayout: true,
-    renderSideBySide: !matchMedia('(max-width: 880px)').matches,
+    renderSideBySide: !isNarrow,
     readOnly: true,
-    minimap: { enabled: !matchMedia('(max-width: 880px)').matches },
+    minimap: { enabled: !isNarrow },
     scrollBeyondLastLine: false,
     wordWrap: 'on',
     originalEditable: false,
-    fontSize: 13,
-    lineHeight: 20,
-    padding: { top: 12, bottom: 12 }
+    fontSize: isNarrow ? 12 : 13,
+    lineHeight: isNarrow ? 19 : 20,
+    lineNumbersMinChars: isNarrow ? 2 : 4,
+    folding: false,
+    padding: { top: isNarrow ? 10 : 12, bottom: 12 }
   });
   state.editor.setModel({ original: originalModel, modified: modifiedModel });
 }
