@@ -6,6 +6,13 @@ from pathlib import Path
 
 from phistory.render import _version_key
 
+AGENT_ICONS = {
+    "claude-code": "docs/agent-icons/claude-code.png",
+    "codex": "docs/agent-icons/codex.png",
+    "hermes": "docs/agent-icons/hermes.png",
+    "openclaw": "docs/agent-icons/openclaw.png",
+}
+
 
 def render_site(root: Path, output: Path) -> None:
     output.write_text(_HTML.replace("__PHISTORY_MANIFEST__", _json_for_script(_build_manifest(root))), encoding="utf-8")
@@ -26,6 +33,7 @@ def _build_manifest(root: Path) -> dict:
             {
                 "id": agent_id,
                 "name": latest["agent"] if latest else agent_id,
+                "icon": AGENT_ICONS.get(agent_id),
                 "latest": latest,
                 "versions": versions,
             }
@@ -219,7 +227,8 @@ a:hover { text-decoration: none; }
   height: 30px;
   min-width: 136px;
   padding: 0 9px 0 10px;
-  gap: 10px;
+  justify-content: flex-start;
+  gap: 8px;
   border: 1px solid var(--line);
   background: var(--control-bg);
 }
@@ -236,7 +245,16 @@ a:hover { text-decoration: none; }
   color: var(--muted);
   font-size: 13px;
   line-height: 1;
+  margin-left: auto;
   transform: translateY(-1px);
+}
+.agent-icon {
+  width: 17px;
+  height: 17px;
+  border-radius: 4px;
+  object-fit: cover;
+  flex: 0 0 auto;
+  background: var(--control-hover);
 }
 .version-control {
   width: 176px;
@@ -315,8 +333,16 @@ a:hover { text-decoration: none; }
   display: block;
   background: linear-gradient(90deg, currentColor 0 50%, transparent 50% 100%);
 }
-.editor { min-height: 0; position: relative; }
+.editor {
+  min-height: 0;
+  position: relative;
+  touch-action: pan-y;
+  overscroll-behavior: contain;
+}
 #diff { position: absolute; inset: 0; }
+#diff .inputarea {
+  caret-color: transparent;
+}
 .empty { padding: 22px; color: var(--muted); }
 .popover {
   position: fixed;
@@ -374,7 +400,8 @@ a:hover { text-decoration: none; }
   box-shadow: none;
 }
 .agent-option {
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 10px;
   padding: 8px 9px;
 }
 .agent-option small {
@@ -415,9 +442,14 @@ a:hover { text-decoration: none; }
   }
   .agent-control {
     min-width: 0;
-    max-width: min(190px, 52vw);
+    max-width: min(210px, 56vw);
     height: 34px;
     padding-inline: 10px;
+  }
+  .agent-icon {
+    width: 19px;
+    height: 19px;
+    border-radius: 5px;
   }
   .compare {
     grid-column: 1 / -1;
@@ -547,6 +579,7 @@ function bindEvents() {
   els.from.addEventListener('click', () => openPicker('from', els.from));
   els.to.addEventListener('click', () => openPicker('to', els.to));
   els.theme.addEventListener('click', toggleTheme);
+  els.diff.addEventListener('focusin', guardMobileEditorFocus);
   addEventListener('click', event => {
     if (!els.popover.contains(event.target) && !event.target.closest('.control')) closePicker();
   });
@@ -563,9 +596,14 @@ function renderControls() {
   const agent = currentAgent();
   const from = versionInfo(state.from);
   const to = versionInfo(state.to);
-  els.agent.innerHTML = `<strong>${escapeHtml(agent.name)}</strong>`;
+  els.agent.innerHTML = `${agentIconHtml(agent)}<strong>${escapeHtml(agent.name)}</strong>`;
   els.from.innerHTML = versionLabel(from);
   els.to.innerHTML = versionLabel(to);
+}
+
+function agentIconHtml(agent) {
+  if (!agent.icon) return '';
+  return `<img class="agent-icon" src="${escapeHtml(agent.icon)}" alt="" loading="lazy" decoding="async">`;
 }
 
 function versionLabel(item) {
@@ -630,7 +668,7 @@ function optionHtml(item) {
   const isAgent = state.picker === 'agent';
   const primary = isAgent ? item.name : item.version;
   if (isAgent) {
-    return `<button class="option agent-option${active ? ' active' : ''}" type="button" role="option" aria-selected="${active}" data-value="${escapeHtml(value)}"><span><strong>${escapeHtml(primary)}</strong><small>${escapeHtml(item.id)}</small></span></button>`;
+    return `<button class="option agent-option${active ? ' active' : ''}" type="button" role="option" aria-selected="${active}" data-value="${escapeHtml(value)}">${agentIconHtml(item)}<span><strong>${escapeHtml(primary)}</strong><small>${escapeHtml(item.id)}</small></span></button>`;
   }
   const secondary = item.published_compact;
   return `<button class="option${active ? ' active' : ''}" type="button" role="option" aria-selected="${active}" data-value="${escapeHtml(value)}"><span><strong>${escapeHtml(primary)}</strong></span><small>${escapeHtml(secondary)}</small></button>`;
@@ -699,17 +737,55 @@ async function renderDiff() {
     automaticLayout: true,
     renderSideBySide: !isNarrow,
     readOnly: true,
+    domReadOnly: isNarrow,
     minimap: { enabled: !isNarrow },
     scrollBeyondLastLine: false,
     wordWrap: 'on',
     originalEditable: false,
+    contextmenu: !isNarrow,
+    links: !isNarrow,
+    hover: { enabled: !isNarrow },
     fontSize: isNarrow ? 12 : 13,
     lineHeight: isNarrow ? 19 : 20,
     lineNumbersMinChars: isNarrow ? 2 : 4,
     folding: false,
+    glyphMargin: false,
+    lineDecorationsWidth: isNarrow ? 8 : 10,
+    overviewRulerLanes: isNarrow ? 0 : 3,
+    renderLineHighlight: isNarrow ? 'none' : 'line',
+    selectionHighlight: !isNarrow,
+    occurrencesHighlight: isNarrow ? 'off' : 'singleFile',
+    renderValidationDecorations: 'off',
+    stickyScroll: { enabled: false },
+    scrollbar: {
+      alwaysConsumeMouseWheel: false,
+      useShadows: false,
+      verticalScrollbarSize: isNarrow ? 8 : 10,
+      horizontalScrollbarSize: isNarrow ? 8 : 10
+    },
     padding: { top: isNarrow ? 10 : 12, bottom: 12 }
   });
   state.editor.setModel({ original: originalModel, modified: modifiedModel });
+  hardenMobileEditorInputs();
+  requestAnimationFrame(hardenMobileEditorInputs);
+}
+
+function hardenMobileEditorInputs() {
+  if (!matchMedia('(max-width: 880px)').matches) return;
+  els.diff.querySelectorAll('textarea.inputarea').forEach(input => {
+    input.readOnly = true;
+    input.setAttribute('readonly', '');
+    input.setAttribute('inputmode', 'none');
+    input.setAttribute('aria-readonly', 'true');
+    input.setAttribute('tabindex', '-1');
+  });
+}
+
+function guardMobileEditorFocus(event) {
+  if (!matchMedia('(max-width: 880px)').matches) return;
+  if (event.target.matches?.('textarea.inputarea')) {
+    event.target.blur();
+  }
 }
 
 async function loadPrompt(item) {
