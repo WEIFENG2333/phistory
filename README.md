@@ -58,12 +58,13 @@ Each capture is stored under `captures/<agent>/<version>/`:
 - Kimi CLI: `1.44.0` published 2026-05-14 05:40 UTC, captured 2026-05-23 07:30 UTC
 - OpenClaw: `2026.5.20` published 2026-05-21 20:41 UTC, captured 2026-05-22 11:56 UTC
 - opencode: `1.15.10` published 2026-05-23 01:02 UTC, captured 2026-05-23 07:30 UTC
-- Pi: `0.75.4` published 2026-05-20 14:24 UTC, captured 2026-05-23 07:31 UTC
+- Pi: `0.75.5` published 2026-05-23 10:06 UTC, captured 2026-05-23 10:45 UTC
 
 ## Captures
 
 | Agent | Version | Published | Captured | Snapshot | Raw Trace |
 | --- | --- | --- | --- | --- | --- |
+| Pi | `0.75.5` | 2026-05-23 10:06 UTC | 2026-05-23 10:45 UTC | [pi 0.75.5, published 2026-05-23 10:06 UTC](captures/pi/0.75.5/prompt.md) | [trace.jsonl](captures/pi/0.75.5/trace.jsonl) |
 | Pi | `0.75.4` | 2026-05-20 14:24 UTC | 2026-05-23 07:31 UTC | [pi 0.75.4, published 2026-05-20 14:24 UTC](captures/pi/0.75.4/prompt.md) | [trace.jsonl](captures/pi/0.75.4/trace.jsonl) |
 | Pi | `0.75.3` | 2026-05-18 09:59 UTC | 2026-05-23 07:35 UTC | [pi 0.75.3, published 2026-05-18 09:59 UTC](captures/pi/0.75.3/prompt.md) | [trace.jsonl](captures/pi/0.75.3/trace.jsonl) |
 | Pi | `0.75.2` | 2026-05-18 09:47 UTC | 2026-05-23 07:35 UTC | [pi 0.75.2, published 2026-05-18 09:47 UTC](captures/pi/0.75.2/prompt.md) | [trace.jsonl](captures/pi/0.75.2/trace.jsonl) |
