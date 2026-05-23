@@ -55,12 +55,17 @@ Each capture is stored under `captures/<agent>/<version>/`:
 - Claude Code: `2.1.150` published 2026-05-23 02:27 UTC, captured 2026-05-23 04:08 UTC
 - Codex CLI: `0.133.0` published 2026-05-21 17:13 UTC, captured 2026-05-21 23:53 UTC
 - Hermes Agent: `v2026.5.16` published 2026-05-16 09:59 UTC, captured 2026-05-22 12:31 UTC
+- Kimi CLI: `1.44.0` published 2026-05-14 05:40 UTC, captured 2026-05-23 07:26 UTC
 - OpenClaw: `2026.5.20` published 2026-05-21 20:41 UTC, captured 2026-05-22 11:56 UTC
+- opencode: `1.15.10` published 2026-05-23 01:02 UTC, captured 2026-05-23 07:26 UTC
+- Pi: `0.75.4` published 2026-05-20 14:24 UTC, captured 2026-05-23 07:26 UTC
 
 ## Captures
 
 | Agent | Version | Published | Captured | Snapshot | Raw Trace |
 | --- | --- | --- | --- | --- | --- |
+| Pi | `0.75.4` | 2026-05-20 14:24 UTC | 2026-05-23 07:26 UTC | [pi 0.75.4, published 2026-05-20 14:24 UTC](captures/pi/0.75.4/prompt.md) | [trace.jsonl](captures/pi/0.75.4/trace.jsonl) |
+| opencode | `1.15.10` | 2026-05-23 01:02 UTC | 2026-05-23 07:26 UTC | [opencode 1.15.10, published 2026-05-23 01:02 UTC](captures/opencode/1.15.10/prompt.md) | [trace.jsonl](captures/opencode/1.15.10/trace.jsonl) |
 | OpenClaw | `2026.5.20` | 2026-05-21 20:41 UTC | 2026-05-22 11:56 UTC | [openclaw 2026.5.20, published 2026-05-21 20:41 UTC](captures/openclaw/2026.5.20/prompt.md) | [trace.jsonl](captures/openclaw/2026.5.20/trace.jsonl) |
 | OpenClaw | `2026.5.19` | 2026-05-20 20:20 UTC | 2026-05-22 12:42 UTC | [openclaw 2026.5.19, published 2026-05-20 20:20 UTC](captures/openclaw/2026.5.19/prompt.md) | [trace.jsonl](captures/openclaw/2026.5.19/trace.jsonl) |
 | OpenClaw | `2026.5.18` | 2026-05-18 18:53 UTC | 2026-05-22 12:41 UTC | [openclaw 2026.5.18, published 2026-05-18 18:53 UTC](captures/openclaw/2026.5.18/prompt.md) | [trace.jsonl](captures/openclaw/2026.5.18/trace.jsonl) |
@@ -117,6 +122,7 @@ Each capture is stored under `captures/<agent>/<version>/`:
 | OpenClaw | `2026.2.1` | 2026-02-02 11:45 UTC | 2026-05-22 12:32 UTC | [openclaw 2026.2.1, published 2026-02-02 11:45 UTC](captures/openclaw/2026.2.1/prompt.md) | [trace.jsonl](captures/openclaw/2026.2.1/trace.jsonl) |
 | OpenClaw | `2026.1.30` | 2026-01-31 13:11 UTC | 2026-05-22 12:32 UTC | [openclaw 2026.1.30, published 2026-01-31 13:11 UTC](captures/openclaw/2026.1.30/prompt.md) | [trace.jsonl](captures/openclaw/2026.1.30/trace.jsonl) |
 | OpenClaw | `2026.1.29` | 2026-01-30 04:49 UTC | 2026-05-22 12:32 UTC | [openclaw 2026.1.29, published 2026-01-30 04:49 UTC](captures/openclaw/2026.1.29/prompt.md) | [trace.jsonl](captures/openclaw/2026.1.29/trace.jsonl) |
+| Kimi CLI | `1.44.0` | 2026-05-14 05:40 UTC | 2026-05-23 07:26 UTC | [kimi 1.44.0, published 2026-05-14 05:40 UTC](captures/kimi/1.44.0/prompt.md) | [trace.jsonl](captures/kimi/1.44.0/trace.jsonl) |
 | Hermes Agent | `v2026.5.16` | 2026-05-16 09:59 UTC | 2026-05-22 12:31 UTC | [hermes v2026.5.16, published 2026-05-16 09:59 UTC](captures/hermes/v2026.5.16/prompt.md) | [trace.jsonl](captures/hermes/v2026.5.16/trace.jsonl) |
 | Hermes Agent | `v2026.5.7` | 2026-05-07 16:23 UTC | 2026-05-22 12:31 UTC | [hermes v2026.5.7, published 2026-05-07 16:23 UTC](captures/hermes/v2026.5.7/prompt.md) | [trace.jsonl](captures/hermes/v2026.5.7/trace.jsonl) |
 | Hermes Agent | `v2026.4.30` | 2026-04-30 18:31 UTC | 2026-05-22 12:31 UTC | [hermes v2026.4.30, published 2026-04-30 18:31 UTC](captures/hermes/v2026.4.30/prompt.md) | [trace.jsonl](captures/hermes/v2026.4.30/trace.jsonl) |
