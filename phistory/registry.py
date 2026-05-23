@@ -156,6 +156,8 @@ OPENCODE = AgentSpec(
         "openai/gpt-4.1",
         "--format",
         "json",
+        "--dir",
+        ".",
     ),
 )
 

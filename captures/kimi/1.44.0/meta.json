@@ -6,10 +6,10 @@
   "published_at": "2026-05-14T05:40:06Z",
   "tarball_url": "https://github.com/MoonshotAI/kimi-cli/releases/tag/1.44.0",
   "binary_version": "kimi, version 1.44.0",
-  "captured_at": "2026-05-23T07:26:20.503184+00:00",
+  "captured_at": "2026-05-23T07:30:48.105987+00:00",
   "tap_client": "kimi",
   "target": "claude-tap capture-only",
-  "duration_seconds": 6.705,
+  "duration_seconds": 10.365,
   "command": [
     "python",
     "-m",

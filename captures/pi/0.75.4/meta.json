@@ -6,10 +6,10 @@
   "published_at": "2026-05-20T14:24:17.069Z",
   "tarball_url": "https://registry.npmjs.org/@earendil-works/pi-coding-agent/-/pi-coding-agent-0.75.4.tgz",
   "binary_version": "0.75.4",
-  "captured_at": "2026-05-23T07:26:37.911540+00:00",
+  "captured_at": "2026-05-23T07:31:02.635259+00:00",
   "tap_client": "pi",
   "target": "claude-tap capture-only",
-  "duration_seconds": 6.798,
+  "duration_seconds": 5.709,
   "command": [
     "python",
     "-m",

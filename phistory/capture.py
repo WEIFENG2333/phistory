@@ -19,6 +19,10 @@ _VOLATILE_TEXT_PATTERNS = (
     (re.compile(r"(?m)^ - OS Version: .+$"), " - OS Version: $PHISTORY_OS_VERSION"),
     (re.compile(r" - OS Version: [^\\\n]*(?=\\n)"), " - OS Version: $PHISTORY_OS_VERSION"),
     (re.compile(r"Today's date is \d{4}[-/]\d{2}[-/]\d{2}\."), "Today's date is $PHISTORY_DATE."),
+    (
+        re.compile(r"The current date and time in ISO format is `[^`]+`\."),
+        "The current date and time in ISO format is `$PHISTORY_DATETIME`.",
+    ),
     (re.compile(r"<current_date>\d{4}-\d{2}-\d{2}</current_date>"), "<current_date>$PHISTORY_DATE</current_date>"),
     (re.compile(r"<timezone>[^<]+</timezone>"), "<timezone>$PHISTORY_TIMEZONE</timezone>"),
     (
@@ -56,6 +60,7 @@ def capture_target(
             TemporaryDirectory(prefix="phistory-work-", ignore_cleanup_errors=True) as work_dir,
         ):
             env = _capture_env(target, bin_dir, Path(home_dir))
+            env["PWD"] = str(Path(work_dir))
             argv = [
                 sys.executable,
                 "-m",
@@ -90,6 +95,7 @@ def capture_target(
         trace = latest_trace(tap_output_dir)
         copy_trace(trace, target)
         replacements = {
+            str(install_dir): "$PHISTORY_INSTALL",
             str(home_dir): "$PHISTORY_HOME",
             str(work_dir): "$PHISTORY_WORKSPACE",
         }

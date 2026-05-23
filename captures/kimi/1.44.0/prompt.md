@@ -76,7 +76,7 @@ The operating environment is not in a sandbox. Any actions you do will immediate
 
 ### Date and Time
 
-The current date and time in ISO format is `2026-05-23T07:26:17.532901+00:00`. This is only a reference for you when searching the web, or checking file modification time, etc. If you need the exact time, use Shell tool with proper command.
+The current date and time in ISO format is `$PHISTORY_DATETIME`. This is only a reference for you when searching the web, or checking file modification time, etc. If you need the exact time, use Shell tool with proper command.
 
 ### Working Directory
 
@@ -135,10 +135,10 @@ Skills are grouped by scope (`Project`, `User`, `Extra`, `Built-in`) so you can 
 
 #### Built-in
 - kimi-cli-help
-  - Path: /home/runner/work/phistory/phistory/.phistory-cache/installs/kimi/1.44.0/lib/python3.12/site-packages/kimi_cli/skills/kimi-cli-help/SKILL.md
+  - Path: $PHISTORY_INSTALL/lib/python3.13/site-packages/kimi_cli/skills/kimi-cli-help/SKILL.md
   - Description: Answer Kimi Code CLI usage, configuration, and troubleshooting questions. Use when user asks about Kimi Code CLI installation, setup, configuration, slash commands, keyboard shortcuts, MCP integration, providers, environment variables, how something works internally, or any questions about Kimi Code CLI itself.
 - skill-creator
-  - Path: /home/runner/work/phistory/phistory/.phistory-cache/installs/kimi/1.44.0/lib/python3.12/site-packages/kimi_cli/skills/skill-creator/SKILL.md
+  - Path: $PHISTORY_INSTALL/lib/python3.13/site-packages/kimi_cli/skills/skill-creator/SKILL.md
   - Description: Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Kimi's capabilities with specialized knowledge, workflows, or tool integrations.
 
 ### How to use skills

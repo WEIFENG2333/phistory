@@ -51,6 +51,7 @@ def test_new_agents_define_install_and_capture_profiles():
     assert opencode.home_profile == "opencode"
     assert opencode.tap_mode == "reverse"
     assert "run" in opencode.run_args
+    assert "--dir" in opencode.run_args
 
     assert pi.source == "npm"
     assert pi.package == "@earendil-works/pi-coding-agent"

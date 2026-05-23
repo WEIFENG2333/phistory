@@ -6,10 +6,10 @@
   "published_at": "2026-05-23T01:02:38.334Z",
   "tarball_url": "https://registry.npmjs.org/opencode-ai/-/opencode-ai-1.15.10.tgz",
   "binary_version": "1.15.10",
-  "captured_at": "2026-05-23T07:26:30.837928+00:00",
+  "captured_at": "2026-05-23T07:30:56.600857+00:00",
   "tap_client": "opencode",
   "target": "claude-tap capture-only",
-  "duration_seconds": 9.659,
+  "duration_seconds": 7.731,
   "command": [
     "python",
     "-m",
@@ -32,6 +32,8 @@
     "--model",
     "openai/gpt-4.1",
     "--format",
-    "json"
+    "json",
+    "--dir",
+    "."
   ]
 }

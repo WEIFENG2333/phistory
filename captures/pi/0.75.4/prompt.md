@@ -22,9 +22,9 @@ Guidelines:
 - Show file paths clearly when working with files
 
 Pi documentation (read only when the user asks about pi itself, its SDK, extensions, themes, skills, or TUI):
-- Main documentation: /home/runner/work/phistory/phistory/.phistory-cache/installs/pi/0.75.4/node_modules/@earendil-works/pi-coding-agent/README.md
-- Additional docs: /home/runner/work/phistory/phistory/.phistory-cache/installs/pi/0.75.4/node_modules/@earendil-works/pi-coding-agent/docs
-- Examples: /home/runner/work/phistory/phistory/.phistory-cache/installs/pi/0.75.4/node_modules/@earendil-works/pi-coding-agent/examples (extensions, custom tools, SDK)
+- Main documentation: $PHISTORY_INSTALL/node_modules/@earendil-works/pi-coding-agent/README.md
+- Additional docs: $PHISTORY_INSTALL/node_modules/@earendil-works/pi-coding-agent/docs
+- Examples: $PHISTORY_INSTALL/node_modules/@earendil-works/pi-coding-agent/examples (extensions, custom tools, SDK)
 - When reading pi docs or examples, resolve docs/... under Additional docs and examples/... under Examples, not the current working directory
 - When asked about: extensions (docs/extensions.md, examples/extensions/), themes (docs/themes.md), skills (docs/skills.md), prompt templates (docs/prompt-templates.md), TUI components (docs/tui.md), keybindings (docs/keybindings.md), SDK integrations (docs/sdk.md), custom providers (docs/custom-provider.md), adding models (docs/models.md), pi packages (docs/packages.md)
 - When working on pi topics, read the docs and examples, and follow .md cross-references before implementing
