@@ -56,6 +56,14 @@ The generated indexes are:
 - Use `captures/<agent>/<version>/trace.jsonl` only when you need raw HTTP capture evidence.
 - Treat `index.html` as a human-facing viewer; it is not the canonical machine-readable index.
 
+## Links
+
+- [linux.do](https://linux.do)
+
+## License
+
+[MIT](LICENSE)
+
 ## Capture Status
 
 Last capture update: 2026-05-24 04:40 UTC
