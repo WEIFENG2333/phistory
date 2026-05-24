@@ -56,7 +56,7 @@ Each capture is stored under `captures/<agent>/<version>/`:
 - Codex CLI: `0.133.0` published 2026-05-21 17:13 UTC, captured 2026-05-21 23:53 UTC
 - Hermes Agent: `v2026.5.16` published 2026-05-16 09:59 UTC, captured 2026-05-22 12:31 UTC
 - Kimi CLI: `1.44.0` published 2026-05-14 05:40 UTC, captured 2026-05-23 07:30 UTC
-- OpenClaw: `2026.5.20` published 2026-05-21 20:41 UTC, captured 2026-05-22 11:56 UTC
+- OpenClaw: `2026.5.22` published 2026-05-24 03:20 UTC, captured 2026-05-24 04:40 UTC
 - opencode: `1.15.10` published 2026-05-23 01:02 UTC, captured 2026-05-23 07:30 UTC
 - Pi: `0.75.5` published 2026-05-23 10:06 UTC, captured 2026-05-23 10:45 UTC
 
@@ -123,6 +123,7 @@ Each capture is stored under `captures/<agent>/<version>/`:
 | opencode | `1.4.14` | 2026-04-18 22:05 UTC | 2026-05-23 08:20 UTC | [opencode 1.4.14, published 2026-04-18 22:05 UTC](captures/opencode/1.4.14/prompt.md) | [trace.jsonl](captures/opencode/1.4.14/trace.jsonl) |
 | opencode | `1.4.12` | 2026-04-18 15:57 UTC | 2026-05-23 08:20 UTC | [opencode 1.4.12, published 2026-04-18 15:57 UTC](captures/opencode/1.4.12/prompt.md) | [trace.jsonl](captures/opencode/1.4.12/trace.jsonl) |
 | opencode | `1.4.11` | 2026-04-18 00:30 UTC | 2026-05-23 08:20 UTC | [opencode 1.4.11, published 2026-04-18 00:30 UTC](captures/opencode/1.4.11/prompt.md) | [trace.jsonl](captures/opencode/1.4.11/trace.jsonl) |
+| OpenClaw | `2026.5.22` | 2026-05-24 03:20 UTC | 2026-05-24 04:40 UTC | [openclaw 2026.5.22, published 2026-05-24 03:20 UTC](captures/openclaw/2026.5.22/prompt.md) | [trace.jsonl](captures/openclaw/2026.5.22/trace.jsonl) |
 | OpenClaw | `2026.5.20` | 2026-05-21 20:41 UTC | 2026-05-22 11:56 UTC | [openclaw 2026.5.20, published 2026-05-21 20:41 UTC](captures/openclaw/2026.5.20/prompt.md) | [trace.jsonl](captures/openclaw/2026.5.20/trace.jsonl) |
 | OpenClaw | `2026.5.19` | 2026-05-20 20:20 UTC | 2026-05-22 12:42 UTC | [openclaw 2026.5.19, published 2026-05-20 20:20 UTC](captures/openclaw/2026.5.19/prompt.md) | [trace.jsonl](captures/openclaw/2026.5.19/trace.jsonl) |
 | OpenClaw | `2026.5.18` | 2026-05-18 18:53 UTC | 2026-05-22 12:41 UTC | [openclaw 2026.5.18, published 2026-05-18 18:53 UTC](captures/openclaw/2026.5.18/prompt.md) | [trace.jsonl](captures/openclaw/2026.5.18/trace.jsonl) |
