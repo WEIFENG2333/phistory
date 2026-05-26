@@ -1,0 +1,33 @@
+{
+  "agent_id": "codex",
+  "agent": "Codex CLI",
+  "package": "@openai/codex",
+  "version": "0.134.0",
+  "published_at": "2026-05-26T19:33:51.389Z",
+  "tarball_url": "https://registry.npmjs.org/@openai/codex/-/codex-0.134.0.tgz",
+  "binary_version": "codex-cli 0.134.0",
+  "captured_at": "2026-05-26T22:00:00.176075+00:00",
+  "tap_client": "codex",
+  "target": "claude-tap capture-only",
+  "duration_seconds": 10.169,
+  "command": [
+    "python",
+    "-m",
+    "claude_tap",
+    "run",
+    "codex",
+    "--export-prompt",
+    "prompt.md",
+    "--no-live",
+    "--no-open",
+    "--no-update-check",
+    "-o",
+    ".tap",
+    "--no-yolo",
+    "--",
+    "exec",
+    "Reply with one short sentence.",
+    "--skip-git-repo-check",
+    "--json"
+  ]
+}
