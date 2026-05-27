@@ -1,7 +1,7 @@
 {
   "description": "Phistory automatically archives versioned system prompt snapshots from agent CLIs like Claude Code, Codex, OpenClaw, Hermes, Kimi, opencode, and Pi.",
   "site": "https://phistory.cc/",
-  "updated_at": "2026-05-27T02:52:39.520686Z",
+  "updated_at": "2026-05-27T04:49:19.750509Z",
   "agents": [
     {
       "agent_id": "claude-code",
@@ -30,10 +30,10 @@
     {
       "agent_id": "kimi",
       "agent": "Kimi CLI",
-      "latest_version": "1.44.0",
-      "latest_published_at": "2026-05-14T05:40:06Z",
-      "latest_captured_at": "2026-05-23T07:30:48.105987+00:00",
-      "captures": 16
+      "latest_version": "1.45.0",
+      "latest_published_at": "2026-05-27T03:39:38Z",
+      "latest_captured_at": "2026-05-27T04:49:12.142935+00:00",
+      "captures": 17
     },
     {
       "agent_id": "openclaw",
@@ -46,10 +46,10 @@
     {
       "agent_id": "opencode",
       "agent": "opencode",
-      "latest_version": "1.15.10",
-      "latest_published_at": "2026-05-23T01:02:38.334Z",
-      "latest_captured_at": "2026-05-23T07:30:56.600857+00:00",
-      "captures": 61
+      "latest_version": "1.15.11",
+      "latest_published_at": "2026-05-27T03:59:24.083Z",
+      "latest_captured_at": "2026-05-27T04:49:19.750509+00:00",
+      "captures": 62
     },
     {
       "agent_id": "pi",
@@ -150,6 +150,16 @@
       "prompt": "captures/pi/0.74.0/prompt.md",
       "trace": "captures/pi/0.74.0/trace.jsonl",
       "meta": "captures/pi/0.74.0/meta.json"
+    },
+    {
+      "agent_id": "opencode",
+      "agent": "opencode",
+      "version": "1.15.11",
+      "published_at": "2026-05-27T03:59:24.083Z",
+      "captured_at": "2026-05-27T04:49:19.750509+00:00",
+      "prompt": "captures/opencode/1.15.11/prompt.md",
+      "trace": "captures/opencode/1.15.11/trace.jsonl",
+      "meta": "captures/opencode/1.15.11/meta.json"
     },
     {
       "agent_id": "opencode",
@@ -1330,6 +1340,16 @@
       "prompt": "captures/openclaw/2026.1.29/prompt.md",
       "trace": "captures/openclaw/2026.1.29/trace.jsonl",
       "meta": "captures/openclaw/2026.1.29/meta.json"
+    },
+    {
+      "agent_id": "kimi",
+      "agent": "Kimi CLI",
+      "version": "1.45.0",
+      "published_at": "2026-05-27T03:39:38Z",
+      "captured_at": "2026-05-27T04:49:12.142935+00:00",
+      "prompt": "captures/kimi/1.45.0/prompt.md",
+      "trace": "captures/kimi/1.45.0/trace.jsonl",
+      "meta": "captures/kimi/1.45.0/meta.json"
     },
     {
       "agent_id": "kimi",
