@@ -153,6 +153,7 @@ def test_render_site_writes_static_html_manifest(tmp_path: Path):
     assert '"previous_version":"1.0.0"' in text
     assert '"changed_lines":2' in text
     assert '"level":1' in text
+    assert '"scale":32' in text
     assert "URLSearchParams" in text
     assert "# Prompt 1.1.0" not in text
     assert "captured_at" not in text

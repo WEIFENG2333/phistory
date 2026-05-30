@@ -1,5 +1,6 @@
 import difflib
 import json
+import statistics
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -16,6 +17,9 @@ AGENT_ICONS = {
 }
 CHANGE_SMALL_MAX_LINES = 12
 CHANGE_MEDIUM_MAX_LINES = 80
+CHANGE_BASELINE_PERCENTILE = 0.95
+CHANGE_BASELINE_MIN_LINES = 20
+CHANGE_BASELINE_PROMPT_RATIO = 0.10
 
 
 def render_site(root: Path, output: Path) -> None:
@@ -52,6 +56,7 @@ def _site_versions(rows: list[dict]) -> list[dict]:
         item = _site_row(row)
         item["change"] = _change_summary(row, previous)
         versions.append(item)
+    _add_relative_change_scale(versions)
     return versions
 
 
@@ -66,11 +71,21 @@ def _site_row(row: dict) -> dict:
 
 
 def _change_summary(current: dict, previous: dict | None) -> dict:
+    try:
+        new_lines = current["prompt"].read_text(encoding="utf-8").splitlines()
+    except OSError:
+        new_lines = []
     if previous is None:
-        return {"previous_version": None, "added_lines": 0, "removed_lines": 0, "changed_lines": 0, "level": 0}
+        return {
+            "previous_version": None,
+            "added_lines": 0,
+            "removed_lines": 0,
+            "changed_lines": 0,
+            "level": 0,
+            "line_count": len(new_lines),
+        }
     try:
         old_lines = previous["prompt"].read_text(encoding="utf-8").splitlines()
-        new_lines = current["prompt"].read_text(encoding="utf-8").splitlines()
     except OSError:
         return {
             "previous_version": previous["version"],
@@ -78,6 +93,7 @@ def _change_summary(current: dict, previous: dict | None) -> dict:
             "removed_lines": 0,
             "changed_lines": 0,
             "level": 0,
+            "line_count": len(new_lines),
         }
 
     added = 0
@@ -97,6 +113,7 @@ def _change_summary(current: dict, previous: dict | None) -> dict:
         "removed_lines": removed,
         "changed_lines": changed,
         "level": _change_level(changed),
+        "line_count": len(new_lines),
     }
 
 
@@ -108,6 +125,29 @@ def _change_level(changed_lines: int) -> int:
     if changed_lines <= CHANGE_MEDIUM_MAX_LINES:
         return 2
     return 3
+
+
+def _add_relative_change_scale(versions: list[dict]) -> None:
+    changed_values = sorted(item["change"]["changed_lines"] for item in versions if item["change"]["changed_lines"] > 0)
+    line_counts = [item["change"]["line_count"] for item in versions if item["change"]["line_count"] > 0]
+    prompt_baseline = round(statistics.median(line_counts) * CHANGE_BASELINE_PROMPT_RATIO) if line_counts else 0
+    baseline = max(_percentile(changed_values, CHANGE_BASELINE_PERCENTILE), prompt_baseline, CHANGE_BASELINE_MIN_LINES)
+    for item in versions:
+        changed_lines = item["change"]["changed_lines"]
+        item["change"]["scale"] = _relative_change_scale(changed_lines, baseline)
+
+
+def _percentile(values: list[int], percentile: float) -> int:
+    if not values:
+        return 0
+    index = round((len(values) - 1) * percentile)
+    return values[max(0, min(len(values) - 1, index))]
+
+
+def _relative_change_scale(changed_lines: int, baseline: int) -> int:
+    if changed_lines <= 0 or baseline <= 0:
+        return 0
+    return round(max(14, min(100, (changed_lines / baseline) ** 0.5 * 100)))
 
 
 def _compact_date(value: str) -> str:
@@ -259,7 +299,7 @@ a:hover { text-decoration: none; }
 .compare {
   min-width: 0;
   display: grid;
-  grid-template-columns: 176px 22px 204px;
+  grid-template-columns: 196px 22px 236px;
   gap: 0;
   align-items: center;
   justify-content: center;
@@ -884,7 +924,7 @@ function miniDiffstatHtml(change) {
   const total = added + removed;
   const addPct = total ? (added / total) * 100 : 50;
   const removePct = total ? (removed / total) * 100 : 50;
-  const scale = total ? Math.max(18, Math.min(100, Math.log10(total + 1) / Math.log10(520) * 100)) : 0;
+  const scale = Math.max(0, Math.min(100, Number(change?.scale || 0)));
   const title = changed ? `${changed} changed lines from previous version` : 'No prompt change from previous version';
   return `<span class="mini-diffstat${changed ? '' : ' no-change'}" style="--fill-width:${scale.toFixed(2)}%;--removed-part:${removePct.toFixed(2)}%;--added-part:${addPct.toFixed(2)}%;" title="${escapeHtml(title)}" aria-label="${escapeHtml(title)}"><span class="diffstat-fill"><i class="removed"></i><i class="added"></i></span></span>`;
 }
