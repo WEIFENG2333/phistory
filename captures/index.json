@@ -1,7 +1,7 @@
 {
   "description": "Phistory automatically archives versioned system prompt snapshots from agent CLIs like Claude Code, Codex, OpenClaw, Hermes, Kimi, opencode, and Pi.",
   "site": "https://phistory.cc/",
-  "updated_at": "2026-06-04T01:50:13.286437Z",
+  "updated_at": "2026-06-04T17:24:20.346274Z",
   "agents": [
     {
       "agent_id": "claude-code",
@@ -54,13 +54,23 @@
     {
       "agent_id": "pi",
       "agent": "Pi",
-      "latest_version": "0.78.0",
-      "latest_published_at": "2026-05-29T23:51:43.883Z",
-      "latest_captured_at": "2026-05-30T04:18:27.888295+00:00",
-      "captures": 12
+      "latest_version": "0.78.1",
+      "latest_published_at": "2026-06-04T16:35:48.944Z",
+      "latest_captured_at": "2026-06-04T17:24:20.346274+00:00",
+      "captures": 13
     }
   ],
   "captures": [
+    {
+      "agent_id": "pi",
+      "agent": "Pi",
+      "version": "0.78.1",
+      "published_at": "2026-06-04T16:35:48.944Z",
+      "captured_at": "2026-06-04T17:24:20.346274+00:00",
+      "prompt": "captures/pi/0.78.1/prompt.md",
+      "trace": "captures/pi/0.78.1/trace.jsonl",
+      "meta": "captures/pi/0.78.1/meta.json"
+    },
     {
       "agent_id": "pi",
       "agent": "Pi",
