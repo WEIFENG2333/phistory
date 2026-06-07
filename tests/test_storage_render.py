@@ -147,6 +147,8 @@ def test_render_site_writes_static_html_manifest(tmp_path: Path):
     assert "captures/agent/1.1.0/prompt.md" in text
     assert "2026-05-22" in text
     assert "monaco-editor" in text
+    assert "dompurify" in text
+    assert "marked@12.0.2" in text
     assert "createDiffEditor" in text
     assert "range: 'latest'" in text
     assert "mini-diffstat" in text

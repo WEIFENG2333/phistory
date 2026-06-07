@@ -584,9 +584,6 @@ a:hover { text-decoration: none; }
   font-size: 12px;
   font-weight: 650;
   cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
 }
 .trace-jump:hover,
 .trace-jump:focus-visible {
@@ -640,25 +637,23 @@ a:hover { text-decoration: none; }
   color: var(--text);
   background: color-mix(in srgb, var(--control-bg) 45%, transparent);
 }
-.trace-caret {
+.trace-chevron {
   flex: 0 0 auto;
-  width: 13px;
+  width: 14px;
+  height: 14px;
   color: var(--muted);
-  font-size: 12px;
-  line-height: 1;
-  text-align: center;
-  transition: color .14s ease;
+  transition: color .14s ease, transform .14s ease;
 }
-.trace-caret::before {
-  content: "▸";
+.trace-chevron svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  stroke: currentColor;
 }
-.trace-section.is-open > .trace-summary .trace-caret::before,
-.tool-card.is-open > .trace-summary .trace-caret::before {
-  content: "▾";
-}
-.trace-section.is-open > .trace-summary .trace-caret,
-.tool-card.is-open > .trace-summary .trace-caret {
-  color: var(--accent);
+.trace-section.is-open > .trace-summary .trace-chevron,
+.tool-card.is-open > .trace-summary .trace-chevron {
+  color: var(--text);
+  transform: rotate(90deg);
 }
 .trace-summary strong {
   font-size: 15px;
@@ -666,22 +661,6 @@ a:hover { text-decoration: none; }
 .trace-summary small {
   margin-left: auto;
   color: var(--muted);
-}
-.trace-icon {
-  flex: 0 0 auto;
-  width: 15px;
-  height: 15px;
-  color: color-mix(in srgb, var(--accent) 76%, var(--muted));
-}
-.trace-icon svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-  stroke: currentColor;
-}
-.trace-jump .trace-icon {
-  width: 13px;
-  height: 13px;
 }
 .trace-body {
   padding: 6px 10px 22px 34px;
@@ -733,8 +712,8 @@ a:hover { text-decoration: none; }
   margin: 4px 0;
 }
 .trace-rendered code {
-  color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  color: var(--text);
+  background: color-mix(in srgb, var(--muted) 14%, transparent);
   border-radius: 4px;
   padding: 0 3px;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
@@ -749,6 +728,7 @@ a:hover { text-decoration: none; }
   white-space: pre-wrap;
 }
 .trace-mode {
+  display: none;
   margin-left: 6px;
   border: 0;
   border-radius: 999px;
@@ -766,15 +746,16 @@ a:hover { text-decoration: none; }
   background: var(--control-bg);
   outline: none;
 }
+.trace-section.is-open > .trace-summary .trace-mode {
+  display: inline-flex;
+}
 .trace-raw {
   display: none;
 }
-.trace-section.is-raw .trace-rendered,
-.trace-section.is-raw .trace-mode-read {
+.trace-section.is-raw .trace-rendered {
   display: none;
 }
-.trace-section.is-raw .trace-raw,
-.trace-section.is-raw .trace-mode-raw {
+.trace-section.is-raw .trace-raw {
   display: block;
 }
 .trace-text {
@@ -812,8 +793,8 @@ a:hover { text-decoration: none; }
   transition: border-color .14s ease, background-color .14s ease;
 }
 .tool-card.is-open {
-  border-color: color-mix(in srgb, var(--accent) 34%, var(--line));
-  background: color-mix(in srgb, var(--control-bg) 94%, var(--accent) 4%);
+  border-color: color-mix(in srgb, var(--muted) 34%, var(--line));
+  background: color-mix(in srgb, var(--control-bg) 94%, var(--bg));
 }
 .tool-card .trace-summary {
   min-height: 44px;
@@ -865,7 +846,7 @@ a:hover { text-decoration: none; }
   font-size: 12px;
 }
 .tool-param-required {
-  color: #ff9f7a;
+  color: var(--text);
   font-weight: 700;
 }
 .tool-param-desc {
@@ -889,13 +870,9 @@ a:hover { text-decoration: none; }
   font-size: 12px;
   font-weight: 650;
 }
-.tool-raw .trace-caret {
+.tool-raw .trace-chevron {
   width: 10px;
-  font-size: 10px;
-}
-.tool-raw .trace-icon {
-  width: 12px;
-  height: 12px;
+  height: 10px;
 }
 .tool-raw .trace-body {
   padding: 6px 0 0;
@@ -1219,6 +1196,8 @@ a:hover { text-decoration: none; }
   <div id="options" class="options" role="listbox"></div>
 </div>
 <script id="manifest" type="application/json">__PHISTORY_MANIFEST__</script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.7/dist/purify.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.52.2/min/vs/loader.min.js"></script>
 <script>
 const manifest = JSON.parse(document.getElementById('manifest').textContent);
@@ -1320,11 +1299,19 @@ function bindEvents() {
     const mode = event.target.closest?.('.trace-mode');
     if (mode) {
       event.stopPropagation();
-      mode.closest('.trace-section')?.classList.toggle('is-raw');
+      const section = mode.closest('.trace-section');
+      section?.classList.toggle('is-raw');
+      updateTraceModeLabel(section);
       return;
     }
     const summary = event.target.closest?.('.trace-summary');
     if (summary) toggleTracePanel(summary);
+  });
+  els.trace.addEventListener('keydown', event => {
+    const summary = event.target.closest?.('.trace-summary');
+    if (!summary || !['Enter', ' '].includes(event.key)) return;
+    event.preventDefault();
+    toggleTracePanel(summary);
   });
   addEventListener('click', event => {
     if (!els.popover.contains(event.target) && !event.target.closest('.control')) closePicker();
@@ -1898,7 +1885,7 @@ function traceJumpbarHtml(detail) {
   if (detail.tools.length) items.push(['tools', 'Tools']);
   if (detail.messages.length) items.push(['messages', 'Messages']);
   items.push(['raw-request-body', 'Raw']);
-  return `<nav class="trace-jumpbar" aria-label="Trace sections">${items.map(([section, label]) => `<button class="trace-jump" type="button" data-jump="${section}">${traceIcon(section)}${label}</button>`).join('')}</nav>`;
+  return `<nav class="trace-jumpbar" aria-label="Trace sections">${items.map(([section, label]) => `<button class="trace-jump" type="button" data-jump="${section}">${label}</button>`).join('')}</nav>`;
 }
 
 function metaItem(label, value) {
@@ -1907,22 +1894,19 @@ function metaItem(label, value) {
 
 function traceSummaryHtml(title, open, extra = '', modeToggle = false) {
   const mode = modeToggle
-    ? '<button class="trace-mode trace-mode-read" type="button">Raw</button><button class="trace-mode trace-mode-raw" type="button">Read</button>'
+    ? '<button class="trace-mode" type="button">View source</button>'
     : '';
-  return `<button class="trace-summary" type="button" aria-expanded="${open ? 'true' : 'false'}"><span class="trace-caret" aria-hidden="true"></span>${traceIcon(sectionId(title))}<strong>${escapeHtml(title)}</strong>${mode}${extra}</button>`;
+  return `<div class="trace-summary" role="button" tabindex="0" aria-expanded="${open ? 'true' : 'false'}">${chevronIcon()}<strong>${escapeHtml(title)}</strong>${mode}${extra}</div>`;
 }
 
-function traceIcon(name) {
-  const icons = {
-    'system-prompt': '<path d="M5 3.5h6M4.5 6.5h7M4.5 9.5h4.5"/><path d="M3 2.5h10v11H3z"/>',
-    'developer-prompt': '<path d="m5.5 5.5-2 2 2 2M10.5 5.5l2 2-2 2M8.8 4.5 7.2 10.5"/>',
-    tools: '<path d="M5.5 4.2 4.2 2.9a2 2 0 0 0-1.3 2.5l1.7 1.7-2.1 2.1a1.3 1.3 0 1 0 1.8 1.8l2.1-2.1 1.7 1.7a2 2 0 0 0 2.5-1.3L9.8 8.5"/><path d="m8.5 4.5 2-2 1.5 1.5-2 2"/>',
-    messages: '<path d="M3 4h10v6H7l-3 2v-2H3z"/>',
-    'raw-request-body': '<path d="M4 3h8v10H4z"/><path d="M6 6h4M6 8h4M6 10h2"/>',
-    'raw-schema': '<path d="M4 3.5h8v9H4z"/><path d="M6 6h4M6 8h3M6 10h4"/>'
-  };
-  const path = icons[name] || icons['raw-request-body'];
-  return `<span class="trace-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${path}</svg></span>`;
+function chevronIcon() {
+  return '<span class="trace-chevron" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m6 4 4 4-4 4"/></svg></span>';
+}
+
+function updateTraceModeLabel(section) {
+  const mode = section?.querySelector(':scope > .trace-summary .trace-mode');
+  if (!mode) return;
+  mode.textContent = section.classList.contains('is-raw') ? 'View rendered' : 'View source';
 }
 
 function blocksSectionHtml(title, blocks, open) {
@@ -1993,6 +1977,15 @@ function sectionId(title) {
 }
 
 function markdownHtml(text) {
+  const source = String(text || '');
+  if (window.marked && window.DOMPurify) {
+    const html = window.marked.parse(source, { gfm: true, breaks: false });
+    return window.DOMPurify.sanitize(html);
+  }
+  return fallbackMarkdownHtml(source);
+}
+
+function fallbackMarkdownHtml(text) {
   const lines = String(text || '').split('\n');
   const html = [];
   let paragraph = [];
