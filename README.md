@@ -4,7 +4,9 @@
 
 Phistory automatically archives versioned system prompt snapshots from agent CLIs like Claude Code, Codex, OpenClaw, Hermes, Kimi, opencode, and Pi.
 
-It installs a specific CLI release, runs it once through [`claude-tap`](https://github.com/WEIFENG2333/claude-tap), captures the prompt-bearing HTTP request, and writes a comparison-friendly Markdown snapshot.
+It installs a specific CLI release, runs it once through [`claude-tap`](https://github.com/liaohch3/claude-tap), captures the prompt-bearing HTTP request, and writes a comparison-friendly Markdown snapshot.
+
+Phistory uses the PyPI release `claude-tap >= 0.1.102`, where capture-only prompt snapshot export is available upstream.
 
 GitHub Actions checks supported CLI releases every hour and commits new prompt snapshots when they appear.
 

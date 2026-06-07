@@ -23,6 +23,7 @@ _VOLATILE_TEXT_PATTERNS = (
         re.compile(r"The current date and time in ISO format is `[^`]+`\."),
         "The current date and time in ISO format is `$PHISTORY_DATETIME`.",
     ),
+    (re.compile(r"(?m)^Conversation started: .+$"), "Conversation started: $PHISTORY_DATETIME"),
     (re.compile(r"<current_date>\d{4}-\d{2}-\d{2}</current_date>"), "<current_date>$PHISTORY_DATE</current_date>"),
     (re.compile(r"<timezone>[^<]+</timezone>"), "<timezone>$PHISTORY_TIMEZONE</timezone>"),
     (
@@ -63,22 +64,7 @@ def capture_target(
         ):
             env = _capture_env(target, bin_dir, Path(home_dir))
             env["PWD"] = str(Path(work_dir))
-            argv = [
-                sys.executable,
-                "-m",
-                "claude_tap",
-                "run",
-                target.agent.tap_client,
-                "--export-prompt",
-                str(prompt_path),
-                "--no-live",
-                "--no-open",
-                "--no-update-check",
-                "-o",
-                str(tap_output_dir),
-                *_tap_mode_args(target),
-                *target.agent.run_args,
-            ]
+            argv = _capture_command(target, prompt_path, tap_output_dir)
             result = run(argv, cwd=Path(work_dir), env=env, timeout=CAPTURE_TIMEOUT_SECONDS, check=False)
             if _needs_claude_session_persistence_retry(target, result):
                 remove_if_exists(tap_output_dir)
@@ -90,12 +76,13 @@ def capture_target(
                 prompt_path.unlink(missing_ok=True)
                 env = {**env, "OPENAI_API_KEY": "phistory-fake-api-key"}
                 result = run(argv, cwd=Path(work_dir), env=env, timeout=CAPTURE_TIMEOUT_SECONDS, check=False)
-        if result.returncode != 0 or not prompt_path.exists():
+        if not prompt_path.exists():
             detail = (result.stderr or result.stdout).strip()[-4000:]
             raise RuntimeError(f"capture command failed ({result.returncode})\n{detail}")
 
-        trace = latest_trace(tap_output_dir)
-        copy_trace(trace, target)
+        if not target.trace_path.exists():
+            trace = latest_trace(tap_output_dir)
+            copy_trace(trace, target)
         replacements = {
             str(install_dir): "$PHISTORY_INSTALL",
             str(home_dir): "$PHISTORY_HOME",
@@ -115,6 +102,7 @@ def capture_target(
                 "captured_at": _iso_now(),
                 "tap_client": target.agent.tap_client,
                 "target": "claude-tap capture-only",
+                "client_exit_code": result.returncode,
                 "duration_seconds": round(time.time() - started, 3),
                 "command": [_replace_many(part, replacements) for part in _portable_command(argv, version_dir)],
             },
@@ -197,7 +185,36 @@ def _needs_codex_api_key_retry(target: CaptureTarget, result) -> bool:
 def _tap_mode_args(target: CaptureTarget) -> list[str]:
     if target.agent.tap_mode == "auto":
         return []
-    return ["-m", target.agent.tap_mode]
+    return ["--tap-proxy-mode", target.agent.tap_mode]
+
+
+def _capture_command(target: CaptureTarget, prompt_path: Path, tap_output_dir: Path) -> list[str]:
+    return [
+        sys.executable,
+        "-m",
+        "claude_tap",
+        "--tap-client",
+        target.agent.tap_client,
+        "--tap-export-prompt",
+        str(prompt_path),
+        "--tap-no-live",
+        "--tap-no-open",
+        "--tap-no-update-check",
+        "--tap-output-dir",
+        str(tap_output_dir),
+        *_tap_mode_args(target),
+        "--",
+        *_upstream_client_args(target.agent.run_args),
+    ]
+
+
+def _upstream_client_args(run_args: tuple[str, ...]) -> list[str]:
+    args = list(run_args)
+    if args and args[0] == "--no-yolo":
+        args.pop(0)
+    if args and args[0] == "--":
+        args.pop(0)
+    return args
 
 
 def _without_arg(argv: list[str], value: str) -> list[str]:
@@ -385,6 +402,7 @@ def _sanitize_text(text: str, replacements: dict[str, str]) -> str:
     text = _replace_many(text, replacements)
     for pattern, replacement in _VOLATILE_TEXT_PATTERNS:
         text = pattern.sub(replacement, text)
+    text = re.sub(r"\n{3,}(```json)", r"\n\n\1", text)
     return text
 
 

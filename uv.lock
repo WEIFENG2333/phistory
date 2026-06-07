@@ -277,12 +277,16 @@ wheels = [
 
 [[package]]
 name = "claude-tap"
-version = "0.2.0"
-source = { git = "https://github.com/WEIFENG2333/claude-tap.git?rev=main#215413dd61e762cad83b3ffa7ba70cad98a8b099" }
+version = "0.1.102"
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiohttp" },
-    { name = "backports-zstd" },
+    { name = "backports-zstd", marker = "python_full_version < '3.14'" },
     { name = "cryptography" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/bc/62/8ff5f3d4b13a3aa7b64aa0dcd45cc3a684059f20f5492316d3a4485e794b/claude_tap-0.1.102.tar.gz", hash = "sha256:8ae1aa583cd59870652c1626fcf9b12014fd2c59cd8695300be0a040dd1fd5ab", size = 45085324, upload-time = "2026-06-06T06:55:52.635Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/1c/13/fa27eebe14f357cb952230635ac7e506ecca40660498b94c760d59326eaf/claude_tap-0.1.102-py3-none-any.whl", hash = "sha256:4fa49d5ec677eab5813f86b00ae52a157bce11797c279887e8a5ca17cff0d043", size = 203267, upload-time = "2026-06-06T06:55:50.606Z" },
 ]
 
 [[package]]
@@ -617,7 +621,7 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "claude-tap", git = "https://github.com/WEIFENG2333/claude-tap.git?rev=main" }]
+requires-dist = [{ name = "claude-tap", specifier = ">=0.1.102,<0.2" }]
 
 [package.metadata.requires-dev]
 dev = [

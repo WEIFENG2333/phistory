@@ -4,7 +4,9 @@
 
 Phistory 自动归档 Claude Code、Codex、OpenClaw、Hermes、Kimi、opencode、Pi 等 Agent CLI 的版本化系统提示词快照。
 
-它会安装指定的 CLI 版本，通过 [`claude-tap`](https://github.com/WEIFENG2333/claude-tap) 运行一次，抓取包含系统提示词的 HTTP 请求，并写成方便阅读和对比的 Markdown 快照。
+它会安装指定的 CLI 版本，通过 [`claude-tap`](https://github.com/liaohch3/claude-tap) 运行一次，抓取包含系统提示词的 HTTP 请求，并写成方便阅读和对比的 Markdown 快照。
+
+Phistory 使用 PyPI 版本 `claude-tap >= 0.1.102`，该版本已经在上游支持 capture-only 提示词快照导出。
 
 GitHub Actions 每小时检查一次支持的 CLI 版本；发现新版本后，会自动抓取并提交新的提示词快照。
 

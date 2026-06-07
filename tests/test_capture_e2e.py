@@ -54,10 +54,14 @@ def test_sanitize_text_normalizes_volatile_claude_headers():
         " - OS Version: Linux 6.17.0-1013-azure\n"
         "Today's date is 2026-05-21.\n"
         "The current date and time in ISO format is `2026-05-23T07:26:17.532901+00:00`.\n"
+        "Conversation started: Friday, June 05, 2026 08:07 PM\n"
         "<current_date>2026-05-21</current_date>\n"
         "<timezone>Etc/UTC</timezone>\n"
         "$PHISTORY_HOME/.claude/projects/-tmp-phistory-work-abc123/memory/\n"
-        "Authorization: Bearer phistory-fake-access-token"
+        "Authorization: Bearer phistory-fake-access-token\n"
+        "\n"
+        "\n"
+        "```json"
     )
 
     assert _sanitize_text(text, {}) == (
@@ -65,10 +69,13 @@ def test_sanitize_text_normalizes_volatile_claude_headers():
         " - OS Version: $PHISTORY_OS_VERSION\n"
         "Today's date is $PHISTORY_DATE.\n"
         "The current date and time in ISO format is `$PHISTORY_DATETIME`.\n"
+        "Conversation started: $PHISTORY_DATETIME\n"
         "<current_date>$PHISTORY_DATE</current_date>\n"
         "<timezone>$PHISTORY_TIMEZONE</timezone>\n"
         "$PHISTORY_HOME/.claude/projects/$PHISTORY_PROJECT/memory/\n"
-        "Authorization: Bearer <redacted>"
+        "Authorization: Bearer <redacted>\n"
+        "\n"
+        "```json"
     )
 
 

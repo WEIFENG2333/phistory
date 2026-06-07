@@ -66,9 +66,11 @@ def _readme_markdown(rows: list[dict[str, Any]], base: Path) -> str:
         "",
         (
             "It installs a specific CLI release, runs it once through "
-            "[`claude-tap`](https://github.com/WEIFENG2333/claude-tap), captures the prompt-bearing "
+            "[`claude-tap`](https://github.com/liaohch3/claude-tap), captures the prompt-bearing "
             "HTTP request, and writes a comparison-friendly Markdown snapshot."
         ),
+        "",
+        "Phistory uses the PyPI release `claude-tap >= 0.1.102`, where capture-only prompt snapshot export is available upstream.",
         "",
         "GitHub Actions checks supported CLI releases every hour and commits new prompt snapshots when they appear.",
         "",
@@ -163,9 +165,11 @@ def _readme_zh_markdown(rows: list[dict[str, Any]], base: Path) -> str:
         "",
         (
             "它会安装指定的 CLI 版本，通过 "
-            "[`claude-tap`](https://github.com/WEIFENG2333/claude-tap) 运行一次，抓取包含系统提示词的 "
+            "[`claude-tap`](https://github.com/liaohch3/claude-tap) 运行一次，抓取包含系统提示词的 "
             "HTTP 请求，并写成方便阅读和对比的 Markdown 快照。"
         ),
+        "",
+        "Phistory 使用 PyPI 版本 `claude-tap >= 0.1.102`，该版本已经在上游支持 capture-only 提示词快照导出。",
         "",
         "GitHub Actions 每小时检查一次支持的 CLI 版本；发现新版本后，会自动抓取并提交新的提示词快照。",
         "",

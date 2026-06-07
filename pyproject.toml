@@ -7,7 +7,9 @@ requires-python = ">=3.11"
 license = "MIT"
 authors = [{ name = "WEIFENG2333" }]
 dependencies = [
-    "claude-tap @ git+https://github.com/WEIFENG2333/claude-tap.git@main",
+    "claude-tap>=0.1.102,<0.2",
+    # Development fallback for unreleased claude-tap changes:
+    # "claude-tap @ git+https://github.com/WEIFENG2333/claude-tap.git@upstream-prompt-export",
 ]
 
 [project.scripts]
