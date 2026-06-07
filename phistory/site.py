@@ -65,6 +65,7 @@ def _site_row(row: dict) -> dict:
         "version": row["version"],
         "published_compact": _compact_date(row["published_at"]),
         "prompt": row["prompt"].as_posix(),
+        "trace": row["trace"].as_posix(),
     }
 
 
@@ -445,6 +446,16 @@ a:hover { text-decoration: none; }
   box-shadow: none;
   text-decoration: none;
 }
+.view-button {
+  width: auto;
+  min-width: 42px;
+  padding: 0 8px;
+  font-weight: 650;
+  color: var(--muted);
+}
+.view-button:hover {
+  color: var(--text);
+}
 .github-mark {
   width: 17px;
   height: 17px;
@@ -466,6 +477,192 @@ a:hover { text-decoration: none; }
   overscroll-behavior: contain;
 }
 #diff { position: absolute; inset: 0; }
+.trace-view {
+  position: absolute;
+  inset: 0;
+  display: none;
+  overflow: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar) transparent;
+  background: var(--bg);
+}
+.trace-view::-webkit-scrollbar { width: 8px; height: 8px; }
+.trace-view::-webkit-scrollbar-track { background: transparent; }
+.trace-view::-webkit-scrollbar-thumb {
+  background: var(--scrollbar);
+  border-radius: 999px;
+}
+.shell[data-view="trace"] #diff { display: none; }
+.shell[data-view="trace"] .trace-view { display: block; }
+.shell[data-view="trace"] .compare {
+  grid-template-columns: 236px;
+}
+.shell[data-view="trace"] #from,
+.shell[data-view="trace"] .arrow {
+  display: none;
+}
+.trace-page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 22px 22px 42px;
+}
+.trace-hero {
+  border-bottom: 1px solid var(--line);
+  padding: 4px 0 18px;
+  margin-bottom: 14px;
+}
+.trace-eyebrow {
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 7px;
+}
+.trace-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 9px 12px;
+}
+.trace-title h2 {
+  margin: 0;
+  font-size: 26px;
+  line-height: 1.12;
+  letter-spacing: 0;
+}
+.trace-title span {
+  color: var(--muted);
+  font-size: 13px;
+}
+.trace-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin-top: 12px;
+  color: var(--muted);
+}
+.trace-meta b {
+  color: var(--text);
+  font-weight: 600;
+}
+.trace-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 20px;
+}
+.trace-stat {
+  min-width: 0;
+  padding: 13px 14px 13px 0;
+}
+.trace-stat small {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+.trace-stat strong {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+}
+.trace-section {
+  border-bottom: 1px solid var(--line);
+}
+.trace-section summary {
+  list-style: none;
+  cursor: pointer;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+}
+.trace-section summary::-webkit-details-marker { display: none; }
+.trace-section summary::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  color: var(--muted);
+  transform: rotate(-45deg);
+  transition: transform .14s ease;
+}
+.trace-section[open] summary::before {
+  transform: rotate(45deg);
+}
+.trace-section summary strong {
+  font-size: 15px;
+}
+.trace-section summary small {
+  margin-left: auto;
+  color: var(--muted);
+}
+.trace-body {
+  padding: 0 0 18px 17px;
+}
+.trace-text {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  color: var(--text);
+  font: 13px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+.trace-message {
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+.trace-message:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+.trace-role {
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  margin-bottom: 6px;
+}
+.tool-list {
+  display: grid;
+  gap: 8px;
+}
+.tool-card {
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--control-bg);
+  overflow: hidden;
+}
+.tool-card summary {
+  min-height: 42px;
+  padding: 0 12px;
+}
+.tool-card summary strong {
+  font-size: 13px;
+}
+.tool-card summary small {
+  max-width: 52%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.tool-card .trace-body {
+  padding: 0 12px 12px 29px;
+}
+.raw-json {
+  margin: 0;
+  padding: 13px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--control-bg);
+  overflow: auto;
+  max-height: 520px;
+  font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
 #diff .inputarea {
   caret-color: transparent;
 }
@@ -674,6 +871,30 @@ a:hover { text-decoration: none; }
     font-size: 13px;
   }
   .actions { grid-column: 2; grid-row: 1; }
+  .shell[data-view="trace"] .compare {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .trace-page {
+    padding: 18px 14px 34px;
+  }
+  .trace-title h2 {
+    font-size: 22px;
+  }
+  .trace-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .trace-stat {
+    padding: 11px 10px 11px 0;
+  }
+  .trace-section summary {
+    min-height: 46px;
+  }
+  .trace-body {
+    padding-left: 15px;
+  }
+  .tool-card summary small {
+    display: none;
+  }
   .popover {
     border-radius: 12px;
   }
@@ -719,6 +940,7 @@ a:hover { text-decoration: none; }
       <button id="to" class="control version-control" type="button" aria-haspopup="listbox"></button>
     </div>
     <div class="actions">
+      <button id="view-toggle" class="icon-button view-button" type="button" title="Open trace detail">Trace</button>
       <button id="theme" class="icon-button" type="button" title="Toggle theme"></button>
       <a class="icon-button" href="https://github.com/WEIFENG2333/phistory" target="_blank" rel="noreferrer" aria-label="Open GitHub project" title="Open GitHub project">
         <svg class="github-mark" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.65 7.65 0 0 1 8 3.86c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
@@ -727,6 +949,7 @@ a:hover { text-decoration: none; }
   </header>
   <main class="editor">
     <div id="diff"><div class="empty">Loading diff viewer...</div></div>
+    <div id="trace" class="trace-view"><div class="empty">Loading trace detail...</div></div>
   </main>
 </div>
 <div id="popover" class="popover">
@@ -741,12 +964,15 @@ const els = {
   agent: document.getElementById('agent'),
   from: document.getElementById('from'),
   to: document.getElementById('to'),
+  viewToggle: document.getElementById('view-toggle'),
   theme: document.getElementById('theme'),
   diff: document.getElementById('diff'),
+  trace: document.getElementById('trace'),
   popover: document.getElementById('popover'),
   options: document.getElementById('options')
 };
 const state = {
+  view: 'diff',
   agent: manifest.agents[0]?.id || '',
   from: '',
   to: '',
@@ -755,6 +981,7 @@ const state = {
   theme: localStorage.getItem('phistory-theme') || 'dark',
   picker: null,
   cache: new Map(),
+  traceCache: new Map(),
   editor: null,
   monaco: null
 };
@@ -771,14 +998,22 @@ function boot() {
   applyTheme();
   bindEvents();
   renderControls();
-  loadMonaco().then(renderDiff).catch(showError);
+  refreshView();
 }
 
 function readQuery() {
   const params = new URLSearchParams(location.search);
+  state.view = params.get('view') === 'trace' ? 'trace' : 'diff';
   const agentId = params.get('agent');
   if (agentId && agents.has(agentId)) state.agent = agentId;
   const agent = currentAgent();
+  if (state.view === 'trace') {
+    const version = params.get('version') || params.get('to');
+    state.to = hasVersion(agent, version) ? version : agent.latest.version;
+    state.from = previousVersion(agent, state.to).version;
+    state.followLatest = !params.has('version') && !params.has('to');
+    return;
+  }
   const to = params.get('to');
   const from = params.get('from');
   const hasPinnedVersions = params.has('from') || params.has('to');
@@ -795,9 +1030,11 @@ function readQuery() {
 }
 
 function writeQuery() {
-  const params = state.followLatest
-    ? new URLSearchParams({ agent: state.agent, range: 'latest' })
-    : new URLSearchParams({ agent: state.agent, from: state.from, to: state.to });
+  const params = state.view === 'trace'
+    ? new URLSearchParams({ view: 'trace', agent: state.agent, version: state.to })
+    : (state.followLatest
+      ? new URLSearchParams({ agent: state.agent, range: 'latest' })
+      : new URLSearchParams({ agent: state.agent, from: state.from, to: state.to }));
   history.replaceState(null, '', `${location.pathname}?${params.toString()}`);
 }
 
@@ -805,6 +1042,7 @@ function bindEvents() {
   els.agent.addEventListener('click', () => togglePicker('agent', els.agent));
   els.from.addEventListener('click', () => togglePicker('from', els.from));
   els.to.addEventListener('click', () => togglePicker('to', els.to));
+  els.viewToggle.addEventListener('click', toggleView);
   els.theme.addEventListener('click', toggleTheme);
   els.diff.addEventListener('focusin', guardMobileEditorFocus);
   addEventListener('click', event => {
@@ -823,9 +1061,12 @@ function renderControls() {
   const agent = currentAgent();
   const from = versionInfo(state.from);
   const to = versionInfo(state.to);
+  document.querySelector('.shell')?.setAttribute('data-view', state.view);
   els.agent.innerHTML = `${agentIconHtml(agent)}<strong>${escapeHtml(agent.name)}</strong>`;
   els.from.innerHTML = versionLabel(from);
   els.to.innerHTML = versionLabel(to, isLatestVersion(agent, to.version));
+  els.viewToggle.textContent = state.view === 'trace' ? 'Diff' : 'Trace';
+  els.viewToggle.title = state.view === 'trace' ? 'Open prompt diff' : 'Open trace detail';
 }
 
 function agentIconHtml(agent) {
@@ -932,8 +1173,14 @@ function selectOption(value) {
   if (state.picker === 'agent') {
     state.agent = value;
     const agent = currentAgent();
-    state.followLatest = true;
-    useLatestRange(agent);
+    if (state.view === 'trace') {
+      state.to = agent.latest.version;
+      state.from = previousVersion(agent, state.to).version;
+      state.followLatest = true;
+    } else {
+      state.followLatest = true;
+      useLatestRange(agent);
+    }
   } else if (state.picker === 'from') {
     state.followLatest = false;
     state.from = value;
@@ -941,7 +1188,11 @@ function selectOption(value) {
   } else if (state.picker === 'to') {
     state.followLatest = false;
     state.to = value;
-    normalizeVersionRange(currentAgent(), 'to');
+    if (state.view === 'trace') {
+      state.from = previousVersion(currentAgent(), state.to).version;
+    } else {
+      normalizeVersionRange(currentAgent(), 'to');
+    }
   }
   closePicker();
   refresh();
@@ -950,7 +1201,23 @@ function selectOption(value) {
 function refresh() {
   writeQuery();
   renderControls();
-  renderDiff();
+  refreshView();
+}
+
+function refreshView() {
+  if (state.view === 'trace') {
+    renderTrace().catch(showError);
+    return;
+  }
+  loadMonaco().then(renderDiff).catch(showError);
+}
+
+function toggleView() {
+  state.view = state.view === 'trace' ? 'diff' : 'trace';
+  if (state.view === 'trace') {
+    state.from = previousVersion(currentAgent(), state.to).version;
+  }
+  refresh();
 }
 
 function loadMonaco() {
@@ -1049,6 +1316,296 @@ async function loadPrompt(item) {
   return text;
 }
 
+async function loadTrace(item) {
+  if (!item.trace) throw new Error('This capture has no trace path.');
+  if (state.traceCache.has(item.trace)) return state.traceCache.get(item.trace);
+  const response = await fetch(item.trace);
+  if (!response.ok) throw new Error(`Unable to load ${item.trace}`);
+  const text = await response.text();
+  const records = text.split(/\n+/).filter(Boolean).map(line => JSON.parse(line));
+  state.traceCache.set(item.trace, records);
+  return records;
+}
+
+async function renderTrace() {
+  const item = versionInfo(state.to);
+  const records = await loadTrace(item);
+  const selected = selectMainTraceRecord(records);
+  if (!selected) {
+    els.trace.innerHTML = '<div class="empty">No prompt-bearing trace request found.</div>';
+    return;
+  }
+  const detail = normalizeTraceRecord(selected.record, selected.index, records.length);
+  els.trace.innerHTML = traceDetailHtml(item, detail);
+}
+
+function selectMainTraceRecord(records) {
+  let best = null;
+  records.forEach((record, index) => {
+    const score = traceRecordScore(record);
+    if (!best || score > best.score) best = { record, index, score };
+  });
+  return best && best.score > 0 ? best : null;
+}
+
+function traceRecordScore(record) {
+  const body = requestBody(record);
+  let score = 0;
+  for (const [key, weight] of [
+    ['system', 100],
+    ['instructions', 100],
+    ['system_instruction', 100],
+    ['systemInstruction', 100],
+    ['messages', 35],
+    ['input', 35],
+    ['contents', 35],
+    ['tools', 20],
+    ['toolConfig', 20]
+  ]) {
+    if (body[key] !== undefined) score += weight;
+  }
+  const tools = normalizeTools(body);
+  score += tools.length;
+  return score;
+}
+
+function normalizeTraceRecord(record, index, total) {
+  const req = record.request || {};
+  const res = record.response || {};
+  const body = requestBody(record);
+  const provider = inferProvider(req.path || '', body);
+  const prompts = normalizePromptBlocks(provider, body);
+  const messages = normalizeMessages(provider, body);
+  const tools = normalizeTools(body);
+  return {
+    index,
+    total,
+    provider,
+    method: req.method || 'POST',
+    path: req.path || '',
+    status: res.status || '',
+    model: body.model || body.name || '',
+    upstream: record.upstream_base_url || '',
+    beta: importantHeader(req.headers, 'anthropic-beta'),
+    userAgent: importantHeader(req.headers, 'user-agent'),
+    systemBlocks: prompts.system,
+    developerBlocks: prompts.developer,
+    messages,
+    tools,
+    rawBody: body
+  };
+}
+
+function requestBody(record) {
+  const req = record.request || {};
+  const body = req.body;
+  if (!body || typeof body !== 'object' || Array.isArray(body)) return {};
+  const nested = body.request;
+  if (nested && typeof nested === 'object' && !Array.isArray(nested)) return nested;
+  return body;
+}
+
+function inferProvider(path, body) {
+  if (path.includes('/chat/completions')) return 'OpenAI Chat';
+  if (path.includes('/responses') || body.instructions || body.input) return 'OpenAI Responses';
+  if (path.includes('/messages') || body.system || body.anthropic_version) return 'Anthropic';
+  if (path.includes('/models/') || body.contents || body.system_instruction || body.systemInstruction) return 'Gemini';
+  return 'Unknown';
+}
+
+function normalizePromptBlocks(provider, body) {
+  const system = [];
+  const developer = [];
+  if (body.system !== undefined) system.push(...contentBlocks(body.system, 'System Prompt'));
+  if (typeof body.instructions === 'string' && body.instructions) system.push({ title: 'Instructions', text: body.instructions });
+  const systemInstruction = body.system_instruction ?? body.systemInstruction;
+  if (systemInstruction !== undefined) system.push(...contentBlocks(systemInstruction, 'System Instruction'));
+
+  for (const message of messageItems(body.messages)) {
+    const role = String(message.role || '').toLowerCase();
+    if (role === 'system') system.push({ title: 'System Message', text: contentText(message.content) });
+    if (role === 'developer') developer.push({ title: 'Developer Message', text: contentText(message.content) });
+  }
+  for (const item of messageItems(body.input)) {
+    const role = String(item.role || item.type || '').toLowerCase();
+    if (role === 'system') system.push({ title: 'System Input', text: contentText(item.content || item.text) });
+    if (role === 'developer') developer.push({ title: 'Developer Input', text: contentText(item.content || item.text) });
+  }
+  for (const item of messageItems(body.contents)) {
+    const role = String(item.role || 'user').toLowerCase();
+    if (role === 'system') system.push({ title: 'System Content', text: contentText(item.parts || item.content) });
+  }
+  return {
+    system: system.filter(block => block.text),
+    developer: developer.filter(block => block.text)
+  };
+}
+
+function normalizeMessages(provider, body) {
+  const out = [];
+  for (const message of messageItems(body.messages)) {
+    const role = String(message.role || 'message');
+    if (role === 'system' || role === 'developer') continue;
+    const text = contentText(message.content || message.text);
+    if (text) out.push({ role, text });
+  }
+  for (const item of messageItems(body.input)) {
+    const role = String(item.role || item.type || 'input');
+    if (role === 'system' || role === 'developer') continue;
+    const text = contentText(item.content || item.text || item.output);
+    if (text) out.push({ role, text });
+  }
+  for (const item of messageItems(body.contents)) {
+    const role = String(item.role || 'user');
+    const text = contentText(item.parts || item.content);
+    if (text) out.push({ role, text });
+  }
+  return out;
+}
+
+function normalizeTools(body) {
+  const tools = [];
+  for (const tool of Array.isArray(body.tools) ? body.tools : []) {
+    if (!tool || typeof tool !== 'object') continue;
+    const declarations = tool.functionDeclarations || tool.function_declarations;
+    if (Array.isArray(declarations)) {
+      tools.push(...toolDeclarations(declarations));
+      continue;
+    }
+    const fn = tool.function && typeof tool.function === 'object' ? tool.function : null;
+    tools.push({
+      name: String(tool.name || fn?.name || tool.type || 'tool'),
+      description: String(tool.description || fn?.description || ''),
+      schema: tool.parameters || tool.input_schema || fn?.parameters || tool.schema || null,
+      raw: tool
+    });
+  }
+  const toolConfigTools = body.toolConfig?.tools;
+  if (Array.isArray(toolConfigTools)) {
+    for (const item of toolConfigTools) {
+      const spec = item?.toolSpec;
+      if (!spec) continue;
+      tools.push({
+        name: String(spec.name || 'tool'),
+        description: String(spec.description || ''),
+        schema: spec.inputSchema?.json || null,
+        raw: item
+      });
+    }
+  }
+  const declarations = body.tools?.functionDeclarations || body.tool_config?.function_declarations;
+  if (Array.isArray(declarations)) {
+    tools.push(...toolDeclarations(declarations));
+  }
+  return tools;
+}
+
+function toolDeclarations(declarations) {
+  return declarations
+    .filter(fn => fn && typeof fn === 'object')
+    .map(fn => ({
+      name: String(fn.name || 'tool'),
+      description: String(fn.description || ''),
+      schema: fn.parameters || null,
+      raw: fn
+    }));
+}
+
+function contentBlocks(value, title) {
+  if (typeof value === 'string') return [{ title, text: value }];
+  if (Array.isArray(value)) {
+    return value.map((item, index) => {
+      const type = typeof item?.type === 'string' && item.type !== 'text' ? item.type : '';
+      return { title: type || `${title} ${index + 1}`, text: contentText(item) };
+    }).filter(block => block.text);
+  }
+  if (value && typeof value === 'object') return [{ title, text: contentText(value) }];
+  return [];
+}
+
+function messageItems(value) {
+  return Array.isArray(value) ? value.filter(item => item && typeof item === 'object') : [];
+}
+
+function contentText(value) {
+  if (value === null || value === undefined) return '';
+  if (typeof value === 'string') return value;
+  if (typeof value === 'number' || typeof value === 'boolean') return String(value);
+  if (Array.isArray(value)) return value.map(contentText).filter(Boolean).join('\n\n');
+  if (typeof value === 'object') {
+    for (const key of ['text', 'input_text', 'output_text', 'content', 'message']) {
+      if (typeof value[key] === 'string') return value[key];
+      if (Array.isArray(value[key])) return contentText(value[key]);
+    }
+    if (value.parts) return contentText(value.parts);
+  }
+  return '';
+}
+
+function traceDetailHtml(item, detail) {
+  const title = `${currentAgent().name} ${item.version}`;
+  return `<article class="trace-page">
+    <header class="trace-hero">
+      <div class="trace-eyebrow">Trace detail · request ${detail.index + 1} of ${detail.total}</div>
+      <div class="trace-title"><h2>${escapeHtml(title)}</h2><span>${escapeHtml(item.published_compact)}</span></div>
+      <div class="trace-meta">${metaItem('Provider', detail.provider)}${metaItem('Endpoint', `${detail.method} ${detail.path}`)}${detail.upstream ? metaItem('Upstream', detail.upstream) : ''}</div>
+    </header>
+    <section class="trace-grid">
+      ${statHtml('Model', detail.model || 'unknown')}
+      ${statHtml('Status', String(detail.status || 'unknown'))}
+      ${statHtml('Tools', String(detail.tools.length))}
+      ${statHtml('Messages', String(detail.messages.length))}
+    </section>
+    ${detail.beta ? traceSectionHtml('Beta Headers', detail.beta, { open: false, meta: 'anthropic-beta' }) : ''}
+    ${detail.userAgent ? traceSectionHtml('User Agent', detail.userAgent, { open: false }) : ''}
+    ${blocksSectionHtml('System Prompt', detail.systemBlocks, true)}
+    ${blocksSectionHtml('Developer Prompt', detail.developerBlocks, false)}
+    ${messagesSectionHtml(detail.messages)}
+    ${toolsSectionHtml(detail.tools)}
+    ${traceSectionHtml('Raw Request Body', JSON.stringify(detail.rawBody, null, 2), { open: false, raw: true })}
+  </article>`;
+}
+
+function metaItem(label, value) {
+  return `<span>${escapeHtml(label)} <b>${escapeHtml(value)}</b></span>`;
+}
+
+function statHtml(label, value) {
+  return `<div class="trace-stat"><small>${escapeHtml(label)}</small><strong>${escapeHtml(value)}</strong></div>`;
+}
+
+function blocksSectionHtml(title, blocks, open) {
+  if (!blocks.length) return '';
+  const text = blocks.map(block => blocks.length > 1 ? `## ${block.title}\n\n${block.text}` : block.text).join('\n\n');
+  return traceSectionHtml(title, text, { open, meta: `${blocks.length} block${blocks.length === 1 ? '' : 's'}` });
+}
+
+function messagesSectionHtml(messages) {
+  if (!messages.length) return '';
+  const body = messages.map(message => `<div class="trace-message"><div class="trace-role">${escapeHtml(message.role)}</div><pre class="trace-text">${escapeHtml(message.text)}</pre></div>`).join('');
+  return `<details class="trace-section" open><summary><strong>Messages</strong><small>${messages.length}</small></summary><div class="trace-body">${body}</div></details>`;
+}
+
+function toolsSectionHtml(tools) {
+  if (!tools.length) return '';
+  const body = `<div class="tool-list">${tools.map(tool => `<details class="tool-card"><summary><strong>${escapeHtml(tool.name)}</strong><small>${escapeHtml(tool.description || 'tool schema')}</small></summary><div class="trace-body">${tool.description ? `<pre class="trace-text">${escapeHtml(tool.description)}</pre>` : ''}${tool.schema ? `<pre class="raw-json">${escapeHtml(JSON.stringify(tool.schema, null, 2))}</pre>` : `<pre class="raw-json">${escapeHtml(JSON.stringify(tool.raw, null, 2))}</pre>`}</div></details>`).join('')}</div>`;
+  return `<details class="trace-section" open><summary><strong>Tools</strong><small>${tools.length}</small></summary><div class="trace-body">${body}</div></details>`;
+}
+
+function traceSectionHtml(title, text, options = {}) {
+  const bodyClass = options.raw ? 'raw-json' : 'trace-text';
+  return `<details class="trace-section"${options.open ? ' open' : ''}><summary><strong>${escapeHtml(title)}</strong>${options.meta ? `<small>${escapeHtml(options.meta)}</small>` : ''}</summary><div class="trace-body"><pre class="${bodyClass}">${escapeHtml(text)}</pre></div></details>`;
+}
+
+function importantHeader(headers, name) {
+  if (!headers || typeof headers !== 'object') return '';
+  const target = name.toLowerCase();
+  for (const [key, value] of Object.entries(headers)) {
+    if (key.toLowerCase() === target) return String(value);
+  }
+  return '';
+}
+
 function toggleTheme() {
   state.theme = state.theme === 'dark' ? 'light' : 'dark';
   localStorage.setItem('phistory-theme', state.theme);
@@ -1114,7 +1671,8 @@ function isLatestVersion(agent, version) {
 }
 
 function showError(error) {
-  els.diff.innerHTML = `<div class="empty">${escapeHtml(error.message || error)}</div>`;
+  const target = state.view === 'trace' ? els.trace : els.diff;
+  target.innerHTML = `<div class="empty">${escapeHtml(error.message || error)}</div>`;
 }
 
 function debounce(fn, delay) {
