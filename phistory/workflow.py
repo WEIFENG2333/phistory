@@ -19,11 +19,15 @@ def capture_latest(
 ) -> list[CaptureResult]:
     results: list[CaptureResult] = []
     for agent_id in agent_ids:
-        agent = get_agent(agent_id)
-        version = packages.latest_version(agent)
-        results.append(
-            capture_target(CaptureTarget(agent, version, root), cache_dir=cache_dir, force=force, keep_tap=keep_tap)
-        )
+        try:
+            agent = get_agent(agent_id)
+            version = packages.latest_version(agent)
+            result = capture_target(
+                CaptureTarget(agent, version, root), cache_dir=cache_dir, force=force, keep_tap=keep_tap
+            )
+        except Exception as exc:
+            result = CaptureResult(agent_id, "unknown", "failed", error=str(exc))
+        results.append(result)
     return results
 
 
