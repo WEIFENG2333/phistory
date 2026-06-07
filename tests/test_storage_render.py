@@ -150,6 +150,11 @@ def test_render_site_writes_static_html_manifest(tmp_path: Path):
     assert "createDiffEditor" in text
     assert "range: 'latest'" in text
     assert "mini-diffstat" in text
+    assert '"trace":"' in text
+    assert "captures/agent/1.1.0/trace.jsonl" in text
+    assert "Trace detail" in text
+    assert "Raw Request Body" in text
+    assert "toolDeclarations" in text
     assert '"previous_version":"1.0.0"' in text
     assert '"changed_lines":2' in text
     assert '"level":1' in text
