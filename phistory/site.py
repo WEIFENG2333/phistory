@@ -604,6 +604,9 @@ a:hover { text-decoration: none; }
 .trace-body {
   padding: 0 0 18px 17px;
 }
+.prompt-block + .prompt-block {
+  margin-top: 22px;
+}
 .trace-text {
   margin: 0;
   white-space: pre-wrap;
@@ -652,6 +655,56 @@ a:hover { text-decoration: none; }
 }
 .tool-card .trace-body {
   padding: 0 12px 12px 29px;
+}
+.tool-description {
+  margin: 0 0 12px;
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.tool-params {
+  display: grid;
+  gap: 7px;
+  margin-bottom: 10px;
+}
+.tool-param {
+  display: grid;
+  grid-template-columns: minmax(120px, .7fr) minmax(82px, .28fr) minmax(0, 1fr);
+  gap: 10px;
+  align-items: baseline;
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--bg);
+}
+.tool-param-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 650;
+  font-size: 13px;
+}
+.tool-param-type {
+  color: var(--muted);
+  font-size: 12px;
+}
+.tool-param-required {
+  color: #ff8f70;
+}
+.tool-param-desc {
+  min-width: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+.tool-raw summary {
+  min-height: 34px;
+  padding: 0;
+  color: var(--muted);
+}
+.tool-raw .trace-body {
+  padding: 0;
 }
 .raw-json {
   margin: 0;
@@ -894,6 +947,10 @@ a:hover { text-decoration: none; }
   }
   .tool-card summary small {
     display: none;
+  }
+  .tool-param {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 3px;
   }
   .popover {
     border-radius: 12px;
@@ -1548,20 +1605,12 @@ function traceDetailHtml(item, detail) {
     <header class="trace-hero">
       <div class="trace-eyebrow">Trace detail · request ${detail.index + 1} of ${detail.total}</div>
       <div class="trace-title"><h2>${escapeHtml(title)}</h2><span>${escapeHtml(item.published_compact)}</span></div>
-      <div class="trace-meta">${metaItem('Provider', detail.provider)}${metaItem('Endpoint', `${detail.method} ${detail.path}`)}${detail.upstream ? metaItem('Upstream', detail.upstream) : ''}</div>
+      <div class="trace-meta">${metaItem('Provider', detail.provider)}${metaItem('Model', detail.model || 'unknown')}${metaItem('Endpoint', `${detail.method} ${detail.path}`)}</div>
     </header>
-    <section class="trace-grid">
-      ${statHtml('Model', detail.model || 'unknown')}
-      ${statHtml('Status', String(detail.status || 'unknown'))}
-      ${statHtml('Tools', String(detail.tools.length))}
-      ${statHtml('Messages', String(detail.messages.length))}
-    </section>
-    ${detail.beta ? traceSectionHtml('Beta Headers', detail.beta, { open: false, meta: 'anthropic-beta' }) : ''}
-    ${detail.userAgent ? traceSectionHtml('User Agent', detail.userAgent, { open: false }) : ''}
     ${blocksSectionHtml('System Prompt', detail.systemBlocks, true)}
     ${blocksSectionHtml('Developer Prompt', detail.developerBlocks, false)}
-    ${messagesSectionHtml(detail.messages)}
     ${toolsSectionHtml(detail.tools)}
+    ${messagesSectionHtml(detail.messages)}
     ${traceSectionHtml('Raw Request Body', JSON.stringify(detail.rawBody, null, 2), { open: false, raw: true })}
   </article>`;
 }
@@ -1570,26 +1619,61 @@ function metaItem(label, value) {
   return `<span>${escapeHtml(label)} <b>${escapeHtml(value)}</b></span>`;
 }
 
-function statHtml(label, value) {
-  return `<div class="trace-stat"><small>${escapeHtml(label)}</small><strong>${escapeHtml(value)}</strong></div>`;
-}
-
 function blocksSectionHtml(title, blocks, open) {
   if (!blocks.length) return '';
-  const text = blocks.map(block => blocks.length > 1 ? `## ${block.title}\n\n${block.text}` : block.text).join('\n\n');
-  return traceSectionHtml(title, text, { open, meta: `${blocks.length} block${blocks.length === 1 ? '' : 's'}` });
+  const body = blocks.map(block => `<div class="prompt-block"><pre class="trace-text">${escapeHtml(block.text)}</pre></div>`).join('');
+  return `<details class="trace-section"${open ? ' open' : ''}><summary><strong>${escapeHtml(title)}</strong></summary><div class="trace-body">${body}</div></details>`;
 }
 
 function messagesSectionHtml(messages) {
   if (!messages.length) return '';
   const body = messages.map(message => `<div class="trace-message"><div class="trace-role">${escapeHtml(message.role)}</div><pre class="trace-text">${escapeHtml(message.text)}</pre></div>`).join('');
-  return `<details class="trace-section" open><summary><strong>Messages</strong><small>${messages.length}</small></summary><div class="trace-body">${body}</div></details>`;
+  return `<details class="trace-section"><summary><strong>Messages</strong></summary><div class="trace-body">${body}</div></details>`;
 }
 
 function toolsSectionHtml(tools) {
   if (!tools.length) return '';
-  const body = `<div class="tool-list">${tools.map(tool => `<details class="tool-card"><summary><strong>${escapeHtml(tool.name)}</strong><small>${escapeHtml(tool.description || 'tool schema')}</small></summary><div class="trace-body">${tool.description ? `<pre class="trace-text">${escapeHtml(tool.description)}</pre>` : ''}${tool.schema ? `<pre class="raw-json">${escapeHtml(JSON.stringify(tool.schema, null, 2))}</pre>` : `<pre class="raw-json">${escapeHtml(JSON.stringify(tool.raw, null, 2))}</pre>`}</div></details>`).join('')}</div>`;
+  const body = `<div class="tool-list">${tools.map(toolHtml).join('')}</div>`;
   return `<details class="trace-section" open><summary><strong>Tools</strong><small>${tools.length}</small></summary><div class="trace-body">${body}</div></details>`;
+}
+
+function toolHtml(tool) {
+  const params = schemaParameters(tool.schema);
+  const paramsHtml = params.length
+    ? `<div class="tool-params">${params.map(param => `<div class="tool-param"><div class="tool-param-name" title="${escapeHtml(param.name)}">${escapeHtml(param.name)}</div><div class="tool-param-type">${escapeHtml(param.type)}${param.required ? ' <span class="tool-param-required">required</span>' : ''}</div><div class="tool-param-desc">${escapeHtml(param.description)}</div></div>`).join('')}</div>`
+    : '<div class="tool-param-desc">No structured parameters.</div>';
+  const raw = tool.schema || tool.raw;
+  return `<details class="tool-card"><summary><strong>${escapeHtml(tool.name)}</strong><small>${escapeHtml(tool.description || `${params.length} parameter${params.length === 1 ? '' : 's'}`)}</small></summary><div class="trace-body">${paramsHtml}${tool.description ? `<p class="tool-description">${escapeHtml(tool.description)}</p>` : ''}<details class="trace-section tool-raw"><summary><strong>Raw schema</strong></summary><div class="trace-body"><pre class="raw-json">${escapeHtml(JSON.stringify(raw, null, 2))}</pre></div></details></div></details>`;
+}
+
+function schemaParameters(schema) {
+  if (!schema || typeof schema !== 'object') return [];
+  const root = schema.json && typeof schema.json === 'object' ? schema.json : schema;
+  const properties = root.properties && typeof root.properties === 'object' ? root.properties : {};
+  const required = new Set(Array.isArray(root.required) ? root.required.map(String) : []);
+  return Object.entries(properties).map(([name, spec]) => {
+    const item = spec && typeof spec === 'object' ? spec : {};
+    const enumText = Array.isArray(item.enum) && item.enum.length ? ` Values: ${item.enum.map(String).join(', ')}.` : '';
+    return {
+      name,
+      required: required.has(name),
+      type: schemaType(item),
+      description: `${item.description || ''}${enumText}`.trim()
+    };
+  });
+}
+
+function schemaType(spec) {
+  if (!spec || typeof spec !== 'object') return 'value';
+  if (Array.isArray(spec.type)) return spec.type.join(' | ');
+  if (typeof spec.type === 'string') {
+    if (spec.type === 'array' && spec.items) return `array<${schemaType(spec.items)}>`;
+    return spec.type;
+  }
+  if (spec.anyOf) return spec.anyOf.map(schemaType).join(' | ');
+  if (spec.oneOf) return spec.oneOf.map(schemaType).join(' | ');
+  if (spec.properties) return 'object';
+  return 'value';
 }
 
 function traceSectionHtml(title, text, options = {}) {
