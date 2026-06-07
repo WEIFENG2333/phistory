@@ -64,6 +64,8 @@ def _site_row(row: dict) -> dict:
         "agent": row["agent"],
         "version": row["version"],
         "published_compact": _compact_date(row["published_at"]),
+        "published_display": _display_time(row["published_at"]),
+        "captured_display": _display_time(row.get("captured_at") or ""),
         "prompt": row["prompt"].as_posix(),
         "trace": row["trace"].as_posix(),
     }
@@ -118,6 +120,13 @@ def _change_summary(current: dict, previous: dict | None) -> dict:
         "line_count": len(new_lines),
         "_compared_line_count": max(len(old_lines), len(new_lines)),
     }
+
+
+def _display_time(value: str) -> str:
+    dt = _parse_time(value)
+    if not dt:
+        return ""
+    return dt.strftime("%Y-%m-%d %H:%M UTC")
 
 
 def _change_level(changed_lines: int) -> int:
@@ -483,6 +492,7 @@ a:hover { text-decoration: none; }
   display: none;
   overflow: auto;
   overscroll-behavior: contain;
+  scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
   scrollbar-color: var(--scrollbar) transparent;
@@ -545,6 +555,45 @@ a:hover { text-decoration: none; }
   color: var(--text);
   font-weight: 600;
 }
+.trace-jumpbar {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 8px 0;
+  margin: -4px 0 6px;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.trace-jumpbar::-webkit-scrollbar {
+  display: none;
+}
+.trace-jump {
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  padding: 6px 9px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.trace-jump:hover,
+.trace-jump:focus-visible {
+  color: var(--text);
+  background: var(--control-bg);
+  outline: none;
+}
 .trace-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -570,42 +619,163 @@ a:hover { text-decoration: none; }
 }
 .trace-section {
   border-bottom: 1px solid var(--line);
+  scroll-margin-top: 48px;
 }
-.trace-section summary {
-  list-style: none;
+.trace-summary {
+  width: 100%;
+  border: 0;
+  background: transparent;
   cursor: pointer;
   min-height: 48px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
+  padding: 0 8px;
   color: var(--text);
+  font: inherit;
+  text-align: left;
+  transition: color .14s ease, background-color .14s ease;
 }
-.trace-section summary::-webkit-details-marker { display: none; }
-.trace-section summary::before {
-  content: "";
-  width: 7px;
-  height: 7px;
-  border-right: 1.5px solid currentColor;
-  border-bottom: 1.5px solid currentColor;
+.trace-summary:hover {
+  color: var(--text);
+  background: color-mix(in srgb, var(--control-bg) 45%, transparent);
+}
+.trace-caret {
+  flex: 0 0 auto;
+  width: 13px;
   color: var(--muted);
-  transform: rotate(-45deg);
-  transition: transform .14s ease;
+  font-size: 12px;
+  line-height: 1;
+  text-align: center;
+  transition: color .14s ease;
 }
-.trace-section[open] summary::before {
-  transform: rotate(45deg);
+.trace-caret::before {
+  content: "▸";
 }
-.trace-section summary strong {
+.trace-section.is-open > .trace-summary .trace-caret::before,
+.tool-card.is-open > .trace-summary .trace-caret::before {
+  content: "▾";
+}
+.trace-section.is-open > .trace-summary .trace-caret,
+.tool-card.is-open > .trace-summary .trace-caret {
+  color: var(--accent);
+}
+.trace-summary strong {
   font-size: 15px;
 }
-.trace-section summary small {
+.trace-summary small {
   margin-left: auto;
   color: var(--muted);
 }
+.trace-icon {
+  flex: 0 0 auto;
+  width: 15px;
+  height: 15px;
+  color: color-mix(in srgb, var(--accent) 76%, var(--muted));
+}
+.trace-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  stroke: currentColor;
+}
+.trace-jump .trace-icon {
+  width: 13px;
+  height: 13px;
+}
 .trace-body {
-  padding: 0 0 18px 17px;
+  padding: 6px 10px 22px 34px;
+}
+.trace-content {
+  max-height: 0;
+  overflow: hidden;
+}
+.trace-section.is-open > .trace-content,
+.tool-card.is-open > .trace-content {
+  max-height: none;
+  overflow: visible;
 }
 .prompt-block + .prompt-block {
   margin-top: 22px;
+}
+.trace-rendered {
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.62;
+  overflow-wrap: anywhere;
+}
+.trace-rendered h1,
+.trace-rendered h2,
+.trace-rendered h3,
+.trace-rendered h4 {
+  margin: 18px 0 8px;
+  font-size: 15px;
+  line-height: 1.35;
+}
+.trace-rendered h1:first-child,
+.trace-rendered h2:first-child,
+.trace-rendered h3:first-child,
+.trace-rendered h4:first-child {
+  margin-top: 0;
+}
+.trace-rendered p {
+  margin: 0 0 11px;
+}
+.trace-rendered p:last-child,
+.trace-rendered ul:last-child {
+  margin-bottom: 0;
+}
+.trace-rendered ul {
+  margin: 0 0 12px 18px;
+  padding: 0;
+}
+.trace-rendered li {
+  margin: 4px 0;
+}
+.trace-rendered code {
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  border-radius: 4px;
+  padding: 0 3px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+.trace-rendered pre {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--control-bg);
+  overflow: auto;
+  white-space: pre-wrap;
+}
+.trace-mode {
+  margin-left: 6px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  padding: 4px 7px;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.trace-mode:hover,
+.trace-mode:focus-visible {
+  color: var(--text);
+  background: var(--control-bg);
+  outline: none;
+}
+.trace-raw {
+  display: none;
+}
+.trace-section.is-raw .trace-rendered,
+.trace-section.is-raw .trace-mode-read {
+  display: none;
+}
+.trace-section.is-raw .trace-raw,
+.trace-section.is-raw .trace-mode-raw {
+  display: block;
 }
 .trace-text {
   margin: 0;
@@ -632,50 +802,55 @@ a:hover { text-decoration: none; }
 }
 .tool-list {
   display: grid;
-  gap: 8px;
+  gap: 9px;
 }
 .tool-card {
   border: 1px solid var(--line);
   border-radius: 9px;
-  background: var(--control-bg);
+  background: color-mix(in srgb, var(--control-bg) 86%, var(--bg));
   overflow: hidden;
+  transition: border-color .14s ease, background-color .14s ease;
 }
-.tool-card summary {
-  min-height: 42px;
-  padding: 0 12px;
+.tool-card.is-open {
+  border-color: color-mix(in srgb, var(--accent) 34%, var(--line));
+  background: color-mix(in srgb, var(--control-bg) 94%, var(--accent) 4%);
 }
-.tool-card summary strong {
+.tool-card .trace-summary {
+  min-height: 44px;
+  padding: 0 14px 0 10px;
+}
+.tool-card .trace-summary strong {
   font-size: 13px;
 }
-.tool-card summary small {
+.tool-card .trace-summary small {
   max-width: 52%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 .tool-card .trace-body {
-  padding: 0 12px 12px 29px;
+  padding: 10px 16px 16px 35px;
 }
 .tool-description {
-  margin: 0 0 12px;
+  margin: 0 0 14px;
   color: var(--text);
   font-size: 13px;
-  line-height: 1.5;
+  line-height: 1.56;
 }
 .tool-params {
   display: grid;
   gap: 7px;
-  margin-bottom: 10px;
+  margin: 0 0 11px;
 }
 .tool-param {
   display: grid;
   grid-template-columns: minmax(120px, .7fr) minmax(82px, .28fr) minmax(0, 1fr);
   gap: 10px;
   align-items: baseline;
-  padding: 9px 10px;
+  padding: 10px 11px;
   border: 1px solid var(--line);
   border-radius: 7px;
-  background: var(--bg);
+  background: color-mix(in srgb, var(--bg) 82%, var(--control-bg));
 }
 .tool-param-name {
   min-width: 0;
@@ -690,7 +865,8 @@ a:hover { text-decoration: none; }
   font-size: 12px;
 }
 .tool-param-required {
-  color: #ff8f70;
+  color: #ff9f7a;
+  font-weight: 700;
 }
 .tool-param-desc {
   min-width: 0;
@@ -698,13 +874,35 @@ a:hover { text-decoration: none; }
   font-size: 12px;
   line-height: 1.45;
 }
-.tool-raw summary {
-  min-height: 34px;
-  padding: 0;
+.tool-raw .trace-summary {
+  min-height: 28px;
+  width: auto;
+  padding: 0 4px;
   color: var(--muted);
+  font-size: 12px;
+}
+.tool-raw {
+  border-bottom: 0;
+  margin-top: 8px;
+}
+.tool-raw .trace-summary strong {
+  font-size: 12px;
+  font-weight: 650;
+}
+.tool-raw .trace-caret {
+  width: 10px;
+  font-size: 10px;
+}
+.tool-raw .trace-icon {
+  width: 12px;
+  height: 12px;
 }
 .tool-raw .trace-body {
-  padding: 0;
+  padding: 6px 0 0;
+}
+.tool-raw .raw-json {
+  max-height: 360px;
+  font-size: 11px;
 }
 .raw-json {
   margin: 0;
@@ -939,18 +1137,26 @@ a:hover { text-decoration: none; }
   .trace-stat {
     padding: 11px 10px 11px 0;
   }
-  .trace-section summary {
+  .trace-summary {
     min-height: 46px;
+    padding: 0 4px;
   }
   .trace-body {
-    padding-left: 15px;
+    padding: 6px 3px 19px 24px;
   }
-  .tool-card summary small {
+  .tool-card .trace-body {
+    padding: 10px 12px 14px 27px;
+  }
+  .tool-card .trace-summary small {
     display: none;
   }
   .tool-param {
     grid-template-columns: minmax(0, 1fr);
     gap: 3px;
+    padding: 10px;
+  }
+  .tool-raw .trace-body {
+    padding: 6px 0 0;
   }
   .popover {
     border-radius: 12px;
@@ -1039,6 +1245,9 @@ const state = {
   picker: null,
   cache: new Map(),
   traceCache: new Map(),
+  traceScrollTop: 0,
+  traceOpenSections: new Set(),
+  traceOpenTools: new Set(),
   editor: null,
   monaco: null
 };
@@ -1102,6 +1311,21 @@ function bindEvents() {
   els.viewToggle.addEventListener('click', toggleView);
   els.theme.addEventListener('click', toggleTheme);
   els.diff.addEventListener('focusin', guardMobileEditorFocus);
+  els.trace.addEventListener('click', event => {
+    const jump = event.target.closest?.('.trace-jump');
+    if (jump) {
+      scrollToTraceSection(jump.dataset.jump);
+      return;
+    }
+    const mode = event.target.closest?.('.trace-mode');
+    if (mode) {
+      event.stopPropagation();
+      mode.closest('.trace-section')?.classList.toggle('is-raw');
+      return;
+    }
+    const summary = event.target.closest?.('.trace-summary');
+    if (summary) toggleTracePanel(summary);
+  });
   addEventListener('click', event => {
     if (!els.popover.contains(event.target) && !event.target.closest('.control')) closePicker();
   });
@@ -1263,6 +1487,7 @@ function refresh() {
 
 function refreshView() {
   if (state.view === 'trace') {
+    snapshotTraceState();
     renderTrace().catch(showError);
     return;
   }
@@ -1394,6 +1619,7 @@ async function renderTrace() {
   }
   const detail = normalizeTraceRecord(selected.record, selected.index, records.length);
   els.trace.innerHTML = traceDetailHtml(item, detail);
+  restoreTraceState();
 }
 
 function selectMainTraceRecord(records) {
@@ -1599,14 +1825,64 @@ function contentText(value) {
   return '';
 }
 
+function snapshotTraceState() {
+  if (!els.trace.querySelector('.trace-page')) return;
+  state.traceScrollTop = els.trace.scrollTop;
+  state.traceOpenSections = new Set(
+    [...els.trace.querySelectorAll('.trace-section[data-section]')]
+      .filter(section => section.classList.contains('is-open'))
+      .map(section => section.dataset.section)
+  );
+  state.traceOpenTools = new Set(
+    [...els.trace.querySelectorAll('.tool-card[data-tool]')]
+      .filter(tool => tool.classList.contains('is-open'))
+      .map(tool => tool.dataset.tool)
+  );
+}
+
+function restoreTraceState() {
+  if (state.traceOpenSections.size) {
+    els.trace.querySelectorAll('.trace-section[data-section]').forEach(section => {
+      setTracePanelOpen(section, state.traceOpenSections.has(section.dataset.section));
+    });
+  }
+  if (state.traceOpenTools.size) {
+    els.trace.querySelectorAll('.tool-card[data-tool]').forEach(tool => {
+      setTracePanelOpen(tool, state.traceOpenTools.has(tool.dataset.tool));
+    });
+  }
+  requestAnimationFrame(() => {
+    els.trace.scrollTop = Math.min(state.traceScrollTop, els.trace.scrollHeight);
+  });
+}
+
+function scrollToTraceSection(section) {
+  const target = els.trace.querySelector(`[data-section="${section}"]`);
+  if (!target) return;
+  setTracePanelOpen(target, true);
+  target.scrollIntoView({ block: 'start', behavior: 'smooth' });
+}
+
+function toggleTracePanel(summary) {
+  const panel = summary.closest('.trace-section, .tool-card');
+  if (!panel) return;
+  setTracePanelOpen(panel, !panel.classList.contains('is-open'));
+}
+
+function setTracePanelOpen(panel, open) {
+  panel.classList.toggle('is-open', open);
+  panel.querySelector(':scope > .trace-summary')?.setAttribute('aria-expanded', String(open));
+}
+
 function traceDetailHtml(item, detail) {
   const title = `${currentAgent().name} ${item.version}`;
   return `<article class="trace-page">
     <header class="trace-hero">
       <div class="trace-eyebrow">Trace detail · request ${detail.index + 1} of ${detail.total}</div>
       <div class="trace-title"><h2>${escapeHtml(title)}</h2><span>${escapeHtml(item.published_compact)}</span></div>
-      <div class="trace-meta">${metaItem('Provider', detail.provider)}${metaItem('Model', detail.model || 'unknown')}${metaItem('Endpoint', `${detail.method} ${detail.path}`)}</div>
+      <div class="trace-meta">${metaItem('Provider', detail.provider)}${metaItem('Model', detail.model || 'unknown')}${metaItem('Endpoint', `${detail.method} ${detail.path}`)}${item.published_display ? metaItem('Published', item.published_display) : ''}${item.captured_display ? metaItem('Captured', item.captured_display) : ''}</div>
     </header>
+    ${traceJumpbarHtml(detail)}
     ${blocksSectionHtml('System Prompt', detail.systemBlocks, true)}
     ${blocksSectionHtml('Developer Prompt', detail.developerBlocks, false)}
     ${toolsSectionHtml(detail.tools)}
@@ -1615,26 +1891,57 @@ function traceDetailHtml(item, detail) {
   </article>`;
 }
 
+function traceJumpbarHtml(detail) {
+  const items = [];
+  if (detail.systemBlocks.length) items.push(['system-prompt', 'System']);
+  if (detail.developerBlocks.length) items.push(['developer-prompt', 'Developer']);
+  if (detail.tools.length) items.push(['tools', 'Tools']);
+  if (detail.messages.length) items.push(['messages', 'Messages']);
+  items.push(['raw-request-body', 'Raw']);
+  return `<nav class="trace-jumpbar" aria-label="Trace sections">${items.map(([section, label]) => `<button class="trace-jump" type="button" data-jump="${section}">${traceIcon(section)}${label}</button>`).join('')}</nav>`;
+}
+
 function metaItem(label, value) {
   return `<span>${escapeHtml(label)} <b>${escapeHtml(value)}</b></span>`;
 }
 
+function traceSummaryHtml(title, open, extra = '', modeToggle = false) {
+  const mode = modeToggle
+    ? '<button class="trace-mode trace-mode-read" type="button">Raw</button><button class="trace-mode trace-mode-raw" type="button">Read</button>'
+    : '';
+  return `<button class="trace-summary" type="button" aria-expanded="${open ? 'true' : 'false'}"><span class="trace-caret" aria-hidden="true"></span>${traceIcon(sectionId(title))}<strong>${escapeHtml(title)}</strong>${mode}${extra}</button>`;
+}
+
+function traceIcon(name) {
+  const icons = {
+    'system-prompt': '<path d="M5 3.5h6M4.5 6.5h7M4.5 9.5h4.5"/><path d="M3 2.5h10v11H3z"/>',
+    'developer-prompt': '<path d="m5.5 5.5-2 2 2 2M10.5 5.5l2 2-2 2M8.8 4.5 7.2 10.5"/>',
+    tools: '<path d="M5.5 4.2 4.2 2.9a2 2 0 0 0-1.3 2.5l1.7 1.7-2.1 2.1a1.3 1.3 0 1 0 1.8 1.8l2.1-2.1 1.7 1.7a2 2 0 0 0 2.5-1.3L9.8 8.5"/><path d="m8.5 4.5 2-2 1.5 1.5-2 2"/>',
+    messages: '<path d="M3 4h10v6H7l-3 2v-2H3z"/>',
+    'raw-request-body': '<path d="M4 3h8v10H4z"/><path d="M6 6h4M6 8h4M6 10h2"/>',
+    'raw-schema': '<path d="M4 3.5h8v9H4z"/><path d="M6 6h4M6 8h3M6 10h4"/>'
+  };
+  const path = icons[name] || icons['raw-request-body'];
+  return `<span class="trace-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${path}</svg></span>`;
+}
+
 function blocksSectionHtml(title, blocks, open) {
   if (!blocks.length) return '';
-  const body = blocks.map(block => `<div class="prompt-block"><pre class="trace-text">${escapeHtml(block.text)}</pre></div>`).join('');
-  return `<details class="trace-section"${open ? ' open' : ''}><summary><strong>${escapeHtml(title)}</strong></summary><div class="trace-body">${body}</div></details>`;
+  const section = sectionId(title);
+  const body = blocks.map(block => `<div class="prompt-block"><div class="trace-rendered">${markdownHtml(block.text)}</div><pre class="trace-text trace-raw">${escapeHtml(block.text)}</pre></div>`).join('');
+  return `<section class="trace-section${open ? ' is-open' : ''}" data-section="${section}">${traceSummaryHtml(title, open, '', true)}<div class="trace-content"><div class="trace-body">${body}</div></div></section>`;
 }
 
 function messagesSectionHtml(messages) {
   if (!messages.length) return '';
-  const body = messages.map(message => `<div class="trace-message"><div class="trace-role">${escapeHtml(message.role)}</div><pre class="trace-text">${escapeHtml(message.text)}</pre></div>`).join('');
-  return `<details class="trace-section"><summary><strong>Messages</strong></summary><div class="trace-body">${body}</div></details>`;
+  const body = messages.map(message => `<div class="trace-message"><div class="trace-role">${escapeHtml(message.role)}</div><div class="trace-rendered">${markdownHtml(message.text)}</div><pre class="trace-text trace-raw">${escapeHtml(message.text)}</pre></div>`).join('');
+  return `<section class="trace-section" data-section="messages">${traceSummaryHtml('Messages', false, '', true)}<div class="trace-content"><div class="trace-body">${body}</div></div></section>`;
 }
 
 function toolsSectionHtml(tools) {
   if (!tools.length) return '';
   const body = `<div class="tool-list">${tools.map(toolHtml).join('')}</div>`;
-  return `<details class="trace-section" open><summary><strong>Tools</strong><small>${tools.length}</small></summary><div class="trace-body">${body}</div></details>`;
+  return `<section class="trace-section is-open" data-section="tools">${traceSummaryHtml('Tools', true, `<small>${tools.length}</small>`)}<div class="trace-content"><div class="trace-body">${body}</div></div></section>`;
 }
 
 function toolHtml(tool) {
@@ -1643,7 +1950,7 @@ function toolHtml(tool) {
     ? `<div class="tool-params">${params.map(param => `<div class="tool-param"><div class="tool-param-name" title="${escapeHtml(param.name)}">${escapeHtml(param.name)}</div><div class="tool-param-type">${escapeHtml(param.type)}${param.required ? ' <span class="tool-param-required">required</span>' : ''}</div><div class="tool-param-desc">${escapeHtml(param.description)}</div></div>`).join('')}</div>`
     : '<div class="tool-param-desc">No structured parameters.</div>';
   const raw = tool.schema || tool.raw;
-  return `<details class="tool-card"><summary><strong>${escapeHtml(tool.name)}</strong><small>${escapeHtml(tool.description || `${params.length} parameter${params.length === 1 ? '' : 's'}`)}</small></summary><div class="trace-body">${paramsHtml}${tool.description ? `<p class="tool-description">${escapeHtml(tool.description)}</p>` : ''}<details class="trace-section tool-raw"><summary><strong>Raw schema</strong></summary><div class="trace-body"><pre class="raw-json">${escapeHtml(JSON.stringify(raw, null, 2))}</pre></div></details></div></details>`;
+  return `<section class="tool-card" data-tool="${escapeHtml(tool.name)}">${traceSummaryHtml(tool.name, false, `<small>${escapeHtml(tool.description || `${params.length} parameter${params.length === 1 ? '' : 's'}`)}</small>`)}<div class="trace-content"><div class="trace-body">${tool.description ? `<div class="tool-description trace-rendered">${markdownHtml(tool.description)}</div>` : ''}${paramsHtml}<section class="trace-section tool-raw">${traceSummaryHtml('Raw schema', false)}<div class="trace-content"><div class="trace-body"><pre class="raw-json">${escapeHtml(JSON.stringify(raw, null, 2))}</pre></div></div></section></div></div></section>`;
 }
 
 function schemaParameters(schema) {
@@ -1678,7 +1985,81 @@ function schemaType(spec) {
 
 function traceSectionHtml(title, text, options = {}) {
   const bodyClass = options.raw ? 'raw-json' : 'trace-text';
-  return `<details class="trace-section"${options.open ? ' open' : ''}><summary><strong>${escapeHtml(title)}</strong>${options.meta ? `<small>${escapeHtml(options.meta)}</small>` : ''}</summary><div class="trace-body"><pre class="${bodyClass}">${escapeHtml(text)}</pre></div></details>`;
+  return `<section class="trace-section${options.open ? ' is-open' : ''}" data-section="${sectionId(title)}">${traceSummaryHtml(title, Boolean(options.open), options.meta ? `<small>${escapeHtml(options.meta)}</small>` : '')}<div class="trace-content"><div class="trace-body"><pre class="${bodyClass}">${escapeHtml(text)}</pre></div></div></section>`;
+}
+
+function sectionId(title) {
+  return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+function markdownHtml(text) {
+  const lines = String(text || '').split('\n');
+  const html = [];
+  let paragraph = [];
+  let list = [];
+  let code = [];
+  let inCode = false;
+  const flushParagraph = () => {
+    if (!paragraph.length) return;
+    html.push(`<p>${inlineMarkdown(paragraph.join(' '))}</p>`);
+    paragraph = [];
+  };
+  const flushList = () => {
+    if (!list.length) return;
+    html.push(`<ul>${list.map(item => `<li>${inlineMarkdown(item)}</li>`).join('')}</ul>`);
+    list = [];
+  };
+  const flushCode = () => {
+    if (!code.length) return;
+    html.push(`<pre><code>${escapeHtml(code.join('\n'))}</code></pre>`);
+    code = [];
+  };
+  for (const line of lines) {
+    if (line.trim().startsWith('```')) {
+      if (inCode) {
+        flushCode();
+        inCode = false;
+      } else {
+        flushParagraph();
+        flushList();
+        inCode = true;
+      }
+      continue;
+    }
+    if (inCode) {
+      code.push(line);
+      continue;
+    }
+    if (!line.trim()) {
+      flushParagraph();
+      flushList();
+      continue;
+    }
+    const heading = /^(#{1,4})\s+(.+)$/.exec(line);
+    if (heading) {
+      flushParagraph();
+      flushList();
+      const level = Math.min(4, heading[1].length + 1);
+      html.push(`<h${level}>${inlineMarkdown(heading[2])}</h${level}>`);
+      continue;
+    }
+    const bullet = /^\s*[-*]\s+(.+)$/.exec(line);
+    if (bullet) {
+      flushParagraph();
+      list.push(bullet[1]);
+      continue;
+    }
+    flushList();
+    paragraph.push(line.trim());
+  }
+  flushParagraph();
+  flushList();
+  flushCode();
+  return html.join('');
+}
+
+function inlineMarkdown(text) {
+  return escapeHtml(text).replace(/`([^`]+)`/g, '<code>$1</code>');
 }
 
 function importantHeader(headers, name) {
