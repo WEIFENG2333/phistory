@@ -66,7 +66,7 @@ The generated indexes are:
 
 ## Capture Status
 
-Last capture update: 2026-06-07 04:56 UTC
+Last capture update: 2026-06-08 18:09 UTC
 
 | Agent | Latest | Captures | Last Captured |
 | --- | --- | ---: | --- |
@@ -76,4 +76,4 @@ Last capture update: 2026-06-07 04:56 UTC
 | Kimi CLI | [1.47.0 - 2026-06-05](captures/kimi/1.47.0/prompt.md) | 19 | 2026-06-05 13:28 UTC |
 | OpenClaw | [2026.6.1 - 2026-06-03](captures/openclaw/2026.6.1/prompt.md) | 61 | 2026-06-03 23:16 UTC |
 | opencode | [1.16.2 - 2026-06-05](captures/opencode/1.16.2/prompt.md) | 66 | 2026-06-05 16:41 UTC |
-| Pi | [0.78.1 - 2026-06-04](captures/pi/0.78.1/prompt.md) | 13 | 2026-06-04 17:24 UTC |
+| Pi | [0.79.0 - 2026-06-08](captures/pi/0.79.0/prompt.md) | 14 | 2026-06-08 18:09 UTC |
