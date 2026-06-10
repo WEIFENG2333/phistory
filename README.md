@@ -66,11 +66,11 @@ The generated indexes are:
 
 ## Capture Status
 
-Last capture update: 2026-06-10 18:11 UTC
+Last capture update: 2026-06-10 22:57 UTC
 
 | Agent | Latest | Captures | Last Captured |
 | --- | --- | ---: | --- |
-| Claude Code | [2.1.170 - 2026-06-09](captures/claude-code/2.1.170/prompt.md) | 336 | 2026-06-09 18:05 UTC |
+| Claude Code | [2.1.172 - 2026-06-10](captures/claude-code/2.1.172/prompt.md) | 337 | 2026-06-10 22:57 UTC |
 | Codex CLI | [0.139.0 - 2026-06-09](captures/codex/0.139.0/prompt.md) | 54 | 2026-06-09 21:10 UTC |
 | Hermes Agent | [v2026.6.5 - 2026-06-06](captures/hermes/v2026.6.5/prompt.md) | 15 | 2026-06-06 05:06 UTC |
 | Kimi CLI | [1.47.0 - 2026-06-05](captures/kimi/1.47.0/prompt.md) | 19 | 2026-06-05 13:28 UTC |
