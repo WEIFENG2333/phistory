@@ -44,6 +44,36 @@ CODEX = AgentSpec(
     ),
 )
 
+ANTIGRAVITY = AgentSpec(
+    id="antigravity",
+    display_name="Antigravity CLI",
+    package="google-antigravity/antigravity-cli",
+    source="github-release-asset",
+    release_asset="agy_cli_linux_x64.tar.gz",
+    release_asset_binary="antigravity",
+    release_manifest_url="https://antigravity-cli-auto-updater-974169037036.us-central1.run.app/manifests/linux_amd64.json",
+    tap_client="agy",
+    fake_env={},
+    extra_env={
+        "DISABLE_AUTOUPDATER": "1",
+        "DISABLE_UPDATES": "1",
+        "CI": "1",
+    },
+    home_profile="antigravity",
+    tap_target_profile="antigravity",
+    run_args=(
+        "--no-yolo",
+        "--",
+        "--print",
+        "Reply with one short sentence.",
+        "--print-timeout",
+        "20s",
+        "--dangerously-skip-permissions",
+        "--model",
+        "MODEL_GOOGLE_GEMINI_2_5_FLASH",
+    ),
+)
+
 OPENCLAW = AgentSpec(
     id="openclaw",
     display_name="OpenClaw",
@@ -188,7 +218,9 @@ PI = AgentSpec(
     ),
 )
 
-AGENTS: dict[str, AgentSpec] = {agent.id: agent for agent in (CLAUDE_CODE, CODEX, HERMES, KIMI, OPENCLAW, OPENCODE, PI)}
+AGENTS: dict[str, AgentSpec] = {
+    agent.id: agent for agent in (ANTIGRAVITY, CLAUDE_CODE, CODEX, HERMES, KIMI, OPENCLAW, OPENCODE, PI)
+}
 
 
 def get_agent(agent_id: str) -> AgentSpec:

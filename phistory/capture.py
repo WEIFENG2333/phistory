@@ -6,11 +6,15 @@ import os
 import re
 import sys
 import time
+from contextlib import contextmanager
+from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
 from tempfile import TemporaryDirectory
+from threading import Thread
+from typing import Any, Iterator
 
 from phistory import packages
-from phistory.models import CaptureResult, CaptureTarget
+from phistory.models import CaptureResult, CaptureTarget, TapTargetProfile
 from phistory.static_prompts.extract import extract_static_prompts, static_prompts_meta
 from phistory.storage import copy_trace, is_captured, latest_trace, prepare_version_dir, remove_if_exists, write_meta
 from phistory.subprocesses import run
@@ -24,9 +28,15 @@ _VOLATILE_TEXT_PATTERNS = (
         re.compile(r"The current date and time in ISO format is `[^`]+`\."),
         "The current date and time in ISO format is `$PHISTORY_DATETIME`.",
     ),
+    (re.compile(r"The current local time is: [^\n]+"), "The current local time is: $PHISTORY_DATETIME."),
     (re.compile(r"(?m)^Conversation started: .+$"), "Conversation started: $PHISTORY_DATETIME"),
+    (re.compile(r"Conversation ID: [0-9a-f-]{36}"), "Conversation ID: $PHISTORY_CONVERSATION"),
     (re.compile(r"<current_date>\d{4}-\d{2}-\d{2}</current_date>"), "<current_date>$PHISTORY_DATE</current_date>"),
     (re.compile(r"<timezone>[^<]+</timezone>"), "<timezone>$PHISTORY_TIMEZONE</timezone>"),
+    (
+        re.compile(r"\$PHISTORY_HOME/\.gemini/antigravity-cli/brain/[0-9a-f-]{36}"),
+        "$PHISTORY_HOME/.gemini/antigravity-cli/brain/$PHISTORY_CONVERSATION",
+    ),
     (
         re.compile(r"\$PHISTORY_HOME/\.claude/projects/-tmp-phistory-work-[^/\s]+"),
         "$PHISTORY_HOME/.claude/projects/$PHISTORY_PROJECT",
@@ -62,10 +72,11 @@ def capture_target(
         with (
             TemporaryDirectory(prefix="phistory-home-", ignore_cleanup_errors=True) as home_dir,
             TemporaryDirectory(prefix="phistory-work-", ignore_cleanup_errors=True) as work_dir,
+            _tap_target(target.agent.tap_target_profile) as tap_target,
         ):
             env = _capture_env(target, bin_dir, Path(home_dir))
             env["PWD"] = str(Path(work_dir))
-            argv = _capture_command(target, prompt_path, tap_output_dir)
+            argv = _capture_command(target, prompt_path, tap_output_dir, tap_target=tap_target)
             result = run(argv, cwd=Path(work_dir), env=env, timeout=CAPTURE_TIMEOUT_SECONDS, check=False)
             if _needs_claude_session_persistence_retry(target, result):
                 remove_if_exists(tap_output_dir)
@@ -76,6 +87,18 @@ def capture_target(
                 remove_if_exists(tap_output_dir)
                 prompt_path.unlink(missing_ok=True)
                 env = {**env, "OPENAI_API_KEY": "phistory-fake-api-key"}
+                result = run(argv, cwd=Path(work_dir), env=env, timeout=CAPTURE_TIMEOUT_SECONDS, check=False)
+            if _needs_antigravity_model_retry(target, result):
+                remove_if_exists(tap_output_dir)
+                prompt_path.unlink(missing_ok=True)
+                argv = _without_arg_and_value(argv, "--model")
+                result = run(argv, cwd=Path(work_dir), env=env, timeout=CAPTURE_TIMEOUT_SECONDS, check=False)
+            for _ in range(2):
+                if not _needs_antigravity_prompt_retry(target, result, prompt_path):
+                    break
+                remove_if_exists(tap_output_dir)
+                prompt_path.unlink(missing_ok=True)
+                time.sleep(1)
                 result = run(argv, cwd=Path(work_dir), env=env, timeout=CAPTURE_TIMEOUT_SECONDS, check=False)
         if not prompt_path.exists():
             detail = (result.stderr or result.stdout).strip()[-4000:]
@@ -132,6 +155,8 @@ def _capture_env(target: CaptureTarget, bin_dir: Path, home_dir: Path | None = N
         path.mkdir(parents=True, exist_ok=True)
     if target.agent.fake_chatgpt_auth:
         _write_fake_chatgpt_auth(home)
+    if target.agent.home_profile == "antigravity":
+        _write_antigravity_config(home)
     if target.agent.home_profile == "hermes":
         _write_hermes_config(home)
     if target.agent.home_profile == "kimi":
@@ -190,13 +215,34 @@ def _needs_codex_api_key_retry(target: CaptureTarget, result) -> bool:
     return "Missing OpenAI API key" in output
 
 
+def _needs_antigravity_model_retry(target: CaptureTarget, result) -> bool:
+    if target.agent.id != "antigravity" or result.returncode == 0:
+        return False
+    output = f"{result.stderr}\n{result.stdout}"
+    return "flags provided but not defined: -model" in output
+
+
+def _needs_antigravity_prompt_retry(target: CaptureTarget, result, prompt_path: Path) -> bool:
+    if target.agent.id != "antigravity" or prompt_path.exists():
+        return False
+    output = f"{result.stderr}\n{result.stdout}"
+    return "no prompt-bearing request found in trace" in output
+
+
 def _tap_mode_args(target: CaptureTarget) -> list[str]:
     if target.agent.tap_mode == "auto":
         return []
     return ["--tap-proxy-mode", target.agent.tap_mode]
 
 
-def _capture_command(target: CaptureTarget, prompt_path: Path, tap_output_dir: Path) -> list[str]:
+def _capture_command(
+    target: CaptureTarget,
+    prompt_path: Path,
+    tap_output_dir: Path,
+    *,
+    tap_target: str | None = None,
+) -> list[str]:
+    tap_target_args = ["--tap-target", tap_target] if tap_target else []
     return [
         sys.executable,
         "-m",
@@ -211,6 +257,7 @@ def _capture_command(target: CaptureTarget, prompt_path: Path, tap_output_dir: P
         "--tap-output-dir",
         str(tap_output_dir),
         *_tap_mode_args(target),
+        *tap_target_args,
         "--",
         *_upstream_client_args(target.agent.run_args),
     ]
@@ -227,6 +274,20 @@ def _upstream_client_args(run_args: tuple[str, ...]) -> list[str]:
 
 def _without_arg(argv: list[str], value: str) -> list[str]:
     return [arg for arg in argv if arg != value]
+
+
+def _without_arg_and_value(argv: list[str], value: str) -> list[str]:
+    out = []
+    skip_next = False
+    for arg in argv:
+        if skip_next:
+            skip_next = False
+            continue
+        if arg == value:
+            skip_next = True
+            continue
+        out.append(arg)
+    return out
 
 
 def _write_fake_chatgpt_auth(home: Path) -> None:
@@ -267,6 +328,22 @@ def _write_openclaw_config(home: Path) -> None:
         },
     }
     (state_dir / "openclaw.json").write_text(json.dumps(config, indent=2), encoding="utf-8")
+
+
+def _write_antigravity_config(home: Path) -> None:
+    agy_home = home / ".gemini" / "antigravity-cli"
+    agy_home.mkdir(parents=True, exist_ok=True)
+    token = {
+        "auth_method": "consumer",
+        "token": {
+            "access_token": "phistory-fake-access-token",
+            "token_type": "Bearer",
+            "refresh_token": "phistory-fake-refresh-token",
+            "expiry": "2099-01-01T00:00:00Z",
+            "is_gcp_tos": False,
+        },
+    }
+    (agy_home / "antigravity-oauth-token").write_text(json.dumps(token, separators=(",", ":")), encoding="utf-8")
 
 
 def _write_hermes_config(home: Path) -> None:
@@ -382,6 +459,83 @@ def _binary_version(target: CaptureTarget, bin_dir: Path) -> str | None:
         result = run([str(executable), "--version"], env=env, timeout=30, check=False)
     text = (result.stdout or result.stderr).strip()
     return text or None
+
+
+@contextmanager
+def _tap_target(profile: TapTargetProfile) -> Iterator[str | None]:
+    if profile == "none":
+        yield None
+        return
+    if profile != "antigravity":
+        raise ValueError(f"unsupported tap target profile: {profile}")
+    server = HTTPServer(("127.0.0.1", 0), _AntigravityTapTargetHandler)
+    thread = Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    try:
+        yield f"http://127.0.0.1:{server.server_port}"
+    finally:
+        server.shutdown()
+        server.server_close()
+        thread.join(timeout=5)
+
+
+class _AntigravityTapTargetHandler(BaseHTTPRequestHandler):
+    protocol_version = "HTTP/1.0"
+
+    def do_GET(self) -> None:
+        self._write_json({"email": "phistory@example.invalid"})
+
+    def do_POST(self) -> None:
+        length = int(self.headers.get("Content-Length", "0") or 0)
+        if length:
+            self.rfile.read(length)
+        self._write_json(_antigravity_response(self.path))
+
+    def log_message(self, _format: str, *_args: Any) -> None:
+        return
+
+    def _write_json(self, value: dict[str, Any]) -> None:
+        data = json.dumps(value, separators=(",", ":")).encode("utf-8")
+        self.send_response(200)
+        self.send_header("Content-Type", "application/json")
+        self.send_header("Content-Length", str(len(data)))
+        self.end_headers()
+        self.wfile.write(data)
+
+
+def _antigravity_response(path: str) -> dict[str, Any]:
+    if "loadCodeAssist" in path:
+        return {"cloudaicompanionProject": "phistory-project"}
+    if "fetchAvailableModels" in path:
+        models = {
+            model_id: {
+                "model": model_id,
+                "displayName": model_id,
+                "maxTokens": 1_000_000,
+                "maxOutputTokens": 8192,
+                "vertexModelId": "gemini-2.5-flash",
+            }
+            for model_id in _ANTIGRAVITY_MODEL_IDS
+        }
+        return {
+            "models": models,
+            "defaultAgentModelId": _ANTIGRAVITY_MODEL_IDS[0],
+            "agentModelSorts": [
+                {
+                    "displayName": "Default",
+                    "groups": [{"displayName": "Default", "modelIds": list(_ANTIGRAVITY_MODEL_IDS)}],
+                }
+            ],
+        }
+    if "fetchUserInfo" in path:
+        return {"email": "phistory@example.invalid"}
+    return {}
+
+
+_ANTIGRAVITY_MODEL_IDS = (
+    "MODEL_GOOGLE_GEMINI_2_5_FLASH",
+    "MODEL_GOOGLE_GEMINI_2_5_FLASH_LITE",
+)
 
 
 def _portable_command(argv: list[str], version_dir: Path) -> list[str]:

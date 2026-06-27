@@ -26,14 +26,14 @@ jobs:
       - run: uv run ruff check phistory tests
       - run: uv run pytest
       - run: uv build
-      - run: uv run phistory --root /tmp/phistory-smoke --cache-dir /tmp/phistory-smoke-cache capture --latest --agents claude-code,codex,openclaw,hermes,kimi,opencode,pi --force --summary-title "Smoke capture"
+      - run: uv run phistory --root /tmp/phistory-smoke --cache-dir /tmp/phistory-smoke-cache capture --latest --agents antigravity,claude-code,codex,openclaw,hermes,kimi,opencode,pi --force --summary-title "Smoke capture"
       - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: smoke-captures
           path: /tmp/phistory-smoke
           retention-days: 7
-      - run: uv run phistory capture --latest --agents claude-code,codex,openclaw,hermes,kimi,opencode,pi --summary-title "Latest capture"
+      - run: uv run phistory capture --latest --agents antigravity,claude-code,codex,openclaw,hermes,kimi,opencode,pi --summary-title "Latest capture"
       - run: uv run phistory extract-static claude-code --latest-captured 10
       - run: uv run phistory render-index
       - run: uv run phistory render-site

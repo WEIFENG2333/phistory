@@ -4,9 +4,10 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Literal
 
-PackageSource = Literal["npm", "pypi", "github-release"]
-HomeProfile = Literal["none", "hermes", "kimi", "openclaw", "opencode", "pi"]
+PackageSource = Literal["npm", "pypi", "github-release", "github-release-asset"]
+HomeProfile = Literal["none", "antigravity", "hermes", "kimi", "openclaw", "opencode", "pi"]
 TapMode = Literal["auto", "reverse", "forward"]
+TapTargetProfile = Literal["none", "antigravity"]
 
 
 @dataclass(frozen=True)
@@ -22,8 +23,12 @@ class AgentSpec:
     node_runtime: str | None = None
     home_profile: HomeProfile = "none"
     tap_mode: TapMode = "auto"
+    tap_target_profile: TapTargetProfile = "none"
     extra_env: dict[str, str] = field(default_factory=dict)
     fake_chatgpt_auth: bool = False
+    release_asset: str | None = None
+    release_asset_binary: str | None = None
+    release_manifest_url: str | None = None
 
 
 @dataclass(frozen=True)

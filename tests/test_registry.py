@@ -2,7 +2,16 @@ from phistory.registry import get_agent, parse_agent_ids
 
 
 def test_parse_default_agents():
-    assert parse_agent_ids(None) == ["claude-code", "codex", "hermes", "kimi", "openclaw", "opencode", "pi"]
+    assert parse_agent_ids(None) == [
+        "antigravity",
+        "claude-code",
+        "codex",
+        "hermes",
+        "kimi",
+        "openclaw",
+        "opencode",
+        "pi",
+    ]
 
 
 def test_get_agent_has_capture_contract():
@@ -23,11 +32,22 @@ def test_claude_code_uses_full_prompt_surface_with_isolated_sessions():
 
 
 def test_new_agents_define_install_and_capture_profiles():
+    antigravity = get_agent("antigravity")
     openclaw = get_agent("openclaw")
     hermes = get_agent("hermes")
     kimi = get_agent("kimi")
     opencode = get_agent("opencode")
     pi = get_agent("pi")
+
+    assert antigravity.source == "github-release-asset"
+    assert antigravity.package == "google-antigravity/antigravity-cli"
+    assert antigravity.release_asset == "agy_cli_linux_x64.tar.gz"
+    assert antigravity.release_asset_binary == "antigravity"
+    assert antigravity.release_manifest_url
+    assert antigravity.tap_client == "agy"
+    assert antigravity.home_profile == "antigravity"
+    assert antigravity.tap_target_profile == "antigravity"
+    assert "--print" in antigravity.run_args
 
     assert openclaw.source == "npm"
     assert openclaw.home_profile == "openclaw"

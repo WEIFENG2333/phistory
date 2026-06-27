@@ -61,7 +61,7 @@ def test_capture_paths_and_index(tmp_path: Path):
     assert "2026-05-22 01:00 UTC" in text
     assert "| Agent | Version | Published | Captured | Snapshot | Raw Trace |" not in text
     assert "[English](README.md)" in zh_text
-    assert "追踪 Claude Code、Codex、Kimi" in zh_text
+    assert "追踪 Claude Code、Codex、Antigravity、Kimi" in zh_text
     assert "> 每小时自动检查新版本，归档最近更新于 **2026-05-22 01:00 UTC**。" in zh_text
     assert "## 为什么看它" in zh_text
     assert "Anthropic、OpenAI 等团队" in zh_text

@@ -2,13 +2,13 @@
 
 [中文](README_zh.md)
 
-Phistory tracks how system prompts change across popular coding-agent CLIs like Claude Code, Codex, Kimi, opencode, OpenClaw, Hermes, and Pi.
+Phistory tracks how system prompts change across popular coding-agent CLIs like Claude Code, Codex, Antigravity, Kimi, opencode, OpenClaw, Hermes, and Pi.
 
 Open the web viewer to compare prompt snapshots across versions and see how agent design changes through prompts, tools, policies, and runtime instructions.
 
 **Start here:** [phistory.cc](https://phistory.cc/)
 
-> Checks for new releases hourly. Archive last updated: **2026-06-26 21:51 UTC**.
+> Checks for new releases hourly. Archive last updated: **2026-06-27 06:44 UTC**.
 
 ![Phistory prompt diff viewer](docs/screenshot.png)
 
@@ -36,7 +36,7 @@ Use the hosted viewer at [phistory.cc](https://phistory.cc/). These commands are
 uv sync --all-groups
 
 # Capture the latest supported CLI releases.
-uv run phistory capture --latest --agents claude-code,codex,openclaw,hermes,kimi,opencode,pi
+uv run phistory capture --latest --agents antigravity,claude-code,codex,openclaw,hermes,kimi,opencode,pi
 
 # Capture a historical version range for one agent.
 uv run phistory backfill claude-code --from 2.1.113 --to latest
@@ -55,6 +55,7 @@ uv run phistory render-site
 
 - Claude Code (`@anthropic-ai/claude-code`)
 - Codex CLI (`@openai/codex`)
+- Antigravity CLI (`google-antigravity/antigravity-cli`)
 - OpenClaw (`openclaw`)
 - Hermes Agent (`hermes-agent`)
 - Kimi CLI (`MoonshotAI/kimi-cli`)
@@ -63,10 +64,11 @@ uv run phistory render-site
 
 ## Capture Status
 
-Last capture update: 2026-06-26 21:51 UTC
+Last capture update: 2026-06-27 06:44 UTC
 
 | Agent | Latest | Captures | Last Captured |
 | --- | --- | ---: | --- |
+| Antigravity CLI | [1.0.13 - 2026-06-27](captures/antigravity/1.0.13/prompt.md) | 10 | 2026-06-27 06:41 UTC |
 | Claude Code | [2.1.195 - 2026-06-26](captures/claude-code/2.1.195/prompt.md) | 352 | 2026-06-26 21:51 UTC |
 | Codex CLI | [0.142.3 - 2026-06-26](captures/codex/0.142.3/prompt.md) | 60 | 2026-06-26 21:51 UTC |
 | Hermes Agent | [v2026.6.19 - 2026-06-19](captures/hermes/v2026.6.19/prompt.md) | 16 | 2026-06-19 19:52 UTC |

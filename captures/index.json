@@ -1,8 +1,16 @@
 {
-  "description": "Phistory automatically archives versioned system prompt snapshots from agent CLIs like Claude Code, Codex, OpenClaw, Hermes, Kimi, opencode, and Pi.",
+  "description": "Phistory automatically archives versioned system prompt snapshots from agent CLIs like Claude Code, Codex, Antigravity, OpenClaw, Hermes, Kimi, opencode, and Pi.",
   "site": "https://phistory.cc/",
-  "updated_at": "2026-06-26T21:51:53.002476Z",
+  "updated_at": "2026-06-27T06:44:46.703672Z",
   "agents": [
+    {
+      "agent_id": "antigravity",
+      "agent": "Antigravity CLI",
+      "latest_version": "1.0.13",
+      "latest_published_at": "2026-06-27T01:58:53Z",
+      "latest_captured_at": "2026-06-27T06:41:54.639016+00:00",
+      "captures": 10
+    },
     {
       "agent_id": "claude-code",
       "agent": "Claude Code",
@@ -6281,6 +6289,106 @@
       "prompt": "captures/claude-code/1.0.0/prompt.md",
       "trace": "captures/claude-code/1.0.0/trace.jsonl",
       "meta": "captures/claude-code/1.0.0/meta.json"
+    },
+    {
+      "agent_id": "antigravity",
+      "agent": "Antigravity CLI",
+      "version": "1.0.13",
+      "published_at": "2026-06-27T01:58:53Z",
+      "captured_at": "2026-06-27T06:41:54.639016+00:00",
+      "prompt": "captures/antigravity/1.0.13/prompt.md",
+      "trace": "captures/antigravity/1.0.13/trace.jsonl",
+      "meta": "captures/antigravity/1.0.13/meta.json"
+    },
+    {
+      "agent_id": "antigravity",
+      "agent": "Antigravity CLI",
+      "version": "1.0.12",
+      "published_at": "2026-06-24T23:17:33Z",
+      "captured_at": "2026-06-27T06:41:51.290963+00:00",
+      "prompt": "captures/antigravity/1.0.12/prompt.md",
+      "trace": "captures/antigravity/1.0.12/trace.jsonl",
+      "meta": "captures/antigravity/1.0.12/meta.json"
+    },
+    {
+      "agent_id": "antigravity",
+      "agent": "Antigravity CLI",
+      "version": "1.0.11",
+      "published_at": "2026-06-24T05:30:00Z",
+      "captured_at": "2026-06-27T06:41:49.420032+00:00",
+      "prompt": "captures/antigravity/1.0.11/prompt.md",
+      "trace": "captures/antigravity/1.0.11/trace.jsonl",
+      "meta": "captures/antigravity/1.0.11/meta.json"
+    },
+    {
+      "agent_id": "antigravity",
+      "agent": "Antigravity CLI",
+      "version": "1.0.10",
+      "published_at": "2026-06-19T04:36:23Z",
+      "captured_at": "2026-06-27T06:41:47.768024+00:00",
+      "prompt": "captures/antigravity/1.0.10/prompt.md",
+      "trace": "captures/antigravity/1.0.10/trace.jsonl",
+      "meta": "captures/antigravity/1.0.10/meta.json"
+    },
+    {
+      "agent_id": "antigravity",
+      "agent": "Antigravity CLI",
+      "version": "1.0.9",
+      "published_at": "2026-06-17T02:48:46Z",
+      "captured_at": "2026-06-27T06:41:45.718570+00:00",
+      "prompt": "captures/antigravity/1.0.9/prompt.md",
+      "trace": "captures/antigravity/1.0.9/trace.jsonl",
+      "meta": "captures/antigravity/1.0.9/meta.json"
+    },
+    {
+      "agent_id": "antigravity",
+      "agent": "Antigravity CLI",
+      "version": "1.0.8",
+      "published_at": "2026-06-12T22:56:40Z",
+      "captured_at": "2026-06-27T06:43:38.499188+00:00",
+      "prompt": "captures/antigravity/1.0.8/prompt.md",
+      "trace": "captures/antigravity/1.0.8/trace.jsonl",
+      "meta": "captures/antigravity/1.0.8/meta.json"
+    },
+    {
+      "agent_id": "antigravity",
+      "agent": "Antigravity CLI",
+      "version": "1.0.7",
+      "published_at": "2026-06-09T20:40:53Z",
+      "captured_at": "2026-06-27T06:41:36.393829+00:00",
+      "prompt": "captures/antigravity/1.0.7/prompt.md",
+      "trace": "captures/antigravity/1.0.7/trace.jsonl",
+      "meta": "captures/antigravity/1.0.7/meta.json"
+    },
+    {
+      "agent_id": "antigravity",
+      "agent": "Antigravity CLI",
+      "version": "1.0.6",
+      "published_at": "2026-06-06T00:43:00Z",
+      "captured_at": "2026-06-27T06:43:30.766525+00:00",
+      "prompt": "captures/antigravity/1.0.6/prompt.md",
+      "trace": "captures/antigravity/1.0.6/trace.jsonl",
+      "meta": "captures/antigravity/1.0.6/meta.json"
+    },
+    {
+      "agent_id": "antigravity",
+      "agent": "Antigravity CLI",
+      "version": "1.0.5",
+      "published_at": "2026-06-03T21:37:06Z",
+      "captured_at": "2026-06-27T06:42:46.955718+00:00",
+      "prompt": "captures/antigravity/1.0.5/prompt.md",
+      "trace": "captures/antigravity/1.0.5/trace.jsonl",
+      "meta": "captures/antigravity/1.0.5/meta.json"
+    },
+    {
+      "agent_id": "antigravity",
+      "agent": "Antigravity CLI",
+      "version": "1.0.4",
+      "published_at": "2026-06-01T23:14:20Z",
+      "captured_at": "2026-06-27T06:44:46.703672+00:00",
+      "prompt": "captures/antigravity/1.0.4/prompt.md",
+      "trace": "captures/antigravity/1.0.4/trace.jsonl",
+      "meta": "captures/antigravity/1.0.4/meta.json"
     }
   ]
 }

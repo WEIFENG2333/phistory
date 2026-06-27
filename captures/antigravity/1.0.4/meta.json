@@ -1,0 +1,42 @@
+{
+  "agent_id": "antigravity",
+  "agent": "Antigravity CLI",
+  "package": "google-antigravity/antigravity-cli",
+  "version": "1.0.4",
+  "published_at": "2026-06-01T23:14:20Z",
+  "tarball_url": "https://github.com/google-antigravity/antigravity-cli/releases/download/1.0.4/agy_cli_linux_x64.tar.gz",
+  "binary_version": "1.0.4",
+  "captured_at": "2026-06-27T06:44:46.703672+00:00",
+  "tap_client": "agy",
+  "target": "claude-tap capture-only",
+  "client_exit_code": 2,
+  "duration_seconds": 2.226,
+  "command": [
+    "python",
+    "-m",
+    "claude_tap",
+    "--tap-client",
+    "agy",
+    "--tap-export-prompt",
+    "prompt.md",
+    "--tap-no-live",
+    "--tap-no-open",
+    "--tap-no-update-check",
+    "--tap-output-dir",
+    ".tap",
+    "--tap-target",
+    "http://127.0.0.1:34569",
+    "--",
+    "--print",
+    "Reply with one short sentence.",
+    "--print-timeout",
+    "20s",
+    "--dangerously-skip-permissions"
+  ],
+  "static_prompts": {
+    "supported": false,
+    "candidates_path": "static-candidates.json",
+    "prompt_path": "static-prompts.md",
+    "json_path": "static-prompts.json"
+  }
+}

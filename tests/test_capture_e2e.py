@@ -2,7 +2,15 @@ import json
 import stat
 from pathlib import Path
 
-from phistory.capture import _capture_env, _sanitize_text, capture_target
+from phistory.capture import (
+    _capture_command,
+    _capture_env,
+    _needs_antigravity_model_retry,
+    _needs_antigravity_prompt_retry,
+    _sanitize_text,
+    _without_arg_and_value,
+    capture_target,
+)
 from phistory.models import AgentSpec, CaptureTarget, VersionInfo
 
 
@@ -54,9 +62,12 @@ def test_sanitize_text_normalizes_volatile_claude_headers():
         " - OS Version: Linux 6.17.0-1013-azure\n"
         "Today's date is 2026-05-21.\n"
         "The current date and time in ISO format is `2026-05-23T07:26:17.532901+00:00`.\n"
+        "The current local time is: 2026-06-27T13:47:31+08:00.\n"
         "Conversation started: Friday, June 05, 2026 08:07 PM\n"
+        "Conversation ID: d6609428-853a-4f4d-80e5-229becf1fff5\n"
         "<current_date>2026-05-21</current_date>\n"
         "<timezone>Etc/UTC</timezone>\n"
+        "$PHISTORY_HOME/.gemini/antigravity-cli/brain/d6609428-853a-4f4d-80e5-229becf1fff5\n"
         "$PHISTORY_HOME/.claude/projects/-tmp-phistory-work-abc123/memory/\n"
         "Authorization: Bearer phistory-fake-access-token\n"
         "\n"
@@ -69,9 +80,12 @@ def test_sanitize_text_normalizes_volatile_claude_headers():
         " - OS Version: $PHISTORY_OS_VERSION\n"
         "Today's date is $PHISTORY_DATE.\n"
         "The current date and time in ISO format is `$PHISTORY_DATETIME`.\n"
+        "The current local time is: $PHISTORY_DATETIME.\n"
         "Conversation started: $PHISTORY_DATETIME\n"
+        "Conversation ID: $PHISTORY_CONVERSATION\n"
         "<current_date>$PHISTORY_DATE</current_date>\n"
         "<timezone>$PHISTORY_TIMEZONE</timezone>\n"
+        "$PHISTORY_HOME/.gemini/antigravity-cli/brain/$PHISTORY_CONVERSATION\n"
         "$PHISTORY_HOME/.claude/projects/$PHISTORY_PROJECT/memory/\n"
         "Authorization: Bearer <redacted>\n"
         "\n"
@@ -103,6 +117,15 @@ def test_capture_env_writes_fake_chatgpt_auth(tmp_path: Path):
 
 
 def test_capture_env_writes_agent_profile_configs(tmp_path: Path):
+    antigravity = AgentSpec(
+        id="antigravity",
+        display_name="Antigravity",
+        package="antigravity",
+        tap_client="agy",
+        fake_env={},
+        run_args=(),
+        home_profile="antigravity",
+    )
     openclaw = AgentSpec(
         id="openclaw",
         display_name="OpenClaw",
@@ -149,6 +172,9 @@ def test_capture_env_writes_agent_profile_configs(tmp_path: Path):
         home_profile="pi",
     )
 
+    antigravity_env = _capture_env(
+        CaptureTarget(antigravity, VersionInfo("1.0.0"), tmp_path), tmp_path / "bin", tmp_path / "ag"
+    )
     openclaw_env = _capture_env(
         CaptureTarget(openclaw, VersionInfo("1.0.0"), tmp_path), tmp_path / "bin", tmp_path / "oc"
     )
@@ -159,15 +185,81 @@ def test_capture_env_writes_agent_profile_configs(tmp_path: Path):
     )
     pi_env = _capture_env(CaptureTarget(pi, VersionInfo("1.0.0"), tmp_path), tmp_path / "bin", tmp_path / "pi")
 
+    agy_token = json.loads(
+        (Path(antigravity_env["HOME"]) / ".gemini" / "antigravity-cli" / "antigravity-oauth-token").read_text(
+            encoding="utf-8"
+        )
+    )
     openclaw_config = json.loads(Path(openclaw_env["OPENCLAW_CONFIG_PATH"]).read_text(encoding="utf-8"))
     kimi_config = (Path(kimi_env["KIMI_SHARE_DIR"]) / "config.toml").read_text(encoding="utf-8")
     opencode_config = json.loads(Path(opencode_env["OPENCODE_CONFIG"]).read_text(encoding="utf-8"))
     pi_models = json.loads((Path(pi_env["PI_CODING_AGENT_DIR"]) / "models.json").read_text(encoding="utf-8"))
+    assert agy_token["auth_method"] == "consumer"
+    assert agy_token["token"]["access_token"] == "phistory-fake-access-token"
     assert openclaw_config["models"]["providers"]["phistory"]["api"] == "openai-responses"
     assert (Path(hermes_env["HERMES_HOME"]) / "config.yaml").read_text(encoding="utf-8").startswith("model:")
     assert 'type = "openai_responses"' in kimi_config
     assert opencode_config["model"] == "openai/gpt-4.1"
     assert pi_models["providers"]["phistory"]["api"] == "openai-responses"
+
+
+def test_capture_command_can_use_tap_target(tmp_path: Path):
+    agent = AgentSpec(
+        id="antigravity",
+        display_name="Antigravity",
+        package="antigravity",
+        tap_client="agy",
+        fake_env={},
+        run_args=("--no-yolo", "--", "--print", "hello"),
+        tap_target_profile="antigravity",
+    )
+    target = CaptureTarget(agent, VersionInfo("1.0.0"), tmp_path)
+
+    argv = _capture_command(target, tmp_path / "prompt.md", tmp_path / ".tap", tap_target="http://127.0.0.1:1234")
+
+    assert "--tap-target" in argv
+    assert argv[argv.index("--tap-target") + 1] == "http://127.0.0.1:1234"
+    assert argv[-2:] == ["--print", "hello"]
+
+
+def test_antigravity_model_flag_retry_removes_model_value():
+    agent = AgentSpec(
+        id="antigravity",
+        display_name="Antigravity",
+        package="antigravity",
+        tap_client="agy",
+        fake_env={},
+        run_args=(),
+    )
+    target = CaptureTarget(agent, VersionInfo("1.0.4"), Path("captures"))
+    result = type("Result", (), {"returncode": 1, "stderr": "flags provided but not defined: -model", "stdout": ""})()
+
+    assert _needs_antigravity_model_retry(target, result)
+    assert _without_arg_and_value(["agy", "--print", "hello", "--model", "flash"], "--model") == [
+        "agy",
+        "--print",
+        "hello",
+    ]
+
+
+def test_antigravity_no_prompt_retry_only_when_prompt_missing(tmp_path: Path):
+    agent = AgentSpec(
+        id="antigravity",
+        display_name="Antigravity",
+        package="antigravity",
+        tap_client="agy",
+        fake_env={},
+        run_args=(),
+    )
+    target = CaptureTarget(agent, VersionInfo("1.0.13"), tmp_path)
+    result = type(
+        "Result", (), {"returncode": 1, "stderr": "Error: no prompt-bearing request found in trace", "stdout": ""}
+    )()
+
+    assert _needs_antigravity_prompt_retry(target, result, tmp_path / "missing.md")
+    prompt = tmp_path / "prompt.md"
+    prompt.write_text("# Prompt\n", encoding="utf-8")
+    assert not _needs_antigravity_prompt_retry(target, result, prompt)
 
 
 def test_capture_failure_removes_partial_version_dir(tmp_path: Path, monkeypatch):
