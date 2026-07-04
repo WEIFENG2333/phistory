@@ -2,13 +2,13 @@
 
 [中文](README_zh.md)
 
-Phistory tracks how system prompts change across popular coding-agent CLIs like Claude Code, Codex, Antigravity, Kimi Code, MiMo Code, OpenClaw, Hermes, Kimi CLI, opencode, and Pi.
+Phistory tracks how system prompts change across popular coding-agent CLIs like Claude Code, Codex, Antigravity, Kimi Code, MiMo Code, OpenClaw, Hermes, Kimi CLI, opencode, Pi, and Oh My Pi.
 
 Open the web viewer to compare prompt snapshots across versions and see how agent design changes through prompts, tools, policies, and runtime instructions.
 
 **Start here:** [phistory.cc](https://phistory.cc/)
 
-> Checks for new releases hourly. Archive last updated: **2026-07-02 14:44 UTC**.
+> Checks for new releases hourly. Archive last updated: **2026-07-04 11:48 UTC**.
 
 ![Phistory prompt diff viewer](docs/screenshot.png)
 
@@ -36,7 +36,7 @@ Use the hosted viewer at [phistory.cc](https://phistory.cc/). These commands are
 uv sync --all-groups
 
 # Capture the latest supported CLI releases.
-uv run phistory capture --latest --agents claude-code,codex,antigravity,kimi-code,mimo,openclaw,hermes,kimi,opencode,pi
+uv run phistory capture --latest --agents claude-code,codex,antigravity,kimi-code,mimo,openclaw,hermes,kimi,opencode,pi,omp
 
 # Capture a historical version range for one agent.
 uv run phistory backfill claude-code --from 2.1.113 --to latest
@@ -63,10 +63,11 @@ uv run phistory render-site
 - Kimi CLI (`MoonshotAI/kimi-cli`)
 - opencode (`opencode-ai`)
 - Pi (`@earendil-works/pi-coding-agent`)
+- Oh My Pi (`@oh-my-pi/pi-coding-agent`)
 
 ## Capture Status
 
-Last capture update: 2026-07-02 14:44 UTC
+Last capture update: 2026-07-04 11:48 UTC
 
 | Agent | Latest | Captures | Last Captured |
 | --- | --- | ---: | --- |
@@ -80,6 +81,7 @@ Last capture update: 2026-07-02 14:44 UTC
 | Kimi CLI | [1.48.0 - 2026-06-22](captures/kimi/1.48.0/prompt.md) | 20 | 2026-06-22 17:19 UTC |
 | opencode | [1.17.13 - 2026-07-01](captures/opencode/1.17.13/prompt.md) | 79 | 2026-07-01 16:58 UTC |
 | Pi | [0.80.3 - 2026-06-30](captures/pi/0.80.3/prompt.md) | 27 | 2026-06-30 22:01 UTC |
+| Oh My Pi | [16.3.5 - 2026-07-04](captures/omp/16.3.5/prompt.md) | 3 | 2026-07-04 11:48 UTC |
 
 ## Project Trend
 

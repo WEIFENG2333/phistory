@@ -63,6 +63,8 @@ def version_info(agent: AgentSpec, version: str) -> VersionInfo:
 
 
 def install_agent(agent: AgentSpec, version: str, install_dir: Path) -> Path:
+    if agent.binary_release_repo:
+        return _install_binary_release(agent, version, install_dir)
     if agent.source == "npm":
         return _install_npm(agent, version, install_dir)
     if agent.source == "pypi":
@@ -118,7 +120,37 @@ def _install_npm(agent: AgentSpec, version: str, install_dir: Path) -> Path:
     if not bin_dir.exists():
         raise RuntimeError(f"npm install did not create bin dir: {bin_dir}")
     if agent.node_runtime:
-        _wrap_node_bin(bin_dir / agent_executable(agent), agent.node_runtime)
+        _wrap_runtime_bin(bin_dir / agent_executable(agent), agent.node_runtime, "NODE")
+    return bin_dir
+
+
+def _install_binary_release(agent: AgentSpec, version: str, install_dir: Path) -> Path:
+    if not agent.binary_release_asset:
+        raise RuntimeError(f"{agent.id} defines binary_release_repo without binary_release_asset")
+    bin_dir = install_dir / "bin"
+    executable = bin_dir / agent_executable(agent)
+    if executable.exists():
+        return bin_dir
+    if install_dir.exists():
+        shutil.rmtree(install_dir)
+    bin_dir.mkdir(parents=True, exist_ok=True)
+    tag = agent.binary_release_tag.format(version=version)
+    release = _github_release_by_tag(agent.binary_release_repo, tag)
+    expected = agent.binary_release_asset.format(version=version)
+    assets = release.get("assets")
+    if not isinstance(assets, list):
+        raise RuntimeError(f"GitHub release without assets for {agent.binary_release_repo}@{tag}: {release!r}")
+    asset = next((item for item in assets if isinstance(item, dict) and item.get("name") == expected), None)
+    if not isinstance(asset, dict):
+        available = ", ".join(str(item.get("name")) for item in assets if isinstance(item, dict))
+        raise RuntimeError(
+            f"asset {expected!r} not found for {agent.binary_release_repo}@{tag}; available: {available}"
+        )
+    url = asset.get("browser_download_url")
+    if not url:
+        raise RuntimeError(f"GitHub release asset missing download URL: {asset!r}")
+    _download(str(url), executable)
+    executable.chmod(executable.stat().st_mode | 0o755)
     return bin_dir
 
 
@@ -468,11 +500,16 @@ def _is_archivable_version(version: str, *, include_prerelease: bool) -> bool:
 
 
 def _wrap_node_bin(executable: Path, node_runtime: str) -> None:
+    _wrap_runtime_bin(executable, node_runtime, "NODE")
+
+
+def _wrap_runtime_bin(executable: Path, runtime: str, marker_name: str) -> None:
     if not executable.exists():
         raise RuntimeError(f"cannot wrap missing executable: {executable}")
+    marker = f"PHISTORY_{marker_name}_RUNTIME_WRAPPER"
     if not executable.is_symlink():
         try:
-            if "PHISTORY_NODE_RUNTIME_WRAPPER" in executable.read_text(encoding="utf-8", errors="ignore"):
+            if marker in executable.read_text(encoding="utf-8", errors="ignore"):
                 return
         except OSError:
             pass
@@ -484,7 +521,7 @@ def _wrap_node_bin(executable: Path, node_runtime: str) -> None:
         if not real_executable.exists():
             executable.rename(real_executable)
     executable.write_text(
-        f'#!/bin/sh\n# PHISTORY_NODE_RUNTIME_WRAPPER\nexec npx -y "{node_runtime}" "{real_executable}" "$@"\n',
+        f'#!/bin/sh\n# {marker}\nexec npx -y "{runtime}" "{real_executable}" "$@"\n',
         encoding="utf-8",
     )
     executable.chmod(executable.stat().st_mode | 0o755)

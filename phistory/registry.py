@@ -276,9 +276,40 @@ PI = AgentSpec(
     ),
 )
 
+OMP = AgentSpec(
+    id="omp",
+    display_name="Oh My Pi",
+    package="@oh-my-pi/pi-coding-agent",
+    tap_client="omp",
+    executable="omp",
+    fake_env={"OPENAI_API_KEY": "phistory-fake-api-key"},
+    extra_env={
+        "DISABLE_AUTOUPDATER": "1",
+        "DISABLE_UPDATES": "1",
+        "CI": "1",
+    },
+    binary_release_repo="can1357/oh-my-pi",
+    binary_release_asset="omp-linux-x64",
+    binary_release_tag="v{version}",
+    home_profile="omp",
+    run_args=(
+        "--no-yolo",
+        "--",
+        "--print",
+        "--mode",
+        "text",
+        "--no-session",
+        "--approval-mode",
+        "yolo",
+        "--model",
+        "phistory/gpt-4.1",
+        "Reply with one short sentence.",
+    ),
+)
+
 AGENTS: dict[str, AgentSpec] = {
     agent.id: agent
-    for agent in (CLAUDE_CODE, CODEX, ANTIGRAVITY, KIMI_CODE, MIMO, OPENCLAW, HERMES, KIMI, OPENCODE, PI)
+    for agent in (CLAUDE_CODE, CODEX, ANTIGRAVITY, KIMI_CODE, MIMO, OPENCLAW, HERMES, KIMI, OPENCODE, PI, OMP)
 }
 AGENT_ORDER = tuple(AGENTS)
 

@@ -249,6 +249,37 @@ def test_github_headers_can_skip_auth(monkeypatch):
     assert "Authorization" not in _github_headers(use_auth=False)
 
 
+def test_npm_agent_can_install_from_binary_release(monkeypatch, tmp_path):
+    agent = AgentSpec(
+        id="omp",
+        display_name="Oh My Pi",
+        package="@oh-my-pi/pi-coding-agent",
+        tap_client="omp",
+        executable="omp",
+        fake_env={},
+        run_args=(),
+        binary_release_repo="can1357/oh-my-pi",
+        binary_release_asset="omp-linux-x64",
+        binary_release_tag="v{version}",
+    )
+
+    monkeypatch.setattr(
+        "phistory.packages._github_release_by_tag",
+        lambda repo, tag: {
+            "tag_name": tag,
+            "assets": [{"name": "omp-linux-x64", "browser_download_url": f"https://example.invalid/{repo}/{tag}/omp"}],
+        },
+    )
+    monkeypatch.setattr("phistory.packages._download", lambda _url, output: output.write_text("#!/bin/sh\nexit 0\n"))
+
+    bin_dir = install_agent(agent, "16.3.5", tmp_path / "install")
+
+    executable = bin_dir / "omp"
+    assert executable.exists()
+    assert executable.read_text(encoding="utf-8") == "#!/bin/sh\nexit 0\n"
+    assert executable.stat().st_mode & 0o111
+
+
 def test_iter_backfill_can_walk_newest_first(monkeypatch, tmp_path):
     agent = AgentSpec(
         id="x",

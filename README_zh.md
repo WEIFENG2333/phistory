@@ -2,13 +2,13 @@
 
 [English](README.md)
 
-Phistory 追踪 Claude Code、Codex、Antigravity、Kimi Code、MiMo Code、OpenClaw、Hermes、Kimi CLI、opencode、Pi 等热门 coding-agent CLI 的系统提示词如何随版本变化。
+Phistory 追踪 Claude Code、Codex、Antigravity、Kimi Code、MiMo Code、OpenClaw、Hermes、Kimi CLI、opencode、Pi、Oh My Pi 等热门 coding-agent CLI 的系统提示词如何随版本变化。
 
 打开网页查看器，可以对比不同版本的提示词快照，从 prompts、tools、策略和运行时指令里观察 agent 设计如何变化。
 
 **从这里开始：** [phistory.cc](https://phistory.cc/)
 
-> 每小时自动检查新版本，归档最近更新于 **2026-07-02 14:44 UTC**。
+> 每小时自动检查新版本，归档最近更新于 **2026-07-04 11:48 UTC**。
 
 ![Phistory prompt diff viewer](docs/screenshot.png)
 
@@ -36,7 +36,7 @@ GitHub Actions 每小时检查一次支持的 CLI 版本；发现新版本后，
 uv sync --all-groups
 
 # 抓取所有受支持 CLI 的最新版本。
-uv run phistory capture --latest --agents claude-code,codex,antigravity,kimi-code,mimo,openclaw,hermes,kimi,opencode,pi
+uv run phistory capture --latest --agents claude-code,codex,antigravity,kimi-code,mimo,openclaw,hermes,kimi,opencode,pi,omp
 
 # 回填某个 agent 的历史版本区间。
 uv run phistory backfill claude-code --from 2.1.113 --to latest
@@ -63,10 +63,11 @@ uv run phistory render-site
 - Kimi CLI (`MoonshotAI/kimi-cli`)
 - opencode (`opencode-ai`)
 - Pi (`@earendil-works/pi-coding-agent`)
+- Oh My Pi (`@oh-my-pi/pi-coding-agent`)
 
 ## 抓取状态
 
-最近抓取更新：2026-07-02 14:44 UTC
+最近抓取更新：2026-07-04 11:48 UTC
 
 | Agent | 最新版本 | 快照数 | 最近抓取 |
 | --- | --- | ---: | --- |
@@ -80,6 +81,7 @@ uv run phistory render-site
 | Kimi CLI | [1.48.0 - 2026-06-22](captures/kimi/1.48.0/prompt.md) | 20 | 2026-06-22 17:19 UTC |
 | opencode | [1.17.13 - 2026-07-01](captures/opencode/1.17.13/prompt.md) | 79 | 2026-07-01 16:58 UTC |
 | Pi | [0.80.3 - 2026-06-30](captures/pi/0.80.3/prompt.md) | 27 | 2026-06-30 22:01 UTC |
+| Oh My Pi | [16.3.5 - 2026-07-04](captures/omp/16.3.5/prompt.md) | 3 | 2026-07-04 11:48 UTC |
 
 ## 项目趋势
 

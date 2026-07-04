@@ -1,7 +1,7 @@
 {
-  "description": "Phistory automatically archives versioned system prompt snapshots from agent CLIs like Claude Code, Codex, Antigravity, Kimi Code, MiMo Code, OpenClaw, Hermes, Kimi CLI, opencode, and Pi.",
+  "description": "Phistory automatically archives versioned system prompt snapshots from agent CLIs like Claude Code, Codex, Antigravity, Kimi Code, MiMo Code, OpenClaw, Hermes, Kimi CLI, opencode, Pi, and Oh My Pi.",
   "site": "https://phistory.cc/",
-  "updated_at": "2026-07-02T14:44:15.758061Z",
+  "updated_at": "2026-07-04T11:48:13.569942Z",
   "agents": [
     {
       "agent_id": "claude-code",
@@ -82,6 +82,14 @@
       "latest_published_at": "2026-06-30T20:34:24.217Z",
       "latest_captured_at": "2026-06-30T22:01:43.772411+00:00",
       "captures": 27
+    },
+    {
+      "agent_id": "omp",
+      "agent": "Oh My Pi",
+      "latest_version": "16.3.5",
+      "latest_published_at": "2026-07-04T03:43:19.316Z",
+      "latest_captured_at": "2026-07-04T11:48:13.569942+00:00",
+      "captures": 3
     }
   ],
   "captures": [
@@ -1814,6 +1822,36 @@
       "prompt": "captures/openclaw/2026.1.29/prompt.md",
       "trace": "captures/openclaw/2026.1.29/trace.jsonl",
       "meta": "captures/openclaw/2026.1.29/meta.json"
+    },
+    {
+      "agent_id": "omp",
+      "agent": "Oh My Pi",
+      "version": "16.3.5",
+      "published_at": "2026-07-04T03:43:19.316Z",
+      "captured_at": "2026-07-04T11:48:13.569942+00:00",
+      "prompt": "captures/omp/16.3.5/prompt.md",
+      "trace": "captures/omp/16.3.5/trace.jsonl",
+      "meta": "captures/omp/16.3.5/meta.json"
+    },
+    {
+      "agent_id": "omp",
+      "agent": "Oh My Pi",
+      "version": "16.3.4",
+      "published_at": "2026-07-03T04:57:41.907Z",
+      "captured_at": "2026-07-04T11:43:28.586893+00:00",
+      "prompt": "captures/omp/16.3.4/prompt.md",
+      "trace": "captures/omp/16.3.4/trace.jsonl",
+      "meta": "captures/omp/16.3.4/meta.json"
+    },
+    {
+      "agent_id": "omp",
+      "agent": "Oh My Pi",
+      "version": "16.3.3",
+      "published_at": "2026-07-02T23:17:48.898Z",
+      "captured_at": "2026-07-04T11:42:13.189122+00:00",
+      "prompt": "captures/omp/16.3.3/prompt.md",
+      "trace": "captures/omp/16.3.3/trace.jsonl",
+      "meta": "captures/omp/16.3.3/meta.json"
     },
     {
       "agent_id": "mimo",

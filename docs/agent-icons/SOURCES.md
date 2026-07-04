@@ -14,6 +14,7 @@ Phistory uses compact local copies of product-level visual assets for the agent 
 | OpenClaw | `openclaw.png` | OpenClaw product site apple-touch-icon from `https://openclaw.ai/`: `https://openclaw.ai/apple-touch-icon.png` |
 | opencode | `opencode.png` | opencode product site apple-touch-icon from `https://opencode.ai/`: `https://opencode.ai/apple-touch-icon-v3.png` |
 | Pi | `pi.png` | Pi Coding Agent product site favicon from `https://pi.dev/`: `https://pi.dev/favicon.svg` |
+| Oh My Pi | `omp.svg` | Official Oh My Pi repo icon from `https://github.com/can1357/oh-my-pi`: `https://raw.githubusercontent.com/can1357/oh-my-pi/main/assets/icon.svg` |
 
 Additional assets inspected:
 
@@ -23,4 +24,5 @@ Additional assets inspected:
 - OpenClaw alternate domain: `https://www.openclaw.org/`
 - Kimi and Moonshot pages: `https://www.kimi.com/`, `https://www.moonshot.ai`
 - opencode and Pi product pages: `https://opencode.ai/`, `https://pi.dev/`
+- Oh My Pi product site and repo: `https://omp.sh/`, `https://github.com/can1357/oh-my-pi`
 - Google Antigravity product and press pages: `https://antigravity.google/`, `https://antigravity.google/press`

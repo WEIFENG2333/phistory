@@ -47,7 +47,7 @@ Phistory does not call the real model provider when exporting prompts. It relies
 Typical latest capture:
 
 ```bash
-uv run phistory capture --latest --agents claude-code,codex,antigravity,kimi-code,mimo,openclaw,hermes,kimi,opencode,pi
+uv run phistory capture --latest --agents claude-code,codex,antigravity,kimi-code,mimo,openclaw,hermes,kimi,opencode,pi,omp
 ```
 
 For each agent/version, the flow is:
@@ -79,6 +79,7 @@ Current agents are defined in `phistory/registry.py`:
 - `kimi`: GitHub release source `MoonshotAI/kimi-cli`, tap client `kimi`, isolated Kimi TOML config.
 - `opencode`: npm package `opencode-ai`, tap client `opencode`, reverse tap mode so opencode can fetch its model registry while the model request is redirected locally.
 - `pi`: npm package `@earendil-works/pi-coding-agent`, tap client `pi`, isolated Pi provider config.
+- `omp`: npm package `@oh-my-pi/pi-coding-agent` for version discovery, official `can1357/oh-my-pi` release binary for installation, tap client `omp`, isolated Oh My Pi provider config.
 
 When adding another CLI, prefer extending the existing abstractions:
 
@@ -111,7 +112,7 @@ uv run pytest
 For capture-affecting changes, also run a local latest smoke:
 
 ```bash
-uv run phistory --root /tmp/phistory-smoke --cache-dir /tmp/phistory-smoke-cache capture --latest --agents claude-code,codex,antigravity,kimi-code,mimo,openclaw,hermes,kimi,opencode,pi --force
+uv run phistory --root /tmp/phistory-smoke --cache-dir /tmp/phistory-smoke-cache capture --latest --agents claude-code,codex,antigravity,kimi-code,mimo,openclaw,hermes,kimi,opencode,pi,omp --force
 ```
 
 For generated artifacts:

@@ -7,9 +7,7 @@ requires-python = ">=3.11"
 license = "MIT"
 authors = [{ name = "WEIFENG2333" }]
 dependencies = [
-    "claude-tap>=0.1.124,<0.2",
-    # Development fallback for unreleased claude-tap changes:
-    # "claude-tap @ git+https://github.com/WEIFENG2333/claude-tap.git@upstream-prompt-export",
+    "claude-tap @ git+https://github.com/WEIFENG2333/claude-tap.git@main",
     "tree-sitter>=0.25.2",
     "tree-sitter-javascript>=0.25.0",
 ]

@@ -13,6 +13,7 @@ def test_parse_default_agents():
         "kimi",
         "opencode",
         "pi",
+        "omp",
     ]
 
 
@@ -42,6 +43,7 @@ def test_new_agents_define_install_and_capture_profiles():
     kimi = get_agent("kimi")
     opencode = get_agent("opencode")
     pi = get_agent("pi")
+    omp = get_agent("omp")
 
     assert antigravity.source == "github-release-asset"
     assert antigravity.package == "google-antigravity/antigravity-cli"
@@ -96,3 +98,13 @@ def test_new_agents_define_install_and_capture_profiles():
     assert pi.package == "@earendil-works/pi-coding-agent"
     assert pi.home_profile == "pi"
     assert pi.node_runtime is None
+
+    assert omp.source == "npm"
+    assert omp.package == "@oh-my-pi/pi-coding-agent"
+    assert omp.tap_client == "omp"
+    assert omp.executable == "omp"
+    assert omp.home_profile == "omp"
+    assert omp.binary_release_repo == "can1357/oh-my-pi"
+    assert omp.binary_release_asset == "omp-linux-x64"
+    assert omp.binary_release_tag == "v{version}"
+    assert "--print" in omp.run_args

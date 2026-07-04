@@ -170,6 +170,8 @@ def _capture_env(target: CaptureTarget, bin_dir: Path, home_dir: Path | None = N
         _write_kimi_code_config(home)
     if target.agent.home_profile == "mimo":
         _write_mimo_config(home)
+    if target.agent.home_profile == "omp":
+        _write_omp_config(home)
     if target.agent.home_profile == "openclaw":
         _write_openclaw_config(home)
     if target.agent.home_profile == "opencode":
@@ -214,6 +216,8 @@ def _capture_env(target: CaptureTarget, bin_dir: Path, home_dir: Path | None = N
         env["OPENCODE_CONFIG"] = str(home / ".config" / "opencode" / "opencode.json")
     if target.agent.home_profile == "pi":
         env["PI_CODING_AGENT_DIR"] = str(home / ".pi" / "agent")
+    if target.agent.home_profile == "omp":
+        env["PI_CODING_AGENT_DIR"] = str(home / ".omp" / "agent")
     if target.agent.fake_chatgpt_auth:
         env.update({"OPENAI_API_KEY": "", "CODEX_API_KEY": "", "CODEX_ACCESS_TOKEN": ""})
     return env
@@ -250,7 +254,13 @@ def _needs_antigravity_prompt_retry(target: CaptureTarget, result, prompt_path: 
 def _tap_mode_args(target: CaptureTarget) -> list[str]:
     if target.agent.tap_mode == "auto":
         return []
-    return ["--tap-proxy-mode", target.agent.tap_mode]
+    return ["--mode", target.agent.tap_mode]
+
+
+def _tap_yolo_args(target: CaptureTarget) -> list[str]:
+    if target.agent.run_args[:1] == ("--no-yolo",):
+        return ["--no-yolo"]
+    return []
 
 
 def _capture_command(
@@ -260,19 +270,20 @@ def _capture_command(
     *,
     tap_target: str | None = None,
 ) -> list[str]:
-    tap_target_args = ["--tap-target", tap_target] if tap_target else []
+    tap_target_args = ["--target", tap_target] if tap_target else []
     return [
         sys.executable,
         "-m",
         "claude_tap",
-        "--tap-client",
+        "run",
         target.agent.tap_client,
-        "--tap-export-prompt",
+        *_tap_yolo_args(target),
+        "--export-prompt",
         str(prompt_path),
-        "--tap-no-live",
-        "--tap-no-open",
-        "--tap-no-update-check",
-        "--tap-output-dir",
+        "--no-live",
+        "--no-open",
+        "--no-update-check",
+        "--output-dir",
         str(tap_output_dir),
         *_tap_mode_args(target),
         *tap_target_args,
@@ -490,6 +501,33 @@ def _write_pi_config(home: Path) -> None:
     )
 
 
+def _write_omp_config(home: Path) -> None:
+    omp_home = home / ".omp" / "agent"
+    omp_home.mkdir(parents=True, exist_ok=True)
+    models = {
+        "providers": {
+            "phistory": {
+                "api": "openai-responses",
+                "baseUrl": "https://api.openai.com/v1",
+                "apiKey": "phistory-fake-api-key",
+                "models": [
+                    {
+                        "id": "gpt-4.1",
+                        "name": "gpt-4.1",
+                        "contextWindow": 200000,
+                        "maxTokens": 32768,
+                    }
+                ],
+            }
+        }
+    }
+    (omp_home / "models.json").write_text(json.dumps(models, indent=2), encoding="utf-8")
+    (omp_home / "settings.json").write_text(
+        json.dumps({"defaultProvider": "phistory", "defaultModelId": "gpt-4.1"}, indent=2),
+        encoding="utf-8",
+    )
+
+
 def _fake_chatgpt_jwt() -> str:
     header = {"alg": "none", "typ": "JWT"}
     payload = {
@@ -515,8 +553,11 @@ def _binary_version(target: CaptureTarget, bin_dir: Path) -> str | None:
     if not executable.exists():
         return None
     with TemporaryDirectory(prefix="phistory-version-home-") as home_dir:
-        env = _capture_env(target, bin_dir, Path(home_dir))
-        result = run([str(executable), "--version"], env=env, timeout=30, check=False)
+        try:
+            env = _capture_env(target, bin_dir, Path(home_dir))
+            result = run([str(executable), "--version"], env=env, timeout=30, check=False)
+        except Exception:
+            return target.version.version
     text = (result.stdout or result.stderr).strip()
     return text or None
 

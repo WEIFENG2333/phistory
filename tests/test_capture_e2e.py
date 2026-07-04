@@ -3,6 +3,7 @@ import stat
 from pathlib import Path
 
 from phistory.capture import (
+    _binary_version,
     _capture_command,
     _capture_env,
     _needs_antigravity_model_retry,
@@ -182,6 +183,15 @@ def test_capture_env_writes_agent_profile_configs(tmp_path: Path):
         run_args=(),
         home_profile="opencode",
     )
+    omp = AgentSpec(
+        id="omp",
+        display_name="Oh My Pi",
+        package="omp",
+        tap_client="omp",
+        fake_env={},
+        run_args=(),
+        home_profile="omp",
+    )
     pi = AgentSpec(
         id="pi",
         display_name="Pi",
@@ -207,6 +217,7 @@ def test_capture_env_writes_agent_profile_configs(tmp_path: Path):
     opencode_env = _capture_env(
         CaptureTarget(opencode, VersionInfo("1.0.0"), tmp_path), tmp_path / "bin", tmp_path / "op"
     )
+    omp_env = _capture_env(CaptureTarget(omp, VersionInfo("1.0.0"), tmp_path), tmp_path / "bin", tmp_path / "omp")
     pi_env = _capture_env(CaptureTarget(pi, VersionInfo("1.0.0"), tmp_path), tmp_path / "bin", tmp_path / "pi")
 
     agy_token = json.loads(
@@ -219,6 +230,7 @@ def test_capture_env_writes_agent_profile_configs(tmp_path: Path):
     kimi_code_config = (Path(kimi_code_env["KIMI_CODE_HOME"]) / "config.toml").read_text(encoding="utf-8")
     mimo_config = json.loads(Path(mimo_env["MIMOCODE_CONFIG"]).read_text(encoding="utf-8"))
     opencode_config = json.loads(Path(opencode_env["OPENCODE_CONFIG"]).read_text(encoding="utf-8"))
+    omp_models = json.loads((Path(omp_env["PI_CODING_AGENT_DIR"]) / "models.json").read_text(encoding="utf-8"))
     pi_models = json.loads((Path(pi_env["PI_CODING_AGENT_DIR"]) / "models.json").read_text(encoding="utf-8"))
     assert agy_token["auth_method"] == "consumer"
     assert agy_token["token"]["access_token"] == "phistory-fake-access-token"
@@ -230,6 +242,8 @@ def test_capture_env_writes_agent_profile_configs(tmp_path: Path):
     assert mimo_config["model"] == "openai/gpt-4.1"
     assert mimo_env["MIMOCODE_MIMO_ONLY"] == "false"
     assert opencode_config["model"] == "openai/gpt-4.1"
+    assert omp_env["PI_CODING_AGENT_DIR"].endswith(".omp/agent")
+    assert omp_models["providers"]["phistory"]["api"] == "openai-responses"
     assert pi_models["providers"]["phistory"]["api"] == "openai-responses"
 
 
@@ -247,9 +261,35 @@ def test_capture_command_can_use_tap_target(tmp_path: Path):
 
     argv = _capture_command(target, tmp_path / "prompt.md", tmp_path / ".tap", tap_target="http://127.0.0.1:1234")
 
-    assert "--tap-target" in argv
-    assert argv[argv.index("--tap-target") + 1] == "http://127.0.0.1:1234"
+    assert "run" in argv
+    assert "--no-yolo" in argv
+    assert "--target" in argv
+    assert argv[argv.index("--target") + 1] == "http://127.0.0.1:1234"
     assert argv[-2:] == ["--print", "hello"]
+
+
+def test_binary_version_falls_back_to_package_version(tmp_path: Path, monkeypatch):
+    bin_dir = tmp_path / "bin"
+    bin_dir.mkdir()
+    executable = bin_dir / "openclaw"
+    executable.write_text("#!/bin/sh\nsleep 60\n", encoding="utf-8")
+    executable.chmod(executable.stat().st_mode | stat.S_IXUSR)
+
+    def fail_version(*_args, **_kwargs):
+        raise TimeoutError("version timed out")
+
+    monkeypatch.setattr("phistory.capture.run", fail_version)
+    agent = AgentSpec(
+        id="openclaw",
+        display_name="OpenClaw",
+        package="openclaw",
+        tap_client="openclaw",
+        fake_env={},
+        run_args=(),
+    )
+    target = CaptureTarget(agent, VersionInfo("2026.6.11"), tmp_path)
+
+    assert _binary_version(target, bin_dir) == "2026.6.11"
 
 
 def test_antigravity_model_flag_retry_removes_model_value():
