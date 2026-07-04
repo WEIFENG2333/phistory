@@ -10,11 +10,11 @@ Phistory uses compact local copies of product-level visual assets for the agent 
 | Hermes Agent | `hermes.png` | Hermes Agent product site apple-touch-icon from `https://hermes-agent.org/about/`: `https://hermes-agent.org/apple-touch-icon.png` |
 | Kimi CLI | `kimi.png` | Kimi product icon from Moonshot/Kimi site: `https://statics.moonshot.cn/moonshot-ai/assets/static/kimi-icon.ByIGCGon.webp` |
 | Kimi Code | `kimi-code.png` | Kimi/Moonshot product icon reused for Kimi Code from `kimi.png`; Kimi Code official repo: `https://github.com/MoonshotAI/kimi-code` |
-| MiMo Code | `mimo.png` | Cropped from the official MiMo Code README banner in `https://github.com/XiaomiMiMo/MiMo-Code`: `https://raw.githubusercontent.com/XiaomiMiMo/MiMo-Code/main/assets/readme/mimocode-banner.png` |
+| MiMo Code | `mimo.png` | Tightly cropped from the official MiMo Code README banner in `https://github.com/XiaomiMiMo/MiMo-Code` so the mark stays legible at selector size: `https://raw.githubusercontent.com/XiaomiMiMo/MiMo-Code/main/assets/readme/mimocode-banner.png` |
 | OpenClaw | `openclaw.png` | OpenClaw product site apple-touch-icon from `https://openclaw.ai/`: `https://openclaw.ai/apple-touch-icon.png` |
 | opencode | `opencode.png` | opencode product site apple-touch-icon from `https://opencode.ai/`: `https://opencode.ai/apple-touch-icon-v3.png` |
 | Pi | `pi.png` | Pi Coding Agent product site favicon from `https://pi.dev/`: `https://pi.dev/favicon.svg` |
-| Oh My Pi | `omp.svg` | Official Oh My Pi repo icon from `https://github.com/can1357/oh-my-pi`: `https://raw.githubusercontent.com/can1357/oh-my-pi/main/assets/icon.svg` |
+| Oh My Pi | `omp.svg` | Official Oh My Pi repo icon from `https://github.com/can1357/oh-my-pi`, adapted with a dark local background so the white mark remains visible on the site: `https://raw.githubusercontent.com/can1357/oh-my-pi/main/assets/icon.svg` |
 
 Additional assets inspected:
 

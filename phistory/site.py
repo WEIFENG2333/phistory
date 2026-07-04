@@ -257,6 +257,8 @@ _HTML = r"""<!doctype html>
   --control-hover: rgba(255, 255, 255, .075);
   --control-active: rgba(255, 255, 255, .14);
   --menu-active: rgba(255, 255, 255, .11);
+  --icon-bg: rgba(255, 255, 255, .07);
+  --icon-line: rgba(255, 255, 255, .10);
   --focus-line: rgba(255, 255, 255, .34);
   --scrollbar: rgba(255, 255, 255, .22);
   --diffstat-track: rgba(255, 255, 255, .16);
@@ -276,6 +278,8 @@ _HTML = r"""<!doctype html>
   --control-hover: rgba(0, 0, 0, .052);
   --control-active: rgba(0, 0, 0, .095);
   --menu-active: rgba(0, 0, 0, .07);
+  --icon-bg: #fff;
+  --icon-line: rgba(0, 0, 0, .08);
   --focus-line: rgba(0, 0, 0, .30);
   --scrollbar: rgba(0, 0, 0, .22);
   --diffstat-track: rgba(0, 0, 0, .14);
@@ -397,12 +401,22 @@ a:hover { text-decoration: none; }
   transform: rotate(225deg) translate(-1px, -1px);
 }
 .agent-icon {
-  width: 17px;
-  height: 17px;
-  border-radius: 4px;
-  object-fit: cover;
+  width: 21px;
+  height: 21px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   flex: 0 0 auto;
-  background: var(--control-hover);
+  overflow: hidden;
+  background: var(--icon-bg);
+  border: 1px solid var(--icon-line);
+}
+.agent-icon img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
 }
 .version-control {
   width: 100%;
@@ -1201,9 +1215,9 @@ a:hover { text-decoration: none; }
     padding-inline: 10px;
   }
   .agent-icon {
-    width: 19px;
-    height: 19px;
-    border-radius: 5px;
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
   }
   .compare {
     grid-column: 1 / -1;
@@ -1596,7 +1610,7 @@ function renderControls() {
 
 function agentIconHtml(agent) {
   if (!agent.icon) return '';
-  return `<img class="agent-icon" src="${escapeHtml(agent.icon)}" alt="" loading="lazy" decoding="async">`;
+  return `<span class="agent-icon" aria-hidden="true"><img src="${escapeHtml(agent.icon)}" alt="" loading="lazy" decoding="async"></span>`;
 }
 
 function versionLabel(item, latest = false) {
