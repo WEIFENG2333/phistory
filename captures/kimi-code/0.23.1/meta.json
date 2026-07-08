@@ -1,0 +1,40 @@
+{
+  "agent_id": "kimi-code",
+  "agent": "Kimi Code",
+  "package": "@moonshot-ai/kimi-code",
+  "version": "0.23.1",
+  "published_at": "2026-07-07T07:38:33.212Z",
+  "tarball_url": "https://registry.npmjs.org/@moonshot-ai/kimi-code/-/kimi-code-0.23.1.tgz",
+  "binary_version": "0.23.1",
+  "captured_at": "2026-07-08T02:58:19.025331+00:00",
+  "tap_client": "kimi-code",
+  "target": "claude-tap capture-only",
+  "client_exit_code": 0,
+  "duration_seconds": 5.155,
+  "command": [
+    "python",
+    "-m",
+    "claude_tap",
+    "run",
+    "kimi-code",
+    "--no-yolo",
+    "--export-prompt",
+    "prompt.md",
+    "--no-live",
+    "--no-open",
+    "--no-update-check",
+    "--output-dir",
+    ".tap",
+    "--",
+    "--prompt",
+    "Reply with one short sentence.",
+    "--output-format",
+    "text"
+  ],
+  "static_prompts": {
+    "supported": false,
+    "candidates_path": "static-candidates.json",
+    "prompt_path": "static-prompts.md",
+    "json_path": "static-prompts.json"
+  }
+}
