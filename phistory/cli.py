@@ -28,9 +28,6 @@ def build_parser() -> argparse.ArgumentParser:
     capture.add_argument("--agents", default=None, help=f"comma-separated agent ids (default: {','.join(AGENT_ORDER)})")
     capture.add_argument("--force", action="store_true", help="recapture existing versions")
     capture.add_argument("--keep-tap", action="store_true", help="keep raw claude-tap output directories")
-    capture.add_argument(
-        "--allow-failures", action="store_true", help="exit successfully after reporting failed agents"
-    )
     capture.add_argument("--summary-title", default="Capture results", help="GitHub Actions summary title")
 
     fill = sub.add_parser("backfill", help="capture historical package versions")
@@ -84,8 +81,7 @@ def main(argv: list[str] | None = None) -> int:
             force=args.force,
             keep_tap=args.keep_tap,
         )
-        code = _print_results(results, args.summary_title)
-        return 0 if args.allow_failures else code
+        return _print_results(results, args.summary_title)
 
     if args.command == "backfill":
         failed = False

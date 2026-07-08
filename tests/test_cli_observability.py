@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from phistory.cli import _print_results, main
+from phistory.cli import _print_results
 from phistory.models import AgentSpec, CaptureResult
 from phistory.workflow import capture_latest
 
@@ -26,35 +26,6 @@ def test_print_results_writes_github_summary_and_annotations(tmp_path: Path, mon
     assert "`claude-code`" in text
     assert "first line second line" in text
     assert "::error title=claude-code unknown capture failed::first line second line" in capsys.readouterr().err
-
-
-def test_capture_allow_failures_reports_but_exits_zero(tmp_path: Path, monkeypatch):
-    def fake_capture_latest(agent_ids, *, root, cache_dir, force, keep_tap):
-        assert agent_ids == ["claude-code"]
-        assert root == tmp_path / "captures"
-        assert cache_dir == tmp_path / "cache"
-        assert force is True
-        assert keep_tap is False
-        return [CaptureResult("claude-code", "2.1.204", "failed", error="tap failed")]
-
-    monkeypatch.setattr("phistory.cli.capture_latest", fake_capture_latest)
-
-    code = main(
-        [
-            "--root",
-            str(tmp_path / "captures"),
-            "--cache-dir",
-            str(tmp_path / "cache"),
-            "capture",
-            "--latest",
-            "--agents",
-            "claude-code",
-            "--force",
-            "--allow-failures",
-        ]
-    )
-
-    assert code == 0
 
 
 def test_capture_latest_reports_version_lookup_failure(monkeypatch, tmp_path: Path):

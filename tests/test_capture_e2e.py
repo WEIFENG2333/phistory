@@ -3,6 +3,7 @@ import stat
 from pathlib import Path
 
 from phistory.capture import (
+    _antigravity_response,
     _binary_version,
     _capture_command,
     _capture_env,
@@ -61,6 +62,7 @@ def test_sanitize_text_normalizes_volatile_claude_headers():
     text = (
         "x-anthropic-billing-header: cc_version=2.1.146.6c9; cc_entrypoint=sdk-cli; cch=abc123;\n"
         " - OS Version: Linux 6.17.0-1013-azure\n"
+        "Line with trailing whitespace. \t\n"
         "Today's date is 2026-05-21.\n"
         "The current date and time in ISO format is `2026-05-23T07:26:17.532901+00:00`.\n"
         "The current local time is: 2026-06-27T13:47:31+08:00.\n"
@@ -80,6 +82,7 @@ def test_sanitize_text_normalizes_volatile_claude_headers():
     assert _sanitize_text(text, {}) == (
         "x-anthropic-billing-header: cc_version=2.1.146.6c9; cc_entrypoint=sdk-cli; cch=<normalized>;\n"
         " - OS Version: $PHISTORY_OS_VERSION\n"
+        "Line with trailing whitespace.\n"
         "Today's date is $PHISTORY_DATE.\n"
         "The current date and time in ISO format is `$PHISTORY_DATETIME`.\n"
         "The current local time is: $PHISTORY_DATETIME.\n"
@@ -310,6 +313,13 @@ def test_antigravity_model_flag_retry_removes_model_value():
         "--print",
         "hello",
     ]
+
+
+def test_antigravity_fake_model_catalog_includes_executor_placeholder():
+    response = _antigravity_response("/v1internal:fetchAvailableModels")
+
+    assert "MODEL_PLACEHOLDER_M50" in response["models"]
+    assert "MODEL_PLACEHOLDER_M50" in response["agentModelSorts"][0]["groups"][0]["modelIds"]
 
 
 def test_antigravity_no_prompt_retry_only_when_prompt_missing(tmp_path: Path):

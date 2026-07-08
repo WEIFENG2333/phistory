@@ -636,6 +636,7 @@ def _antigravity_response(path: str) -> dict[str, Any]:
 _ANTIGRAVITY_MODEL_IDS = (
     "MODEL_GOOGLE_GEMINI_2_5_FLASH",
     "MODEL_GOOGLE_GEMINI_2_5_FLASH_LITE",
+    "MODEL_PLACEHOLDER_M50",
 )
 
 
@@ -665,6 +666,7 @@ def _sanitize_text(text: str, replacements: dict[str, str]) -> str:
     text = _replace_many(text, replacements)
     for pattern, replacement in _VOLATILE_TEXT_PATTERNS:
         text = pattern.sub(replacement, text)
+    text = re.sub(r"[ \t]+$", "", text, flags=re.MULTILINE)
     text = re.sub(r"\n{3,}(```json)", r"\n\n\1", text)
     return text
 
