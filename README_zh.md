@@ -8,7 +8,7 @@ Phistory 追踪 Claude Code、Codex、Antigravity、Kimi Code、MiMo Code、Open
 
 **从这里开始：** [phistory.cc](https://phistory.cc/)
 
-> 每小时自动检查新版本，归档最近更新于 **2026-07-04 11:48 UTC**。
+> 每小时自动检查新版本，归档最近更新于 **2026-07-08 02:48 UTC**。
 
 ![Phistory prompt diff viewer](docs/screenshot.png)
 
@@ -67,11 +67,11 @@ uv run phistory render-site
 
 ## 抓取状态
 
-最近抓取更新：2026-07-04 11:48 UTC
+最近抓取更新：2026-07-08 02:48 UTC
 
 | Agent | 最新版本 | 快照数 | 最近抓取 |
 | --- | --- | ---: | --- |
-| Claude Code | [2.1.198 - 2026-07-01](captures/claude-code/2.1.198/prompt.md) | 355 | 2026-07-01 22:07 UTC |
+| Claude Code | [2.1.204 - 2026-07-08](captures/claude-code/2.1.204/prompt.md) | 361 | 2026-07-08 02:40 UTC |
 | Codex CLI | [0.142.5 - 2026-07-01](captures/codex/0.142.5/prompt.md) | 62 | 2026-07-01 05:10 UTC |
 | Antigravity CLI | [1.0.15 - 2026-07-01](captures/antigravity/1.0.15/prompt.md) | 12 | 2026-07-01 23:54 UTC |
 | Kimi Code | [0.22.1 - 2026-07-02](captures/kimi-code/0.22.1/prompt.md) | 36 | 2026-07-02 14:44 UTC |

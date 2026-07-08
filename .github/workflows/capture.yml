@@ -11,6 +11,8 @@ permissions:
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
   GH_TOKEN: ${{ github.token }}
+  REQUIRED_AGENTS: claude-code,codex,kimi-code,mimo,openclaw,hermes,kimi,opencode,pi,omp
+  OPTIONAL_AGENTS: antigravity
 
 jobs:
   capture:
@@ -26,14 +28,16 @@ jobs:
       - run: uv run ruff check phistory tests
       - run: uv run pytest
       - run: uv build
-      - run: uv run phistory --root /tmp/phistory-smoke --cache-dir /tmp/phistory-smoke-cache capture --latest --agents claude-code,codex,antigravity,kimi-code,mimo,openclaw,hermes,kimi,opencode,pi,omp --force --summary-title "Smoke capture"
+      - run: uv run phistory --root /tmp/phistory-smoke --cache-dir /tmp/phistory-smoke-cache capture --latest --agents "$REQUIRED_AGENTS" --force --summary-title "Smoke capture"
+      - run: uv run phistory --root /tmp/phistory-smoke --cache-dir /tmp/phistory-smoke-cache capture --latest --agents "$OPTIONAL_AGENTS" --force --allow-failures --summary-title "Optional smoke capture"
       - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: smoke-captures
           path: /tmp/phistory-smoke
           retention-days: 7
-      - run: uv run phistory capture --latest --agents claude-code,codex,antigravity,kimi-code,mimo,openclaw,hermes,kimi,opencode,pi,omp --summary-title "Latest capture"
+      - run: uv run phistory capture --latest --agents "$REQUIRED_AGENTS" --summary-title "Latest capture"
+      - run: uv run phistory capture --latest --agents "$OPTIONAL_AGENTS" --allow-failures --summary-title "Optional latest capture"
       - run: uv run phistory extract-static claude-code --latest-captured 10
       - run: uv run phistory render-index
       - run: uv run phistory render-site
