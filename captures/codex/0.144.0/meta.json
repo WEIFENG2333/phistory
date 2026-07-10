@@ -6,11 +6,11 @@
   "published_at": "2026-07-09T16:50:26.998Z",
   "tarball_url": "https://registry.npmjs.org/@openai/codex/-/codex-0.144.0.tgz",
   "binary_version": "codex-cli 0.144.0",
-  "captured_at": "2026-07-09T18:23:01.749431+00:00",
+  "captured_at": "2026-07-10T06:22:49.968494+00:00",
   "tap_client": "codex",
   "target": "claude-tap capture-only",
   "client_exit_code": 0,
-  "duration_seconds": 10.721,
+  "duration_seconds": 9.085,
   "command": [
     "python",
     "-m",
