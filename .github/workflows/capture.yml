@@ -3,7 +3,7 @@ name: Capture prompts
 on:
   workflow_dispatch:
   schedule:
-    - cron: "37 */2 * * *"
+    - cron: "37 * * * *"
 
 permissions:
   contents: write
@@ -27,14 +27,14 @@ jobs:
       - run: uv run ruff check phistory tests
       - run: uv run pytest
       - run: uv build
-      - run: uv run phistory --root /tmp/phistory-smoke --cache-dir /tmp/phistory-smoke-cache capture --latest --agents "$CAPTURE_AGENTS" --force --summary-title "Smoke capture"
-      - uses: actions/upload-artifact@v7
-        if: always()
-        with:
-          name: smoke-captures
-          path: /tmp/phistory-smoke
-          retention-days: 7
-      - run: uv run phistory capture --latest --agents "$CAPTURE_AGENTS" --summary-title "Latest capture"
+      - name: Capture latest prompts
+        id: latest
+        run: |
+          set +e
+          uv run phistory capture --latest --agents "$CAPTURE_AGENTS" --summary-title "Latest capture"
+          status=$?
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          exit 0
       - run: uv run phistory extract-static claude-code --latest-captured 10
       - run: uv run phistory render-index
       - run: uv run phistory render-site
@@ -49,3 +49,17 @@ jobs:
           git add README.md README_zh.md index.html docs captures
           git commit -m "Capture latest prompt snapshots"
           git push
+      - name: Smoke capture
+        if: github.event_name == 'workflow_dispatch'
+        run: uv run phistory --root /tmp/phistory-smoke --cache-dir /tmp/phistory-smoke-cache capture --latest --agents "$CAPTURE_AGENTS" --force --summary-title "Smoke capture"
+      - uses: actions/upload-artifact@v7
+        if: github.event_name == 'workflow_dispatch' && always()
+        with:
+          name: smoke-captures
+          path: /tmp/phistory-smoke
+          retention-days: 7
+      - name: Report capture failures
+        if: always() && steps.latest.outputs.status != '0'
+        run: |
+          echo "One or more latest captures failed; successful captures were committed above."
+          exit 1
