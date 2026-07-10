@@ -2151,7 +2151,7 @@ function normalizeMessages(provider, body) {
 
 function normalizeTools(body) {
   const tools = [];
-  for (const tool of Array.isArray(body.tools) ? body.tools : []) {
+  for (const tool of traceToolItems(body)) {
     if (!tool || typeof tool !== 'object') continue;
     const declarations = tool.functionDeclarations || tool.function_declarations;
     if (Array.isArray(declarations)) {
@@ -2182,6 +2182,16 @@ function normalizeTools(body) {
   const declarations = body.tools?.functionDeclarations || body.tool_config?.function_declarations;
   if (Array.isArray(declarations)) {
     tools.push(...toolDeclarations(declarations));
+  }
+  return tools;
+}
+
+function traceToolItems(body) {
+  const tools = Array.isArray(body.tools) ? [...body.tools] : [];
+  for (const item of messageItems(body.input)) {
+    if (item.type === 'additional_tools' && Array.isArray(item.tools)) {
+      tools.push(...item.tools);
+    }
   }
   return tools;
 }

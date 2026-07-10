@@ -191,6 +191,8 @@ def test_render_site_writes_static_html_manifest(tmp_path: Path):
     assert "Trace detail" in text
     assert "Raw Request Body" in text
     assert "toolDeclarations" in text
+    assert "traceToolItems" in text
+    assert "item.type === 'additional_tools'" in text
     assert "schemaParameters" in text
     assert "trace-jumpbar" in text
     assert '"published_display":"2026-05-22 00:00 UTC"' in text
