@@ -261,6 +261,8 @@ _HTML = r"""<!doctype html>
   --icon-line: rgba(255, 255, 255, .10);
   --focus-line: rgba(255, 255, 255, .34);
   --scrollbar: rgba(255, 255, 255, .22);
+  --loading-scrim: rgba(30, 30, 30, .82);
+  --loading-surface: rgba(42, 42, 44, .96);
   --diffstat-track: rgba(255, 255, 255, .16);
   --diffstat-add: #3fb950;
   --diffstat-remove: #f85149;
@@ -282,6 +284,8 @@ _HTML = r"""<!doctype html>
   --icon-line: rgba(0, 0, 0, .08);
   --focus-line: rgba(0, 0, 0, .30);
   --scrollbar: rgba(0, 0, 0, .22);
+  --loading-scrim: rgba(245, 245, 243, .84);
+  --loading-surface: rgba(255, 255, 255, .97);
   --diffstat-track: rgba(0, 0, 0, .14);
   --diffstat-add: #1f883d;
   --diffstat-remove: #cf222e;
@@ -529,6 +533,69 @@ a:hover { text-decoration: none; }
   position: relative;
   touch-action: pan-y;
   overscroll-behavior: contain;
+}
+.loading-state {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: var(--loading-scrim);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .14s ease, visibility 0s linear .14s;
+}
+.loading-state.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: 0s;
+}
+.loading-card {
+  min-width: 250px;
+  max-width: min(360px, 100%);
+  padding: 14px 16px;
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--loading-surface);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, .18);
+}
+.loading-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--line);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: loading-spin .75s linear infinite;
+}
+.loading-copy {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+.loading-copy strong {
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.2;
+}
+.loading-copy small {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+@keyframes loading-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .loading-state { transition: none; }
+  .loading-spinner { animation: none; }
 }
 #diff { position: absolute; inset: 0; }
 .shell[data-view="static"] #diff {
@@ -1058,7 +1125,7 @@ a:hover { text-decoration: none; }
 .empty { padding: 22px; color: var(--muted); }
 .popover {
   position: fixed;
-  z-index: 20;
+  z-index: 40;
   --popover-max-height: min(420px, calc(100vh - 24px));
   max-height: var(--popover-max-height);
   background: var(--popover);
@@ -1260,6 +1327,12 @@ a:hover { text-decoration: none; }
     font-size: 13px;
   }
   .actions { grid-column: 2; grid-row: 1; }
+  .loading-state { padding: 14px; }
+  .loading-card {
+    width: min(100%, 320px);
+    min-width: 0;
+    padding: 13px 14px;
+  }
   .shell[data-view="trace"] .compare {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -1403,6 +1476,12 @@ a:hover { text-decoration: none; }
     <div id="diff"><div class="empty">Loading diff viewer...</div></div>
     <div id="static-outline" class="static-outline"></div>
     <div id="trace" class="trace-view"><div class="empty">Loading trace detail...</div></div>
+    <div id="loading-state" class="loading-state" role="status" aria-live="polite" aria-atomic="true" aria-hidden="true">
+      <div class="loading-card">
+        <span class="loading-spinner" aria-hidden="true"></span>
+        <span class="loading-copy"><strong id="loading-title">Loading...</strong><small id="loading-detail"></small></span>
+      </div>
+    </div>
   </main>
 </div>
 <div id="popover" class="popover">
@@ -1426,8 +1505,12 @@ const els = {
   viewToggle: document.getElementById('view-toggle'),
   theme: document.getElementById('theme'),
   diff: document.getElementById('diff'),
+  editor: document.querySelector('.editor'),
   staticOutline: document.getElementById('static-outline'),
   trace: document.getElementById('trace'),
+  loading: document.getElementById('loading-state'),
+  loadingTitle: document.getElementById('loading-title'),
+  loadingDetail: document.getElementById('loading-detail'),
   popover: document.getElementById('popover'),
   options: document.getElementById('options')
 };
@@ -1459,7 +1542,9 @@ const state = {
   traceOpenTools: new Set(),
   traceRawSections: new Set(),
   editor: null,
-  monaco: null
+  monaco: null,
+  monacoPromise: null,
+  renderSequence: 0
 };
 
 boot();
@@ -1746,17 +1831,56 @@ function refresh() {
 }
 
 function refreshView() {
-  if (state.view === 'trace') {
-    snapshotTraceState();
-    renderTrace().catch(showError);
-    return;
+  const sequence = ++state.renderSequence;
+  showLoading();
+  renderView(sequence);
+}
+
+async function renderView(sequence) {
+  try {
+    if (state.view === 'trace') {
+      snapshotTraceState();
+      await renderTrace(sequence);
+      return;
+    }
+    await loadMonaco();
+    if (!isCurrentRender(sequence)) return;
+    if (state.view === 'static') {
+      await renderStatic(sequence);
+      return;
+    }
+    els.staticOutline.innerHTML = '';
+    await renderDiff(sequence);
+  } catch (error) {
+    if (isCurrentRender(sequence)) showError(error);
+  } finally {
+    if (isCurrentRender(sequence)) hideLoading();
   }
-  if (state.view === 'static') {
-    loadMonaco().then(renderStatic).catch(showError);
-    return;
-  }
-  els.staticOutline.innerHTML = '';
-  loadMonaco().then(renderDiff).catch(showError);
+}
+
+function isCurrentRender(sequence) {
+  return sequence === state.renderSequence;
+}
+
+function showLoading() {
+  const agent = currentAgent();
+  const range = state.view === 'trace' ? state.to : `${state.from} → ${state.to}`;
+  const titles = {
+    diff: 'Loading comparison...',
+    trace: 'Loading trace...',
+    static: 'Loading static prompts...'
+  };
+  els.loadingTitle.textContent = titles[state.view] || 'Loading...';
+  els.loadingDetail.textContent = `${agent.name} · ${range}`;
+  els.loading.classList.add('is-visible');
+  els.loading.setAttribute('aria-hidden', 'false');
+  els.editor.setAttribute('aria-busy', 'true');
+}
+
+function hideLoading() {
+  els.loading.classList.remove('is-visible');
+  els.loading.setAttribute('aria-hidden', 'true');
+  els.editor.removeAttribute('aria-busy');
 }
 
 function toggleView() {
@@ -1849,7 +1973,9 @@ function pruneTraceStates(all) {
 }
 
 function loadMonaco() {
-  return new Promise((resolve, reject) => {
+  if (state.monaco) return Promise.resolve(state.monaco);
+  if (state.monacoPromise) return state.monacoPromise;
+  state.monacoPromise = new Promise((resolve, reject) => {
     if (!window.require) {
       reject(new Error('Monaco loader did not load.'));
       return;
@@ -1861,12 +1987,18 @@ function loadMonaco() {
       resolve();
     }, reject);
   });
+  state.monacoPromise = state.monacoPromise.catch(error => {
+    state.monacoPromise = null;
+    throw error;
+  });
+  return state.monacoPromise;
 }
 
-async function renderDiff() {
+async function renderDiff(sequence) {
   if (!state.monaco) return;
   const [from, to] = [versionInfo(state.from), versionInfo(state.to)];
   const [original, modified] = await Promise.all([loadPrompt(from), loadPrompt(to)]);
+  if (!isCurrentRender(sequence)) return;
   renderMonacoDiff(original, modified);
 }
 
@@ -1994,9 +2126,10 @@ function fallbackAssetVersion(item) {
   return [item.agent_id, item.version, item.published_compact, item.captured_display].filter(Boolean).join('-');
 }
 
-async function renderTrace() {
+async function renderTrace(sequence) {
   const item = versionInfo(state.to);
   const records = await loadTrace(item);
+  if (!isCurrentRender(sequence)) return;
   const selected = selectMainTraceRecord(records);
   if (!selected) {
     els.trace.innerHTML = '<div class="empty">No prompt-bearing trace request found.</div>';
@@ -2008,7 +2141,7 @@ async function renderTrace() {
   restoreTraceState();
 }
 
-async function renderStatic() {
+async function renderStatic(sequence) {
   const [from, to] = [versionInfo(state.from), versionInfo(state.to)];
   if (!from.static_prompts || !to.static_prompts) {
     disposeEditor();
@@ -2018,6 +2151,7 @@ async function renderStatic() {
     return;
   }
   const [original, modified] = await Promise.all([loadStaticPrompts(from), loadStaticPrompts(to)]);
+  if (!isCurrentRender(sequence)) return;
   const originalBody = staticPromptBodyMarkdown(original);
   const modifiedBody = staticPromptBodyMarkdown(modified);
   state.staticOutline = buildStaticOutline(originalBody, modifiedBody);

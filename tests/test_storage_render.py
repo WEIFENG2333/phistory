@@ -195,6 +195,10 @@ def test_render_site_writes_static_html_manifest(tmp_path: Path):
     assert "item.type === 'additional_tools'" in text
     assert "schemaParameters" in text
     assert "trace-jumpbar" in text
+    assert 'id="loading-state"' in text
+    assert "Loading comparison..." in text
+    assert "renderSequence" in text
+    assert "aria-busy" in text
     assert '"published_display":"2026-05-22 00:00 UTC"' in text
     assert '"captured_display":"2026-05-22 01:00 UTC"' in text
     assert '"previous_version":"1.0.0"' in text
