@@ -94,4 +94,4 @@ Last capture update: 2026-08-21 09:31 UTC
 
 ## Project Trend
 
-![Phistory star history](https://api.star-history.com/svg?repos=WEIFENG2333/phistory&type=Date)
+![Phistory star history](https://star-history.dera.page/svg?repos=WEIFENG2333/phistory&type=Date)
