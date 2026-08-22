@@ -2,7 +2,7 @@
 
 [English](README.md)
 
-Phistory 追踪 Claude Code、Codex、DeepSeek Harness、Antigravity、Grok Build、MiniMax Code、Kimi Code、MiMo Code、OpenClaw、Hermes、Kimi CLI、opencode、Pi、Oh My Pi 等热门 coding-agent CLI 的系统提示词如何随版本变化。
+Phistory 追踪 Claude Code、Codex、DeepSeek Harness、Antigravity、Grok Build、MiniMax Code、Kimi Code、MiMo Code、OpenClaw、Hermes、Kimi CLI、opencode、Pi、Oh My Pi、Qwen Code 等热门 coding-agent CLI 的系统提示词如何随版本变化。
 
 打开网页查看器，可以对比不同版本的提示词快照，从 prompts、tools、策略和运行时指令里观察 agent 设计如何变化。
 
@@ -36,7 +36,7 @@ GitHub Actions 每小时检查一次已自动追踪的 CLI 版本；发现新版
 uv sync --all-groups
 
 # 抓取每个 CLI 的最新版本及其全部已配置快照。
-uv run phistory capture --latest --agents claude-code,codex,dsh,antigravity,grok,minimax-code,kimi-code,mimo,openclaw,hermes,kimi,opencode,pi,omp
+uv run phistory capture --latest --agents claude-code,codex,dsh,antigravity,grok,minimax-code,kimi-code,mimo,openclaw,hermes,kimi,opencode,pi,omp,qwen-code
 
 # 只抓取 Codex 的指定快照。
 uv run phistory capture --latest --agents codex --variants default,gpt-5.5,gpt-5.6
@@ -70,6 +70,7 @@ uv run phistory render-site
 - opencode (`opencode-ai`)
 - Pi (`@earendil-works/pi-coding-agent`)
 - Oh My Pi (`@oh-my-pi/pi-coding-agent`)
+- Qwen Code (`@qwen-code/qwen-code`)
 
 ## 抓取状态
 
@@ -91,6 +92,7 @@ uv run phistory render-site
 | opencode | [1.18.21 - 2026-08-21](captures/opencode/1.18.21/variants/default/prompt.md) | 106 | 106 | 2026-08-21 15:05 UTC |
 | Pi | [0.84.2 - 2026-08-14](captures/pi/0.84.2/variants/default/prompt.md) | 41 | 41 | 2026-08-14 10:35 UTC |
 | Oh My Pi | [18.0.0 - 2026-08-22](captures/omp/18.0.0/variants/default/prompt.md) | 66 | 66 | 2026-08-22 11:48 UTC |
+| Qwen Code | [0.21.13 - 2026-08-17](captures/qwen-code/0.21.13/variants/default/prompt.md) | 1 | 1 | 2026-08-18 17:11 UTC |
 
 ## 项目趋势
 

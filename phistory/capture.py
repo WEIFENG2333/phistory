@@ -22,6 +22,24 @@ _VOLATILE_TEXT_PATTERNS = (
     (re.compile(r" - OS Version: [^\\\n]*(?=\\n)"), " - OS Version: $PHISTORY_OS_VERSION"),
     (re.compile(r"Today's date is \d{4}[-/]\d{2}[-/]\d{2}\."), "Today's date is $PHISTORY_DATE."),
     (re.compile(r"Today's date: \d{4}[-/]\d{2}[-/]\d{2}"), "Today's date: $PHISTORY_DATE"),
+    (re.compile(r"Today's date is [A-Z][a-z]+, [A-Z][a-z]+ \d{1,2}, \d{4}\."), "Today's date is $PHISTORY_DATE."),
+    (
+        re.compile(r"The current date is: [A-Z][a-z]+, [A-Z][a-z]+ \d{1,2}, \d{4}\."),
+        "The current date is: $PHISTORY_DATE.",
+    ),
+    (re.compile(r"(?m)^My operating system is: \w+$"), "My operating system is: $PHISTORY_OS"),
+    (
+        re.compile(r"(?:\.\./|\.\.)+\$PHISTORY_HOME/\.qwen/output-language\.md"),
+        "$PHISTORY_HOME/.qwen/output-language.md",
+    ),
+    (
+        re.compile(r"(?:\.\./)+phistory-home-[A-Za-z0-9_-]+/\.qwen/output-language\.md"),
+        "$PHISTORY_HOME/.qwen/output-language.md",
+    ),
+    (
+        re.compile(r"\$PHISTORY_HOME/\.qwen/projects/[^/\s]+"),
+        "$PHISTORY_HOME/.qwen/projects/$PHISTORY_PROJECT",
+    ),
     (re.compile(r"http://(?:127\.0\.0\.1|localhost):\d+"), "http://127.0.0.1:$PHISTORY_PORT"),
     (
         re.compile(r"The current date and time in ISO format is `[^`]+`\."),
@@ -122,6 +140,10 @@ def capture_target(
             copy_trace(trace, working_target)
         replacements = {
             str(install_dir): "$PHISTORY_INSTALL",
+            # Resolved forms first: macOS symlinks /tmp and /var, so clients may
+            # print realpath'd paths that contain the unresolved dir as a suffix.
+            str(Path(home_dir).resolve()): "$PHISTORY_HOME",
+            str(Path(work_dir).resolve()): "$PHISTORY_WORKSPACE",
             str(home_dir): "$PHISTORY_HOME",
             str(work_dir): "$PHISTORY_WORKSPACE",
         }

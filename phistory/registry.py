@@ -498,6 +498,24 @@ OMP = AgentSpec(
     ),
 )
 
+QWEN_CODE = AgentSpec(
+    id="qwen-code",
+    display_name="Qwen Code",
+    package="@qwen-code/qwen-code",
+    tap_client="qwen",
+    fake_env={
+        "OPENAI_API_KEY": "phistory-fake-api-key",
+        "OPENAI_MODEL": "qwen3-coder-plus",
+        "OPENAI_BASE_URL": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+    },
+    extra_env={
+        "QWEN_CODE_SKIP_UPDATE_CHECK_ONCE": "1",
+        "QWEN_USAGE_STATISTICS_ENABLED": "false",
+    },
+    tap_mode="forward",
+    default_variant=_default(("--no-yolo", "--", "-p", "Reply with one short sentence.")),
+)
+
 AGENTS: dict[str, AgentSpec] = {
     agent.id: agent
     for agent in (
@@ -515,6 +533,7 @@ AGENTS: dict[str, AgentSpec] = {
         OPENCODE,
         PI,
         OMP,
+        QWEN_CODE,
     )
 }
 AGENT_ORDER = tuple(AGENTS)

@@ -1,0 +1,44 @@
+{
+  "agent_id": "qwen-code",
+  "agent": "Qwen Code",
+  "package": "@qwen-code/qwen-code",
+  "version": "0.21.13",
+  "variant": {
+    "id": "default",
+    "label": "Default",
+    "dimensions": {}
+  },
+  "requested": {},
+  "observed": {
+    "model": "qwen3-coder-plus",
+    "tool_count": 59
+  },
+  "published_at": "2026-08-17T02:10:18.724Z",
+  "tarball_url": "https://registry.npmjs.org/@qwen-code/qwen-code/-/qwen-code-0.21.13.tgz",
+  "binary_version": "0.21.13",
+  "captured_at": "2026-08-18T17:11:09.408851+00:00",
+  "tap_client": "qwen",
+  "target": "claude-tap capture-only",
+  "client_exit_code": 0,
+  "duration_seconds": 8.093,
+  "command": [
+    "python",
+    "-m",
+    "claude_tap",
+    "run",
+    "qwen",
+    "--no-yolo",
+    "--export-prompt",
+    "prompt.md",
+    "--no-live",
+    "--no-open",
+    "--no-update-check",
+    "--output-dir",
+    ".tap",
+    "--mode",
+    "forward",
+    "--",
+    "-p",
+    "Reply with one short sentence."
+  ]
+}
