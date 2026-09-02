@@ -94,4 +94,4 @@ uv run phistory render-site
 
 ## 项目趋势
 
-![Phistory star history](https://api.star-history.com/svg?repos=WEIFENG2333/phistory&type=Date)
+![Phistory star history](https://star-history.dera.page/svg?repos=WEIFENG2333/phistory&type=Date)
