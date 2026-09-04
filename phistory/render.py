@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from phistory.registry import agent_sort_key
+from phistory.registry import AGENTS, agent_sort_key
 
 _VERSION_PART_RE = re.compile(r"\d+|[A-Za-z]+")
 
@@ -39,6 +39,17 @@ def read_capture_rows(root: Path) -> list[dict[str, Any]]:
         variant_dir = meta_path.parent
         version_dir = variant_dir.parent.parent
         variant_meta = meta.get("variant") if isinstance(meta.get("variant"), dict) else {}
+        agent_id = meta.get("agent_id") or version_dir.parent.name
+        version = meta.get("version") or version_dir.name
+        variant_id = variant_meta.get("id") or variant_dir.name
+        agent = AGENTS.get(agent_id)
+        registered_variant = (
+            next((item for item in agent.capture_variants if item.id == variant_id), None)
+            if agent is not None
+            else None
+        )
+        if registered_variant is not None and not registered_variant.supports_version(version):
+            continue
         prompt = variant_dir / "prompt.md"
         trace = variant_dir / "trace.jsonl"
         static_prompts = version_dir / "static" / "prompts.md"
@@ -49,9 +60,9 @@ def read_capture_rows(root: Path) -> list[dict[str, Any]]:
         rows.append(
             {
                 "agent": meta.get("agent") or meta.get("agent_id") or version_dir.parent.name,
-                "agent_id": meta.get("agent_id") or version_dir.parent.name,
-                "version": meta.get("version") or version_dir.name,
-                "variant_id": variant_meta.get("id") or variant_dir.name,
+                "agent_id": agent_id,
+                "version": version,
+                "variant_id": variant_id,
                 "variant_label": variant_meta.get("label") or variant_dir.name,
                 "variant_dimensions": variant_meta.get("dimensions") or {},
                 "observed": meta.get("observed") or {},
@@ -138,7 +149,7 @@ def _readme_markdown(rows: list[dict[str, Any]], base: Path) -> str:
             "uv run phistory capture --latest --agents claude-code,codex,dsh,antigravity,grok,minimax-code,kimi-code,mimo,openclaw,hermes,kimi,opencode,pi,omp",
             "",
             "# Capture only selected Codex snapshots.",
-            "uv run phistory capture --latest --agents codex --variants default,gpt-5.5,gpt-5.6",
+            "uv run phistory capture --latest --agents codex --variants default,gpt-5.6-sol,gpt-5.6-terra,gpt-5.6-luna,gpt-5.5",
             "",
             "# Capture a historical version range for one agent.",
             "uv run phistory backfill claude-code --from 2.1.113 --to latest",
@@ -269,7 +280,7 @@ def _readme_zh_markdown(rows: list[dict[str, Any]], base: Path) -> str:
             "uv run phistory capture --latest --agents claude-code,codex,dsh,antigravity,grok,minimax-code,kimi-code,mimo,openclaw,hermes,kimi,opencode,pi,omp",
             "",
             "# 只抓取 Codex 的指定快照。",
-            "uv run phistory capture --latest --agents codex --variants default,gpt-5.5,gpt-5.6",
+            "uv run phistory capture --latest --agents codex --variants default,gpt-5.6-sol,gpt-5.6-terra,gpt-5.6-luna,gpt-5.5",
             "",
             "# 回填某个 agent 的历史版本区间。",
             "uv run phistory backfill claude-code --from 2.1.113 --to latest",

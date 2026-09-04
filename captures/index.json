@@ -19,7 +19,7 @@
       "latest_published_at": "2026-09-03T23:57:21.074Z",
       "latest_captured_at": "2026-09-04T01:15:16.430005+00:00",
       "versions": 85,
-      "snapshots": 113
+      "snapshots": 116
     },
     {
       "agent_id": "dsh",
@@ -7378,6 +7378,63 @@
       "prompt": "captures/codex/0.152.1/variants/default/prompt.md",
       "trace": "captures/codex/0.152.1/variants/default/trace.jsonl",
       "meta": "captures/codex/0.152.1/variants/default/meta.json"
+    },
+    {
+      "agent_id": "codex",
+      "agent": "Codex CLI",
+      "version": "0.152.1",
+      "variant_id": "gpt-5.6-terra",
+      "variant_label": "GPT-5.6 Terra",
+      "variant_dimensions": {
+        "model": "gpt-5.6-terra"
+      },
+      "observed": {
+        "model": "gpt-5.6-terra",
+        "tool_count": 2
+      },
+      "published_at": "2026-09-01T22:36:50.784Z",
+      "captured_at": "2026-09-02T08:41:58.673419+00:00",
+      "prompt": "captures/codex/0.152.1/variants/gpt-5.6-terra/prompt.md",
+      "trace": "captures/codex/0.152.1/variants/gpt-5.6-terra/trace.jsonl",
+      "meta": "captures/codex/0.152.1/variants/gpt-5.6-terra/meta.json"
+    },
+    {
+      "agent_id": "codex",
+      "agent": "Codex CLI",
+      "version": "0.152.1",
+      "variant_id": "gpt-5.6-sol",
+      "variant_label": "GPT-5.6 Sol",
+      "variant_dimensions": {
+        "model": "gpt-5.6-sol"
+      },
+      "observed": {
+        "model": "gpt-5.6-sol",
+        "tool_count": 2
+      },
+      "published_at": "2026-09-01T22:36:50.784Z",
+      "captured_at": "2026-09-02T08:41:50.141637+00:00",
+      "prompt": "captures/codex/0.152.1/variants/gpt-5.6-sol/prompt.md",
+      "trace": "captures/codex/0.152.1/variants/gpt-5.6-sol/trace.jsonl",
+      "meta": "captures/codex/0.152.1/variants/gpt-5.6-sol/meta.json"
+    },
+    {
+      "agent_id": "codex",
+      "agent": "Codex CLI",
+      "version": "0.152.1",
+      "variant_id": "gpt-5.6-luna",
+      "variant_label": "GPT-5.6 Luna",
+      "variant_dimensions": {
+        "model": "gpt-5.6-luna"
+      },
+      "observed": {
+        "model": "gpt-5.6-luna",
+        "tool_count": 1
+      },
+      "published_at": "2026-09-01T22:36:50.784Z",
+      "captured_at": "2026-09-02T08:42:06.064446+00:00",
+      "prompt": "captures/codex/0.152.1/variants/gpt-5.6-luna/prompt.md",
+      "trace": "captures/codex/0.152.1/variants/gpt-5.6-luna/trace.jsonl",
+      "meta": "captures/codex/0.152.1/variants/gpt-5.6-luna/meta.json"
     },
     {
       "agent_id": "codex",

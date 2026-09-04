@@ -70,7 +70,8 @@ Static prompt extraction is separate from request capture. It parses installed p
 Current agents are defined in `phistory/registry.py`:
 
 - `claude-code`: npm package `@anthropic-ai/claude-code`, tap client `claude`.
-- `codex`: npm package `@openai/codex`, tap client `codex`, fake ChatGPT auth enabled; archives default, GPT-5.5, and GPT-5.6 variants.
+- `codex`: npm package `@openai/codex`, tap client `codex`, fake ChatGPT auth enabled; archives the real default plus pinned GPT-5.6 Sol, GPT-5.6 Terra, GPT-5.6 Luna, and GPT-5.5 variants. The retired `gpt-5.6` alias capture remains archived but is hidden from the site because the CLI treated it as unknown local model metadata.
+  Fixed-model lanes begin at the first Codex CLI release whose bundled model catalog includes that model: 0.125.0 for GPT-5.5 and 0.144.0 for the GPT-5.6 family.
 - `dsh`: npm package `@deepseek-ai/dsh`, tap client `dsh`, isolated DSH home and forward capture mode; uses a Web RPC driver for default, Standard, PTC, Minimal, and Creator snapshots, plus the headless snapshot.
 - `antigravity`: GitHub release asset source `google-antigravity/antigravity-cli`, tap client `agy`, isolated Antigravity config and forward capture mode.
 - `grok`: npm package `@xai-official/grok`, tap client `grok`, isolated Grok home and fake xAI API key.

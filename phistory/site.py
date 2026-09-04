@@ -39,10 +39,14 @@ def _build_manifest(root: Path) -> dict:
     agents = []
     for agent_id in sorted({row["agent_id"] for row in rows}, key=agent_sort_key):
         agent_rows = [row for row in rows if row["agent_id"] == agent_id]
+        agent = AGENTS.get(agent_id)
+        hidden_variant_ids = set(agent.hidden_capture_variants) if agent is not None else set()
         variant_ids = sorted(
-            {row["variant_id"] for row in agent_rows},
+            {row["variant_id"] for row in agent_rows if row["variant_id"] not in hidden_variant_ids},
             key=lambda variant_id: _variant_sort_key(agent_id, variant_id),
         )
+        if not variant_ids:
+            continue
         variants = []
         for variant_id in variant_ids:
             variant_rows = sorted(
