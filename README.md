@@ -8,7 +8,7 @@ Open the web viewer to compare prompt snapshots across versions and see how agen
 
 **Start here:** [phistory.cc](https://phistory.cc/)
 
-> Checks for new releases hourly. Archive last updated: **2026-09-04 11:44 UTC**.
+> Checks for new releases hourly. Archive last updated: **2026-09-04 16:39 UTC**.
 
 ![Phistory prompt diff viewer](docs/screenshot.png)
 
@@ -73,7 +73,7 @@ uv run phistory render-site
 
 ## Capture Status
 
-Last capture update: 2026-09-04 11:44 UTC
+Last capture update: 2026-09-04 16:39 UTC
 
 | Agent | Latest | Versions | Snapshots | Last Captured |
 | --- | --- | ---: | ---: | --- |
@@ -88,7 +88,7 @@ Last capture update: 2026-09-04 11:44 UTC
 | OpenClaw | [2026.9.1 - 2026-09-03](captures/openclaw/2026.9.1/variants/default/prompt.md) | 72 | 72 | 2026-09-03 20:05 UTC |
 | Hermes Agent | [v2026.8.31 - 2026-08-31](captures/hermes/v2026.8.31/variants/default/prompt.md) | 29 | 29 | 2026-08-31 21:01 UTC |
 | Kimi CLI | [1.50.0 - 2026-09-01](captures/kimi/1.50.0/variants/default/prompt.md) | 22 | 22 | 2026-09-01 17:26 UTC |
-| opencode | [1.18.27 - 2026-09-02](captures/opencode/1.18.27/variants/default/prompt.md) | 111 | 111 | 2026-09-02 22:48 UTC |
+| opencode | [1.18.28 - 2026-09-04](captures/opencode/1.18.28/variants/default/prompt.md) | 112 | 112 | 2026-09-04 16:39 UTC |
 | Pi | [0.85.0 - 2026-09-04](captures/pi/0.85.0/variants/default/prompt.md) | 44 | 44 | 2026-09-04 11:44 UTC |
 | Oh My Pi | [18.1.10 - 2026-09-04](captures/omp/18.1.10/variants/default/prompt.md) | 84 | 84 | 2026-09-04 11:44 UTC |
 
