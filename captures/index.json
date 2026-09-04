@@ -1,5 +1,5 @@
 {
-  "description": "Phistory automatically archives versioned system prompt snapshots from agent CLIs like Claude Code, Codex, DeepSeek Harness, Antigravity, Grok Build, MiniMax Code, Kimi Code, MiMo Code, OpenClaw, Hermes, Kimi CLI, opencode, Pi, and Oh My Pi.",
+  "description": "Phistory automatically archives versioned system prompt snapshots from agent CLIs like Claude Code, Codex, DeepSeek Harness, Antigravity, Grok Build, MiniMax Code, Kimi Code, MiMo Code, OpenClaw, Hermes, Kimi CLI, opencode, Pi, Oh My Pi, and Qwen Code.",
   "site": "https://phistory.cc/",
   "updated_at": "2026-09-04T01:15:36.106105Z",
   "agents": [
@@ -128,6 +128,15 @@
       "latest_captured_at": "2026-09-04T01:15:36.106105+00:00",
       "versions": 83,
       "snapshots": 83
+    },
+    {
+      "agent_id": "qwen-code",
+      "agent": "Qwen Code",
+      "latest_version": "0.22.3",
+      "latest_published_at": "2026-08-28T17:30:35.909Z",
+      "latest_captured_at": "2026-09-02T08:33:38.948945+00:00",
+      "versions": 1,
+      "snapshots": 1
     }
   ],
   "captures": [
@@ -20847,6 +20856,23 @@
       "prompt": "captures/omp/16.3.3/variants/default/prompt.md",
       "trace": "captures/omp/16.3.3/variants/default/trace.jsonl",
       "meta": "captures/omp/16.3.3/variants/default/meta.json"
+    },
+    {
+      "agent_id": "qwen-code",
+      "agent": "Qwen Code",
+      "version": "0.22.3",
+      "variant_id": "default",
+      "variant_label": "Default",
+      "variant_dimensions": {},
+      "observed": {
+        "model": "qwen3-coder-plus",
+        "tool_count": 23
+      },
+      "published_at": "2026-08-28T17:30:35.909Z",
+      "captured_at": "2026-09-02T08:33:38.948945+00:00",
+      "prompt": "captures/qwen-code/0.22.3/variants/default/prompt.md",
+      "trace": "captures/qwen-code/0.22.3/variants/default/trace.jsonl",
+      "meta": "captures/qwen-code/0.22.3/variants/default/meta.json"
     }
   ]
 }

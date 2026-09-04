@@ -16,6 +16,7 @@ Phistory uses compact local copies of product-level visual assets for the agent 
 | OpenClaw | `openclaw.png` | OpenClaw product site apple-touch-icon from `https://openclaw.ai/`: `https://openclaw.ai/apple-touch-icon.png` |
 | opencode | `opencode.png` | opencode product site apple-touch-icon from `https://opencode.ai/`: `https://opencode.ai/apple-touch-icon-v3.png` |
 | Pi | `pi.png` | Pi Coding Agent product site favicon from `https://pi.dev/`: `https://pi.dev/favicon.svg` |
+| Qwen Code | `qwen-code.png` | Qwen product favicon served by the official Qwen web app at `https://chat.qwen.ai/`: `https://img.alicdn.com/imgextra/i4/O1CN01OXv3EM1FN8t9W4P79_!!6000000000474-2-tps-80-80.png` |
 | Oh My Pi | `omp.svg` | Official Oh My Pi repo icon from `https://github.com/can1357/oh-my-pi`, adapted with a dark local background so the white mark remains visible on the site: `https://raw.githubusercontent.com/can1357/oh-my-pi/main/assets/icon.svg` |
 
 Additional assets inspected:

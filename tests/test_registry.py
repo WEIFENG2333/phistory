@@ -21,6 +21,7 @@ def test_parse_default_agents():
         "opencode",
         "pi",
         "omp",
+        "qwen-code",
     ]
 
 
@@ -149,3 +150,16 @@ def test_new_agents_define_install_and_capture_profiles():
     assert omp.binary_release_asset == "omp-linux-x64"
     assert omp.binary_release_tag == "v{version}"
     assert "--print" in omp.default_variant.run_args
+
+    qwen_code = get_agent("qwen-code")
+    assert qwen_code.source == "npm"
+    assert qwen_code.package == "@qwen-code/qwen-code"
+    assert qwen_code.tap_client == "qwen"
+    assert qwen_code.tap_mode == "forward"
+    assert qwen_code.fake_env == {
+        "OPENAI_API_KEY": "phistory-fake-api-key",
+        "OPENAI_MODEL": "qwen3-coder-plus",
+        "OPENAI_BASE_URL": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+    }
+    assert qwen_code.home_profile == "none"
+    assert "-p" in qwen_code.default_variant.run_args
