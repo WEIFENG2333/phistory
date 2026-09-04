@@ -1,7 +1,7 @@
 {
   "description": "Phistory automatically archives versioned system prompt snapshots from agent CLIs like Claude Code, Codex, DeepSeek Harness, Antigravity, Grok Build, MiniMax Code, Kimi Code, MiMo Code, OpenClaw, Hermes, Kimi CLI, opencode, Pi, and Oh My Pi.",
   "site": "https://phistory.cc/",
-  "updated_at": "2026-09-04T01:15:36.106105Z",
+  "updated_at": "2026-09-04T06:35:12.002284Z",
   "agents": [
     {
       "agent_id": "claude-code",
@@ -24,20 +24,20 @@
     {
       "agent_id": "dsh",
       "agent": "DeepSeek Harness",
-      "latest_version": "0.1.1-rc.2",
-      "latest_published_at": "2026-08-21T12:42:19.422Z",
-      "latest_captured_at": "2026-08-21T13:43:46.024427+00:00",
-      "versions": 8,
-      "snapshots": 39
+      "latest_version": "0.1.2-rc.1",
+      "latest_published_at": "2026-09-03T06:21:52.107Z",
+      "latest_captured_at": "2026-09-04T06:31:02.686065+00:00",
+      "versions": 9,
+      "snapshots": 40
     },
     {
       "agent_id": "antigravity",
       "agent": "Antigravity CLI",
-      "latest_version": "1.1.25",
-      "latest_published_at": "2026-09-03T02:30:18Z",
-      "latest_captured_at": "2026-09-03T06:24:11.090483+00:00",
-      "versions": 39,
-      "snapshots": 39
+      "latest_version": "1.1.26",
+      "latest_published_at": "2026-09-04T03:28:48Z",
+      "latest_captured_at": "2026-09-04T06:35:12.002284+00:00",
+      "versions": 40,
+      "snapshots": 40
     },
     {
       "agent_id": "grok",
@@ -9167,6 +9167,25 @@
     {
       "agent_id": "dsh",
       "agent": "DeepSeek Harness",
+      "version": "0.1.2-rc.1",
+      "variant_id": "headless",
+      "variant_label": "Headless",
+      "variant_dimensions": {
+        "surface": "headless"
+      },
+      "observed": {
+        "model": "deepseek-v4-flash",
+        "tool_count": 26
+      },
+      "published_at": "2026-09-03T06:21:52.107Z",
+      "captured_at": "2026-09-04T06:31:02.686065+00:00",
+      "prompt": "captures/dsh/0.1.2-rc.1/variants/headless/prompt.md",
+      "trace": "captures/dsh/0.1.2-rc.1/variants/headless/trace.jsonl",
+      "meta": "captures/dsh/0.1.2-rc.1/variants/headless/meta.json"
+    },
+    {
+      "agent_id": "dsh",
+      "agent": "DeepSeek Harness",
       "version": "0.1.1-rc.2",
       "variant_id": "default",
       "variant_label": "Default",
@@ -9928,6 +9947,22 @@
       "prompt": "captures/dsh/0.0.1-rc.2/variants/headless/prompt.md",
       "trace": "captures/dsh/0.0.1-rc.2/variants/headless/trace.jsonl",
       "meta": "captures/dsh/0.0.1-rc.2/variants/headless/meta.json"
+    },
+    {
+      "agent_id": "antigravity",
+      "agent": "Antigravity CLI",
+      "version": "1.1.26",
+      "variant_id": "default",
+      "variant_label": "Default",
+      "variant_dimensions": {},
+      "observed": {
+        "model": "MODEL_PLACEHOLDER_M50"
+      },
+      "published_at": "2026-09-04T03:28:48Z",
+      "captured_at": "2026-09-04T06:35:12.002284+00:00",
+      "prompt": "captures/antigravity/1.1.26/variants/default/prompt.md",
+      "trace": "captures/antigravity/1.1.26/variants/default/trace.jsonl",
+      "meta": "captures/antigravity/1.1.26/variants/default/meta.json"
     },
     {
       "agent_id": "antigravity",
