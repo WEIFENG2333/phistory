@@ -1,0 +1,44 @@
+{
+  "agent_id": "codex",
+  "agent": "Codex CLI",
+  "package": "@openai/codex",
+  "version": "0.153.4",
+  "variant": {
+    "id": "default",
+    "label": "Default",
+    "dimensions": {}
+  },
+  "requested": {},
+  "observed": {
+    "model": "gpt-6-astra",
+    "tool_count": 3
+  },
+  "published_at": "2026-09-04T23:31:18.513Z",
+  "tarball_url": "https://registry.npmjs.org/@openai/codex/-/codex-0.153.4.tgz",
+  "binary_version": "codex-cli 0.153.4",
+  "captured_at": "2026-09-05T00:19:09.138407+00:00",
+  "tap_client": "codex",
+  "target": "claude-tap capture-only",
+  "client_exit_code": 0,
+  "duration_seconds": 5.783,
+  "command": [
+    "python",
+    "-m",
+    "claude_tap",
+    "run",
+    "codex",
+    "--no-yolo",
+    "--export-prompt",
+    "prompt.md",
+    "--no-live",
+    "--no-open",
+    "--no-update-check",
+    "--output-dir",
+    ".tap",
+    "--",
+    "exec",
+    "Reply with one short sentence.",
+    "--skip-git-repo-check",
+    "--json"
+  ]
+}
