@@ -1,0 +1,49 @@
+{
+  "agent_id": "omp",
+  "agent": "Oh My Pi",
+  "package": "@oh-my-pi/pi-coding-agent",
+  "version": "18.1.11",
+  "variant": {
+    "id": "default",
+    "label": "Default",
+    "dimensions": {}
+  },
+  "requested": {},
+  "observed": {
+    "model": "gpt-4.1",
+    "tool_count": 11
+  },
+  "published_at": "2026-09-05T16:06:19.814Z",
+  "tarball_url": "https://registry.npmjs.org/@oh-my-pi/pi-coding-agent/-/pi-coding-agent-18.1.11.tgz",
+  "binary_version": "omp/18.1.11",
+  "captured_at": "2026-09-05T16:18:15.181778+00:00",
+  "tap_client": "omp",
+  "target": "claude-tap capture-only",
+  "client_exit_code": 0,
+  "duration_seconds": 4.748,
+  "command": [
+    "python",
+    "-m",
+    "claude_tap",
+    "run",
+    "omp",
+    "--no-yolo",
+    "--export-prompt",
+    "prompt.md",
+    "--no-live",
+    "--no-open",
+    "--no-update-check",
+    "--output-dir",
+    ".tap",
+    "--",
+    "--print",
+    "--mode",
+    "text",
+    "--no-session",
+    "--approval-mode",
+    "yolo",
+    "--model",
+    "phistory/gpt-4.1",
+    "Reply with one short sentence."
+  ]
+}
