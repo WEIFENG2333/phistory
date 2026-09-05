@@ -4,6 +4,8 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 *.egg-info/
+.env
+.env.*
 
 captures/**/.home/
 captures/**/.tap/

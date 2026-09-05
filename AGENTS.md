@@ -63,7 +63,17 @@ For each agent/version/variant, the flow is:
 7. For Claude Code, also extract package-embedded static prompt candidates and matched static prompts.
 8. Remove temporary tap output unless `--keep-tap` is used.
 
-Do not add direct model API calls to Phistory. The capture boundary is `claude-tap`.
+Do not call model providers during capture. The capture boundary is `claude-tap`. The separate `translate` command may call the configured translation provider to translate already archived text.
+
+## Chinese Translations
+
+- `phistory/translation/` extracts source spans, calls the translation provider, and maintains shared Chinese dictionaries.
+- `translations/sources/` contains content-addressed source indexes with offsets into original files. `translations/zh-CN/<agent>/` contains shared `runtime.json` and `static.json` dictionaries. Do not generate a complete translated prompt for every version.
+- Raw capture files and static candidates remain unchanged. Translate human prose, including tool and schema descriptions; preserve technical identifiers, code, paths and placeholders.
+- Translation credentials belong in `~/.config/phistory/translation.toml` or translation-step-only environment variables. Never commit keys or pass them to captured CLIs.
+- Language is a browser preference, not a URL parameter. Original text determines diff changes. Missing, stale or invalid translation data falls back to original text.
+- `uv run phistory translate --all-captured --dry-run` reports missing work without API calls. Normal translation resumes automatically from dictionaries; successful batches are saved atomically.
+- Test real translation prompt changes on representative old/new archive samples before backfilling. Keep evaluation evidence in `docs/translation-evaluation.md`; store verbose trial outputs only under the ignored cache directory.
 
 Static prompt extraction is separate from request capture. It parses installed package code, keeps plausible prompt-like string/template candidates, matches known catalog entries by hash or anchor, and writes deterministic Markdown/JSON. Prefer improving general filters and catalog anchors over adding version-specific special cases.
 

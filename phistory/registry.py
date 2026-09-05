@@ -139,8 +139,6 @@ ANTIGRAVITY = AgentSpec(
             "--print-timeout",
             "1s",
             "--dangerously-skip-permissions",
-            "--model",
-            "MODEL_GOOGLE_GEMINI_2_5_FLASH",
         )
     ),
 )

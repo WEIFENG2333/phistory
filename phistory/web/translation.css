@@ -1,0 +1,34 @@
+.language-button { min-width: 42px; font-size: 12px; letter-spacing: .02em; }
+.language-button[aria-pressed="true"] { color: var(--accent); background: var(--control-active); }
+.source-only-change { background: rgba(198, 144, 38, .08); }
+.source-change-marker { border-left: 2px solid #c69026; margin-left: 2px; }
+.translation-notice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px 18px;
+  margin: 0 0 20px;
+  padding: 10px 0;
+  color: var(--muted);
+  border-bottom: 1px solid var(--line);
+  font-size: 12px;
+}
+.translation-notice small { font-size: 11px; }
+.translation-original { margin-top: 12px; font-size: 11px; color: var(--muted); }
+.translation-original summary { cursor: pointer; width: fit-content; }
+.translation-original summary:hover { color: var(--text); }
+.translation-original pre { white-space: pre-wrap; overflow-wrap: anywhere; color: var(--text); background: var(--control-bg); padding: 12px; border-radius: 6px; font: 11px/1.65 ui-monospace, SFMono-Regular, Consolas, monospace; }
+.tool-param-desc .translation-original pre { max-height: 280px; overflow: auto; }
+@media (max-width: 880px) {
+  .left-tools { width: 100%; }
+  .brand { flex-shrink: 0; }
+  .agent-control { flex: 1; max-width: 100%; overflow: hidden; }
+  .agent-control strong { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .agent-control::after { flex-shrink: 0; }
+  .actions { gap: 3px; }
+  .language-button { min-width: 36px; width: 36px; padding-inline: 4px; }
+}
+@media (max-width: 460px) {
+  .left-tools .brand { display: none; }
+}

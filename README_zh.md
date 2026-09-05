@@ -27,6 +27,8 @@ Phistory 会安装每个受支持的具体 CLI 版本，再通过 [`claude-tap`]
 
 GitHub Actions 每小时检查一次已自动追踪的 CLI 版本；发现新版本后，会自动抓取并提交新的提示词快照。
 
+网页支持提示词 diff、Trace 可读字段和静态提示词的中文切换。未变段落在历史版本间复用译文，原始证据保持不变；缺少译文时显示原文。配置和存储方式见[翻译说明](docs/translations.md)，实际样本与提示词迭代见[翻译评测](docs/translation-evaluation.md)。
+
 ## 本地开发
 
 日常查看直接使用托管网页：[phistory.cc](https://phistory.cc/)。下面这些命令主要用于本地开发、复现抓取、回填历史版本，以及重新生成项目里的生成文件。
@@ -46,6 +48,9 @@ uv run phistory backfill claude-code --from 2.1.113 --to latest
 
 # 重建最近 10 个已捕获 Claude Code 版本的静态 prompt 文件。
 uv run phistory extract-static claude-code --latest-captured 10
+
+# 使用仓库外配置的凭证翻译历史正文；已有段落自动复用。
+uv run phistory translate --all-captured
 
 # 重新生成 README.md、README_zh.md、docs/captures.md、captures/index.json 和 llms.txt。
 uv run phistory render-index
@@ -80,7 +85,7 @@ uv run phistory render-site
 | Claude Code | [2.1.261 - 2026-09-04](captures/claude-code/2.1.261/variants/default/prompt.md) | 408 | 408 | 2026-09-04 21:44 UTC |
 | Codex CLI | [0.153.4 - 2026-09-04](captures/codex/0.153.4/variants/default/prompt.md) | 87 | 119 | 2026-09-05 00:19 UTC |
 | DeepSeek Harness | [0.1.2-rc.1 - 2026-09-03](captures/dsh/0.1.2-rc.1/variants/default/prompt.md) | 9 | 45 | 2026-09-05 18:39 UTC |
-| Antigravity CLI | [1.1.27 - 2026-09-05](captures/antigravity/1.1.27/variants/default/prompt.md) | 41 | 41 | 2026-09-05 04:58 UTC |
+| Antigravity CLI | [1.1.27 - 2026-09-05](captures/antigravity/1.1.27/variants/default/prompt.md) | 41 | 41 | 2026-09-05 20:14 UTC |
 | Grok Build | [1.0.13 - 2026-08-28](captures/grok/1.0.13/variants/default/prompt.md) | 131 | 131 | 2026-08-29 02:24 UTC |
 | MiniMax Code | [3.0.68 - 2026-08-27](captures/minimax-code/3.0.68/variants/default/prompt.md) | 32 | 32 | 2026-08-27 11:57 UTC |
 | Kimi Code | [0.41.0 - 2026-09-04](captures/kimi-code/0.41.0/variants/default/prompt.md) | 71 | 71 | 2026-09-04 11:44 UTC |

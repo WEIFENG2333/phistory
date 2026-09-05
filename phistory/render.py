@@ -9,6 +9,7 @@ from typing import Any
 from urllib.parse import quote
 
 from phistory.registry import agent_sort_key
+from phistory.translation.index import TranslationIndex
 
 _VERSION_PART_RE = re.compile(r"\d+|[A-Za-z]+")
 
@@ -69,6 +70,9 @@ def read_capture_rows(root: Path) -> list[dict[str, Any]]:
                 "meta": meta_path,
             }
         )
+    translations = TranslationIndex(root)
+    for row in rows:
+        row["translations"] = translations.for_row(row)
     return rows
 
 
@@ -130,6 +134,10 @@ def _readme_markdown(rows: list[dict[str, Any]], base: Path) -> str:
             "",
             "GitHub Actions checks automatically tracked CLI releases every hour and commits new snapshots when they appear.",
             "",
+            "The viewer supports Chinese translations for prompt diffs, readable trace fields, and static prompts. "
+            "Unchanged paragraphs reuse shared translations across versions; original evidence is preserved. "
+            "See [translation setup and storage](docs/translations.md) and [model evaluation](docs/translation-evaluation.md).",
+            "",
             "## Local Development",
             "",
             "Use the hosted viewer at [phistory.cc](https://phistory.cc/). These commands are for local development, capture reproduction, historical backfills, and regenerating generated files.",
@@ -149,6 +157,9 @@ def _readme_markdown(rows: list[dict[str, Any]], base: Path) -> str:
             "",
             "# Rebuild static prompt files for the latest 10 captured Claude Code versions.",
             "uv run phistory extract-static claude-code --latest-captured 10",
+            "",
+            "# Translate archived prose using credentials configured outside the repository.",
+            "uv run phistory translate --all-captured",
             "",
             "# Regenerate README.md, README_zh.md, docs/captures.md, captures/index.json, and llms.txt.",
             "uv run phistory render-index",
@@ -261,6 +272,10 @@ def _readme_zh_markdown(rows: list[dict[str, Any]], base: Path) -> str:
             "",
             "GitHub Actions 每小时检查一次已自动追踪的 CLI 版本；发现新版本后，会自动抓取并提交新的提示词快照。",
             "",
+            "网页支持提示词 diff、Trace 可读字段和静态提示词的中文切换。未变段落在历史版本间复用译文，"
+            "原始证据保持不变；缺少译文时显示原文。配置和存储方式见[翻译说明](docs/translations.md)，"
+            "实际样本与提示词迭代见[翻译评测](docs/translation-evaluation.md)。",
+            "",
             "## 本地开发",
             "",
             "日常查看直接使用托管网页：[phistory.cc](https://phistory.cc/)。下面这些命令主要用于本地开发、复现抓取、回填历史版本，以及重新生成项目里的生成文件。",
@@ -280,6 +295,9 @@ def _readme_zh_markdown(rows: list[dict[str, Any]], base: Path) -> str:
             "",
             "# 重建最近 10 个已捕获 Claude Code 版本的静态 prompt 文件。",
             "uv run phistory extract-static claude-code --latest-captured 10",
+            "",
+            "# 使用仓库外配置的凭证翻译历史正文；已有段落自动复用。",
+            "uv run phistory translate --all-captured",
             "",
             "# 重新生成 README.md、README_zh.md、docs/captures.md、captures/index.json 和 llms.txt。",
             "uv run phistory render-index",
@@ -479,6 +497,8 @@ def _capture_json_row(row: dict[str, Any], base: Path) -> dict[str, Any]:
         payload["static_prompts_json"] = _rel(row["static_prompts_json"], base)
     if row.get("static_candidates_json"):
         payload["static_candidates_json"] = _rel(row["static_candidates_json"], base)
+    if row.get("translations"):
+        payload["translations"] = row["translations"]
     return payload
 
 

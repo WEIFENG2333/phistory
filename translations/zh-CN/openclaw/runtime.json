@@ -1,0 +1,223 @@
+{
+  "entries": {
+    "1b33567c8662ffe2675e88b944a0256e306393c66fa4aa7cd5d11567e4fc0278": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "openclaw：网关重启/系统设置/配置",
+      "thinking_budget": 4096
+    },
+    "2332864b2af83a0e9e971e3c95f7ed42a02ca789f1d0e511c6a12978667ff882": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "exec：运行 shell；为 TTY CLI 使用 pty",
+      "thinking_budget": 4096
+    },
+    "27b4894a29c9fd6d4d25dafb7cd52ff3839ac9870337edb410de79be76ebcb77": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "系统提示词",
+      "thinking_budget": 4096
+    },
+    "2b52e4c14187a7c51662a0d9774e745b4cd375c0dd302229c684c5f5719c107f": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "secrets",
+      "thinking_budget": 4096
+    },
+    "2e23842d780ac4a6ebe666f1d26839b1cfdffa53d95fdba4d64f76811fbd8e64": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "工具",
+      "thinking_budget": 4096
+    },
+    "336a76aeb7e8c5b9e945bbd9c2ebc5ecb8f4af3f37df5ca47cd6ace13451bc89": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "gateway：读取网关配置/schema；仅在明确请求时由所有者进行更新；自动重启并发出完成通知；绝不通过 shell",
+      "thinking_budget": 4096
+    },
+    "37c09a5cb85dee14f97f6728be370c230074771646142dfa75705246bd3819fa": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "image_generate：生成/编辑图像",
+      "thinking_budget": 4096
+    },
+    "3d692c06e5320146d1104388fb9c5bf70868621bb6d5f00fbe519f2b1716058f": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "conversations_send：直接发送到外部对话",
+      "thinking_budget": 4096
+    },
+    "3ddcada75702a0bfa5ffd08c9290f8b16647455862b42813f5e82817f03f3480": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "agents_list：列出允许的子智能体 id",
+      "thinking_budget": 4096
+    },
+    "3f620f3496514b6555f6fdf258c07ffbab5f196ed81de970da82173be73ce53a": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "工具经策略过滤。名称区分大小写；调用须精确。",
+      "thinking_budget": 4096
+    },
+    "3f9bb520f65d1c8593614601533a4eaaa282ae2f702f10c26aa3bc18fabff712": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "web_fetch：获取/提取 URL",
+      "thinking_budget": 4096
+    },
+    "410813e7f1075d97c624dfdbc50206a14f68d39061bbb2148e3175c0d7c238ca": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "sessions_send：向其他会话/子智能体发送消息",
+      "thinking_budget": 4096
+    },
+    "4dfbf26b234aed9b0ab60ace1a9da4201a6c06ef1734bb063bcdd73f1c4ad5bf": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "conversations_list：列出确切的外部对话地址",
+      "thinking_budget": 4096
+    },
+    "4e382d5eb7800572881c531b8d8510ee337358f378b03f79a9e2dade73086519": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "sessions_search：搜索过往会话；将 sessionKey 与 sessions_history 配合使用",
+      "thinking_budget": 4096
+    },
+    "60711292d322b17d9e02315dd3ed51914a27fff4ddbeea1c7c4ab9f50d06ed0d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "sessions_spawn：创建子智能体；干净上下文：context=\"isolated\"；对话记录：context=\"fork\"",
+      "thinking_budget": 4096
+    },
+    "65cd536d916e6cab1fb80fc4c66511f43ba1d3aacf61d51da05b4207db7b5622": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "sessions_yield：结束回合；等待子智能体事件",
+      "thinking_budget": 4096
+    },
+    "68b0e1fe075c671a669157558d314534c53a473612ec169cf5de33806a569761": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "web_search：网络搜索",
+      "thinking_budget": 4096
+    },
+    "68e3f19913ea2c1a7721faf948f55f947af4ab66111e478265955d2c12200c74": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "process：控制后台 exec",
+      "thinking_budget": 4096
+    },
+    "6ac2b6d094b32960573fd0e3f439d35f5c45f16c53853d4a807ea2ff32bd701e": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "你是运行在 OpenClaw 中的个人助理。",
+      "thinking_budget": 4096
+    },
+    "6f5f6a2e12214fbde6398354f4dab7fdda2503ca356265426b041943732318dc": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "subagents：子智能体状态；切勿使用等待循环",
+      "thinking_budget": 4096
+    },
+    "7465a7bb202c5c8cfd0cf9e6a3a10a6150df5831c8125728b3d3d4d8a2d28f6d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "skill_workshop：编写可复用技能",
+      "thinking_budget": 4096
+    },
+    "77b1917cf5b90569df41917ff99aba597a225ece99cdd54bdc7bdf432f1f03f0": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "terminal：列出/读取/调整大小/关闭操作员打开的会话终端；输入遵循 exec 策略，可能需要精确输入审批；绝不打开 shell",
+      "thinking_budget": 4096
+    },
+    "78e1b84eb8b786d2478ec9a045ebeb4eccc147fac75697a6ad8b16cb51d2c942": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "pdf",
+      "thinking_budget": 4096
+    },
+    "7c082930d9e37e3144b2aaf428053673a1242f04879112c1ebe17e4b75540b93": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "message：消息/频道操作",
+      "thinking_budget": 4096
+    },
+    "8bf8a2d989ed872b2f21b8ce29619c8a4fcad3cc9c7b5b7c315f7f14a416a498": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "canvas：展示/求值/快照 Canvas",
+      "thinking_budget": 4096
+    },
+    "92421e3179a9c5597faae07334b30bf9c885dc5b36f10eb8193cd63f532e6b04": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "nodes：配对节点状态/控制/媒体",
+      "thinking_budget": 4096
+    },
+    "98bbfc2da0b78548264adcff9eed19fa9e10e61e71dba1d602f71b7264ff50f3": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "review": "edited-against-source",
+      "text": "automations：调度/唤醒。提醒文本在触发时必须读起来像一条提醒；间隔较长时，要说明这是一条提醒；包含有用的近期上下文。此功能称为 automations；切勿称之为 cron。",
+      "thinking_budget": 4096
+    },
+    "a3a411e4b785c6083ad125ffb3609f02e9577bb94b0558eb2b2b67f5d7b3fc7b": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "dashboard",
+      "thinking_budget": 4096
+    },
+    "aa26a4f45e7bdea277c61572e20f5571ce9c9a7d5950fb3e6a7e7c11779e5389": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "edit：精确编辑文件",
+      "thinking_budget": 4096
+    },
+    "b6d4c75b1b6db8e45683b395d7bbd4bc669864f0cad5eb50a680f9490029dbd2": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "sessions_list：列出可见会话；筛选/最近",
+      "thinking_budget": 4096
+    },
+    "c054825c84afaa8018085df112bef13d06ac22887e04124b2cfa30daabdfd003": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "portal",
+      "thinking_budget": 4096
+    },
+    "c797d02944a2c4c04f92b7f4c307593582341a0524899d81d29f3eeed5cd2823": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "apply_patch：修补文件",
+      "thinking_budget": 4096
+    },
+    "d7e017de915e251e5b81f1f148c98c5e78a873351dde91fece9cb2fb8a7c2ed6": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "conversations_turn：发送并等待一条相关联的外部回复",
+      "thinking_budget": 4096
+    },
+    "e36f58191ad6d750b8d36409c47af68d3123d46858c1fc82c40b2736b40c3cbd": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "intent",
+      "thinking_budget": 4096
+    },
+    "e3c69123bbda1195253beb3090fee144b7cf7adda496a7a96b373a17b3e8e521": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "session_status：会话/模型/用量/时间/状态；模型覆盖",
+      "thinking_budget": 4096
+    },
+    "fbf6507154179cba2a24386d212530c42f103ddb7cd3982da073bae8a5f0bcf0": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-9",
+      "text": "sessions_history：读取可见会话/子智能体的历史记录",
+      "thinking_budget": 4096
+    }
+  },
+  "locale": "zh-CN",
+  "schema_version": 1
+}

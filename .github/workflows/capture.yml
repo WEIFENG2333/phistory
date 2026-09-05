@@ -47,11 +47,29 @@ jobs:
           status=$?
           echo "status=$status" >> "$GITHUB_OUTPUT"
           exit 0
+      - name: Translate archived prompts
+        id: translation
+        env:
+          PHISTORY_TRANSLATION_API_KEY: ${{ secrets.PHISTORY_TRANSLATION_API_KEY }}
+          PHISTORY_TRANSLATION_BASE_URL: ${{ vars.PHISTORY_TRANSLATION_BASE_URL }}
+          PHISTORY_TRANSLATION_MODEL: ${{ vars.PHISTORY_TRANSLATION_MODEL }}
+        run: |
+          if [ -z "$PHISTORY_TRANSLATION_API_KEY" ]; then
+            echo "::warning::Translation is not configured; publishing original prompts."
+            echo "status=0" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          set +e
+          uv run phistory translate --latest-captured 10 --max-batches 200
+          status=$?
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          exit 0
       - run: uv run phistory render-index
       - run: uv run phistory render-site
       - name: Commit capture updates
         run: |
           git add README.md README_zh.md index.html llms.txt docs captures
+          if [ -d translations ]; then git add translations; fi
           if git diff --cached --quiet; then
             echo "No capture changes."
             exit 0
@@ -70,8 +88,8 @@ jobs:
           path: /tmp/phistory-smoke
           retention-days: 7
       - name: Report capture failures
-        if: always() && (steps.latest.outputs.status != '0' || steps.static.outputs.status != '0')
+        if: always() && (steps.latest.outputs.status != '0' || steps.static.outputs.status != '0' || steps.translation.outputs.status != '0')
         run: |
-          echo "::error title=Some prompt archive steps failed::Successful artifacts were still committed and will be deployed. Check the capture and static extraction logs for details."
-          echo "One or more capture or static extraction steps failed. Successful artifacts were committed and the Pages workflow will still deploy them."
+          echo "::error title=Prompt archive workflow incomplete::Check the preceding logs for failed or skipped capture, static extraction, translation and commit steps."
+          echo "Pages will deploy the artifacts available on main, including any partial results successfully committed by this run."
           exit 1

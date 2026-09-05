@@ -68,6 +68,7 @@ def test_new_agents_define_install_and_capture_profiles():
     assert antigravity.home_profile == "antigravity"
     assert antigravity.tap_mode == "forward"
     assert "--print" in antigravity.default_variant.run_args
+    assert "--model" not in antigravity.default_variant.run_args
 
     assert dsh.source == "npm"
     assert dsh.package == "@deepseek-ai/dsh"

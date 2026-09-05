@@ -16,9 +16,11 @@ def run(
     timeout: int = 120,
     check: bool = True,
 ) -> CommandResult:
-    merged_env = os.environ.copy()
+    merged_env = dict(os.environ)
     if env:
         merged_env.update(env)
+    # Captured third-party CLIs must never inherit the independent translator's credentials.
+    merged_env = {key: value for key, value in merged_env.items() if not key.startswith("PHISTORY_TRANSLATION_")}
 
     proc = subprocess.run(
         argv,

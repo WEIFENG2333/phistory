@@ -27,6 +27,8 @@ For recent Claude Code releases, Phistory also extracts static prompt-like strin
 
 GitHub Actions checks automatically tracked CLI releases every hour and commits new snapshots when they appear.
 
+The viewer supports Chinese translations for prompt diffs, readable trace fields, and static prompts. Unchanged paragraphs reuse shared translations across versions; original evidence is preserved. See [translation setup and storage](docs/translations.md) and [model evaluation](docs/translation-evaluation.md).
+
 ## Local Development
 
 Use the hosted viewer at [phistory.cc](https://phistory.cc/). These commands are for local development, capture reproduction, historical backfills, and regenerating generated files.
@@ -46,6 +48,9 @@ uv run phistory backfill claude-code --from 2.1.113 --to latest
 
 # Rebuild static prompt files for the latest 10 captured Claude Code versions.
 uv run phistory extract-static claude-code --latest-captured 10
+
+# Translate archived prose using credentials configured outside the repository.
+uv run phistory translate --all-captured
 
 # Regenerate README.md, README_zh.md, docs/captures.md, captures/index.json, and llms.txt.
 uv run phistory render-index
@@ -80,7 +85,7 @@ Last capture update: 2026-09-05 20:40 UTC
 | Claude Code | [2.1.261 - 2026-09-04](captures/claude-code/2.1.261/variants/default/prompt.md) | 408 | 408 | 2026-09-04 21:44 UTC |
 | Codex CLI | [0.153.4 - 2026-09-04](captures/codex/0.153.4/variants/default/prompt.md) | 87 | 119 | 2026-09-05 00:19 UTC |
 | DeepSeek Harness | [0.1.2-rc.1 - 2026-09-03](captures/dsh/0.1.2-rc.1/variants/default/prompt.md) | 9 | 45 | 2026-09-05 18:39 UTC |
-| Antigravity CLI | [1.1.27 - 2026-09-05](captures/antigravity/1.1.27/variants/default/prompt.md) | 41 | 41 | 2026-09-05 04:58 UTC |
+| Antigravity CLI | [1.1.27 - 2026-09-05](captures/antigravity/1.1.27/variants/default/prompt.md) | 41 | 41 | 2026-09-05 20:14 UTC |
 | Grok Build | [1.0.13 - 2026-08-28](captures/grok/1.0.13/variants/default/prompt.md) | 131 | 131 | 2026-08-29 02:24 UTC |
 | MiniMax Code | [3.0.68 - 2026-08-27](captures/minimax-code/3.0.68/variants/default/prompt.md) | 32 | 32 | 2026-08-27 11:57 UTC |
 | Kimi Code | [0.41.0 - 2026-09-04](captures/kimi-code/0.41.0/variants/default/prompt.md) | 71 | 71 | 2026-09-04 11:44 UTC |

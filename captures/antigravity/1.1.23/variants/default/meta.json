@@ -15,11 +15,11 @@
   "published_at": "2026-09-01T04:47:50Z",
   "tarball_url": "https://github.com/google-antigravity/antigravity-cli/releases/download/1.1.23/agy_cli_linux_x64.tar.gz",
   "binary_version": "1.1.23",
-  "captured_at": "2026-09-01T06:43:48.485991+00:00",
+  "captured_at": "2026-09-05T20:11:10.988860+00:00",
   "tap_client": "agy",
   "target": "claude-tap capture-only",
   "client_exit_code": 0,
-  "duration_seconds": 3.053,
+  "duration_seconds": 60.34,
   "command": [
     "python",
     "-m",
@@ -41,8 +41,6 @@
     "Reply with one short sentence.",
     "--print-timeout",
     "1s",
-    "--dangerously-skip-permissions",
-    "--model",
-    "MODEL_GOOGLE_GEMINI_2_5_FLASH"
+    "--dangerously-skip-permissions"
   ]
 }
