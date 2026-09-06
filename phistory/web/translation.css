@@ -1,6 +1,44 @@
-.language-button { min-width: 42px; font-size: 12px; letter-spacing: .02em; }
-.language-button[hidden] { display: none; }
-.language-button[aria-pressed="true"] { color: var(--accent); background: var(--control-active); }
+.language-switch {
+  display: inline-flex;
+  flex-shrink: 0;
+  gap: 2px;
+  min-width: 0;
+  height: 30px;
+  margin: 0 5px 0 0;
+  padding: 2px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--control-bg);
+}
+.language-switch[hidden] { display: none; }
+.language-option { position: relative; display: flex; cursor: pointer; }
+/* Keep native radio focus and keyboard behavior beneath the visible labels. */
+.language-option input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+.language-option span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  padding: 0 7px;
+  border-radius: 5px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.language-option:hover span { color: var(--text); }
+.language-option input:checked + span { color: var(--text); background: var(--control-active); }
+.language-option input:focus-visible + span { outline: 1px solid var(--focus-line); outline-offset: 1px; }
 .source-only-change { background: rgba(198, 144, 38, .08); }
 .source-change-marker { border-left: 2px solid #c69026; margin-left: 2px; }
 .translation-notice {
@@ -28,8 +66,12 @@
   .agent-control strong { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .agent-control::after { flex-shrink: 0; }
   .actions { gap: 3px; }
-  .language-button { min-width: 36px; width: 36px; padding-inline: 4px; }
+  .language-switch { height: 32px; margin-right: 2px; }
 }
 @media (max-width: 460px) {
   .left-tools .brand { display: none; }
+}
+@media (max-width: 360px) {
+  .language-option span { min-width: 34px; padding-inline: 5px; }
+  .actions .project-link { display: none; }
 }

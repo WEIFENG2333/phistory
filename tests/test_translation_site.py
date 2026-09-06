@@ -170,6 +170,7 @@ restoreTranslationPosition=()=>{};
 renderComparisonLanguage();
 assert.match(els.language.title,/译文就绪 75%/);
 assert.match(els.language.title,/缺译的变更段落整段显示原文/);
+assert.doesNotMatch(els.language.title,/点击切换/);
 """)
 
 
@@ -426,6 +427,37 @@ globalThis.fetch=async url=>{calls++;return {ok:true,json:async()=>url.includes(
 """)
 
 
+@pytest.mark.parametrize("view,ready", [("diff", True), ("diff", False), ("trace", True)])
+def test_language_selection_updates_only_when_the_requested_language_changes(view, ready):
+    state = {"view": view, "language": "original", "translationComparison": {"ready": ready}}
+    run_javascript(
+        f"const state={json.dumps(state)};\n"
+        + r"""
+const saved=[], positions=[], renders=[], comparisons=[], refreshes=[], stored=[];
+const saveTraceState=()=>saved.push(state.language);
+rememberTranslationPosition=()=>positions.push(state.language);
+const renderControls=()=>renders.push(state.language);
+renderComparisonLanguage=()=>comparisons.push(state.language);
+const refreshView=()=>refreshes.push(state.language);
+const localStorage={setItem:(...args)=>stored.push(args)};
+for(const value of ['original','en','',undefined,null]) setLanguage(value);
+assert.equal(state.language,'original');
+assert.deepEqual([saved,positions,renders,comparisons,refreshes,stored],[[],[],[],[],[],[]]);
+setLanguage('zh-CN');
+setLanguage('zh-CN');
+setLanguage('original');
+assert.equal(state.language,'original');
+assert.deepEqual(saved,['original','zh-CN']);
+assert.deepEqual(positions,['original','zh-CN']);
+assert.deepEqual(renders,['zh-CN','original']);
+assert.deepEqual(stored,[['phistory-language','zh-CN'],['phistory-language','original']]);
+const reuse=state.view==='diff' && state.translationComparison.ready;
+assert.deepEqual(comparisons,reuse?['zh-CN','original']:[]);
+assert.deepEqual(refreshes,reuse?[]:['zh-CN','original']);
+"""
+    )
+
+
 def test_static_view_keeps_original_content_and_runtime_language_preference():
     controls = (
         "function renderControls()"
@@ -441,7 +473,9 @@ def test_static_view_keeps_original_content_and_runtime_language_preference():
         + r"""
 const state={view:'diff',language:'zh-CN',translationCache:new Map()};
 const button=()=>({setAttribute(){}});
-const els={agent:button(),from:button(),to:button(),viewToggle:button(),language:button()};
+const languages=[{value:'original',checked:true},{value:'zh-CN',checked:false}];
+const els={agent:button(),from:button(),to:button(),viewToggle:button(),
+  language:{querySelectorAll:()=>languages}};
 const document={querySelector:()=>null};
 const agent={name:'Agent',variants:[{}]};
 const currentAgent=()=>agent;
@@ -471,11 +505,11 @@ prepareTranslationComparison=()=>{throw new Error('Static must not prepare trans
 (async()=>{
   renderControls();
   assert.equal(els.language.hidden,false);
-  assert.equal(els.language.textContent,'原文');
+  assert.deepEqual(languages.map(input=>input.checked),[false,true]);
   state.view='static';
   renderControls();
   assert.equal(els.language.hidden,true);
-  toggleLanguage();
+  setLanguage('original');
   assert.equal(state.language,'zh-CN');
   assert.deepEqual(stored,[]);
   await renderStatic(1);
@@ -486,7 +520,7 @@ prepareTranslationComparison=()=>{throw new Error('Static must not prepare trans
     state.view=view;
     renderControls();
     assert.equal(els.language.hidden,false);
-    assert.equal(els.language.textContent,'原文');
+    assert.deepEqual(languages.map(input=>input.checked),[false,true]);
     assert.equal(state.language,'zh-CN');
   }
 })().catch(error=>{console.error(error);process.exitCode=1;});

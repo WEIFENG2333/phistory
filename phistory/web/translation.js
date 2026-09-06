@@ -3,11 +3,11 @@ function storedLanguage() {
   catch { return 'original'; }
 }
 
-function toggleLanguage() {
-  if (state.view === 'static') return;
+function setLanguage(language) {
+  if (state.view === 'static' || !['original', 'zh-CN'].includes(language) || state.language === language) return;
   saveTraceState();
   rememberTranslationPosition();
-  state.language = state.language === 'zh-CN' ? 'original' : 'zh-CN';
+  state.language = language;
   try { localStorage.setItem('phistory-language', state.language); } catch {}
   renderControls();
   if (state.view !== 'trace' && state.translationComparison?.ready) {
@@ -326,7 +326,7 @@ function renderComparisonLanguage() {
   const available = comparison.total - comparison.missing;
   const coverage = comparison.total ? Math.round(100 * available / comparison.total) : 100;
   const status = comparison.missing ? (available ? `译文就绪 ${coverage}%，缺译的变更段落整段显示原文。` : '暂无中文译文，显示原文。') : '当前显示中文翻译。';
-  els.language.title = `${status} 版本变更统计依据原文。点击切换原文。`;
+  els.language.title = `${status} 版本变更统计依据原文。`;
   if (comparison.hiddenChanges.length) els.language.title += ' 黄色行标记表示原文有修改、中文相同。';
   state.translationDecorations.forEach((collection, side) => {
     collection.set(comparison.hiddenChanges.map(ranges => ({
