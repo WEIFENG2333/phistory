@@ -22,6 +22,47 @@ def run_javascript(body: str) -> None:
     assert result.returncode == 0, result.stderr
 
 
+def test_markdown_image_examples_are_links_before_sanitizing():
+    functions = (
+        "function markdownHtml(text)"
+        + _HTML.split("function markdownHtml(text)", 1)[1].split("\nfunction fallbackMarkdownHtml", 1)[0]
+        + "\nfunction escapeHtml(value)"
+        + _HTML.split("function escapeHtml(value)", 1)[1].split("\n</script>", 1)[0]
+    )
+    run_javascript(
+        functions
+        + r"""
+let sanitized;
+const window = {
+  marked: {
+    Renderer: class {},
+    parse(source, options) {
+      assert.equal(source, '![caption](/absolute/path/to/file.jpg)');
+      const image = options.renderer.image;
+      assert.equal(image('/absolute/path/to/file.jpg', null, 'caption'),
+        '<a href="/absolute/path/to/file.jpg">caption</a>');
+      assert.equal(image('https://example.org/a?x=1&y=2', 'A "title"', '<caption>'),
+        '<a href="https://example.org/a?x=1&amp;y=2" title="A &quot;title&quot;">&lt;caption&gt;</a>');
+      assert.equal(image('/image.png', null, ''), '<a href="/image.png">/image.png</a>');
+      return image('/absolute/path/to/file.jpg', null, 'caption');
+    }
+  },
+  DOMPurify: {
+    sanitize(html, options) {
+      sanitized = {html, options};
+      return 'sanitized HTML';
+    }
+  }
+};
+assert.equal(markdownHtml('![caption](/absolute/path/to/file.jpg)'), 'sanitized HTML');
+assert.equal(sanitized.html, '<a href="/absolute/path/to/file.jpg">caption</a>');
+for (const tag of ['img', 'picture', 'video', 'audio', 'source', 'track']) {
+  assert.ok(sanitized.options.FORBID_TAGS.includes(tag));
+}
+"""
+    )
+
+
 def test_unicode_offsets_and_schema_strings_preserve_json_structure():
     run_javascript(r"""
 const source = '🚀 {"name":"read_file","description":"Read a file."}';

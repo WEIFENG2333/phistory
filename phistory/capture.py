@@ -312,44 +312,66 @@ def _trace_observation(trace_path: Path) -> dict[str, object]:
     if best is None:
         return {}
     body = best[1]
+    request = _prompt_request_body(body)
     observed: dict[str, object] = {}
-    if isinstance(body.get("model"), str):
-        observed["model"] = body["model"]
+    model = request.get("model")
+    if not isinstance(model, str):
+        model = body.get("model")
+    if isinstance(model, str):
+        observed["model"] = model
     tool_count = _observed_tool_count(body)
     if tool_count:
         observed["tool_count"] = tool_count
     return observed
 
 
+def _prompt_request_body(body: dict) -> dict:
+    # CloudCode keeps routing metadata outside the provider's prompt-bearing request.
+    return body["request"] if isinstance(body.get("request"), dict) else body
+
+
 def _observed_tool_count(body: dict) -> int:
-    count = len(body["tools"]) if isinstance(body.get("tools"), list) else 0
+    body = _prompt_request_body(body)
+
+    def count_tools(value) -> int:
+        if isinstance(value, list):
+            return sum(count_tools(tool) for tool in value)
+        if not isinstance(value, dict):
+            return 0
+        for key in ("tools", "functionDeclarations", "function_declarations"):
+            if isinstance(value.get(key), list):
+                return count_tools(value[key])
+        return 1
+
+    count = count_tools(body.get("tools"))
     inputs = body.get("input")
-    if not isinstance(inputs, list):
-        return count
-    for item in inputs:
-        if not isinstance(item, dict) or item.get("type") != "additional_tools":
-            continue
-        tools = item.get("tools")
-        if isinstance(tools, list):
-            count += len(tools)
+    if isinstance(inputs, list):
+        for item in inputs:
+            if isinstance(item, dict) and item.get("type") == "additional_tools":
+                count += count_tools(item.get("tools"))
+    for key in ("toolConfig", "tool_config"):
+        config = body.get(key)
+        if isinstance(config, dict):
+            for field in ("tools", "function_declarations"):
+                if isinstance(config.get(field), list):
+                    count += count_tools(config[field])
     return count
 
 
 def _prompt_request_score(body: dict) -> int:
-    score = 0
-    if body.get("system"):
-        score += 4
-    if body.get("instructions"):
-        score += 4
-    if body.get("tools"):
-        score += 4
-    if _observed_tool_count(body):
-        score += 4
-    if body.get("messages"):
-        score += 1
-    if body.get("input"):
-        score += 1
-    return score
+    body = _prompt_request_body(body)
+    weights = {
+        "system": 100,
+        "instructions": 100,
+        "system_instruction": 100,
+        "systemInstruction": 100,
+        "messages": 35,
+        "input": 35,
+        "contents": 35,
+        "tools": 20,
+        "toolConfig": 20,
+    }
+    return sum(weight for key, weight in weights.items() if body.get(key)) + _observed_tool_count(body)
 
 
 def _write_fake_chatgpt_auth(home: Path) -> None:

@@ -6,6 +6,7 @@ from phistory.capture import (
     _binary_version,
     _capture_env,
     _sanitize_text,
+    _trace_observation,
     capture_target,
 )
 from phistory.drivers import CaptureRunContext
@@ -62,6 +63,48 @@ def test_capture_target_runs_local_cli_through_tap(tmp_path: Path, monkeypatch):
     prompt = target.prompt_path.read_text(encoding="utf-8")
     assert "Fake system prompt" in prompt
     assert str(tmp_path) not in prompt
+
+
+def test_trace_observation_selects_full_enveloped_request_and_keeps_routing_model(tmp_path):
+    title = {
+        "model": "title-model",
+        "request": {"systemInstruction": {"parts": [{"text": "Summarize the session."}]}, "contents": []},
+    }
+    primary = {
+        "model": "main-model",
+        "request": {
+            "systemInstruction": {"parts": [{"text": "You are a coding assistant."}]},
+            "contents": [{"role": "user", "parts": [{"text": "Read the project."}]}],
+            "tools": [{"functionDeclarations": [{"name": "read_file"}, {"name": "run_command"}]}],
+        },
+    }
+    path = tmp_path / "trace.jsonl"
+    path.write_text("\n".join(json.dumps({"request": {"body": body}}) for body in [title, primary]))
+    assert _trace_observation(path) == {"model": "main-model", "tool_count": 2}
+
+
+def test_trace_observation_handles_direct_gemini_and_inner_model_precedence(tmp_path):
+    body = {
+        "model": "gemini-model",
+        "system_instruction": {"parts": [{"text": "Read the project."}]},
+        "tools": [{"function_declarations": [{"name": "read_file"}, {"name": "run_command"}]}],
+    }
+    path = tmp_path / "trace.jsonl"
+    for request_body in [body, {"model": "routing-alias", "request": body}]:
+        path.write_text(json.dumps({"request": {"body": request_body}}))
+        assert _trace_observation(path) == {"model": "gemini-model", "tool_count": 2}
+
+
+def test_trace_observation_counts_namespaced_and_additional_tools(tmp_path):
+    body = {
+        "model": "responses-model",
+        "instructions": "Read the project.",
+        "tools": [{"type": "namespace", "name": "files", "tools": [{"name": "read"}, {"name": "write"}]}],
+        "input": [{"type": "additional_tools", "tools": [{"type": "function", "name": "search"}]}],
+    }
+    path = tmp_path / "trace.jsonl"
+    path.write_text(json.dumps({"request": {"body": body}}))
+    assert _trace_observation(path) == {"model": "responses-model", "tool_count": 3}
 
 
 def test_sanitize_text_normalizes_volatile_claude_headers():

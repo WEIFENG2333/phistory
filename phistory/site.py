@@ -3225,8 +3225,11 @@ function sectionId(title) {
 function markdownHtml(text) {
   const source = String(text || '');
   if (window.marked && window.DOMPurify) {
-    const html = window.marked.parse(source, { gfm: true, breaks: false });
-    return window.DOMPurify.sanitize(html);
+    // Archived image references are examples, not assets to fetch while reading a trace.
+    const renderer = new window.marked.Renderer();
+    renderer.image = (href, title, label) => `<a href="${escapeHtml(href)}"${title ? ` title="${escapeHtml(title)}"` : ''}>${escapeHtml(label || href)}</a>`;
+    const html = window.marked.parse(source, { gfm: true, breaks: false, renderer });
+    return window.DOMPurify.sanitize(html, { FORBID_TAGS: ['img', 'picture', 'video', 'audio', 'source', 'track'] });
   }
   return fallbackMarkdownHtml(source);
 }

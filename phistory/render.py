@@ -134,7 +134,7 @@ def _readme_markdown(rows: list[dict[str, Any]], base: Path) -> str:
             "",
             "GitHub Actions checks automatically tracked CLI releases every hour and commits new snapshots when they appear.",
             "",
-            "The viewer supports Chinese translations for prompt diffs, readable trace fields, and static prompts. "
+            "The viewer supports Chinese translations for runtime prompt diffs and readable trace fields. "
             "Unchanged paragraphs reuse shared translations across versions; original evidence is preserved. "
             "See [translation setup and storage](docs/translations.md) and [model evaluation](docs/translation-evaluation.md).",
             "",
@@ -272,7 +272,7 @@ def _readme_zh_markdown(rows: list[dict[str, Any]], base: Path) -> str:
             "",
             "GitHub Actions 每小时检查一次已自动追踪的 CLI 版本；发现新版本后，会自动抓取并提交新的提示词快照。",
             "",
-            "网页支持提示词 diff、Trace 可读字段和静态提示词的中文切换。未变段落在历史版本间复用译文，"
+            "网页支持运行时提示词 diff 和 Trace 可读字段的中文切换。未变段落在历史版本间复用译文，"
             "原始证据保持不变；缺少译文时显示原文。配置和存储方式见[翻译说明](docs/translations.md)，"
             "实际样本与提示词迭代见[翻译评测](docs/translation-evaluation.md)。",
             "",

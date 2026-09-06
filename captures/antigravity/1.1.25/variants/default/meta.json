@@ -10,7 +10,8 @@
   },
   "requested": {},
   "observed": {
-    "model": "MODEL_PLACEHOLDER_M50"
+    "model": "MODEL_GOOGLE_GEMINI_2_5_FLASH",
+    "tool_count": 12
   },
   "published_at": "2026-09-03T02:30:18Z",
   "tarball_url": "https://github.com/google-antigravity/antigravity-cli/releases/download/1.1.25/agy_cli_linux_x64.tar.gz",

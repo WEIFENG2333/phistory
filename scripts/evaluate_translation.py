@@ -27,12 +27,12 @@ class RecordingClient(TranslationClient):
         self.calls = []
         self.attempts = []
 
-    def _request(self, payload):
+    def _request(self, payload, **kwargs):
         started = time.monotonic()
         call = {"request": payload}
         self.calls.append(call)
         try:
-            response = super()._request(payload)
+            response = super()._request(payload, **kwargs)
             call["response"] = response
             return response
         except Exception as exc:

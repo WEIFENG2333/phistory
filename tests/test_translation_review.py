@@ -1,10 +1,12 @@
+import io
 import json
 import runpy
 from pathlib import Path
 
 import pytest
 
-from phistory.translation.segments import extract_markdown
+from phistory.translation.config import TranslationConfig
+from phistory.translation.segments import Segment, extract_markdown
 
 SCRIPTS = Path(__file__).parents[1] / "scripts"
 
@@ -49,3 +51,46 @@ def test_review_reads_only_runtime_and_preserves_review_strata(tmp_path):
     selected, coverage = review["select"](candidates, 1, "test")
     assert len(selected) == 1
     assert set(coverage) == {"preserved", "old", "latest", "long", "tool", "schema"}
+
+
+def test_recording_client_preserves_request_accounting_through_corrections(monkeypatch):
+    recording_client = runpy.run_path(str(SCRIPTS / "evaluate_translation.py"))["RecordingClient"]
+    calls = []
+    usage = {
+        "prompt_tokens": 10,
+        "completion_tokens": 20,
+        "completion_tokens_details": {"reasoning_tokens": 15},
+    }
+
+    def request(req, timeout):
+        payload = json.loads(req.data)
+        calls.append(payload)
+        text = "重试两次。" if len(calls) == 1 else "重试 2 次。"
+        return io.BytesIO(
+            json.dumps(
+                {
+                    "id": f"test-response-{len(calls)}",
+                    "usage": usage,
+                    "choices": [
+                        {
+                            "finish_reason": "stop",
+                            "message": {
+                                "content": json.dumps({"translations": {"0": {"text": text, "status": "translated"}}})
+                            },
+                        }
+                    ],
+                }
+            ).encode()
+        )
+
+    monkeypatch.setattr("phistory.translation.client.urlopen", request)
+    client = recording_client(TranslationConfig("https://example.test/v1", "test-model", "private-test-key"))
+    result = client.translate([Segment("source-id", "Retry 2 times.")])
+    assert result.texts == {"source-id": "重试 2 次。"}
+    assert (result.requests, result.input_tokens, result.output_tokens) == (2, 20, 40)
+    assert client.attempts == [{"ids": ["source-id"], "accepted": 1}]
+    assert [call["request"] for call in client.calls] == calls
+    assert all(call["response"]["usage"] == usage and call["seconds"] >= 0 for call in client.calls)
+    assert [call["response"]["id"] for call in client.calls] == ["test-response-1", "test-response-2"]
+    assert "feedback" in json.loads(calls[1]["messages"][1]["content"])["segments"][0]
+    assert "private-test-key" not in json.dumps(client.calls)

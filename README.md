@@ -27,7 +27,7 @@ For recent Claude Code releases, Phistory also extracts static prompt-like strin
 
 GitHub Actions checks automatically tracked CLI releases every hour and commits new snapshots when they appear.
 
-The viewer supports Chinese translations for prompt diffs, readable trace fields, and static prompts. Unchanged paragraphs reuse shared translations across versions; original evidence is preserved. See [translation setup and storage](docs/translations.md) and [model evaluation](docs/translation-evaluation.md).
+The viewer supports Chinese translations for runtime prompt diffs and readable trace fields. Unchanged paragraphs reuse shared translations across versions; original evidence is preserved. See [translation setup and storage](docs/translations.md) and [model evaluation](docs/translation-evaluation.md).
 
 ## Local Development
 

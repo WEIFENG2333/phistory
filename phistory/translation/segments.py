@@ -364,6 +364,17 @@ def select_main_trace_record(records: list[dict]) -> int | None:
     return index if trace_record_score(records[index]) > 0 else None
 
 
+def _schema_type_hint(value: dict) -> dict:
+    """Keep the schema's type structure without inferring types from individual branches."""
+    hint = {"type": value["type"]} if isinstance(value.get("type"), (str, list)) else {}
+    for key in ("anyOf", "oneOf", "allOf"):
+        if isinstance(value.get(key), list):
+            branches = [_schema_type_hint(item) if isinstance(item, dict) else {} for item in value[key]]
+            if any(branches):
+                hint[key] = branches
+    return hint
+
+
 def extract_trace(text: str) -> ExtractedSource:
     """Index visible prose fields using record numbers and RFC 6901 JSON pointers."""
     records = [json.loads(line) for line in text.splitlines() if line.strip()]
@@ -385,7 +396,8 @@ def extract_trace(text: str) -> ExtractedSource:
                 text, bindings = trace_template(unit.text)
                 template = _segment(text, unit.context)
                 templates[unit.id] = template, bindings
-                unique[template.id] = template
+                # Outer schema descriptions precede repeated copies in their alternatives.
+                unique.setdefault(template.id, template)
             for ref in refs:
                 template, bindings = templates[ref["id"]]
                 ref["id"] = template.id
@@ -407,17 +419,24 @@ def extract_trace(text: str) -> ExtractedSource:
             if "parts" in value:
                 content(value["parts"], (*path, "parts"))
 
-    def schema(value, path, context="", scope=""):
+    def schema(value, path, context="", scope="", type_hint=None):
         if isinstance(value, list):
             for index, item in enumerate(value):
-                schema(item, (*path, index), context, scope)
+                schema(item, (*path, index), context, scope, type_hint)
         elif isinstance(value, dict):
+            # Schema metadata helps disambiguate prose without changing its cache identity.
+            description_context = context
+            if type_hint is None:
+                type_hint = _schema_type_hint(value)
+            if type_hint:
+                description_context = f"{context}\nSchema type: {json.dumps(type_hint)}".strip()
             for key in ("description", "title"):
-                add(value.get(key), (*path, key), context, scope)
+                add(value.get(key), (*path, key), description_context, scope)
             for key in ("properties", "$defs", "definitions", "patternProperties", "dependentSchemas"):
                 if isinstance(value.get(key), dict):
                     for name, item in value[key].items():
-                        schema(item, (*path, key, name), context, scope)
+                        child_context = f"{context}\nSchema: {key}.{name}".strip()
+                        schema(item, (*path, key, name), child_context, scope)
             for key in (
                 "items",
                 "prefixItems",
@@ -435,7 +454,9 @@ def extract_trace(text: str) -> ExtractedSource:
                 "contentSchema",
             ):
                 if key in value:
-                    schema(value[key], (*path, key), context, scope)
+                    child_context = f"{context}\nSchema: {key}".strip()
+                    inherited_type = type_hint if key in ("allOf", "anyOf", "oneOf") else None
+                    schema(value[key], (*path, key), child_context, scope, inherited_type)
 
     def tool(value, path):
         if isinstance(value, list):

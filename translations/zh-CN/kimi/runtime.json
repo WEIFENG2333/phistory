@@ -1,0 +1,3075 @@
+{
+  "entries": {
+    "00ff0a01635a4c1b892c4b3ff512ab36bd49a0ed9c6071890c1efc8aea6aedd3": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "理解用户的需求。",
+      "thinking_budget": 4096
+    },
+    "010328e2dda0d64740ef209da4fe2d822f25bde968d8547d7eb0d47d115185d1": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "你即将进入计划模式，想先收集上下文",
+      "thinking_budget": 4096
+    },
+    "0192b58a7346f931c82c0c0d6bc14f4cfe15083124f0ffa4569f171295819366": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "文本处理：awk、sed、sort、uniq、wc",
+      "thinking_budget": 4096
+    },
+    "04891f87d47b4f6a86407ee0b2d9c7e5c1b1ecd02b88ab6764d3cdb2cb3c13d4": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "在创建/编辑/删除文件或目录之前先验证目录结构，以降低失败风险。",
+      "thinking_budget": 4096
+    },
+    "053fc5e7e77f95e9346457298df2450dce619e780aba011e8f1fbc02c4632fe6": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "**上下文隔离**",
+      "thinking_budget": 4096
+    },
+    "05868dae0d1c7c6a432bb5237340679880c572fbd6b1d8586e82a1d7699b5cff": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "使用前",
+      "thinking_budget": 4096
+    },
+    "05fa579eb23c82f7f50ecb404b3dbd635c069b9e79e4c8b4bbea95a1fe2a0452": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "待办事项的状态",
+      "thinking_budget": 4096
+    },
+    "0695c1daab6b960c39a4f9541eb47e16548a398a33a5b7790bbac1600cf22eaa": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "在任何时候，你都应当乐于助人、礼貌待人，简洁、准确，耐心、周全。",
+      "thinking_budget": 4096
+    },
+    "075b6db48f7ac39610f7663ee9d60dca2f777bb76b20ddedff22c0fef070234c": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "如何使用技能",
+      "thinking_budget": 4096
+    },
+    "080a7321d8a79dc06a9901cb943aaf42022af0a9513c17ef7ebbbdeaa4419c3d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "仅将此工具用于文本文件。",
+      "thinking_budget": 4096
+    },
+    "08722a11c4ddc26bda862a0bfe2c76130225dc4fd6a871f293e6bc19d46644c9": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "指南：",
+      "thinking_budget": 4096
+    },
+    "09773065f642e9c4b19d7cb7ccb94045ef61113ccbc989a3020298d7b09f9311": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "**何时不使用 Agent**",
+      "thinking_budget": 4096
+    },
+    "0a17020ed2589cf08e76c2ecb4bfa8735b2c018e40b69eb5650b02e4ffdbc790": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "如果你修改了 `AGENTS.md` 文件中提到的任何文件/样式/结构/配置/工作流/……，就必须更新相应的 `AGENTS.md` 文件，使其保持最新。",
+      "thinking_budget": 4096
+    },
+    "0a499c288a45f710253a5daad01dd485230d5b64ab47b6218b020cc1a4db42ee": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "绝不偏离你正在处理的任务的要求和目标。保持在正轨上。",
+      "thinking_budget": 4096
+    },
+    "0a730621110537bf323522cab8b84bb80efe9d48b83bdb9ab40da0323e2e5dba": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "用一句简短的话回复。",
+      "thinking_budget": 4096
+    },
+    "0ae776b2b3177d1420f06b118f4ec4d395ceda229d8cee2547aa384fa31f68f6": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/data00/home/liangweifeng/phistory/.phistory-cache/installs/kimi/1.36.0/lib/python3.13/site-packages/kimi_cli/skills/skill-creator/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "0afc9a173f02c739078bc80cbdb5f8380cd5f23c0f2383947fa701b7fcdc9fc9": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "要使用的内置智能体类型。默认为 `coder`。",
+      "thinking_budget": 4096
+    },
+    "0b9fbb2311f7a117caffe8093192667a1da3e50e2be7065eb18d99d0dd518a53": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "遵循项目中现有代码的编码风格。",
+      "thinking_budget": 4096
+    },
+    "0bf6b150b3b590c65e05a6d8821c3baca2ad5dff12aa3869f37e3e82e0da8fad": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/data00/home/liangweifeng/phistory/.phistory-cache/installs/kimi/1.4/lib/python3.13/site-packages/kimi_cli/skills/kimi-cli-help/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "0cb07f427a30ac8d713856890dc9a26eb00155b391025912a931d623d48fae28": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "使用 multi_select 允许为问题选择多个答案",
+      "thinking_budget": 4096
+    },
+    "0d6d47efe5bb7a612865e0178e3857b6a06d79238e22d577544b460a4fdfba62": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/home/runner/work/phistory/phistory/.phistory-cache/installs/kimi/1.49.0/lib/python3.12/site-packages/kimi_cli/skills/skill-creator/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "0d85bfc298f6f7ef38881ef47b1f42fe625f249ca3a9f4bdb15a1aac9f7d903b": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/home/runner/work/phistory/phistory/.phistory-cache/installs/kimi/1.46.0/lib/python3.12/site-packages/kimi_cli/skills/kimi-cli-help/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "0db8b68125a638fd843b914a107c88ef8fdd70d540947628fd65317b919b223e": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/data00/home/liangweifeng/phistory/.phistory-cache/installs/kimi/1.2/lib/python3.13/site-packages/kimi_cli/skills/skill-creator/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "0db905fc0e6ea5ffec4e3d9ae0770bbb81aed08b9e84875b0ff2a3920f1a6636": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "当你即将开始一项不简单的实现任务时，请主动使用此工具。\n在编写代码之前先让用户认可你的方案，可以避免浪费精力。",
+      "thinking_budget": 4096
+    },
+    "1081ce1f90eb69f83268d835af973533af3b3778a779a30a4045b3226617125a": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "列出当前会话的后台任务。",
+      "thinking_budget": 4096
+    },
+    "128711735ab890929ee3889bfa580852a6bc5c5d48caf812574bdffa90995efa": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "review": "model-revised-against-source",
+      "status": "translated",
+      "text": "路径：/data00/home/liangweifeng/phistory/.phistory-cache/installs/kimi/1.41.0/lib/python3.13/site-packages/kimi_cli/skills/kimi-cli-help/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "131c8fe1dbdf17294b136e648e58affd5f0ecbe008fc8ee713a0d2fde4e9d733": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "计划最终确定后，使用本工具请求批准。",
+      "thinking_budget": 4096
+    },
+    "13712f0183ae54972e38321d3bc3fc6334309a5da44eac007c52b8e633bcab40": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "计划模式下会发生什么",
+      "thinking_budget": 4096
+    },
+    "13c1852b5d80d1243e957769e222a0bd944028ca6c06ea5fa20b9c0cb626cb16": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/data00/home/liangweifeng/phistory/.phistory-cache/installs/kimi/1.6/lib/python3.13/site-packages/kimi_cli/skills/skill-creator/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "13d71db86711e93ac33c21b8d88cc82a9dae7ea1529f10b2e39cb85e7112c8f6": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "后台任务的简短描述。当 run_in_background=true 时必填。",
+      "thinking_budget": 4096
+    },
+    "146bbcdcc8d7eb19e9ee6c04420ac3b13f768f5f4ec96d71acc271ec0117ae6e": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "如果你的计划包含多个备选方案：",
+      "thinking_budget": 4096
+    },
+    "146f24caa7bf0e78e2d7cb4e05f3f2dff0eb1c47da38ccf0c3c190041d4e40e0": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "在应用 head_limit 之前跳过前 N 行/条目，相当于 `| tail -n +N | head -N`。适用于所有输出模式。默认值为 0。",
+      "thinking_budget": 4096
+    },
+    "154ca844826a59ff65cf25ad1338aa4b6a3b763880827be237ab8f33e2b50328": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/data00/home/liangweifeng/phistory/.phistory-cache/installs/kimi/1.37.0/lib/python3.13/site-packages/kimi_cli/skills/kimi-cli-help/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "15af67606ec9a8662efc1d6656e3c685c92e4459251f0fa3d34d847121c1303d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "参考资料：文档、模板和示例",
+      "thinking_budget": 4096
+    },
+    "165551fee9749c15026f4e45b315b8a5c957f377fd2eb7a68240b8ba06674a93": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "在现有代码库上工作时，你应该：",
+      "thinking_budget": 4096
+    },
+    "16a8e4890f10981f50c948d9a07997a591a1215dcdf0dfb03636f00ee3f4b282": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "只有当规划本身能带来价值时，才使用 EnterPlanMode。",
+      "thinking_budget": 4096
+    },
+    "16be666974b127704cc19d1454c431d55db8f4001cefef8d017d56713df7b24c": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "迭代：如果测试失败，阅读错误信息，使用 `WriteFile` 或 `StrReplaceFile` 修复代码，再用 `Shell` 重新测试。",
+      "thinking_budget": 4096
+    },
+    "17183d89dcc042294a9e7b7a0507e0c3c2d7d8c8480e7deb2d3c6a77a5842333": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "日期与时间",
+      "thinking_budget": 4096
+    },
+    "17523b0f8ffecfabe1e8342aaedff2ed3e43f0c25f726baad99be4ea20077c1d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "**用法**",
+      "thinking_budget": 4096
+    },
+    "17800dc9ab59726653bc4cfa971e9a2ee3197fc69c92ee6c80cd1e088876ee91": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "当前工作目录的目录列表如下：",
+      "thinking_budget": 4096
+    },
+    "17a317cded27ac2b591ea1ca3e608dd97d28c499578729ca23ea822df25ba29d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/data00/home/liangweifeng/phistory/.phistory-cache/installs/kimi/1.35.0/lib/python3.13/site-packages/kimi_cli/skills/skill-creator/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "17ea34ea98510ba362e5740a14caf0dee9e033ce6435166a3543389e88471c17": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "在少量已知文件中搜索",
+      "thinking_budget": 4096
+    },
+    "17fa2bd280c46dbba0e79934c96d9829098b693df4f2615a32d1fa84338a6b1d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "该工具返回结构化的任务元数据、固定大小的输出预览，以及用于完整日志的 `output_path`。",
+      "thinking_budget": 4096
+    },
+    "184f74bc26924edd6cf266ca5e2221329ab49620db185fbb421dab1b722889c4": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "在 yolo 模式下，EnterPlanMode 会自动获得批准，但 ExitPlanMode 仍会向用户呈现\n  计划以供批准。",
+      "thinking_budget": 4096
+    },
+    "190aec0eabfa61d960b84622e72917b8c3bc35d0d543e42941385022bc92abcc": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "一两次直接工具调用即可完成的任务",
+      "thinking_budget": 4096
+    },
+    "199f30d7a8f63a967faa5e1d310dfeec1e903177e76fca595936de1dfa6948cb": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "用户偏好很重要——如果用户输入会实质性改变实现方式，请使用 EnterPlanMode 来梳理这一决策",
+      "thinking_budget": 4096
+    },
+    "1aa76d4b7f5063ed9963b9d53fbc6324453ffc795edf4629ced4016b1583331c": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "如果 `Shell`、`TaskList`、`TaskOutput` 和 `TaskStop` 工具可用，且你是根智能体，你可以使用 Background Bash 来运行长时间运行的 shell 命令。通过 `Shell` 启动它，并带上 `run_in_background=true` 和一段简短的 `description`。当后台任务达到终止状态时，系统会通知你。需要时使用 `TaskList` 重新枚举活动任务，尤其是在上下文压缩之后。使用 `TaskOutput` 获取非阻塞的状态/输出快照；仅当你有意等待完成时才设置 `block=true`。启动后台任务后，默认应将控制权交还给用户，而不是立即等待它。仅在你需要取消任务时才使用 `TaskStop`。对于交互式 shell 中的人类用户，唯一的任务管理斜杠命令是 `/task`。不要让用户运行 `/task list`、`/task output`、`/task stop`、`/tasks` 或任何其他凭空捏造的斜杠子命令。如果你是子智能体，或这些工具不可用，则不要假设你可以创建或控制后台任务。",
+      "thinking_budget": 4096
+    },
+    "1aba097b923cadad0fd191341a44757bafb619cd3d39a961b93b357d5225891b": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "不要过早放弃。",
+      "thinking_budget": 4096
+    },
+    "1af9bf832e0ef757e57f6a6689e12cde5b09bf1ba3246fc8cbcbe7cf9bdc719b": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "定位配置文件（例如，`*.config.*`、`*.json`）",
+      "thinking_budget": 4096
+    },
+    "1bbab41a8b22c83582e39243be27fc9f492b3e18075009fa7e8242af128ec19a": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/data00/home/liangweifeng/phistory/.phistory-cache/installs/kimi/1.39.0/lib/python3.13/site-packages/kimi_cli/skills/kimi-cli-help/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "1beeeeca44a6208fe2f92229545a33d7b9ca4b23d16d41424fb49c3e7733e9a5": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`**`、`**/*.py` - 任何以 '**' 开头的模式都会被拒绝。因为它会递归搜索所有目录和子目录，极有可能产生超出你上下文大小的庞大结果。请始终改用更具体的模式，例如 `src/**/*.py`。",
+      "thinking_budget": 4096
+    },
+    "1c31d4dd8b2ff6b4d8c7ce29d716569c9fc12f31a6b343833f2a7c278891391d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "用于过滤文件的 glob 模式（例如 `*.js`、`*.{ts,tsx}`）。默认不过滤。",
+      "thinking_budget": 4096
+    },
+    "1c5388da09ce267bd504bb0059375fdc59f4a0f25e45bd523391e8bca1fdaf21": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "除非被明确要求，否则不要运行 `git commit`、`git push`、`git reset`、`git rebase` 和/或执行任何其他 git 变更操作。每次需要执行 git 变更操作时都要请求确认，即使用户在之前的对话中已经确认过。",
+      "thinking_budget": 4096
+    },
+    "1d24f056071ce66c9e322ecda44714996bc89e9c52a707716fddbf94f28840d0": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "可用技能",
+      "thinking_budget": 4096
+    },
+    "1d591c80cb23922c3e3b65575a2cf9ab2caefc58d7f4afa5cfa76e39b72d30db": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "如果想搜索特定内容/模式，优先使用 Grep 工具而不是 ReadFile。",
+      "thinking_budget": 4096
+    },
+    "1de6000ad77f1678dfdb7b76c793c02b72f199806816fe59e490939571cc2790": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "上下文隔离是使用子智能体的关键优势之一。通过将任务委派给子智能体，你可以让主上下文保持干净，并专注于用户请求的主要目标。",
+      "thinking_budget": 4096
+    },
+    "1e5fef02ba995b0338cb4ddbfeed72947a37a94014cdbf6701d9585601e2b071": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "避免使用 `..` 访问工作目录之外的文件或目录。",
+      "thinking_budget": 4096
+    },
+    "1e8e32f10589191c004f400c02f467784cb10baa374c13b3340b8e69595c71da": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "要写入文件的内容",
+      "thinking_budget": 4096
+    },
+    "1eb49ebb39bfdc002ccf5b367f57a122ab20b489005ba3e91dc9c521e0b7d3e9": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "如果文件不存在或路径无效，将返回错误。",
+      "thinking_budget": 4096
+    },
+    "1ed5606b8cd2342de262875e63e3cadec756893bfb0bc9eb2ec20054a1233ffd": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "识别出对当前正在处理的任务可能有用的技能，阅读 `SKILL.md` 文件，获取详细说明、指南、脚本等内容。",
+      "thinking_budget": 4096
+    },
+    "1eefac3fc8d82723e1fba9446867837b970d5d0dacf73bf39dfcfc2ca326276f": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "简要概述此方案及其利弊。",
+      "thinking_budget": 4096
+    },
+    "1f24d4bee7938fa9ab761c2f9af29e435f38bd9a4549bcd9839502c47acc7909": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "当你能从上下文推断出答案时——应果断决定并继续执行",
+      "thinking_budget": 4096
+    },
+    "1f48bf68044e6202c1541a5c187184c7070313fd47d0267d27e3a15001807609": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "当用户只是简单地问你一个问题时。例如：\"项目使用的是什么语言和框架？\"、\"x 的最佳实践是什么？\"",
+      "thinking_budget": 4096
+    },
+    "1f4a766113c5fa9dea1a0aa4ac9252bbd2e2dd779cc274f3b03fdeef282474b9": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "在子目录中递归搜索文件（例如，`src/**/*.js`）",
+      "thinking_budget": 4096
+    },
+    "1f6dee41c418421f818d4a29b5d29374ad29a22264d9606bd2c082315b2ab092": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "工具调用将在命令完成后返回。不得使用此工具执行交互式命令或可能无限运行的命令。对于可能长时间运行的命令，应将 `timeout` 参数设置为合理的值。",
+      "thinking_budget": 4096
+    },
+    "2077a7d47b7c2e64717143e9ad6169bfad9e31c985d15cfd6dd359985cf028af": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "你需要了解某个模块、功能或代码路径是如何运作的",
+      "thinking_budget": 4096
+    },
+    "207d16d4f43170efa5a230a3fc2f18f80f124538023a72e027a1343d820d52bd": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "2-4 个有意义且互不相同的选项。不要包含 'Other' 选项——系统会自动添加。",
+      "thinking_budget": 4096
+    },
+    "20bcf480a9286aa05e07dfa96d5de61852f16d715db49458f56802986e7f1b60": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "在 `Shell(run_in_background=true)` 之后，当你需要查看进度或显式等待完成时使用此工具。",
+      "thinking_budget": 4096
+    },
+    "215b81f89c7f62ec15a68084013f7b14ad8fef2259cc40e7489d27903f94087f": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "始终用双引号括起包含空格的文件路径（例如 cd \"/path with spaces/\"）",
+      "thinking_budget": 4096
+    },
+    "21bd60c5d3bca78c4d4708d837e2cd31e62e673644ae69b883548b0bf95e1eff": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`AGENTS.md` 文件可以出现在项目目录树的任意层级，包括 `.kimi/` 目录内部。每个文件管辖它所在的目录及其下的所有子目录。当多个 `AGENTS.md` 文件适用于你正在修改的文件时，更深目录中的指令优先于父目录中的指令。用户在对话中直接给出的指令始终具有最高优先级。",
+      "thinking_budget": 4096
+    },
+    "2326128217012799b84841e780679b5c1be93f0bb2b4fb92733ed6c0eaf093ef": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "在每个匹配项前后显示的行数（`-C` 选项）。要求 `output_mode` 为 `content`。",
+      "thinking_budget": 4096
+    },
+    "241cae18b557ce4cb2fc393092237e00b69a03619320b173154e01c2d87fb866": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "读取文件出现任何问题时，系统会通知你。",
+      "thinking_budget": 4096
+    },
+    "242df8ad8e61b7175ca16114bb5f207b7058279ee2174a6d81860a8356a50f55": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "在处理子目录中的文件时，务必检查这些目录是否包含自己的 `AGENTS.md`，其中有补充或覆盖上述指令的更具体指导。你还可以查看 `README`/`README.md` 文件，以获取有关该项目的更多信息。",
+      "thinking_budget": 4096
+    },
+    "24983b3a639d3c379c00332739d73729742d59e230978cfb65680896e2ae6edb": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/data00/home/liangweifeng/phistory/.phistory-cache/installs/kimi/1.2/lib/python3.13/site-packages/kimi_cli/skills/kimi-cli-help/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "24ab36f483e11f72a02a9b2ad3d4df2887224318768a6a002e7bee704bbc621a": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "以下是一些你可能希望使用此工具进行上下文隔离的场景：",
+      "thinking_budget": 4096
+    },
+    "24e75427c949b1c4be64341f3b411855ad9184e57884f5707411b556a856e17a": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "要读取的文件的路径。读取工作目录之外的文件时，必须使用绝对路径。",
+      "thinking_budget": 4096
+    },
+    "253a84fd553d8c687a37c7358e35b79a7edac2d7e31bf2042ecc7655c1441d2d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "要写入的文件的路径。在工作目录之外写入文件时，必须使用绝对路径。",
+      "thinking_budget": 4096
+    },
+    "256dd4a67784c0babbbdb6ae64931419bc69226f6c4bb489cfab9535ce3413e8": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`coder`：擅长通用软件工程任务。",
+      "thinking_budget": 4096
+    },
+    "25988004b14800b881410e8309f047fe568f1576516353fd888a0317785a931f": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "保持选项标签简洁（1-5 个词），用描述来说明权衡取舍和细节",
+      "thinking_budget": 4096
+    },
+    "265ed8759530d91a79af3d359e36407960f17cc69d0762b44561b99dad0686d5": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "当预览被截断时，将 `ReadFile` 与返回的 `output_path` 配合使用，以分页查看完整日志。",
+      "thinking_budget": 4096
+    },
+    "277101b10756e31a803bc7401cd9dac016812aae26f4a1f27be3367f271c36a1": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`explore`：快速的代码库探索，具有由提示词强制约束的只读行为。（工具：Shell、ReadFile、ReadMediaFile、Glob、Grep、SearchWeb、FetchURL，模型：inherit，后台：yes）。何时使用：专为探索代码库设计的快速智能体。当你需要按模式快速查找文件（例如 \"src/**/*.yaml\"）、在代码中搜索关键词（例如 \"数据库连接\"），或回答关于代码库的问题（例如 \"auth 模块是如何工作的？\"）时，使用该智能体。调用该智能体时，请指明所需的细致程度：\"quick\" 用于基本搜索，\"medium\" 用于适度探索，\"thorough\" 用于跨多个位置和命名约定的全面分析。对于明显需要超过 3 次工具调用的任何只读探索，都使用该智能体。调查相互独立的问题时，优先并发启动多个 explore 智能体。",
+      "thinking_budget": 4096
+    },
+    "28afaf4c779c892ee70248a22636e56f9e6bbd92686cf7a34f30a3c989167f8d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "\"quick\"：定向查找——找到特定文件、函数或配置值",
+      "thinking_budget": 4096
+    },
+    "29e6b07d7f0bde8fddd5fe6ddc2c09952527999146d8b452d8e7569e342c102d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`src/**/*.js` - 递归匹配 src 目录下的所有 JavaScript 文件",
+      "thinking_budget": 4096
+    },
+    "2a1fa544b303adc3e636890135845e28fa13555a873d719cfc909fe2ee7140f2": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/data00/home/liangweifeng/phistory/.phistory-cache/installs/kimi/1.6/lib/python3.13/site-packages/kimi_cli/skills/kimi-cli-help/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "2a4b680488411aa416d524df3907722e8c44a3987d629935e36ef327640bfa60": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "**输出：**\nstdout 和 stderr 将被合并并作为一个字符串返回。输出过长时可能被截断。如果命令执行失败，退出码将在 system 标签中提供。",
+      "thinking_budget": 4096
+    },
+    "2a664dbb79ac66ded9514f11c10638b643924c9184ad2db622e298564226dc6d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "示例：",
+      "thinking_budget": 4096
+    },
+    "2c4796421ecf8d6d33a369bfa69b2e466ae1ef63d7dabead5d6b3c07aad8ddd0": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "先思考最佳方案，然后果断采取行动。",
+      "thinking_budget": 4096
+    },
+    "2d280b8010f00453c5b1eceeed901a208cdf36ac066a4807adbdbe027a7285ff": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "一次最多可以读取 1000 行。",
+      "thinking_budget": 4096
+    },
+    "2d5f7f528085a6401bec9ffe6e5e05f19099f0d343ba94141454ad87dd3256e7": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "提示词与工具使用",
+      "thinking_budget": 4096
+    },
+    "2eb57fe1b4cbab9efe7e51a26f2914578cf1932cc977a9a1fa03ae1bd19b0624": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "**可用命令：**",
+      "thinking_budget": 4096
+    },
+    "2f0a5c2d2035768fdb1b69d1595218ae4eb8e7b438a6d73a4299e635131d7e21": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "**提示：**",
+      "thinking_budget": 4096
+    },
+    "2f43f13f9de4d4bd19d0f68a656b6e43b2ae1a81ba08874d2162ec0a9f8dc872": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "**错误示例模式：**",
+      "thinking_budget": 4096
+    },
+    "2f6b9a6e2fe0963eef70d62800d8b44ed40348d9dfea19aa36d1999f911c06d6": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "用户的消息可能包含自然语言的问题和/或任务描述、代码片段、日志、文件路径或其他形式的信息。请阅读并理解这些内容，然后按用户的请求去做。对于不涉及工作目录或互联网中任何信息的简单问题/问候，可以直接回复。",
+      "thinking_budget": 4096
+    },
+    "2fb52c937cbc13fd1a716aad7fe2e2d162485d135f0b9c4a72f53a1d7357b70f": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "当你需要覆盖内置类型的默认模型或父智能体当前使用的模型时，使用 `model`。",
+      "thinking_budget": 4096
+    },
+    "2fe329cb0abba78ce0ea7e734873d947b9fbc25628ca9657d5fd3c0f16a86742": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "将此作为你对项目结构的基本了解。该树只显示前两层；标记为 \"... and N more\" 的条目表示还有更多内容——使用 Glob 或 Shell 进一步探索。",
+      "thinking_budget": 4096
+    },
+    "3096c0f61a06aa14e01545d6b71b2ccdf873f2e0ee629bdb5fbc9d0958bd5027": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "使用 glob 模式查找文件和目录。此工具支持标准 glob 语法，如 `*`、`?` 和 `**`，用于递归搜索。",
+      "thinking_budget": 4096
+    },
+    "3129159081f2b81d2b9bf5ae7104559fca5aa6c608384053f140382856a3f8c6": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "该工具与通用后台任务系统配合工作，并且应仍是未来任务类型（而不仅是 bash）的主要读取途径。",
+      "thinking_budget": 4096
+    },
+    "313107a100762ffaaa85a9e9f0e9a3cd7f6bcc02e954285151d72c7f1ab831cd": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "编码通用指南",
+      "thinking_budget": 4096
+    },
+    "32ad479f99847b9ed685c4af0c66d8e757eb4b8a7eff73553386a9a2c6e9f705": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "使用合适的工具、shell 命令或 Python 包来处理或生成图像、视频、PDF、文档、电子表格、演示文稿或其他多媒体文件。检测环境中是否已有此类工具。如果必须安装第三方工具/包，必须确保它们安装在虚拟/隔离环境中。",
+      "thinking_budget": 4096
+    },
+    "32f692b67e4532599068f260cb589e5fdaa5c1f078c6fb1135d0cd4eb15f6cb7": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "默认采用前台执行。仅当任务可以独立推进、你不需要立即拿到结果，并且在它完成之前交还控制权有明显好处时，才使用 `run_in_background=true`。",
+      "thinking_budget": 4096
+    },
+    "3333a6ecd1239aaecef276cd912672d9197660f1c9fabd3f6f5235422c643408": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/data00/home/liangweifeng/phistory/.phistory-cache/installs/kimi/1.36.0/lib/python3.13/site-packages/kimi_cli/skills/kimi-cli-help/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "341fa80b54735de65722c1f3ca4a701359f9b97c6d3a982dc7eb8bb67bc17806": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "工具调用的结果会通过一条工具消息返回给你。你必须根据工具调用结果决定下一步行动，可能是以下之一：1. 继续处理任务，2. 告知用户任务已完成或失败，或 3. 向用户询问更多信息。",
+      "thinking_budget": 4096
+    },
+    "3424b9f8606744da7b8f4c095fd6556341d5c77c9f7fe86cee5df6018d40b206": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "对于多个相关命令，使用 `&&` 将它们串联在一次调用中，例如 `cd /path && ls -la`",
+      "thinking_budget": 4096
+    },
+    "36913ce65f16bf2f03648546aa4f88591163ef9f4b41c69d2d01edfc4b6b4e3a": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "仅在有意等待完成或超时时才使用 `block=true`。",
+      "thinking_budget": 4096
+    },
+    "369ec32adc1144aad0962432979fea0b00081c2a4b8ba038d4cd112ae1a1cad9": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/data00/home/liangweifeng/phistory/.phistory-cache/installs/kimi/1.39.0/lib/python3.13/site-packages/kimi_cli/skills/skill-creator/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "3861219fd42ebd309846a3e6f4b23360410a6008ba9e2400d88dea4fd4b4a170": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/home/runner/work/phistory/phistory/.phistory-cache/installs/kimi/1.50.0/lib/python3.12/site-packages/kimi_cli/skills/kimi-cli-help/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "38a7a6c20ef73b6770eb3b6ebabddd1893076698eebb3072526b6e06c63b7c2f": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "如果任务已经完成，该工具只会返回其当前状态。",
+      "thinking_budget": 4096
+    },
+    "3937bb286d9d581d7a491f2e7fc842727e5a5467df31ad6fa9812346cca97e25": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "终极提醒",
+      "thinking_budget": 4096
+    },
+    "39a217e6b131169484a81dcb95946ee22c4b515986ae67d1bbc98bfc56eee574": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：$PHISTORY_INSTALL/lib/python3.12/site-packages/kimi_cli/skills/kimi-cli-help/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "39d971df7cfc08bc8c04ba8f85050cfd3a7154c8ab69f7c47d42579da38c88c0": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "在编写代码之后，使用 `Shell` 运行并测试你的代码。",
+      "thinking_budget": 4096
+    },
+    "3a4aeb7b288ba32e2c053cd066b074bc1b24031f86a93e285844fdbb6c14798c": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "请谨慎使用，因为停止任务具有破坏性，并可能留下部分副作用。",
+      "thinking_budget": 4096
+    },
+    "3bd7e62d5066b3b2c84d988801275b47e4830c0caa99dd892727716680eba9a0": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "如有任何不清楚的地方，向用户寻求澄清。",
+      "thinking_budget": 4096
+    },
+    "3cf78b791930f2c38e6807da252c12c0ef19da0f0bddc499c87ace3e8bf1f339": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "Afk 模式会绕过权限批准，并且是非交互式的。在 afk 模式下，不要使用\n  AskUserQuestion；请根据可用上下文做出最佳决策。",
+      "thinking_budget": 4096
+    },
+    "3d0fa169c3dd9190d3c111b924a51207bc3d28062e04619ed8f90bc38833e0e6": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "当用户提示词非常具体，你唯一需要做的就是机械地照着指示执行时。例如：\"把文件 zzz 中的 xxx 替换为 yyy\"、\"创建一个文件 xxx，内容为 yyy。\"",
+      "thinking_budget": 4096
+    },
+    "3d8152c447c61256080e06c1e4fce5f2cdfa4f97e9be355fc086dc05b74b0570": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "代码修改——例如\"重构认证模块以支持 OAuth\"",
+      "thinking_budget": 4096
+    },
+    "3d9868cb21eb4ae10c06eb71e7e2da31058dd5c8e5e8771460a26ae58970f2a5": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "何时不使用：",
+      "thinking_budget": 4096
+    },
+    "3da71fcd69add79aa43514e29cd1fb5e92a16e1da7b52dbc4738ef2247fb4d80": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "纯研究/探索任务",
+      "thinking_budget": 4096
+    },
+    "3dcc414062883e2b1c362e739b09ab93613de34b40981452fe6f6fa766fc414e": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "如果被拒绝，根据反馈修改后再次调用 ExitPlanMode。",
+      "thinking_budget": 4096
+    },
+    "3e4f5db455ad977ec6dad37df8f3d7611b18fb52090517a73b3cd765cbf0f8fa": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "你写了一些代码，但没有按预期工作。这种情况下，你可以生成一个子智能体来修复代码，并要求子智能体返回修复的方式。这可能带来好处，因为修复代码的详细过程可能与你的主要目标无关，还可能让你的上下文变得杂乱。",
+      "thinking_budget": 4096
+    },
+    "3f591d99d90412495049f7d7488fab397a33893868aef817b46d94148d13b645": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`*.py` - 当前目录下的所有 Python 文件",
+      "thinking_budget": 4096
+    },
+    "41e43d01939b6d58bf046ce8b6c3134d81fe1ab947b2abf3d344ae6b2f14d591": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "使用 `;` 依次运行命令，无论成功/失败",
+      "thinking_budget": 4096
+    },
+    "42f878f754195d1e3ad33eb90592ef5b8caf6b2b5f6c647c6d8848859fb909cc": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "自动批准模式说明：",
+      "thinking_budget": 4096
+    },
+    "43204673f8f6dc5fbce8b7c8f1be0fd76f77cc429ab2fb6d4aaeaa798c403c72": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "用户会看到所有选项，以及 Reject 和 Revise 选项。",
+      "thinking_budget": 4096
+    },
+    "4410050dc3ac0aefb76089490be24fa3f2439b1737031e793e8a71fe531353dc": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "当要写入的内容过长（例如超过 100 行）时，请多次使用此工具，而不是单次调用。第一次使用 `overwrite` 模式，第一次写入之后再使用 `append` 模式。",
+      "thinking_budget": 4096
+    },
+    "4429c25fae5fd2af133707cf3834c54b23236cbf1edd8ef3cdc7198dbb1e7509": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "厘清含糊或说明不充分的指令",
+      "thinking_budget": 4096
+    },
+    "447971486f05b03e6f7dd2b5ee374e92ebe088e501f613088a78f412b5bf92f3": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "网络操作：curl、wget、ping、telnet、ssh",
+      "thinking_budget": 4096
+    },
+    "45ca058c04f57ad9d7f5187e97274f88a334997badaafad3cac72555dc679c5a": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "对于代码重构，如果接口发生变化，通常需要更新所有调用被重构代码的地方。不要更改任何现有逻辑，尤其是测试中的逻辑，只专注于修复接口变化引起的错误。",
+      "thinking_budget": 4096
+    },
+    "45ed09b59d174435be6878fdbd1112b07c080e8f7f3ba3660b6c7883960ab6dd": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/data00/home/liangweifeng/phistory/.phistory-cache/installs/kimi/1.1/lib/python3.13/site-packages/kimi_cli/skills/skill-creator/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "460579bd0cd7718c651f1c8b45717b70aac24fc4e6c6acf520d111286477ea20": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "使用 ripgrep 的模式语法，而不是 grep 语法。例如，你需要像 `\\\\{` 那样对花括号进行转义，才能搜索 `{`。",
+      "thinking_budget": 4096
+    },
+    "46d752874b382f591c9c4e020f9d2b94c467e9a4cf726a4faa1b247a1a5512b4": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "回复用户时，必须使用与用户相同的语言，除非另有明确指示。",
+      "thinking_budget": 4096
+    },
+    "47e3b5ce641486eed6c4b9808e94cb9a309a9533e6fbcf8b29de72de23c2d610": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "每个选项都应有一个简洁的标签，以及对利弊权衡的简要描述。",
+      "thinking_budget": 4096
+    },
+    "47fa6dd4a1db68639be8c2d1651727b757fb8be35865c21aa83f85efb6fdf448": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "优先依赖自动完成通知。仅在自动通知到达之前就需要任务输出时，才使用此工具。",
+      "thinking_budget": 4096
+    },
+    "4938315c28160c0f64f59e501611ee938b6d19c32d30ea40031d6d95b150d3eb": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "结果中是否包含目录。",
+      "thinking_budget": 4096
+    },
+    "4b1ce29b5d7e0f84502c8c1efb01e714a603cd97f943f222e8a843808c10a5e6": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "本工具的工作原理",
+      "thinking_budget": 4096
+    },
+    "4b5e58e06da030887989f6425a8032f95deb09b9fce7fbbd4ed37646ba7275ee": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "除非有明确指示，否则避免修改工作目录之外的文件。",
+      "thinking_budget": 4096
+    },
+    "4bd6ffa52575480999328dc721169365f9daace11755a733f3c1540aa1fa92f0": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "review": "model-revised-against-source",
+      "status": "translated",
+      "text": "路径：/data00/home/liangweifeng/phistory/.phistory-cache/installs/kimi/1.43.0/lib/python3.13/site-packages/kimi_cli/skills/skill-creator/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "4c30223c579a198b1ae91762ec39857a5d66d27392565c1f18d25c5f91f59c3d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "**示例模式：**",
+      "thinking_budget": 4096
+    },
+    "4c6af640594c6dc62f883f8329e3269e51e2b4735e55e49c34f728a2594e2112": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "系统可能在用户消息或工具消息中插入由 `<system>` 标签包裹的信息。这些信息提供与当前任务相关的补充上下文——在确定下一步行动时应将其考虑在内。",
+      "thinking_budget": 4096
+    },
+    "4c8eb89937d0dc35ab47a73a9bf3265055665e7eb45c373895d73f91e1a861a9": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`*.config.{js,ts}` - 扩展名为 .js 或 .ts 的配置文件",
+      "thinking_budget": 4096
+    },
+    "4ccf5783475851c51d59ab5ee3d1379fcefb8f0088c67e6f5208ca7943248024": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "生成或编辑任何图像、视频或其他媒体文件后，在继续之前尽量重新读取它，确保内容符合预期。",
+      "thinking_budget": 4096
+    },
+    "4de83f3ed101f05998e8c481ba20eeb8b1fddb601decc66d115fd63c07ce3307": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "更新整个待办列表。",
+      "thinking_budget": 4096
+    },
+    "4df4d3751afa2bff4de6f18048ad4906989e8e12e9ac645245acd3bd50b50717": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "如果现有的子智能体已经拥有相关上下文，或者任务是它先前工作的延续，应优先使用 `resume`，而不是创建新实例。",
+      "thinking_budget": 4096
+    },
+    "4e3678614d156deb8dc3635a673b791059577cddc6d731f8024c05237356c4e7": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "始终提供简短的 `description`（3-5 个词）。",
+      "thinking_budget": 4096
+    },
+    "4e73474236a08d3d849eea9a59e35ac2b10411d07f5f25e4366edc4be44f8f9f": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "用户在审阅时会看到你的计划文件的内容。",
+      "thinking_budget": 4096
+    },
+    "4f375f1c12be0095f54e157a0fa7110d706a1d772cd3dbf76b55aade1056ef44": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "当计划包含多个备选方案时，在此列出，以便用户选择执行哪一个。2-3 个选项。每个选项代表计划中一种不同的方案。不要将 'Reject'、'Revise'、'Approve' 或 'Reject and Exit' 用作标签。",
+      "thinking_budget": 4096
+    },
+    "4f7b2e6d7cba76b96d219ecbe719a85224b44bd591146f8ee5310acfee962a1f": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "何时使用",
+      "thinking_budget": 4096
+    },
+    "4fdaaeab91558edd408a69d453a8a99a15fafe61b6eeebddb61e2afd4086e03f": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "是否仅列出非终止状态的后台任务。",
+      "thinking_budget": 4096
+    },
+    "504b8873b6b039eef097854e5c9a07bec8f63ef7a2b78be71490978ec065588c": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "子智能体要执行的任务。你必须提供详细的提示词并包含所有必要的背景信息，因为子智能体无法看到你上下文中的任何内容。",
+      "thinking_budget": 4096
+    },
+    "505237ce9124f292d412a2dd1f0c5bdef62714a402c674b3605562ab5996bee3": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "开始读取的行号。默认从文件开头读取。当文件过大而无法一次读取时，设置此项。负值从文件末尾开始读取（例如 -100 读取最后 100 行）。负偏移量的绝对值不能超过 1000。",
+      "thinking_budget": 4096
+    },
+    "5132faa728a0f9d8721fdadac4cdac8020be60070b4d93581fb6fa2599ae288a": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "系统可能会在适当的情况下，在用户消息或工具消息中插入由 `<system>` 和 `</system>` 标签包裹的提示或信息。这些信息与当前任务或工具调用相关，可能重要，也可能不重要。在决定下一步行动时，请将这些信息考虑在内。",
+      "thinking_budget": 4096
+    },
+    "53d7bdac70e67e1772aebed09f9a50e75cd5fc1f4ff33ef16be94c11519e8d0b": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "除非有明确指示，否则绝不运行需要超级用户权限的命令。",
+      "thinking_budget": 4096
+    },
+    "54ac9ff3cd90900c12ac327256239c7e4365699136773a79e3b3adff09cdc7cf": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "描述：回答有关 Kimi Code CLI 用法、配置和故障排查的问题。当用户询问 Kimi Code CLI 的安装、设置、配置、斜杠命令、键盘快捷键、MCP 集成、提供商、环境变量、内部工作原理，或任何关于 Kimi Code CLI 本身的问题时使用。",
+      "thinking_budget": 4096
+    },
+    "54e2948efdb659bea4f7ad4ff3b4c92d748b446953a5692df4442f86fc4663f5": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "要搜索的文件或目录。默认为当前工作目录。如果指定，则必须是绝对路径。",
+      "thinking_budget": 4096
+    },
+    "561503628933c0f6b64a26f6d3d0ff115f5f545e56f94aeda9ba94e29975b9ba": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "仅在必须取消后台任务时才使用此工具。对于正常完成的任务，优先等待自动通知或使用 `TaskOutput`。",
+      "thinking_budget": 4096
+    },
+    "569d8995bc9a6777dcc3d2e6195b0f959fc8f5e698cb15667bb7f7df3270f042": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "如果推荐某个选项，将其排在最前，并在其标签后附加 \"(Recommended)\"",
+      "thinking_budget": 4096
+    },
+    "57a64d7694812c5914b16dbfb15a148c6d0657477833e0cb24c3f38fa24bc8ad": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "要执行的命令。",
+      "thinking_budget": 4096
+    },
+    "582a70c488e481004b25f7cfd88f118d648167d881f54f0da7850d14aded9ee7": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "要查看的后台任务 ID。",
+      "thinking_budget": 4096
+    },
+    "59b49c1598b8e5b85857809c0ebf3d4fbbfaf53bf091db5d8e166c615ed8696e": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "描述：创建有效技能的指南。当用户想要创建新技能（或更新现有技能），以专业知识、工作流或工具集成来扩展 Kimi 的能力时，应使用此技能。",
+      "thinking_budget": 4096
+    },
+    "59c61672775727c2089ec472be3456fc03b32f3c5ef40e1c43f8f580fc71f0b9": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "此工具不会将计划内容作为参数——它会从你写入的文件中读取计划。",
+      "thinking_budget": 4096
+    },
+    "59e9afa820aa603462eba3fd3408504ef4cb44d2ffa7c6a4eefc018ed45d30a3": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "**清除模式**：传入空数组 `[]`，以清除所有待办事项。",
+      "thinking_budget": 4096
+    },
+    "5a235e7d76bf95db0a27b84f16467e3708e442e131a0559e8ad3c45f0d3550f7": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "**安全与保障准则：**",
+      "thinking_budget": 4096
+    },
+    "5b11df73186c9ab54dfd42736cc4e12b90062345d811a11811be952f8443f1d9": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "什么是技能？",
+      "thinking_budget": 4096
+    },
+    "5be4051f892a3221a89218009ec0960ff974e2f4a2557370d63a90b16180fed7": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "从零开始构建某个东西时，你应当：",
+      "thinking_budget": 4096
+    },
+    "5c18b2aa0b0df0c695f0b205b917d145531e5b711ed163fbe9d6be8739771437": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/data00/home/liangweifeng/phistory/.phistory-cache/installs/kimi/1.0/lib/python3.13/site-packages/kimi_cli/skills/skill-creator/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "5c4be6d7665095489cfa60811524d53f190f94acb3df3df30245d6ed795de94a": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "你的首要目标是通过采取行动来帮助用户完成软件工程任务——使用你可用的工具，在用户的系统上做出真实改动。在被提问时，你也应回答问题。始终严格遵守以下系统指令和用户的要求。",
+      "thinking_budget": 4096
+    },
+    "5ce6ea1c8c43dd570623616f5b9416696b5e31998e4b7fcb02bf91fc6b50d8be": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "**使用说明：**",
+      "thinking_budget": 4096
+    },
+    "5d383020c165335adf541eabf93f1789909d22e4da1736f009e9dbdff2f960d0": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "隐藏文件（如 `.gitlab-ci.yml`、`.eslintrc.json` 之类的点文件）始终会被搜索。若还要搜索被 `.gitignore` 排除的文件（例如 `node_modules`、构建输出），可将 `include_ignored` 设为 `true`。出于安全考虑，即使 `include_ignored` 为 `true`，敏感文件（如 `.env`）仍会被跳过。",
+      "thinking_budget": 4096
+    },
+    "5d76068af34bd15510fc65f0ac28074507d65b13ee2e3acddc949ceabeb1b4a9": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "review": "model-revised-against-source",
+      "status": "translated",
+      "text": "路径：/data00/home/liangweifeng/phistory/.phistory-cache/installs/kimi/1.41.0/lib/python3.13/site-packages/kimi_cli/skills/skill-creator/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "5ec59fff65c96c101b71d75deb96d2d813e4f0493c15455c36caa3ec2f1945f7": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/data00/home/liangweifeng/phistory/.phistory-cache/installs/kimi/1.4/lib/python3.13/site-packages/kimi_cli/skills/skill-creator/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "5ef11991db1b56579dad28d3b7fbda9465c458fb8b166fac6cc879ad8e3c36a7": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/data00/home/liangweifeng/phistory/.phistory-cache/installs/kimi/1.3/lib/python3.13/site-packages/kimi_cli/skills/skill-creator/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "5f6113f228d5cdce4ca03b2debd4b045d9186f76909c1e97918685bd2119239f": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "在做出更改之前，先使用工具（`ReadFile`、`Glob`、`Grep`）阅读代码库来理解它。明确最终目标以及实现该目标的最重要标准。",
+      "thinking_budget": 4096
+    },
+    "5f8e12b9b230947a3b738c536141879203e9f7390032a6b2e1bd492ac3f63994": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/data00/home/liangweifeng/phistory/.phistory-cache/installs/kimi/1.35.0/lib/python3.13/site-packages/kimi_cli/skills/kimi-cli-help/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "5f9d73575d1858aba4e310a28e927e9f6ad41e7be125f8016ad145995f19f849": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "用户始终可以通过 \"Other\" 选项进行自定义输入——不要自行创建此类选项",
+      "thinking_budget": 4096
+    },
+    "5fbe0ed1cbe74d67c311dc3be59a10a1d0d828eb5347fbeefba31837374b556a": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "架构决策——例如\"添加 WebSocket 支持\"",
+      "thinking_budget": 4096
+    },
+    "6041a51d127b1a9ca6c0af1387dd75d71fef6a37682c9fce15128a6c230fb99e": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/home/runner/work/phistory/phistory/.phistory-cache/installs/kimi/1.47.0/lib/python3.12/site-packages/kimi_cli/skills/skill-creator/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "61167d2145f302699b7f0800320b332fbc44d076f68f5d2e6ab6ae3c00a5abd1": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "这是你唯一可用的待办事项列表工具。话虽如此，每次想要更新待办事项列表时，都需要提供整个列表。请务必妥善维护待办事项及其状态。",
+      "thinking_budget": 4096
+    },
+    "6195ae4b2157c080da92160f980d7f0ce675d1485b9231c1507381c4f3d075dd": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "Yolo 模式只会绕过权限批准。它并不会使会话变为非交互式。",
+      "thinking_budget": 4096
+    },
+    "61d64ab445aa6c10a388f061b12b357704f205088d5836dd6e6dc922fdbb74bd": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "重要：不要在两次调用之间未对至少一个任务取得实际进展的情况下反复调用此工具。如果不确定当前状态，先使用查询模式（省略 `todos`）进行检查，再进行更新。如果你发现自己无法用现有工具推进任何任务，请告知用户是什么在阻碍你，而不是重新规划。反复更新待办事项列表而不做实际工作只会适得其反。",
+      "thinking_budget": 4096
+    },
+    "625082c32e7c1e77247c3695e73d532ce0097ba2d4294dbed12662bd59328150": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "是否在返回前等待任务完成。",
+      "thinking_budget": 4096
+    },
+    "633aa9e1fca3455ab5e231dbbc8e44d3d250c22defd708fe2377fda93c974378": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "Yolo 模式不会自动批准此工具。在 yolo 模式下，此工具仍会向用户呈现\n  计划以供批准。",
+      "thinking_budget": 4096
+    },
+    "649261ebf4368544350926a93e559575d5c9057037ec1e819a7d370dab9cdd79": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "**何时不使用：**",
+      "thinking_budget": 4096
+    },
+    "66dbfa93b029a4883b76952536e84db2b0986e3ba8e5fdc8b4efb2fb7801c5b9": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "在可以直接调用此工具时，不要猜测哪些任务仍在运行。",
+      "thinking_budget": 4096
+    },
+    "66e8efe42e640a62e658f3d72ef627e37469a2d28efb81bfa6680e9834eb01b2": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "使用管道操作（`|`）和重定向（`>`、`>>`）在命令之间串联输入和输出",
+      "thinking_budget": 4096
+    },
+    "677a7aa40a51fc290c77a400ff2f9b60f0ebaab851e088b93c6e8db8227e18db": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "**可用子智能体：**",
+      "thinking_budget": 4096
+    },
+    "6893b586dcbed2a5aadcdc976d877eeb7476739d0647134a52e05d86362f251c": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "该工具总会在其消息中返回文件的总行数，你可以用它来规划后续的读取。",
+      "thinking_budget": 4096
+    },
+    "6a032e52476bee32db0b540163d082a078aaa2662ea43aab59d4eb3a350c4662": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "要在文件内容中搜索的正则表达式模式",
+      "thinking_budget": 4096
+    },
+    "6a0ee3722260914d21e6865244c9fc5a08386d385b1edf40bccbf2c7ec76d183": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "通过 ExitPlanMode 向用户展示你的计划，以获得批准",
+      "thinking_budget": 4096
+    },
+    "6adfae810cd8cab5bb65f4e3641d40557d937ac6683c386558e018f1e3a17d1d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "停止正在运行的后台任务。",
+      "thinking_budget": 4096
+    },
+    "6b2f6928f807c7d72dc93f9cb1d7087cdd211cbc972178d46eb3e416e01d8467": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "技能按作用域（`Project`、`User`、`Extra`、`Built-in`）分组，这样你就能分辨每个技能的来源。当用户提到“本项目中的技能”或“用户级技能”时，使用作用域标题来消除歧义。当多个作用域定义了同名技能时，更具体的作用域优先：**Project 覆盖 User，User 覆盖 Extra，Extra 覆盖 Built-in**。",
+      "thinking_budget": 4096
+    },
+    "6c42f6770f548e9cc43cb67eeaa263cb38a2788c520d3f784b2979232160df7d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "对结果没有实质影响的琐碎决策",
+      "thinking_budget": 4096
+    },
+    "6c5120a61c43a747db674fb736022c9e19fcabbff485f410657df2f771de9940": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "专业知识：特定领域的专长（例如 PDF 处理、数据分析）",
+      "thinking_budget": 4096
+    },
+    "6cf76a4fd9ed3992d847126c00d0a335148f514c43f0465e27c4ca87b76216a2": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "如果 afk 模式未处于激活状态且你有未解决的问题，请先使用 AskUserQuestion。",
+      "thinking_budget": 4096
+    },
+    "6ed3761c13c817c69238ea98ac9577acd13ccfb05cd84b5af60f85cc393f300c": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：$PHISTORY_INSTALL/lib/python3.13/site-packages/kimi_cli/skills/kimi-cli-help/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "6f02342685f703b3824e9de6981d18c3a47d536dde5ecfb9e237a1e11591d78f": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "**何时使用：**",
+      "thinking_budget": 4096
+    },
+    "6f7b6a115544b5e0180f49ffa934afbf4e4490cd36b9e37140b0f5b4afa174ea": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "要编辑的文件的路径。编辑工作目录之外的文件时，必须使用绝对路径。",
+      "thinking_budget": 4096
+    },
+    "6fdf7a0f43da0723dd93d3c2a382095f8e7496848276e3bc07b23fd7064ff466": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "要搜索的目录的绝对路径（默认为工作目录）。",
+      "thinking_budget": 4096
+    },
+    "70f81db8dcf4f32e5d78165396628942152fa8586f8a4fa085d9dd0ebcd0d257": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`AGENTS.md` 指令（合并自所有适用的目录）：",
+      "thinking_budget": 4096
+    },
+    "714df7a051c6a377105373733e0ca442d90a4499aa780046c18b0f4b693df088": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "在工作过程中让用户在不同实现方案之间做出决定",
+      "thinking_budget": 4096
+    },
+    "71636a00a359fa199590b65dd726b36bd2dbe34c9a1278105c227dc5162f4aa7": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/home/runner/work/phistory/phistory/.phistory-cache/installs/kimi/1.47.0/lib/python3.12/site-packages/kimi_cli/skills/kimi-cli-help/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "7209f48873b7163d793e6f29e091bf9334883e0c64fca165ef168fca4acba8ea": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "项目信息",
+      "thinking_budget": 4096
+    },
+    "739c888ebe492018f3f4f68b3ae5ca18c7538d0ec8a1290312c518196ec46d79": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "不要将 \"Reject\"、\"Revise\" 或 \"Approve\" 用作选项标签——这些是系统保留的。",
+      "thinking_budget": 4096
+    },
+    "7424801d6fd2c64b72b6611d36222f3be96dfac7b67765482219206288e88c86": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "当 block=true 时等待的最大秒数。",
+      "thinking_budget": 4096
+    },
+    "74772a73454af86ed11bd5a4b29758a069cc53b877d9a3c3b3ca7b67adce7ce1": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "在继续之前收集用户的偏好或需求",
+      "thinking_budget": 4096
+    },
+    "74a930cf12d8da99bf07246a22aa106c2ca009dd08b5936045745e2852f4ebdc": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "支持多行字符串。",
+      "thinking_budget": 4096
+    },
+    "74ceb5dbede9bd64948d3a12794712f66978bea2c2e000308fd9fe62ec7ccfe2": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "每个问题应提供 2-4 个有意义且互不相同的选项",
+      "thinking_budget": 4096
+    },
+    "7519ced67bafcdb5d4a39a2fa658e8c033dbddba2fcca3485cc09d2bfff0c831": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "读取已知路径的文件",
+      "thinking_budget": 4096
+    },
+    "75bc97b8e5f64e7fae41592808679cc44f3600c8b6a131774f1bfdfe7aae98bb": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "Yolo 模式用户选择了持续执行。",
+      "thinking_budget": 4096
+    },
+    "75ee27b207e1c1507a8fa350840a7443f92c8200e5809ef49b05810f45b9c516": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "在 yolo 模式下，仅当用户明确要求规划，或\n  存在特殊的架构歧义、需要先获得用户输入才能继续时，才使用 EnterPlanMode。",
+      "thinking_budget": 4096
+    },
+    "7727b4040e35c1f28471d79567da50fe25da4d2c63abe17fa1d1f06ffbe41ea5": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "**并行多任务**",
+      "thinking_budget": 4096
+    },
+    "77cc3b0a8c4231dacada9f98996d880d23fb4945d88ac2a4666f7576810f6e82": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "在每个匹配项之后显示的行数（`-A` 选项）。要求 `output_mode` 为 `content`。",
+      "thinking_budget": 4096
+    },
+    "788ad553b2e87959ba40057f4831490be46efcc62da5bf2c1e30fa7b62033045": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "当你想继续一个已有实例而不是启动新实例时，使用 `resume`。",
+      "thinking_budget": 4096
+    },
+    "790a22d0217074197e494c8aec6e2e49014ee6086483ffc9fb751112e8b2faa8": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "要应用到文件的编辑。可以在此提供单个编辑或编辑列表。",
+      "thinking_budget": 4096
+    },
+    "7991f3dce2fc80a30189c4c32d962c48ecd3bf8c189d42098f973c2027bd4fd9": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "**查询模式**：省略 `todos`（或传入 null），以在不做更改的情况下获取当前待办列表。",
+      "thinking_budget": 4096
+    },
+    "7a1507ad183864a82116e42ed98e6fd8266a35177e167483d988494deae3ec59": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/home/runner/work/phistory/phistory/.phistory-cache/installs/kimi/1.48.0/lib/python3.12/site-packages/kimi_cli/skills/skill-creator/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "7a1dae74027d0269b271952aeb69be35683ffd6579231f114f450aaba1443907": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "此任务所使用的专用子智能体的名称",
+      "thinking_budget": 4096
+    },
+    "7a7ff976ed1bbcb6004dd8d532ada550b27c36b974b8e963a9d5076a8ab00952": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "可选的模型覆盖。选择优先级依次为：此参数、内置类型的默认模型、父智能体的当前模型。",
+      "thinking_budget": 4096
+    },
+    "7b4d6f0b5d9a94067fd5561a550417d6605eeb539aa57053b5073983831e464b": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "在每个匹配项之前显示的行数（`-B` 选项）。要求 `output_mode` 为 `content`。",
+      "thinking_budget": 4096
+    },
+    "7bdae72cf2152a7274c6e1e3fc38e390964e2687ad162f2e7fbcbed6ee80dcc6": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "当你需要重新枚举哪些后台任务仍然存在时使用此工具，尤其是在上下文压缩之后，或者当你不再确定哪些任务 ID 仍处于活动状态时。",
+      "thinking_budget": 4096
+    },
+    "7c863565359a39ebb37da55ccc304ecb9bcacb7edbac4b5f89305678d3b1bea6": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "**可用的内置智能体类型**",
+      "thinking_budget": 4096
+    },
+    "7cbdedfd2608922720ecca9027533f5aff077070814a7d3d3ab21f46441f41bd": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "是否将命令作为后台任务运行。",
+      "thinking_budget": 4096
+    },
+    "7cc22f839e71fb5bd89daebbacccc657186343c8ca687551afd343a88869e483": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "只需要读取文件的一部分时，使用 `line_offset` 和 `n_lines` 参数。",
+      "thinking_budget": 4096
+    },
+    "7d8dff50458134596e7eeb890965c9871363534ed1c64dfe94c9906ecb35ec2e": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "文件查看/编辑：cat、grep、head、tail、diff、patch",
+      "thinking_budget": 4096
+    },
+    "7dba9f1a47055898127d709bd79ab0e06d5e9c08e4bc2d268364232bcc735872": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "在处理用户请求时，你可以调用可用工具来完成任务。调用工具时不要提供解释，因为工具调用本身应当是不言自明的。调用工具时必须遵循每个工具及其参数的描述。",
+      "thinking_budget": 4096
+    },
+    "7e617f2601894411a6f8ca52d83412c1fc1cc01aaea7279dd6fd36723023c9cc": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "Agent 工具可以创建新的子智能体实例，也可以通过 `agent_id` 恢复现有实例。\n每个实例在当前会话下保留自己的上下文历史，因此重复使用同一个\n实例可以保留之前的发现和工作成果。",
+      "thinking_budget": 4096
+    },
+    "7ec56c0f345c460172bfe511e8a9d762c7bd0fa101555f473d6d78042c525e00": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "待办事项的标题",
+      "thinking_budget": 4096
+    },
+    "7f3e20832c529dde6b85ecebc180751843ba246ede47cc80845a18d02f9ba99c": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "**使用模式：**",
+      "thinking_budget": 4096
+    },
+    "7f6b7c57b602f73a67a019c21e47db9929082556c5686c34d9ee73451a867d57": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "可选的智能体 ID，用于恢复已有智能体而非创建新实例。",
+      "thinking_budget": 4096
+    },
+    "80153df4fc9a64d0b403dfffeebd23bff7673ce7f0cdabcd1fd9c408f0a6d35d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "在进行深入或广泛的研究之前先制定计划，确保始终不偏离方向。",
+      "thinking_budget": 4096
+    },
+    "803b3c2974dada9729a47cd5499ef58698c4d5d186bdae4b070e780a5ce31253": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "review": "model-revised-against-source",
+      "status": "translated",
+      "text": "路径：/data00/home/liangweifeng/phistory/.phistory-cache/installs/kimi/1.44.0/lib/python3.13/site-packages/kimi_cli/skills/kimi-cli-help/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "8159bbee82b2c9851414f026f7e351c0a87fcc4349e7aec3c7d012b7cb06dd56": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/home/runner/work/phistory/phistory/.phistory-cache/installs/kimi/1.45.0/lib/python3.12/site-packages/kimi_cli/skills/kimi-cli-help/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "81faa8edb40d57ec3f013a15d38d4bf7a22e71a7c009108fc991742f52af8d00": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "工作环境",
+      "thinking_budget": 4096
+    },
+    "826157bf8b07e69aa397a02b56e471cbf3b5747e6a5842ad3276757c688e2dc0": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "查找匹配特定模式的文件（例如，所有 Python 文件：`*.py`）",
+      "thinking_budget": 4096
+    },
+    "83834988366766b343d55ca85e28bfbd675c5de4ad2e675f6ffb96b719fd4e38": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "理解代码库和用户的需求。确定最终目标以及实现该目标的最重要标准。",
+      "thinking_budget": 4096
+    },
+    "83a68fcf9c5ae61f375ebbd2aafb2f44ba0df682979cee4e1f9ef8dd6910229f": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "在执行过程中需要以结构化选项向用户提问时，请使用此工具。这让你能够：",
+      "thinking_budget": 4096
+    },
+    "84070d6ee686b5ea233004d5df105457bdedd0facb5a06bb6dbecdc285928464": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "避免在当前工作目录之外安装或删除任何内容。如果必须这样做，请向用户确认。",
+      "thinking_budget": 4096
+    },
+    "84be9729130ebcd3e1746feff813c4244d484eed2b5dcdf58d6c5a842253e8cd": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "当以下任一条件成立时使用它：",
+      "thinking_budget": 4096
+    },
+    "84db365bc0f9c7110ecc62e1725b4c03039f8fef1fb4fc221897dab290c3b7c8": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "\"thorough\"：跨模块分析——架构概览、依赖关系梳理、多模块调查",
+      "thinking_budget": 4096
+    },
+    "854cae18dd225e769dc51de2705041a6eea2ced1c330da824a13f22eaa5a2cd4": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "待办列表是一个简单而强大的工具，帮助你把事情做完。当给定任务涉及多个子任务/里程碑，或者在单个请求中给出了多个任务时，通常你会想使用此工具。此工具可以帮助你分解任务并跟踪进度。",
+      "thinking_budget": 4096
+    },
+    "85676b97ef8db937d0a8515c2e5f5d4477279708d069f4044de7153b6cb7c782": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "此工具通常适合并行使用。只要有可能，就在一条回复中读取多个文件。",
+      "thinking_budget": 4096
+    },
+    "865bd52bcaf4fc37343cb0680e5fe94d7ab77f2064ecc06133ebefb69238faef": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "可以在一次调用中指定单个编辑或编辑列表。",
+      "thinking_budget": 4096
+    },
+    "86737d5c6899554f9532c99ef5d41464d91f0b37ccbc2e1589523af86603f6ff": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "不要用 AskUserQuestion 问“这个计划行吗？”或“我该继续吗？”——这正是 ExitPlanMode 的功能。",
+      "thinking_budget": 4096
+    },
+    "878039edd984f616bbe46c9dbe64ac0246015df3b98ee59ccb9fc5ed954950f9": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "未指定 `mode` 时，默认为 `overwrite`。始终谨慎写入。",
+      "thinking_budget": 4096
+    },
+    "87f5e5d020a71feaef5e4d49c2c76a68e6d1be5e554f338baf92e408abae81c9": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "用户请求对项目中的多个模块/文件进行编写、重构或修复，且这些模块/文件可以独立测试。这种情况下，你可以生成多个子智能体，每个负责不同的模块/文件。",
+      "thinking_budget": 4096
+    },
+    "8a684ecac8320165b083794ed780c9c5a1a1357e786010008de0687aa2046486": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "这是你可用的唯一待办列表工具。也就是说，每次想要操作待办列表时，都需要更新整个列表。请确保妥善维护待办事项及其状态。",
+      "thinking_budget": 4096
+    },
+    "8b22e69a056314fcc68b6ea6e781bd02551e8830a5fc61d0b9a6c543026871fb": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "启用多行模式，此时 `.` 会匹配换行符，模式可以跨行（即 `-U` 和 `--multiline-dotall` 选项）。默认情况下，多行模式处于禁用状态。",
+      "thinking_budget": 4096
+    },
+    "8b52af0ca71c9c0512ab7860524365e8ece861e086e5a29baf92ab7ad4af7887": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "查找测试文件（例如，`test_*.py`、`*_test.go`）",
+      "thinking_budget": 4096
+    },
+    "8b7f6dac0a2f63b73fe8d84d87017d8d8ef99ce15ed6f3e96d25a3c3e6af5dc5": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "在输出中显示行号（`-n` 选项）。要求 `output_mode` 为 `content`。默认值为 true。",
+      "thinking_budget": 4096
+    },
+    "8cf2de5f47c1d3859b8bc2f3bb147f7450339d1e519c95736e58bc81fd093b36": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "用户的消息可能包含自然语言的问题和/或任务描述、代码片段、日志、文件路径或其他形式的信息。阅读它们、理解它们，并执行用户所请求的内容。对于不涉及工作目录或互联网中任何信息的简单问题/问候，你可以直接回复。除此之外的情况，默认使用工具采取行动。当请求既可以理解为需要回答的问题、也可以理解为需要完成的任务时，将其视为任务。",
+      "thinking_budget": 4096
+    },
+    "8d240162c1b7ea0df31cfd1f3aff5caf644a223c513079ccc6efe443eb93b36d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "在处理用户请求时，如果涉及创建、修改或运行代码或文件，你必须使用合适的工具（例如 `WriteFile`、`Shell`）做出实际改动——不要只在文本中描述解决方案。对于只需要解释的问题，可以直接以文本回复。调用工具时不要提供解释，因为工具调用本身应当是不言自明的。调用工具时，必须遵循每个工具及其参数的描述。",
+      "thinking_budget": 4096
+    },
+    "8d897d579d4d408a751ee0650dcd78b0fa38baf799189df743f88780fefe37f4": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "要抓取内容的 URL。",
+      "thinking_budget": 4096
+    },
+    "8db0baab3364c56dc75df990c552f675f51fa83866c99163cd618a1049aa6439": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "其他：shell 环境中可用的其他命令。在使用某个命令之前，先运行 `which <command>` 检查该命令是否存在。",
+      "thinking_budget": 4096
+    },
+    "8e524bb7bfbd2a941e3aa2f361f841f6c2cce6d4c429f04950c18c972e11ba21": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "当前的日期和时间（ISO 格式）为 `$PHISTORY_DATETIME`。这仅供你在搜索网络、检查文件修改时间等情况下参考。如果需要确切时间，请使用 Shell 工具并配合适当的命令。",
+      "thinking_budget": 4096
+    },
+    "8e6a367d500de6732ca27439f179659d60bb80fc398ff954a25b5473bc7e83c6": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "当你需要某个特定库、框架或技术的最新知识才能继续任务时，可以生成一个子智能体在互联网上搜索所需信息，并把收集到的相关信息返回给你，例如代码示例、API 参考等。这可以避免你自己的上下文中出现大量无关的搜索结果。",
+      "thinking_budget": 4096
+    },
+    "8f0137798d9e252fdbc0fb2fa31fd64598da2c807792b55ef7ba84c4a3bba9ed": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "返回的内容会在每行前附上行号，格式类似于 `cat -n`。",
+      "thinking_budget": 4096
+    },
+    "90f78a290482e9a89d3ab55512b03116241238910bc3c2d7d6e1e4393f177ade": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "Shell 环境：cd、pwd、export、unset、env",
+      "thinking_budget": 4096
+    },
+    "9287c084e725a36125add4093f297021c99287a778dfd453805ac2c8046c68c2": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "**更新模式**：传入 `todos` 来设置整个待办列表。之前的列表会被替换。",
+      "thinking_budget": 4096
+    },
+    "933f6303bfbde2482b0b9569f76462231b9c5f80e3ea0a1549e9d789e08d2aba": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "**Explore Agent——代码库研究的首选**",
+      "thinking_budget": 4096
+    },
+    "9372991d6c4ada0973a5ab85bd8ff9880387a1cf78fa835a568656b51fc54ecf": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "工具",
+      "thinking_budget": 4096
+    },
+    "94100bad2f7c3f58a33d59c7060abbe30cc19f38ca8ac6fd6150684c3eadf6e4": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "> 为什么需要 `AGENTS.md`？\n>\n> `README.md` 文件是面向人类的：快速入门、项目描述和贡献指南。`AGENTS.md` 对此加以补充，包含编码智能体所需的额外、有时颇为详细的上下文：构建步骤、测试，以及可能让 README 变得杂乱或与人类贡献者无关的约定。\n>\n> 我们有意将其单独分开，以便：\n>\n> - 为智能体提供一个清晰、可预期的指令位置。\n> - 保持 `README` 简洁，并聚焦于人类贡献者。\n> - 提供精确的、面向智能体的指导，作为对现有 `README` 和文档的补充。",
+      "thinking_budget": 4096
+    },
+    "943e040a990d058e2ff1345e6a23a0dd0fde9d863044729c792bdec11fc6265d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "在计划模式下，你将：",
+      "thinking_budget": 4096
+    },
+    "94560a2f33f85b3cea87ca6a14fe6c5143453f1599ca609cd340e15d9c7af8c8": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/home/runner/work/phistory/phistory/.phistory-cache/installs/kimi/1.50.0/lib/python3.12/site-packages/kimi_cli/skills/skill-creator/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "94a46da993154543e4d227e1314b6a13da1a177a96e28ca072e2a8134a90782a": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "对于新功能，通常需要设计架构，并以模块化、可维护的方式编写代码，尽量少侵入现有代码。如果项目已有测试，则添加新的测试。",
+      "thinking_budget": 4096
+    },
+    "950f7e57dce67264dcac7d7dd84746694777e876177af4ace56c3baf09861e8d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/data00/home/liangweifeng/phistory/.phistory-cache/installs/kimi/1.3/lib/python3.13/site-packages/kimi_cli/skills/kimi-cli-help/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "9521aa721bd922c3b2579681a540c1e95c7c8c4a442f8b403703e0d21f3fec2b": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "在确定正确的任务 ID 后，使用 `TaskOutput` 详细查看单个任务。",
+      "thinking_budget": 4096
+    },
+    "9557edcde8d3e22a6b8b96ca1ecd0f9c2000957402c9c93585c6d5a4d34b49a1": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "技能",
+      "thinking_budget": 4096
+    },
+    "95d18d2d5b93604f93890f192a65aa03961a62d8f8f21fdcda6aaff252b85649": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "管理你的待办列表，用于跟踪任务进度。",
+      "thinking_budget": 4096
+    },
+    "961d229207b3cdd31149df35faf3208f296fc09f5a6597dc2c408365d069fce4": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "如果 afk 模式未处于激活状态，且你有多种方案尚未缩小范围，可以考虑先使用 AskUserQuestion 让用户选择，然后仅为所选方案编写计划。",
+      "thinking_budget": 4096
+    },
+    "97f214dab43a46b1402fc9eed382ffd25942785d71479491b6fe5121fae7398a": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "用户可能要求你研究某些主题，处理或生成某些多媒体文件。执行此类任务时，你必须：",
+      "thinking_budget": 4096
+    },
+    "98154da7e5c3b344c264ad8e1551a0ce96d9de452c2b037779e3fdad8e86a844": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/home/runner/work/phistory/phistory/.phistory-cache/installs/kimi/1.49.0/lib/python3.12/site-packages/kimi_cli/skills/kimi-cli-help/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "9854b51cead818e4f89eb529033622d29abb5d8fe172c509bafd9f4594ff9d2f": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "操作系统",
+      "thinking_budget": 4096
+    },
+    "9860781663f31a1e077981628c01f77fc52cdf419f9c619608d225030a7effbb": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "要读取的行数。默认最多读取 1000 行，这也是允许的最大值。当文件过大、无法一次读取时设置此值。",
+      "thinking_budget": 4096
+    },
+    "9980c93271d792b27b84e169fe961333409ad55dfe8b99ff11616b9c451c2077": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "尽最大努力避免任何幻觉。在提供任何事实性信息之前，先进行事实核查。",
+      "thinking_budget": 4096
+    },
+    "9b0c267b111fdc85a87eeefc535383580512f9936e788ab80846f07d036891e1": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "如果上述 `AGENTS.md` 为空或不够充分，你可以查看 `README`/`README.md` 文件或子目录中的 `AGENTS.md` 文件，以了解项目特定部分的更多信息。",
+      "thinking_budget": 4096
+    },
+    "9b272305d5ecd996a51a0a265170eec759624e56a1f3eaf97a61743398715280": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "对于长时间运行的构建、测试、监视器或服务器，如果你需要在命令结束前让对话继续进行，请优先使用 `run_in_background=true`。",
+      "thinking_budget": 4096
+    },
+    "9b53bd9f4be0021af9a114a83f9887ae217ec2c887d060bc02ffe12ab52729c1": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "滥用此工具来跟踪过于细小的步骤只会浪费你的时间，并让你的上下文变得混乱。例如，以下是一些不应使用此工具的情况：",
+      "thinking_budget": 4096
+    },
+    "9bf7dc408401db71dcca314dc728667f14ba4eefae2927f2d945c91801ea93d5": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "开始读取的起始行号。默认从文件开头读取。当文件过大、无法一次读取时设置此参数。",
+      "thinking_budget": 4096
+    },
+    "9c0cac80e82f91c4412b496e04c327b11c78a81ff2124dc1f9fad5fe4ebec860": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "最多提供 2-3 个选项（系统会自动附加一个 \"Reject\" 选项，因此向用户显示的总数为 3-4 个）。",
+      "thinking_budget": 4096
+    },
+    "9c662125d28d868b4b0288523979122f7c68197322a98fe3e35107b786b959e5": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/home/runner/work/phistory/phistory/.phistory-cache/installs/kimi/1.45.0/lib/python3.12/site-packages/kimi_cli/skills/skill-creator/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "9d7b49a61d616b3517b5e632b81d7b957db233eae130fa52d98e3b63060169ea": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "无论何时，你都应当有帮助、简洁且准确。彻底应体现在行动上——测试你构建的内容，验证你修改的内容——而不是体现在解释上。",
+      "thinking_budget": 4096
+    },
+    "9e69e5fce858fa0447ce584a6bfba6e8b651ce6ea81890646b3143b2fd810e12": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "当前工作目录为 `$PHISTORY_WORKSPACE`。如果你被指示对项目执行任务，应将其视为项目根目录。在未显式指定绝对路径的情况下，每个文件系统操作都将相对于工作目录进行。工具的某些参数可能要求使用绝对路径，若是如此，你必须为这些参数使用绝对路径。",
+      "thinking_budget": 4096
+    },
+    "9ece80609825252f3fa8e587f36af94a5082a9d2bc421e87288ca595327edfcc": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "使用 `||` 进行条件执行（仅在第一条命令失败时才运行第二条命令）",
+      "thinking_budget": 4096
+    },
+    "9f63bfa0dc71f44fbf510b887ff8e9398d6fc80eb4d50b5fc622394a54691ff5": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "简短的类别标签（最多 12 个字符，例如 'Auth'、'Style'）。",
+      "thinking_budget": 4096
+    },
+    "a0526ba35aeb3b9ed528bf7a0c92c367393911c1efaa7aa2f9f658a9eb0ca976": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "用于匹配文件/目录的 glob 模式。",
+      "thinking_budget": 4096
+    },
+    "a230365f4a5db639eaaaf9b6f49040944ca0d386ec6d11417f64e9e8a7db7c8b": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "系统信息/操作：ps、kill、top、df、free、uname、whoami、id、date",
+      "thinking_budget": 4096
+    },
+    "a23042d876fb0e3a03ab3fec945945225b2d6722cf70e92459121e9f06d7d91b": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`content`：显示匹配的行（支持 `-B`、`-A`、`-C`、`-n`、`head_limit`）；`files_with_matches`：显示文件路径（支持 `head_limit`）；`count_matches`：显示匹配总数。默认为 `files_with_matches`。",
+      "thinking_budget": 4096
+    },
+    "a262e2742dc3e254b0f882cc741a7e9fe670e785a93ecdcc657ec1337619a371": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "用户偏好很重要——如果你本想用 AskUserQuestion 来明确方案，请改用 EnterPlanMode",
+      "thinking_budget": 4096
+    },
+    "a4ceb3c49b24285880b62336e393fcae5ed5820fd5f6d7d2851f6c85be2c7988": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "文件系统操作：ls、find、mkdir、rm、cp、mv、touch、chmod、chown",
+      "thinking_budget": 4096
+    },
+    "a4de542fd5bbb02fc9b97ef8e55a094d7769b2250186a8a4ab3b1ad6d37907c8": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "这是一个通用的任务停止功能，不是 bash 专用的 kill 工具。",
+      "thinking_budget": 4096
+    },
+    "a5250651937900dc20669a279827c2cce7f56c87326769eeb4cbb4ca9ffb4904": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "始终保持极度简单。不要把事情过度复杂化。",
+      "thinking_budget": 4096
+    },
+    "a5279fb91d6ea50f685cf06ae856ecc3e2d0f92191bb71e3e4e8a95a30ee69f0": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "仅将此工具用于需要规划实现步骤的任务。对于研究类任务（搜索文件、阅读代码、理解代码库），不要使用此工具。",
+      "thinking_budget": 4096
+    },
+    "a6ce3e5b1ab0635664e290d2179a2a77b9c3a57452879b1ab27fa17b45568618": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "是否在后台运行该智能体。除非任务可以独立继续，且在需要结果之前交还控制权有明显好处，否则优先使用 false。",
+      "thinking_budget": 4096
+    },
+    "a71a668052cf5af07df72cfcc14953e8004ac13d00d4b557c7426d0aec72fcab": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "如果你推荐其中一个选项，请在其标签后附加 \"(Recommended)\"。",
+      "thinking_budget": 4096
+    },
+    "a7a28608952b1fe94b2dd3007f508a8222ca6e42f7e6547caf7088bf92b6681e": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "多文件改动——涉及超过 2-3 个文件",
+      "thinking_budget": 4096
+    },
+    "a8d935faa425bcebd2c738cd7cad3535a1e4655aed737b7212902250e14d538c": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "单行或几行的修复（拼写错误、明显的 bug、小调整）",
+      "thinking_budget": 4096
+    },
+    "a918013595ca86e23ea6acc5a69e3fb6d14ba03723381a9254058688a79f6e6d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "生成一个子智能体来执行特定任务。子智能体将以全新的上下文生成，不包含你的任何历史记录。",
+      "thinking_budget": 4096
+    },
+    "aa01f83c965674bad5b9443c6fe023d1b6556d446f593dc1a77f49897c290a6d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "review": "model-revised-against-source",
+      "status": "translated",
+      "text": "路径：/data00/home/liangweifeng/phistory/.phistory-cache/installs/kimi/1.42.0/lib/python3.13/site-packages/kimi_cli/skills/kimi-cli-help/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "aa34e79bd2d4f961b77fb809b6bf9e040379ed0127367b0afd20e8f527e7c01f": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/data00/home/liangweifeng/phistory/.phistory-cache/installs/kimi/1.44.0/lib/python3.13/site-packages/kimi_cli/skills/skill-creator/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "aaf54c1e6a85379cd338a1ff56e02c3807cd37a54de831e79d508dfe34367f67": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "对于更大范围的代码库探索和深入研究，请使用 `Agent` 工具并配合 `subagent_type=\"explore\"`。这是一个快速的只读智能体，专门用于搜索和理解代码库。当你的任务明显需要超过 3 次搜索查询，或需要调查多个文件和模式时，请使用它。你可以并发启动多个 explore 智能体，并行调查相互独立的问题。",
+      "thinking_budget": 4096
+    },
+    "ab896cfc214a7bd4262d7e9ba15eb16047e20d5a39c500d1dc41aca9f3da29a4": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "任务停止时记录的简短原因。",
+      "thinking_budget": 4096
+    },
+    "ac5247ffa9379db6d695b1744edec719e4f0ec4d434855c83c43ec430d63b8c7": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "使用负数 `line_offset` 从文件末尾开始读取（例如 `line_offset=-100` 读取最后 100 行）。这适合用来查看日志文件的末尾。绝对值不能超过 1000。",
+      "thinking_budget": 4096
+    },
+    "ac923be23d5834200f5c8b760028f28316413d520646db4f7537fa1003257abb": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "启动一个子智能体实例来处理一项专注的任务。",
+      "thinking_budget": 4096
+    },
+    "ad777895804b3d370b6193337f6c15bfa4fc509b73ee53c28075552a68856acb": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "如果 afk 模式处于激活状态，此工具会被自动批准，因为没有用户在场。",
+      "thinking_budget": 4096
+    },
+    "add4b220e135205f60bd0bd0e2149905538d425cf5d1ec2d5b7b800316535d28": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "要执行的 bash 命令。",
+      "thinking_budget": 4096
+    },
+    "ae29929a335566aac51ce054d906736bb57a2cdc982db5711eeefee8106e551e": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "启动后台任务后，不要猜测其结果。尽可能依赖自动完成通知。默认使用 `TaskOutput` 获取非阻塞的进度快照，仅在有意等待时才设置 `block=true`。",
+      "thinking_budget": 4096
+    },
+    "af402ffb4970a35e981ffc3844f16032c6ce7b46de8fc68a5714e34914c95971": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`node_modules/**/*.js` - 尽管它不以 '**' 开头，仍然极有可能产生庞大的结果，因为众所周知 `node_modules` 包含过多的目录和文件。避免在这类目录中进行递归搜索，其他例子包括 `venv`、`.venv`、`__pycache__`、`target`。如果确实需要在依赖中搜索，请改用更具体的模式，例如 `node_modules/react/src/*`。",
+      "thinking_budget": 4096
+    },
+    "af82906d119dccbe53980aa2e8b3cdca6870f612cf00aabb091fc4526fac7037": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "是否替换所有出现的位置。",
+      "thinking_budget": 4096
+    },
+    "afa7635e81f868e4bdcb9a14a87a97f6d8c9dfc4f293cd0d71df914c79beadb9": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "对于 EnterPlanMode / ExitPlanMode，它们会被自动批准。你可以正常使用，但不要期待用户反馈。",
+      "thinking_budget": 4096
+    },
+    "b16ef33a5c989e67c330df4e325430a1a8095c858a75cdea240fc4054a41091f": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "务必遵循每个工具参数的说明。",
+      "thinking_budget": 4096
+    },
+    "b24cb757e4c5382667519e205fca96a46e098f8987b785a3bf6282130c903261": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "过度使用此工具会打断用户的节奏。仅当用户的输入确实会改变你的下一步行动时才使用它。",
+      "thinking_budget": 4096
+    },
+    "b28e8f1cb92b3b22e2508596556d8a60b2ebca0ea0de3d4db6a1be9743714429": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "review": "model-revised-against-source",
+      "status": "translated",
+      "text": "路径：/data00/home/liangweifeng/phistory/.phistory-cache/installs/kimi/1.42.0/lib/python3.13/site-packages/kimi_cli/skills/skill-creator/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "b2a5e0f17ad8c1c07ba6d5cc0b546185e845780d83c824d4dcb2de141f3dad35": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "一款基于 ripgrep 的强大搜索工具。",
+      "thinking_budget": 4096
+    },
+    "b2aa3221d9579f205a471e03d1a312846af877afa12a265852eb42100d4ae7a3": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "需求不明确——需要探索才能理解范围",
+      "thinking_budget": 4096
+    },
+    "b318976869238cb4f472466038cd7c07bae4db7e89b41049f3af03d50b438016": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "找出 2-3 个关于代码库的关键问题，这些问题对你的计划至关重要。如果你对代码库结构或相关代码路径没有把握，先用 `Agent(subagent_type=\"explore\")` 调查这些问题——对于非简单任务，强烈建议这样做。",
+      "thinking_budget": 4096
+    },
+    "b427bff0c47a6319f2b1e50383edfc57fcdbc58e05fc874ebace77f7f7db6dea": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "从 URL 抓取网页并提取其中的主要文本内容。",
+      "thinking_budget": 4096
+    },
+    "b556894ea35bfbae69692c76b9f1f92cbfaeafb49587ce45c783da34a15b9545": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "如果有尚未解决的问题，先使用 AskUserQuestion。",
+      "thinking_budget": 4096
+    },
+    "b697888750e70d4eabb04816d3d680e7b0a6e40d0a5a1a9de44f4bf0fc4fe83a": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "用于替换的新字符串。可以包含多行。",
+      "thinking_budget": 4096
+    },
+    "b6981dc69c406d184cc14e5f0f567f82016f8eede702e085bbb5600db138f6b9": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "当你需要在做出更改、修复缺陷或规划功能之前先了解代码库时，\n应优先使用 `subagent_type=\"explore\"`，而不是自己进行搜索。Explore Agent 经过优化，适合\n快速、只读的代码库调研。在以下情况下使用它：",
+      "thinking_budget": 4096
+    },
+    "b8e96adc5487dae9285614a6bc07da3fda65203bbed93ff372219fa64ba5ee2f": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "并行多任务是该工具的另一个关键优势。当用户请求涉及多个彼此独立的子任务时，你可以在单次回复中多次使用 Task 工具，让子智能体为你并行工作。",
+      "thinking_budget": 4096
+    },
+    "bab5459dc1062a8cdab6a289b5c1c47449433628d1785df560999b2e4ccf10aa": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "通过 `options` 参数传递它们，以便用户选择执行哪种方案。",
+      "thinking_budget": 4096
+    },
+    "bacdc585d3e9887b8cc42e113f39277d6e9d46e4a59a839f73149ac8e5fd3c32": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "对于 bug 修复，通常需要检查错误日志或失败的测试，浏览代码库找出根本原因，并想出修复方案。如果用户提到了任何失败的测试，应确保这些测试在修改后通过。",
+      "thinking_budget": 4096
+    },
+    "bb2d2bab95b101119bc490a0ac17d43e91ef752805b43db941b4f27c046a541b": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "使用 `WriteFile` 创建或覆盖源文件。仅出现在你文本回复中的代码并不会保存到文件系统，也不会生效。",
+      "thinking_budget": 4096
+    },
+    "bbe9dafab70fee4678d44ec810c56ec072e2d51703ec82881d6ed21d4d242d9d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "智能体任务的超时时间（秒）。前台：无默认超时（运行直至完成），最大 3600 秒（1 小时）。后台：默认值取自配置（15 分钟），最大 3600 秒（1 小时）。超过此限制时，智能体会被停止。",
+      "thinking_budget": 4096
+    },
+    "bc3cdc51a840f4817b92a337eef761629cb46b508dcaee0f98773cdf20870d5d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "绝不要给用户超出他们想要的内容。",
+      "thinking_budget": 4096
+    },
+    "bc4a7a6405ec1ee180e01a487c2aee27b10d142db92cf745191515c934847399": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "项目级 `$PHISTORY_WORKSPACE/AGENTS.md`：",
+      "thinking_budget": 4096
+    },
+    "bc72613e65cda654a34068f176d9693aeaf2d7931c6633813f4ecd245d7534ef": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "你想调查多个相互独立的问题——可并发启动多个 explore agent",
+      "thinking_budget": 4096
+    },
+    "bcbd812edaf43e2239f973e0bb7a8ddbfe27ef10163d021db06334e2ab875552": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "当只需少数几步/几次工具调用即可完成任务时。例如：\"修复单元测试函数 'test_xxx'\"、\"重构函数 'xxx'，使其更加稳健。\"",
+      "thinking_budget": 4096
+    },
+    "bce9394bbda236bb479ff17204611fd1dda8caa3f31296a0a727c9b7f910ab7b": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/home/runner/work/phistory/phistory/.phistory-cache/installs/kimi/1.46.0/lib/python3.12/site-packages/kimi_cli/skills/skill-creator/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "bcf756ce17dfcddb2dc2de5ea703348274e10569a4972b0b0b0be3074c232c7a": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "如果 afk 模式处于活动状态，请勿使用 AskUserQuestion；请根据可用上下文做出最佳决策。",
+      "thinking_budget": 4096
+    },
+    "bd50bc9e1f1fa2f069e271b8a35e0475f4dce8513235082cecee144e731b2970": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "用户给出了非常具体、详细的指示",
+      "thinking_budget": 4096
+    },
+    "bd6b2a87bd65c628de56f7ed2e95e66b32f54c98a8e295cfbe29d05860307d71": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "命令执行的超时时间（秒）。如果命令执行时间超过该值，命令将被终止。",
+      "thinking_budget": 4096
+    },
+    "bdb09ca3c1facd544370c0bd4d485ab99db3b2b40d2e88ce4b7dfddf708841fb": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "从文件中读取文本内容。",
+      "thinking_budget": 4096
+    },
+    "c0700d1a110cd7d4ebb111c9922a4cc51c95cd3d1610b9a07f0ef7297554fe84": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "工作目录",
+      "thinking_budget": 4096
+    },
+    "c1a13cc98272eba86e52dacbaf5c1da6d9145b6229f900f0332deadc8786ce8b": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/home/runner/work/phistory/phistory/.phistory-cache/installs/kimi/1.48.0/lib/python3.12/site-packages/kimi_cli/skills/kimi-cli-help/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "c1b2e81141586e6fd5ffb760f594a80d310a57984dd0e71f70bbff2d72d4b202": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/data00/home/liangweifeng/phistory/.phistory-cache/installs/kimi/1.38.0/lib/python3.13/site-packages/kimi_cli/skills/kimi-cli-help/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "c26c3d05fb0c14fcee774f2118de2bcd4cf0211b9ade84d7f92f93f5a65601ec": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "在输出中显示行号（`-n` 选项）。要求 `output_mode` 为 `content`。",
+      "thinking_budget": 4096
+    },
+    "c2c2a96002a5469fbe96bd541e66d1df8066b09fec5ed74123e9db551b553b6c": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "子智能体的结果只有你能看到。如果用户应当看到它，请自行总结。",
+      "thinking_budget": 4096
+    },
+    "c4b1420d53cf40b2f9b47ce25764ae4a99333f23a21948f3c53f71918f5a3a65": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "review": "model-revised-against-source",
+      "status": "translated",
+      "text": "路径：/data00/home/liangweifeng/phistory/.phistory-cache/installs/kimi/1.40.0/lib/python3.13/site-packages/kimi_cli/skills/kimi-cli-help/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "c4e9320f37ed8571dd621cf07828eec0e0666444aa6410b476112321f7e08b86": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "工作流模式：常见任务的最佳实践",
+      "thinking_budget": 4096
+    },
+    "c5ba8b9943a7c661371bf1fcc86defb7f0b63ad9650289510a9d3a1da1cfa465": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "当存在多个有效方向时，提供具体选项",
+      "thinking_budget": 4096
+    },
+    "c5d878777a1800b4f50e08f0f1b66cf4a900b9d5fbb4f9e5eaff1dd8ef6acf3b": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "当你需要针对多个查询进行网络搜索时，可以生成多个子智能体以提高效率。",
+      "thinking_budget": 4096
+    },
+    "c6e365ce231d3dc1c74d73ad5f8237fd33c3ea0cd5f742384926a3d202d91ae2": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "review": "model-revised-against-source",
+      "status": "translated",
+      "text": "不要将用户提示词直接转发给 Task 工具。不要为每个待办事项简单地调用 Task 工具启动子任务。这会让用户感到困惑，因为用户看不到子智能体在做什么。只有你能看到子智能体的响应。因此，只应为非常具体且范围狭窄的任务启动子智能体，例如修复编译错误或搜索某个特定解决方案。",
+      "thinking_budget": 4096
+    },
+    "c720c780abfcc53824c365f9d3aa000554b645e5a15cb7f20d3cddfe73001f10": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "不区分大小写的搜索（`-i` 选项）。",
+      "thinking_budget": 4096
+    },
+    "c7380b5157636e60c10778ecbbe9e70adeb1bd4c49a28c81067f764a592585ac": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "要智能体执行的任务",
+      "thinking_budget": 4096
+    },
+    "c7b606e2a0394e8557140312dac0246010b57e3046ec16b1d156f0e338eb6ae7": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "写入文件所用的模式。支持两种模式：`overwrite` 用于覆盖整个文件，`append` 用于追加到现有文件的末尾。",
+      "thinking_budget": 4096
+    },
+    "c7e2ecb6cb66751e0199506cfcbc36d43418bdb16aeeadffce558f7515512345": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "用户是否可以选择多个选项。",
+      "thinking_budget": 4096
+    },
+    "c85c36f0a044e197b310a71327ddf69b6ea09e1b6e70ff65712320711c9b1ea2": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "要替换的旧字符串。可以包含多行。",
+      "thinking_budget": 4096
+    },
+    "c8eb319d6ce4ac7f2acc755f7f9b68d739be0ee54dca88c22c1ee9af4af31734": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "工具集成：为特定操作预先配置的工具链",
+      "thinking_budget": 4096
+    },
+    "c91dbe68af2fd17f314f139d5ba1d55076597798c0ceaac48b07957ec96fa747": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "review": "model-revised-against-source",
+      "status": "translated",
+      "text": "路径：/data00/home/liangweifeng/phistory/.phistory-cache/installs/kimi/1.43.0/lib/python3.13/site-packages/kimi_cli/skills/kimi-cli-help/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "c94ac3c2816c4ec81046f9adfc59522d4eb9b072ecf78881b3ee4d83ec97c2a1": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "使用 `subagent_type` 来选择一种内置智能体类型。如果省略，则使用 `coder`。",
+      "thinking_budget": 4096
+    },
+    "c9a7b43c492f3d1ef47710cd3897ded8468bdd9e598b2b3df8383e78d793ef9c": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "将内容写入文件。",
+      "thinking_budget": 4096
+    },
+    "ca7dcf233418f4ef90810e1409d7ab151784b1a7c9e0702accd89400446fb18f": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "做最小限度的修改来实现目标。这一点对你的表现非常重要。",
+      "thinking_budget": 4096
+    },
+    "cb94c2c66be2d976009ea242cd4cb8a56c7a8ef526fc48b42efdaf23619df8a3": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "你应该已经将计划写入了计划模式提醒中指定的计划文件。",
+      "thinking_budget": 4096
+    },
+    "cdaf71fc74e892f8853eadc7ab2df5e4ab36cd07d916694181c987ed5a39a89a": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "在读取的文件内容之前，会先给出一个 `<system>` 标签。",
+      "thinking_budget": 4096
+    },
+    "cde4c8934118cbf2c96007c6669dbe14778ee6c7e60a840ac1b6436553c6e479": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "任务的简短描述（3-5 个词）",
+      "thinking_budget": 4096
+    },
+    "cebfc0fb2ea74072dbb9396b7acd51fefc548cd603a8df3a978160d9ffb64668": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "要搜索的文件类型。示例：py、rust、js、ts、go、java 等。对于标准文件类型，比 `glob` 更高效。",
+      "thinking_budget": 4096
+    },
+    "cf24fc6fd9f1cb7b726fc044bef50db3aa552798bd03e637b4ae5852883b82d1": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "任何超过 2000 个字符的行都会被截断，并以 \"...\" 结尾。",
+      "thinking_budget": 4096
+    },
+    "cfc5c554f2e117d36cc080a53a7f75e42b9a3c7cf72c314145ff6a7a87b2e15d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "根据你的调查结果设计实现方案",
+      "thinking_budget": 4096
+    },
+    "d09cf2fe8e3d7bc717a410ff1c7d87ae12efcf8f5a12f1476d47fa1dcae6418b": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "获取正在运行或已完成的后台任务的输出。",
+      "thinking_budget": 4096
+    },
+    "d17d9c69c543db94eaa8b4c7316480a13712866c79956e847834e81ca34f5a03": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "更新后的待办事项列表。如果未提供，则返回当前待办事项列表，不做任何更改。",
+      "thinking_budget": 4096
+    },
+    "d5bfad8c566f3cdde6c75da6fa4edf679710c36fcb648d1bcc6eef185365d255": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "研究与数据处理的通用指南",
+      "thinking_budget": 4096
+    },
+    "d5c169baf91576870fea2fb793bcd659a22252b828878744dce214ae45dd391f": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "不要调用 AskUserQuestion。如果需要做出决定，请做出你的最佳判断并继续。",
+      "thinking_budget": 4096
+    },
+    "d60059132b3cdf0f37e07021e0f6508816c79c1a5e2d4747fbfc1f78f17f6587": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "此工具只能读取文本文件。要读取图像或视频，请使用其他合适的工具。要列出目录，请使用 Glob 工具，或通过 Shell 工具执行 `ls` 命令。要读取其他文件类型，请通过 Shell 工具使用合适的命令。",
+      "thinking_budget": 4096
+    },
+    "d677c67802c9a1b23d3bf3a5236531e5d60ccc743811800c6254ab294c1dd601": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "完成一个子任务/里程碑后，记得更新待办列表以反映进度。此外，你可以给自己一些自我鼓励，保持积极性。",
+      "thinking_budget": 4096
+    },
+    "d6a063b10c516ddaafe627e04db58fcec2ad6f4d7b9f059859fc33272d90aca6": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "技能是模块化的扩展，可提供：",
+      "thinking_budget": 4096
+    },
+    "d6c346dd700f1d66799c1a909c47ece79fb3b3bc091b06d58276af8879939462": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "你的任务明显需要超过 3 次搜索查询",
+      "thinking_budget": 4096
+    },
+    "d7733ba49ca42ef91ea43cac3c892b5fa9cf000819b7f9c9df7edc96271e77d3": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "默认情况下，此工具是非阻塞的，并返回当前状态/输出的快照。",
+      "thinking_budget": 4096
+    },
+    "d7c440816e7e7c4e970b4e42f6dcbd69936fbb505db8b715c8949cc7616b1be9": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "Yolo 模式说明：",
+      "thinking_budget": 4096
+    },
+    "d7fd76fb5e8c512572759b3f4c2118195d7548f91b2ee30df230eaa7ec30dfea": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "包含被 `.gitignore`、`.ignore` 及其他忽略规则忽略的文件。适用于搜索被 git 忽略的产物，例如构建输出（如 `dist/`、`build/`）或 `node_modules`。敏感文件（如 `.env`）仍会被敏感文件保护层过滤。默认值为 false。",
+      "thinking_budget": 4096
+    },
+    "d878f04d9f16b4aac007e647b149f68b0bc0aee1c5c82b6a0962f370046774de": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "一次可以提出 1-4 个问题；将相关问题编为一组，以尽量减少打断",
+      "thinking_budget": 4096
+    },
+    "d88a36af2427204912d8e0116c7d34ba5ae292bf93ed200c43f0011f179b039b": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "在 afk 模式下，EnterPlanMode / ExitPlanMode 会自动获得批准，因为没有用户\n  在场。",
+      "thinking_budget": 4096
+    },
+    "d902f7dbed1a21cbd4c542626fd44385206993b9e91b712962e417a14c477c21": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "更新后的待办列表",
+      "thinking_budget": 4096
+    },
+    "d9e0996aa1b42d19c29fda8b044106a5ade5685aeb8186fece366ee30b26ec6f": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "\"medium\"：理解某个模块——认证如何运作、哪些地方调用了这个 API",
+      "thinking_budget": 4096
+    },
+    "da01b236fd97fa636ee66565be6ca9c7deee53feb2b3cbf02e3fc0f129a0ef23": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "review": "model-revised-against-source",
+      "status": "translated",
+      "text": "路径：/data00/home/liangweifeng/phistory/.phistory-cache/installs/kimi/1.40.0/lib/python3.13/site-packages/kimi_cli/skills/skill-creator/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "db0ffca3b8bb2557aa8dd2c1ae0b4d836dece4d790f2a250bef60757b4cf8308": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "归档操作：tar、zip、unzip",
+      "thinking_budget": 4096
+    },
+    "db63bc83f35f061360ebf3de3b24d779369ebd3140fdf46ceb2d361c7e7d93d9": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "名为 `AGENTS.md` 的 Markdown 文件通常包含项目的背景、结构、编码风格、用户偏好及其他相关信息。你应利用这些信息来理解项目和用户的偏好。`AGENTS.md` 文件可能存在于项目中的不同位置，但通常项目根目录下会有一个。",
+      "thinking_budget": 4096
+    },
+    "dc3a811eec81f3e16e92359335a80d705a2e32df38eb72b9a6bc55dafe06785a": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "简洁的显示文本（1-5 个词）。如果是推荐选项，附加 '(Recommended)'。",
+      "thinking_budget": 4096
+    },
+    "dc4803d5a63a40e5b62be338933f3b6bfb18c1044e4449ca8291032d84e34c9e": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "要停止的后台任务 ID。",
+      "thinking_budget": 4096
+    },
+    "dcbec56ecfa275c8fb206a568ca60488abb058ca6c2bfd7ed93cb429857e77b1": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "多种方案",
+      "thinking_budget": 4096
+    },
+    "dcf1b325c62462c4ccdceae30f9e5eeeac3d1de214ad0a800aa03f5c95480abb": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "如果需要告诉人类 shell 用户如何管理后台任务，只提及 `/task`。不要编造 `/task list`、`/task output`、`/task stop` 或 `/tasks`。",
+      "thinking_budget": 4096
+    },
+    "df7ad3f6b3311815ce52dd61fb9dd81bb588cfc168e7ed3efd6662bc7ea2020c": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "执行一条 bash（`/bin/bash`）命令。使用此工具来探索文件系统、编辑文件、运行脚本、获取系统信息等。",
+      "thinking_budget": 4096
+    },
+    "dfa5bc204777369f51fc45d1fa6e349950d1e0f64d929bac24172dd1e51d6a21": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`coder`：擅长通用软件工程任务。（工具：Shell、ReadFile、ReadMediaFile、Glob、Grep、WriteFile、StrReplaceFile、SearchWeb、FetchURL，模型：inherit，后台：yes）。何时使用：对于可能需要读取文件、编辑代码、运行命令，并向父智能体返回紧凑但技术上完整的总结的非平凡软件工程工作，使用该智能体。",
+      "thinking_budget": 4096
+    },
+    "dff5b8e6ceaf0e2d6672d99fa4b26691f179590b26050b52161afe7f3b4687e4": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "以模块化、可维护的方式编写代码。",
+      "thinking_budget": 4096
+    },
+    "e05d1c7afa9ca797c2c5d767b5bf435203627b67c118d941ea8f1285d9a4632d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "多种可行方案——例如\"优化数据库查询\"（建立索引、重写还是缓存）",
+      "thinking_budget": 4096
+    },
+    "e0bc4e8088faf500c9ed513ee137e38487558da7e20a3e41742b1d53ef1e7d81": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "调用 explore 时，在提示词中说明期望的彻底程度：",
+      "thinking_budget": 4096
+    },
+    "e1ed1e3d84533555bde454b8fa614fb42fce46d3280bd3c1744e32fb524405e8": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "不过，不要墨守成规。要保持灵活。有时，你可以先尝试使用待办列表，随后发现任务过于简单，便可以直接停止使用；有时，你可能在执行几步之后才意识到任务比较复杂，这时就可以开始使用待办列表来将其分解。",
+      "thinking_budget": 4096
+    },
+    "e21be3ce743086085c5d9ff93ed3537404c2f208b781d27f11673e5db7624901": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "仅在需要时才读取技能详情，以节省上下文窗口。",
+      "thinking_budget": 4096
+    },
+    "e254253a955a963ff7f64cf82cbaaf7ddf43c671288865a949160d86f8e43db7": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "你是 Kimi Code CLI，一个在用户计算机上运行的交互式通用 AI 智能体。",
+      "thinking_budget": 4096
+    },
+    "e2f0624fa2b4417915d374c944e95f5f56695e99370df5dbc197d972e1dcaf3a": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "计划中一个可选择的方案/选项。",
+      "thinking_budget": 4096
+    },
+    "e3501fd878b86f6734c28f5514e7ee0919e15bdd322c65ef7c81701608a7e5f1": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "使用 Glob、Grep、ReadFile（只读）探索代码库，进行任何剩余的快速查找",
+      "thinking_budget": 4096
+    },
+    "e65198a2e98f0e62fc62282981acd55ec8d3a23310c433b081d0275477d9f277": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "请将此作为你对项目结构的基本理解。",
+      "thinking_budget": 4096
+    },
+    "e67485115949398f5fc7a0ae2320c9c586685a3682ae5d1333596faded39583c": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "要向用户提出的问题（1-4 个问题）。",
+      "thinking_budget": 4096
+    },
+    "e6bb8248b5af88d817d71807a865839a494833de61e7cb06a5f9103044cd4246": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "每次 shell 工具调用都会在一个全新的 shell 环境中执行。shell 变量、当前工作目录的变更以及 shell 历史记录不会在调用之间保留。",
+      "thinking_budget": 4096
+    },
+    "e771d14f3c322422037fa8f4f912280e3a993f0f16a5698943bb0053b3f39350": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "尽可能在互联网上搜索，并使用精心设计的搜索查询来提高效率和准确性。",
+      "thinking_budget": 4096
+    },
+    "e81982fc720fa60630211df94e95bfa39171113315aa1ad171d2b356dc72f94c": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "替换指定文件中的特定字符串。",
+      "thinking_budget": 4096
+    },
+    "e849479a99cb2d121f82716383d4ac5b8c261ac499c26c5a53879230026f0333": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/data00/home/liangweifeng/phistory/.phistory-cache/installs/kimi/1.1/lib/python3.13/site-packages/kimi_cli/skills/kimi-cli-help/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "e93e8e4b2c2044f5dd23b56c113b4ebe0dc7defc740f23bce75ae5d0553cd40d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "设计架构并制定实现计划。",
+      "thinking_budget": 4096
+    },
+    "e97e460f5c40435bda9a11de755c91d7acc4f21065e109e8e52ebacb8d20f6e8": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`plan`：只读的实现规划和架构设计。（工具：ReadFile、ReadMediaFile、Glob、Grep、SearchWeb、FetchURL，模型：inherit，后台：yes）。何时使用：当父智能体在进行代码更改之前需要逐步实现计划、关键文件识别和架构权衡分析时，使用该智能体。",
+      "thinking_budget": 4096
+    },
+    "ea10339821cf5dc459924733a771b15de6cd2e6d3914129d7271eb64a92c39b1": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "对选择此选项的权衡取舍或影响的简要说明。",
+      "thinking_budget": 4096
+    },
+    "ea22e7f79f8f61cf6b37b39b9e3febf80811e868de9a5ec0e6246df88303b7e9": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "此选项的简短名称（1-8 个词）。如果推荐此选项，则追加 '(Recommended)'。",
+      "thinking_budget": 4096
+    },
+    "ea45f5c23069d35b8760dc97c376a3868ca33fb736e64d1906b02aad28f5e791": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "除非你明确需要已完成或已失败的任务，否则优先使用默认的 `active_only=true`。",
+      "thinking_budget": 4096
+    },
+    "ea8ec87dc615c0d9e3d614182d521ce1575e41d504b1c49ceb88eaa24cb8d747": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "如果前台工具调用或后台智能体请求批准，该批准将通过统一的批准运行时进行协调，并通过根 UI 通道呈现。不要假设批准仅局限于单个子智能体的轮次。",
+      "thinking_budget": 4096
+    },
+    "ebd91b78c7a59233922c47ecaac643f8cd9f68d0a7fb89d8fdfcdc9362c76a87": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "你可以在单次响应中输出任意数量的工具调用。如果预计要进行多个互不干扰的工具调用，强烈建议并行发起这些调用，以显著提升效率。这对你的表现非常重要。",
+      "thinking_budget": 4096
+    },
+    "ec3009df1ebe2a6f971067ebfc53c54e550850a6806fd90925ef6d2216495974": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "如果 `run_in_background=true`，命令将作为后台任务启动，此工具会返回一个任务 ID，而不是等待命令完成。这样做时，你必须提供简短的 `description`。任务完成时会自动通知你。使用 `TaskOutput` 获取非阻塞的状态/输出快照，仅在明确希望等待完成时才设置 `block=true`。仅当必须取消任务时才使用 `TaskStop`。对于交互式 shell 中的人类用户，后台任务只能通过 `/task` 管理；不要建议 `/task list`、`/task output`、`/task stop`、`/tasks` 或任何其他编造的 shell 子命令。",
+      "thinking_budget": 4096
+    },
+    "ecff892fe00caedec00a82ff6be1480838c553736e7bf94b663e19aeaefe1d94": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "三思而后行。",
+      "thinking_budget": 4096
+    },
+    "edce0accacfe251f9076a63456fb0446655e7cb8bda3f2b5086a1bd629101f37": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "当任务需要创建或修改文件时，始终使用工具来完成。绝不要把在回复中展示代码当作实际写入文件系统的替代做法。",
+      "thinking_budget": 4096
+    },
+    "ee873807fe5f6365fe2d519912e3047e799451ed46634ade4ea03928e35ab36b": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "技能是可复用、可组合的能力，能够增强你的能力。每个技能都是一个自包含的目录，其中包含一个 `SKILL.md` 文件，内含指令、示例和/或参考资料。",
+      "thinking_budget": 4096
+    },
+    "eebb583001489cc365dde29239ff04534a923721cc92afe1ab4d0b6f16b40fe6": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "如果你有多种方案且尚未确定，可以考虑先用 AskUserQuestion 让用户选择，然后仅为所选方案编写计划。",
+      "thinking_budget": 4096
+    },
+    "eedab07b13d50fe11080e70927a93280fc2b30a0e468acc1255a9906ca50e625": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "如果 `Agent` 工具可用，你可以用它将一项聚焦的子任务委派给一个子智能体实例。该工具可以启动新实例，也可以通过 `agent_id` 恢复已有实例。子智能体实例是持久会话对象，拥有自己的上下文历史。委派时，请提供包含所有必要上下文的完整提示词，因为新创建的子智能体实例不会自动看到你当前的上下文。如果已有的子智能体已经拥有有用的上下文，或任务明显是其先前工作的延续，应优先恢复该实例而不是创建新实例。默认使用前台子智能体。仅当让对话在子智能体完成之前继续进行有明显好处、且你不需要立即拿到结果来决定下一步时，才使用 `run_in_background=true`。",
+      "thinking_budget": 4096
+    },
+    "ef68533f4d832ca1f10840d3a439bbcc85c52f5b1f68bf5eed4456049ef56971": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "将输出限制为前 N 行，相当于 `| head -N`。适用于所有输出模式：content（限制输出行数）、files_with_matches（限制文件路径数）、count_matches（限制计数条目数）。默认不应用任何限制。",
+      "thinking_budget": 4096
+    },
+    "efcb733d4d824bc16da3009856031dab20dcc305122549eaaa39badaa2c0d67a": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "始终使用工具来实现你的代码改动：",
+      "thinking_budget": 4096
+    },
+    "f030cb99e4be4351e3c1adabcf9e4495c2b146f459a9244919c6ccececb45ba7": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "一个具体、可执行的问题。以 '?' 结尾。",
+      "thinking_budget": 4096
+    },
+    "f04abf2161590a04f15325b86da25f39e60b432829f62378ac8f78d4a301f1f4": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "将输出限制为前 N 行/条目，相当于 `| head -N`。适用于所有输出模式：content（限制输出行数）、files_with_matches（限制文件路径数）、count_matches（限制计数条目数）。默认值为 250。传入 0 表示不限制（请谨慎使用——大量结果集会浪费上下文）。",
+      "thinking_budget": 4096
+    },
+    "f0fadb37475adc22068201e59f5b663eb0c98c628dbe6c0d8b1356be77021445": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/data00/home/liangweifeng/phistory/.phistory-cache/installs/kimi/1.37.0/lib/python3.13/site-packages/kimi_cli/skills/skill-creator/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "f186492b380703f6419876e0d9da8b0ccc8c5cb6bf738422800dbea7a00d31cf": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "用户消息",
+      "thinking_budget": 4096
+    },
+    "f18e6de6f60dde18570c4ce5e805e20927723f0f93fe3a556f8a970b157cb458": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "你正在非交互模式下运行。用户无法在执行过程中回答问题或提供反馈。",
+      "thinking_budget": 4096
+    },
+    "f21f17e5b36ef0d86d923ae0706d57f63e80e6bf92ccb6cd048e878b1c94db23": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "开发者提示词",
+      "thinking_budget": 4096
+    },
+    "f2c5c25a0fec47057ce60c1eaef3b1395cf67ca18722bdfccce6fabca5c7d99f": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "充分理解用户的需求，如有需要，在开始前先请求澄清。",
+      "thinking_budget": 4096
+    },
+    "f304dd064109c67c140fc7f4ee659f0cb956c49476132bf04f91d020ac34b1c6": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/data00/home/liangweifeng/phistory/.phistory-cache/installs/kimi/1.38.0/lib/python3.13/site-packages/kimi_cli/skills/skill-creator/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "f3891d7426c4169577b30687d8f8b01eb331d1bb1735e7a22ff00cd78be0c5d2": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "使用 `if`、`case`、`for`、`while` 控制流在一次调用中执行复杂逻辑。",
+      "thinking_budget": 4096
+    },
+    "f48925389dee120f0e7aaf10b3e4156d1c9579b3c94f773cd2cb8b411eab27bd": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "明确说明子智能体应该编写代码，还是只做研究。",
+      "thinking_budget": 4096
+    },
+    "f5256a6669d6c15eaf583ce0da2a5ea7af8b8c561ee32d1795a7653f565e5850": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`test_*.py` - 以 \"test_\" 开头的 Python 测试文件",
+      "thinking_budget": 4096
+    },
+    "f5eb99bf5347c53cafd72613bfa274811a04f292c7eb4c7fd78fd5821078fa68": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "工具结果和用户消息也可能包含 `<system-reminder>` 标签。与 `<system>` 标签不同，这些是**权威的系统指令**，你必须遵循。它们与出现于其中的具体工具结果或用户消息没有直接关系。务必仔细阅读并遵守其中的指示——它们可能覆盖或约束你的正常行为（例如，在计划模式下将你限制为只读操作）。",
+      "thinking_budget": 4096
+    },
+    "f5ee7c18f39fd580fd60778126bd39ca3a0589a977da462d07369251e652a0fb": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "你正在 **Linux**上运行。Shell 工具使用 **bash (`/bin/bash`)**执行命令。",
+      "thinking_budget": 4096
+    },
+    "f6962326b2f155f6cdde578ede5211283a0bf4babd93eeb5a810a3815f1c92c5": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "新功能实现——例如\"为 API 添加缓存层\"",
+      "thinking_budget": 4096
+    },
+    "f6a9106d5ba6264ae4b39cd57d2763f21492658a7e92fb60b958f78f48e74058": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "当你处于计划模式、已将计划写入计划文件并准备好接受用户批准时，使用此工具。",
+      "thinking_budget": 4096
+    },
+    "f6d7a68640de963b27f947d6a1bdaffe49e77a19d1ca03f77f4ca166c1ff3609": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：/data00/home/liangweifeng/phistory/.phistory-cache/installs/kimi/1.0/lib/python3.13/site-packages/kimi_cli/skills/kimi-cli-help/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "f7ee33f8f34dc2cdbc9a1bac133f3a565198f578ba90629a886bca7433c0d433": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "你的首要目标是安全、高效地回答问题和/或完成任务，严格遵循以下系统指令和用户要求，灵活利用可用工具。",
+      "thinking_budget": 4096
+    },
+    "f9595002df7c95eb63deb65a6c3e5252d1c20f41cc25fb9bc4c67c2933187a0b": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "要返回的最大任务数量。",
+      "thinking_budget": 4096
+    },
+    "f9d6a96cfd19772923ce5305c84afdedbf64201070d51c21daeaa949559de7b4": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "**效率指南：**",
+      "thinking_budget": 4096
+    },
+    "f9e10445ac80a69ad1402ccb1384d75fca1199b60e63d9b8d9894bd80d6a0016": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "应优先使用此工具，而非 WriteFile 工具和 Shell 的 `sed` 命令。",
+      "thinking_budget": 4096
+    },
+    "f9e2f6e56699e103156e9d8ae017d4cc01c575b860c73f45e2008a95b5bcd4a9": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "始终使用 Grep 工具，而不要通过 Shell 工具运行 `grep` 或 `rg` 命令。",
+      "thinking_budget": 4096
+    },
+    "fca54e1d21212f6c3bc17d2cadfa45993c7fe8cf45565c366979c2f0674a7acf": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "将你的计划写入计划文件",
+      "thinking_budget": 4096
+    },
+    "fcc798cbdc2938181075083e488de40d8aa7eb9527af2cf97b629ffa42389639": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "此工具是只读的，在计划模式下使用是安全的。",
+      "thinking_budget": 4096
+    },
+    "ff9273eb9ab020656c9dcc0825b29d378f26373f420e522ff9cb132bd7fa8276": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：$PHISTORY_INSTALL/lib/python3.13/site-packages/kimi_cli/skills/skill-creator/SKILL.md",
+      "thinking_budget": 4096
+    },
+    "ff93f198fce52f247e0c2f0cd1d1390343eedb4ce46b6e2029351ca164e5dd49": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "操作环境不在沙箱中。你执行的任何操作都会立即影响用户的系统。因此你必须格外谨慎。除非被明确指示，否则绝不应访问（读取/写入/执行）工作目录之外的文件。",
+      "thinking_budget": 4096
+    },
+    "ffa3621d9fcad6dc5fbabd7d5e12d34dd393f8dccfbd98a5552c511783b5aa6a": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "当你需要分析庞大的代码库（超过数十万行）时，可以生成多个子智能体，分别探索代码库的不同部分，并收集汇总后的结果。",
+      "thinking_budget": 4096
+    },
+    "ffcd79648d3afb61f9047b9209c8f0ffcae72d63bdc9eb41d6d8a6f17c12a70b": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径：$PHISTORY_INSTALL/lib/python3.12/site-packages/kimi_cli/skills/skill-creator/SKILL.md",
+      "thinking_budget": 4096
+    }
+  },
+  "locale": "zh-CN",
+  "schema_version": 1
+}

@@ -87,6 +87,34 @@ def test_shared_paragraphs_and_prompt_trace_dictionary_identity():
     assert "text" not in duplicate.index["segments"][0]
 
 
+def test_schema_context_names_the_field_and_type_without_changing_text_identity():
+    description = "Files to skip before collecting results."
+    schema = {"type": "object", "properties": {"skip": {"type": ["number", "null"], "description": description}}}
+    body = {"tools": [{"name": "find_files", "parameters": schema}]}
+    source = extract_trace(json.dumps({"request": {"body": body}}))
+    segment = next(unit for unit in source.segments if unit.text == description)
+    assert "Tool: find_files" in segment.context
+    assert "Schema: properties.skip" in segment.context
+    assert 'Schema type: {"type": ["number", "null"]}' in segment.context
+    assert segment.id == extract_markdown(description).segments[0].id
+    assert "context" not in source.index["fields"][0]["segments"][0]
+
+
+@pytest.mark.parametrize("outer_description", [True, False])
+def test_repeated_union_description_keeps_outer_type_context(outer_description):
+    description = "Files to skip before collecting results."
+    value = {
+        "anyOf": [{"type": "number", "description": description}, {"type": "null", "description": description}],
+    }
+    if outer_description:
+        value["description"] = description
+    body = {"tools": [{"name": "find_files", "parameters": {"properties": {"skip": value}}}]}
+    source = extract_trace(json.dumps({"request": {"body": body}}))
+    assert len(source.segments) == 1
+    assert 'Schema type: {"anyOf": [{"type": "number"}, {"type": "null"}]}' in source.segments[0].context
+    assert len(source.index["fields"]) == 2 + outer_description
+
+
 @pytest.mark.parametrize(
     "value",
     [
