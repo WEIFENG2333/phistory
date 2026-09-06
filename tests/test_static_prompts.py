@@ -7,13 +7,19 @@ from phistory.static_prompts.extract import (
     StaticSourceUnavailable,
     _claude_code_source,
     _keep_known_or_prompt_like,
+    extract_static_prompts,
     normalize_static_prompt_markdown_content,
     read_static_candidates,
     render_static_prompts_markdown,
     write_static_candidates,
 )
 from phistory.static_prompts.javascript import extract_prompt_candidates, extract_string_candidates, is_source_resource
-from phistory.static_prompts.models import StaticCandidatesResult, StaticPromptMatch, StaticPromptResult
+from phistory.static_prompts.models import (
+    StaticCandidatesResult,
+    StaticPromptCandidate,
+    StaticPromptMatch,
+    StaticPromptResult,
+)
 
 
 def test_claude_code_binary_only_package_marks_static_source_unavailable(tmp_path):
@@ -216,3 +222,58 @@ def test_static_candidates_roundtrip(tmp_path):
     assert loaded.version == result.version
     assert loaded.source == result.source
     assert loaded.candidates == result.candidates
+
+
+def test_cached_candidates_are_refiltered_without_installing_and_keep_source_identity(tmp_path, monkeypatch):
+    from phistory.cli import main
+    from phistory.models import CaptureTarget, VersionInfo
+    from phistory.registry import AGENTS
+    from phistory.static_prompts.catalog import content_hash
+
+    entry = next(item for item in load_catalog("claude-code") if item.id == "agent-auto-mode-rule-reviewer")
+    prose = "\n\n".join(entry.anchors[:3])
+    known = StaticPromptCandidate("known", prose, "string", 0, 2)
+    bundle = "var text = " + json.dumps(prose) + "; function render(){return text;}"
+    resource = StaticPromptCandidate("old-bundle", bundle, "string", 50, 1)
+    agent = AGENTS["claude-code"]
+    target = CaptureTarget(agent, VersionInfo("1.2.3"), agent.default_variant, tmp_path / "captures")
+    target.static_dir.mkdir(parents=True)
+    write_static_candidates(
+        target.static_candidates_json_path,
+        StaticCandidatesResult(
+            agent.id, target.version.version, "archived/cli.js", "old-extractor", 20, (resource, known)
+        ),
+    )
+
+    def forbidden(*args, **kwargs):
+        pytest.fail("cached Static replay must not access a package registry or installed source")
+
+    monkeypatch.setattr("phistory.cli.packages.version_info", forbidden)
+    monkeypatch.setattr("phistory.cli.packages.install_agent", forbidden)
+    monkeypatch.setattr("phistory.static_prompts.extract._claude_code_source", forbidden)
+    assert main(["--root", str(target.root), "extract-static", agent.id, target.version.version]) == 0
+    archived = read_static_candidates(target.static_candidates_json_path)
+    assert archived.candidates == (known,)
+    assert archived.source == "archived/cli.js" and archived.extractor == "old-extractor"
+    payload = json.loads(target.static_prompts_json_path.read_text())
+    assert payload["summary"] == {"total": 1, "known": 1, "unknown": 0}
+    assert payload["prompts"][0]["content_hash"] == content_hash(prose)
+    assert payload["prompts"][0]["content"] == prose
+    assert bundle not in target.static_prompts_path.read_text()
+    before = {path: path.read_bytes() for path in target.static_dir.iterdir()}
+    extract_static_prompts(target, tmp_path / "absent-install")
+    assert {path: path.read_bytes() for path in target.static_dir.iterdir()} == before
+
+
+@pytest.mark.parametrize("confidence", ["exact", "anchor"])
+def test_catalog_matches_do_not_override_standalone_resource_filter(confidence):
+    entry = load_catalog("claude-code")[0]
+    resource = StaticPromptCandidate(
+        "old-resource", "<!doctype html><html><body>Instructions</body></html>", "string", 99, 0
+    )
+    short_prompt = StaticPromptCandidate("short", "You are a helpful assistant.", "string", 0, 1)
+    matches = (
+        StaticPromptMatch(resource, entry, confidence, "archived"),
+        StaticPromptMatch(short_prompt, entry, confidence, "archived"),
+    )
+    assert _keep_known_or_prompt_like(matches) == (matches[1],)

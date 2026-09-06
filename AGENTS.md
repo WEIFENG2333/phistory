@@ -81,6 +81,8 @@ Do not call model providers during capture. The capture boundary is `claude-tap`
 
 Static prompt extraction is separate from request capture. It parses installed package code, keeps plausible prompt-like string/template candidates, matches known catalog entries by hash or anchor, and writes deterministic Markdown/JSON. Prefer improving general filters and catalog anchors over adding version-specific special cases.
 
+Fresh extraction, cached candidate replay, and final catalog matches share the same resource filter. Standalone programs and HTML resources must not survive because they contain prompt keywords or catalog anchors. Preserve instructional prose and its fenced code examples; length alone is not a reason to discard a document. Replaying existing candidates applies current filters without installing or fetching the historical package, and retains the surviving candidate contents and IDs. See [Static extraction and historical cleanup](docs/static-prompts.md).
+
 ## Supported Agents
 
 Current agents are defined in `phistory/registry.py`:

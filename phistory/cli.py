@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 
 from phistory import __version__, packages
-from phistory.models import CaptureTarget
+from phistory.models import CaptureTarget, VersionInfo
 from phistory.registry import AGENT_ORDER, AGENTS, parse_agent_ids
 from phistory.render import render_index
 from phistory.static_prompts.extract import StaticSourceUnavailable, extract_static_prompts
@@ -246,7 +246,7 @@ def _extract_static(
         install_dir = (cache_dir / "installs" / agent.id / version).resolve()
         target = CaptureTarget(
             agent=agent,
-            version=packages.version_info(agent, version),
+            version=VersionInfo(version),
             variant=agent.default_variant,
             root=root,
         )

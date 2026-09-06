@@ -13,7 +13,13 @@ _VARIABLE_RE = re.compile(r"\$\{([^{}]{1,120})\}")
 _WORD_RE = re.compile(r"[A-Za-z][A-Za-z'-]{2,}")
 _TOKEN_RE = re.compile(r"\S+")
 _HTML_TAG_RE = re.compile(r"</?(?:html|head|body|style|script|div|span|section|h[1-6]|p|a)\b", re.IGNORECASE)
-_IMPORT_RE = re.compile(r"^import\s+.+?\s+from\s+['\"](?:node:|[./@])", re.MULTILINE)
+_FENCE_RE = re.compile(r"^ {0,3}(`{3,}|~{3,})(.*)$")
+_TEMPLATE_HOLE_RE = re.compile(r"\$\{[^{}]*\}")
+_PROGRAM_START_RE = re.compile(
+    r"^(?:[\"'();!]|/\*|//|"
+    r"(?:const|let|var|function|class|import|export|await|void|new)\b|async\s+function\b|"
+    r"[A-Za-z_$][\w$]*\s*(?:[.\[(=]|\?\.))"
+)
 _STOPWORDS = {
     "a",
     "an",
@@ -87,7 +93,7 @@ def extract_string_candidates(source: str, *, min_length: int = 80) -> list[Stat
             continue
         seen.add(digest)
         score = _prompt_score(content)
-        if _should_skip_static_archive_candidate(content, score):
+        if is_static_resource(content):
             continue
         candidates.append(
             StaticPromptCandidate(
@@ -115,9 +121,42 @@ def is_prompt_like(text: str, *, min_score: int = 5) -> bool:
     return _prompt_score(text) >= min_score
 
 
+def is_static_resource(text: str) -> bool:
+    """Apply the same resource boundary to fresh literals and archived candidates."""
+    stripped = _without_fenced_code(text).strip()
+    lower_head = stripped[:1200].lower()
+    return (
+        _looks_like_encoded_blob(stripped)
+        or _looks_like_regex_resource(stripped)
+        or is_source_resource(stripped)
+        or _looks_like_html_resource(stripped, lower_head)
+        or _looks_like_script_resource(stripped, lower_head)
+        or _looks_like_token_vocabulary(stripped, _WORD_RE.findall(stripped))
+    )
+
+
+def _without_fenced_code(text: str) -> str:
+    # Code examples are part of a document, not evidence that the document is a program.
+    if "```" not in text and "~~~" not in text:
+        return text
+    lines = []
+    fence = ""
+    for line in text.splitlines(keepends=True):
+        match = _FENCE_RE.match(line.rstrip("\r\n"))
+        if fence:
+            if match and match[1][0] == fence[0] and len(match[1]) >= len(fence) and not match[2].strip():
+                fence = ""
+            continue
+        if match:
+            fence = match[1]
+        else:
+            lines.append(line)
+    return "".join(lines)
+
+
 def is_source_resource(text: str) -> bool:
     """Recognize standalone programs and web resources before extracting their prose."""
-    stripped = text.strip()
+    stripped = _without_fenced_code(text).strip()
     if stripped.startswith("#!"):
         return True
     # Resource metadata may precede the HTML; prose merely quoting tags is kept.
@@ -129,37 +168,26 @@ def is_source_resource(text: str) -> bool:
         flags=re.IGNORECASE | re.DOTALL,
     ):
         return True
-    if _looks_like_source_resource(stripped, stripped[:1200].lower()):
-        return True
-    if not stripped.startswith(
-        (
-            '"',
-            "'",
-            "/*",
-            "//",
-            ";",
-            "const ",
-            "let ",
-            "var ",
-            "function ",
-            "async function ",
-            "class ",
-            "import ",
-            "export ",
-        )
-    ):
+    if not _PROGRAM_START_RE.match(stripped):
         return False
-
     # Inspect the program opening: prompt words inside bundled strings are not evidence of prose.
-    # A short prefix also works on archived bundles with normalized template expressions later on.
-    opening = _PARSER.parse(stripped[:4096].encode("utf-8", errors="surrogatepass"))
+    # Parse the complete text so a long first declaration or IIFE is not cut into an ERROR node.
+    # Resource templates can contain value holes; substitute only in this disposable parsing copy.
+    program = _TEMPLATE_HOLE_RE.sub("__phistory_value__", stripped)
+    opening = _PARSER.parse(program.encode("utf-8", errors="surrogatepass"))
     for node in opening.root_node.named_children:
         if node.type in {"comment", "empty_statement"}:
             continue
+        if node.has_error:
+            return False
         if node.type == "expression_statement" and len(node.named_children) == 1:
-            if node.named_children[0].type == "string":
+            expression = node.named_children[0]
+            if expression.type == "string":
                 continue
-        return not node.has_error and node.type in {
+            while expression.type in {"parenthesized_expression", "unary_expression", "await_expression"}:
+                expression = expression.named_children[-1]
+            return expression.type in {"call_expression", "assignment_expression"}
+        return node.type in {
             "variable_declaration",
             "lexical_declaration",
             "function_declaration",
@@ -287,9 +315,9 @@ def _prompt_score(text: str) -> int:
     natural_language = _natural_language_score(compact, words)
     if marker_hits == 0 and natural_language < 5:
         return 0
-    if _looks_like_non_prompt_resource(compact, words, marker_hits):
+    if is_static_resource(compact):
         return 0
-    if _looks_like_code(compact, marker_hits):
+    if _looks_like_code(_without_fenced_code(compact), marker_hits):
         return 0
 
     score = marker_hits * 3 + natural_language
@@ -340,42 +368,6 @@ def _looks_like_code(text: str, marker_hits: int) -> bool:
     return False
 
 
-def _looks_like_non_prompt_resource(text: str, words: list[str], marker_hits: int) -> bool:
-    stripped = text.lstrip()
-    lower = stripped[:1200].lower()
-    if _looks_like_regex_resource(stripped):
-        return True
-    if is_source_resource(stripped):
-        return True
-    if marker_hits >= 3:
-        return False
-    if _looks_like_html_resource(stripped, lower):
-        return True
-    if _looks_like_script_resource(stripped, lower):
-        return True
-    if _looks_like_token_vocabulary(text, words):
-        return True
-    return False
-
-
-def _should_skip_static_archive_candidate(text: str, score: int) -> bool:
-    if _looks_like_encoded_blob(text):
-        return True
-    stripped = text.strip()
-    lower_head = stripped[:1200].lower()
-    words = _WORD_RE.findall(stripped)
-    if (
-        stripped.startswith("#!/usr/bin/env node")
-        or _looks_like_large_source_template(stripped, lower_head)
-        or _looks_like_html_resource(stripped, lower_head)
-        or is_source_resource(stripped)
-        or _looks_like_script_resource(stripped, lower_head)
-        or _looks_like_token_vocabulary(stripped, words)
-    ):
-        return True
-    return score == 0 and len(stripped) >= 20000
-
-
 def _looks_like_encoded_blob(text: str) -> bool:
     compact = text.strip()
     if len(compact) < 4096:
@@ -387,23 +379,6 @@ def _looks_like_encoded_blob(text: str) -> bool:
     if allowed / len(compact) < 0.96:
         return False
     return len(set(compact)) <= 80
-
-
-def _looks_like_large_source_template(stripped: str, lower_head: str) -> bool:
-    if len(stripped) < 20000 or not stripped.startswith("//"):
-        return False
-    source_markers = (
-        "import ",
-        "export ",
-        "function ",
-        "const ",
-        ".jsx",
-        ".tsx",
-        ".d.ts",
-        "typescript",
-        "storybook",
-    )
-    return sum(marker in lower_head for marker in source_markers) >= 2
 
 
 def _looks_like_html_resource(stripped: str, lower_head: str) -> bool:
@@ -423,34 +398,6 @@ def _looks_like_regex_resource(stripped: str) -> bool:
         return False
     regex_tokens = ("\\b", "\\d", "\\s", "\\w", "(?:", "(?=", "[", "]", "|")
     return sum(head.count(token) for token in regex_tokens) >= 3
-
-
-def _looks_like_source_resource(stripped: str, lower_head: str) -> bool:
-    if stripped.startswith("#!/usr/bin/env node"):
-        return True
-    if stripped.startswith("//") and (".mjs" in lower_head or ".design-sync" in lower_head or "import " in lower_head):
-        return True
-    source_comment_lines = 0
-    source_lines = 0
-    for line in stripped.splitlines()[:40]:
-        value = line.strip()
-        if not value:
-            continue
-        if value.startswith("//"):
-            source_comment_lines += 1
-        if (
-            value.startswith(("import ", "export ", "const ", "let ", "var ", "function ", "async function "))
-            or " from 'node:" in value
-            or ' from "node:' in value
-        ):
-            source_lines += 1
-    if source_comment_lines >= 3 and source_lines >= 1:
-        return True
-    if _IMPORT_RE.search(stripped[:2500]) and source_comment_lines >= 2:
-        return True
-    if "pure functions only" in lower_head and "import {" in lower_head:
-        return True
-    return False
 
 
 def _looks_like_script_resource(stripped: str, lower_head: str) -> bool:

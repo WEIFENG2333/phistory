@@ -2,13 +2,14 @@ from __future__ import annotations
 
 import json
 import re
+from dataclasses import replace
 from pathlib import Path
 from typing import Any
 
 from phistory.models import CaptureTarget
 from phistory.static_prompts.bun import extract_bun_entrypoint_js
 from phistory.static_prompts.catalog import content_hash, known_content_hashes, match_candidates
-from phistory.static_prompts.javascript import extract_string_candidates, is_prompt_like
+from phistory.static_prompts.javascript import extract_string_candidates, is_prompt_like, is_static_resource
 from phistory.static_prompts.models import (
     StaticCandidatesResult,
     StaticPromptCandidate,
@@ -51,23 +52,29 @@ def extract_static_prompts(target: CaptureTarget, install_dir: Path) -> StaticPr
 
 
 def load_or_extract_static_candidates(target: CaptureTarget, install_dir: Path) -> StaticCandidatesResult:
-    if target.static_candidates_json_path.exists():
-        return read_static_candidates(target.static_candidates_json_path)
-    source_path, source = _claude_code_source(install_dir)
-    result = StaticCandidatesResult(
-        agent_id=target.agent.id,
-        version=target.version.version,
-        source=source_path,
-        extractor=STATIC_CANDIDATES_EXTRACTOR,
-        min_length=STATIC_CANDIDATES_MIN_LENGTH,
-        candidates=tuple(
-            _prune_static_candidates(
-                target.agent.id,
-                extract_string_candidates(source, min_length=STATIC_CANDIDATES_MIN_LENGTH),
-            )
-        ),
+    cached = (
+        read_static_candidates(target.static_candidates_json_path)
+        if target.static_candidates_json_path.exists()
+        else None
     )
-    write_static_candidates(target.static_candidates_json_path, result)
+    result = cached
+    if result is None:
+        source_path, source = _claude_code_source(install_dir)
+        result = StaticCandidatesResult(
+            agent_id=target.agent.id,
+            version=target.version.version,
+            source=source_path,
+            extractor=STATIC_CANDIDATES_EXTRACTOR,
+            min_length=STATIC_CANDIDATES_MIN_LENGTH,
+            candidates=tuple(extract_string_candidates(source, min_length=STATIC_CANDIDATES_MIN_LENGTH)),
+        )
+    # Replaying an archive must apply today's filters without reinstalling old packages.
+    result = replace(
+        result,
+        candidates=tuple(_prune_static_candidates(target.agent.id, list(result.candidates))),
+    )
+    if result != cached:
+        write_static_candidates(target.static_candidates_json_path, result)
     return result
 
 
@@ -77,6 +84,8 @@ def _prune_static_candidates(agent_id: str, candidates: list[StaticPromptCandida
 
 
 def _keep_static_candidate(candidate: StaticPromptCandidate, known_hashes: frozenset[str]) -> bool:
+    if is_static_resource(candidate.content):
+        return False
     if candidate.score > 0:
         return True
     if content_hash(candidate.content) in known_hashes:
@@ -123,7 +132,12 @@ def write_static_candidates(path: Path, result: StaticCandidatesResult) -> None:
 
 
 def _keep_known_or_prompt_like(matches: tuple[StaticPromptMatch, ...]) -> tuple[StaticPromptMatch, ...]:
-    kept = [match for match in matches if match.entry is not None or is_prompt_like(match.candidate.content)]
+    kept = [
+        match
+        for match in matches
+        if not is_static_resource(match.candidate.content)
+        and (match.entry is not None or is_prompt_like(match.candidate.content))
+    ]
     return tuple(sorted(kept, key=lambda match: (-match.candidate.score, match.candidate.order)))
 
 

@@ -124,8 +124,9 @@ def _readme_markdown(rows: list[dict[str, Any]], base: Path) -> str:
             (
                 "For recent Claude Code releases, Phistory also extracts static prompt-like strings from the "
                 "installed package and stores them under `captures/<agent>/<version>/static/`. "
-                "The candidate archive keeps the raw extraction input so matching "
-                "rules can be improved later without reinstalling every historical package."
+                "The candidate archive preserves extracted text after resource filtering, so filters and matching "
+                "rules can be reapplied without reinstalling historical packages. "
+                "See [Static extraction and cleanup](docs/static-prompts.md)."
             ),
             "",
             "GitHub Actions checks automatically tracked CLI releases every hour and commits new snapshots when they appear.",
@@ -263,8 +264,8 @@ def _readme_zh_markdown(rows: list[dict[str, Any]], base: Path) -> str:
             "",
             (
                 "对于最近的 Claude Code 版本，Phistory 还会从安装包里提取疑似静态 prompt 的字符串，"
-                "保存在 `captures/<agent>/<version>/static/`。候选文件会保留原始内容，"
-                "方便以后改进匹配规则时不用重新安装所有历史包。"
+                "保存在 `captures/<agent>/<version>/static/`。候选文件保留过滤资源代码后的原文，"
+                "改进过滤或匹配规则时可以直接重放，无需重新安装历史包。详见 [Static 提取与整理](docs/static-prompts.md)。"
             ),
             "",
             "GitHub Actions 每小时检查一次已自动追踪的 CLI 版本；发现新版本后，会自动抓取并提交新的提示词快照。",
