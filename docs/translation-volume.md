@@ -72,7 +72,7 @@ translations/
   zh-CN/<agent>/runtime.json         该 Agent 跨版本共享的运行时词典
 ```
 
-词典的 `entries` 以原文段落哈希为键。每项保存中文 `text`、模型、统一翻译提示词版本、请求的思考预算，以及 `translated` / `preserved` 状态。没有为每个版本另存完整中文提示词。模型使用的翻译指令只在 `phistory/translation/prompts.py` 中维护。
+词典的 `entries` 以原文段落哈希为键。每项保存中文 `text`、模型、统一翻译提示词版本和请求的思考预算；新条目另带 `translated` / `preserved` 状态，历史缺少状态字段的 2,437 条记录仍有效，审计中标为 legacy。没有为每个版本另存完整中文提示词。模型使用的翻译指令只在 `phistory/translation/prompts.py` 中维护。
 
 源索引不存译文：Prompt 索引记录原文件哈希和段落 `id/start/end/kind`；Trace 索引另有记录序号和 JSON Pointer。可逆动态值通过 `bindings` 保存，例如当前文件的 `$PHISTORY_WORKSPACE` 对应哪条真实路径。浏览器验证占位符数量后代入该文件自己的值，最后进行 JSON 转义；无法完整还原就使用原文。
 

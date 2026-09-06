@@ -32,18 +32,23 @@ def test_markdown_image_examples_are_links_before_sanitizing():
     run_javascript(
         functions
         + r"""
-let sanitized;
+let sanitized, linkArgs;
 const window = {
   marked: {
-    Renderer: class {},
+    Renderer: class {
+      link(...args) { linkArgs = args; return 'rendered link'; }
+    },
     parse(source, options) {
       assert.equal(source, '![caption](/absolute/path/to/file.jpg)');
       const image = options.renderer.image;
-      assert.equal(image('/absolute/path/to/file.jpg', null, 'caption'),
-        '<a href="/absolute/path/to/file.jpg">caption</a>');
-      assert.equal(image('https://example.org/a?x=1&y=2', 'A "title"', '<caption>'),
-        '<a href="https://example.org/a?x=1&amp;y=2" title="A &quot;title&quot;">&lt;caption&gt;</a>');
-      assert.equal(image('/image.png', null, ''), '<a href="/image.png">/image.png</a>');
+      assert.equal(image('/absolute/path/to/file.jpg', null, 'caption'), 'rendered link');
+      assert.deepEqual(linkArgs, ['/absolute/path/to/file.jpg', null, 'caption']);
+      // Marked 12 already escapes image titles and labels before invoking the renderer.
+      image('https://example.org/a?x=1&y=2', 'A &quot;title&quot;', 'A &amp; B &lt;caption&gt;');
+      assert.deepEqual(linkArgs,
+        ['https://example.org/a?x=1&y=2', 'A &quot;title&quot;', 'A &amp; B &lt;caption&gt;']);
+      image('/image.png?a=1&b=2', null, '');
+      assert.deepEqual(linkArgs, ['/image.png?a=1&b=2', null, '/image.png?a=1&amp;b=2']);
       return image('/absolute/path/to/file.jpg', null, 'caption');
     }
   },
@@ -55,7 +60,7 @@ const window = {
   }
 };
 assert.equal(markdownHtml('![caption](/absolute/path/to/file.jpg)'), 'sanitized HTML');
-assert.equal(sanitized.html, '<a href="/absolute/path/to/file.jpg">caption</a>');
+assert.equal(sanitized.html, 'rendered link');
 for (const tag of ['img', 'picture', 'video', 'audio', 'source', 'track']) {
   assert.ok(sanitized.options.FORBID_TAGS.includes(tag));
 }

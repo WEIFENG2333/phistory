@@ -3422,7 +3422,7 @@ function markdownHtml(text) {
   if (window.marked && window.DOMPurify) {
     // Archived image references are examples, not assets to fetch while reading a trace.
     const renderer = new window.marked.Renderer();
-    renderer.image = (href, title, label) => `<a href="${escapeHtml(href)}"${title ? ` title="${escapeHtml(title)}"` : ''}>${escapeHtml(label || href)}</a>`;
+    renderer.image = (href, title, label) => renderer.link(href, title, label || escapeHtml(href));
     const html = window.marked.parse(source, { gfm: true, breaks: false, renderer });
     return window.DOMPurify.sanitize(html, { FORBID_TAGS: ['img', 'picture', 'video', 'audio', 'source', 'track'] });
   }
