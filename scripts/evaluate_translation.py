@@ -6,6 +6,7 @@ import argparse
 import hashlib
 import json
 import re
+import sys
 import time
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import replace
@@ -54,22 +55,31 @@ class RecordingClient(TranslationClient):
 
 def read_samples(path: Path, selected: list[str]):
     rows = []
+    skipped = []
     for spec in json.loads(path.read_text(encoding="utf-8")):
         if selected and spec["id"] not in selected:
+            continue
+        # Historical fixtures remain for old reports; Static is no longer a translation target.
+        if "static_prompt" in spec or "static" in Path(spec.get("source", "")).parts:
+            if spec["id"] in selected:
+                raise ValueError(f"{spec['id']}: Static translation is disabled")
+            skipped.append(spec["id"])
             continue
         if "text" in spec:
             unit = Segment(spec["id"], spec["text"], "Synthetic translation control")
         else:
             source = ROOT / spec["source"]
             content = source.read_text(encoding="utf-8")
-            if "static_prompt" in spec:
-                entries = json.loads(content)["prompts"]
-                content = next(entry["content"] for entry in entries if entry["id"] == spec["static_prompt"])
             matches = [unit for unit in extract_markdown(content).segments if spec["contains"] in unit.text]
             if len(matches) != 1:
                 raise ValueError(f"{spec['id']}: expected one archived segment, found {len(matches)}")
             unit = Segment(spec["id"], matches[0].text, matches[0].context)
         rows.append({"spec": spec, "segment": unit})
+    if skipped:
+        print(
+            f"Skipped {len(skipped)} historical Static samples (translation disabled): {', '.join(skipped)}",
+            file=sys.stderr,
+        )
     missing = set(selected) - {row["spec"]["id"] for row in rows}
     if not rows or missing:
         raise ValueError(f"no matching samples or unknown sample IDs: {sorted(missing)}")

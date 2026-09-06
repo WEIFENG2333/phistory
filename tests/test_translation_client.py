@@ -1,5 +1,6 @@
 import io
 import json
+from concurrent.futures import ThreadPoolExecutor
 from urllib.error import HTTPError
 
 import pytest
@@ -15,6 +16,7 @@ from phistory.translation.client import (
 )
 from phistory.translation.config import TranslationConfig, load_config
 from phistory.translation.segments import Segment
+from phistory.translation.usage import UsageLog
 
 
 def config(**kwargs):
@@ -95,7 +97,7 @@ def test_protected_tokens_roundtrip_and_integrity():
         restore(translated.replace(next(iter(replacements)), ""), protected, replacements)
 
 
-def test_client_retries_rate_limits_and_keeps_key_out_of_body(monkeypatch):
+def test_client_retries_rate_limits_and_keeps_key_out_of_body(monkeypatch, tmp_path):
     calls, delays = [], []
 
     def request(req, timeout):
@@ -112,13 +114,26 @@ def test_client_retries_rate_limits_and_keeps_key_out_of_body(monkeypatch):
 
     monkeypatch.setattr("phistory.translation.client.urlopen", request)
     monkeypatch.setattr("phistory.translation.client.time.sleep", delays.append)
-    translated = TranslationClient(config()).translate([Segment("one", "Confirm before deleting.")])
+    log = tmp_path / "usage.jsonl"
+    translated = TranslationClient(config(), log, {"agent": "test-agent"}).translate(
+        [Segment("one", "Confirm before deleting.")]
+    )
     assert translated.texts == {"one": "删除前请确认。"}
     assert (translated.input_tokens, translated.output_tokens) == (10, 20)
     assert len(calls) == 2 and delays == [3]
+    assert translated.requests == 2
+    first, second = [json.loads(line) for line in log.read_text().splitlines()]
+    assert first["status"] == "http_error" and first["http_status"] == 429 and first["usage"] is None
+    assert second["status"] == "success" and second["usage"] == {"prompt_tokens": 10, "completion_tokens": 20}
+    assert [first["attempt"], second["attempt"]] == [1, 2]
+    assert first["batch_id"] == second["batch_id"]
+    assert first["correction_round"] == second["correction_round"] == 0
+    assert second["agent"] == "test-agent" and second["source_chars_basis"] == "protected_text"
+    assert second["source_chars"] == len("Confirm before deleting.")
+    assert second["elapsed_ms"] >= 0
 
 
-def test_client_does_not_retry_authentication_errors(monkeypatch):
+def test_client_does_not_retry_authentication_errors(monkeypatch, tmp_path):
     def request(req, timeout):
         raise HTTPError(req.full_url, 401, "private-test-key", {}, None)
 
@@ -126,9 +141,17 @@ def test_client_does_not_retry_authentication_errors(monkeypatch):
     monkeypatch.setattr(
         "phistory.translation.client.time.sleep", lambda _: pytest.fail("authentication must not retry")
     )
+    log = tmp_path / "usage.jsonl"
+    client = TranslationClient(config(), log, {"api_key": "private-test-key", "purpose": "test"})
     with pytest.raises(AuthenticationError, match="HTTP 401") as error:
-        TranslationClient(config()).translate([Segment("one", "Confirm before deleting.")])
+        client.translate([Segment("one", "Confirm before deleting.")])
     assert "private-test-key" not in str(error.value)
+    assert error.value.partial.requests == 1
+    recorded = log.read_text()
+    assert "private-test-key" not in recorded and "Confirm before deleting." not in recorded
+    assert "Authorization" not in recorded
+    entry = json.loads(recorded)
+    assert entry["http_status"] == 401 and entry["usage"] is None and entry["purpose"] == "test"
 
 
 def test_invalid_endpoint_stops_archive_processing(monkeypatch):
@@ -179,7 +202,7 @@ def test_client_rejects_incomplete_or_mismatched_output(monkeypatch, items, reas
 )
 def test_client_classifies_malformed_response_envelopes_for_retry(monkeypatch, body):
     client = TranslationClient(config())
-    monkeypatch.setattr(client, "_request", lambda payload: body)
+    monkeypatch.setattr(client, "_request", lambda payload, **kwargs: body)
     result = client.translate([Segment("one", "Confirm before deleting.")])
     assert not result.texts and result.errors
 
@@ -188,7 +211,7 @@ def test_malformed_response_receives_concrete_feedback(monkeypatch):
     client = TranslationClient(config())
     calls = []
 
-    def request(payload):
+    def request(payload, **kwargs):
         segments = json.loads(payload["messages"][1]["content"])["segments"]
         calls.append(len(segments))
         if len(calls) == 1:
@@ -202,12 +225,104 @@ def test_malformed_response_receives_concrete_feedback(monkeypatch):
     assert calls == [2, 2] and not result.errors
 
 
+@pytest.mark.parametrize("invalid_content", ["{broken JSON", '{"translations":{"0":{"text":"Retry twice."}}}'])
+def test_usage_includes_rejected_output_and_corrections(monkeypatch, tmp_path, invalid_content):
+    usage = {
+        "prompt_tokens": 10,
+        "completion_tokens": 20,
+        "total_tokens": 30,
+        "prompt_tokens_details": {"cached_tokens": 4},
+        "completion_tokens_details": {"reasoning_tokens": 15},
+    }
+    calls = []
+
+    def request(req, timeout):
+        calls.append(json.loads(req.data))
+        body = json.load(response({"0": "最多重试 2 次。"}))
+        body.update(id=f"response-{len(calls)}", usage=usage)
+        if len(calls) == 1:
+            body["choices"][0]["message"]["content"] = invalid_content
+        return io.BytesIO(json.dumps(body).encode())
+
+    monkeypatch.setattr("phistory.translation.client.urlopen", request)
+    path = tmp_path / "usage.jsonl"
+    result = TranslationClient(config(), path).translate([Segment("one", "Retry up to 2 times.")])
+    assert result.texts == {"one": "最多重试 2 次。"}
+    # Reasoning is already included in completion_tokens; cache hits are part of prompt_tokens.
+    assert (result.input_tokens, result.output_tokens, result.requests) == (20, 40, 2)
+    entries = [json.loads(line) for line in path.read_text().splitlines()]
+    assert [entry["correction_round"] for entry in entries] == [0, 1]
+    assert [entry["attempt"] for entry in entries] == [1, 1]
+    assert [entry["response_id"] for entry in entries] == ["response-1", "response-2"]
+    assert all(entry["usage"] == usage for entry in entries)
+    assert len({entry["batch_id"] for entry in entries}) == 1
+    assert all("feedback" not in entry and "messages" not in entry for entry in entries)
+
+
+def test_usage_for_unreadable_response_is_unknown_and_logged_before_retry(monkeypatch, tmp_path):
+    calls = []
+
+    def request(req, timeout):
+        calls.append(req)
+        return io.BytesIO(b"<html>private-test-key</html>") if len(calls) == 1 else response({"0": "读取文件。"})
+
+    monkeypatch.setattr("phistory.translation.client.urlopen", request)
+    monkeypatch.setattr("phistory.translation.client.time.sleep", lambda _: None)
+    path = tmp_path / "usage.jsonl"
+    result = TranslationClient(config(), path).translate([Segment("one", "Read files.")])
+    assert result.texts == {"one": "读取文件。"} and result.requests == 2
+    first, second = [json.loads(line) for line in path.read_text().splitlines()]
+    assert first["status"] == "invalid_response" and first["http_status"] == 200 and first["usage"] is None
+    assert second["usage"] == {"prompt_tokens": 10, "completion_tokens": 20}
+    assert "private-test-key" not in path.read_text()
+
+
+def test_usage_identifies_only_the_source_segments_sent_in_each_round(monkeypatch, tmp_path):
+    calls = []
+
+    def request(req, timeout):
+        calls.append(req)
+        return response({"0": "读取文件。", "1": "重试两次。"}) if len(calls) == 1 else response({"1": "重试 2 次。"})
+
+    monkeypatch.setattr("phistory.translation.client.urlopen", request)
+    path = tmp_path / "usage.jsonl"
+    result = TranslationClient(config(), path).translate(
+        [Segment("source-good", "Read files."), Segment("source-retry", "Retry 2 times.")]
+    )
+    assert len(result.texts) == 2 and result.requests == 2
+    first, second = [json.loads(line) for line in path.read_text().splitlines()]
+    assert first["segment_ids"] == ["source-good", "source-retry"]
+    assert second["segment_ids"] == ["source-retry"] and second["segment_count"] == 1
+
+
+def test_usage_log_keeps_concurrent_clients_records_complete(tmp_path):
+    path = tmp_path / "usage.jsonl"
+    logs = [UsageLog(path), UsageLog(path)]
+    with ThreadPoolExecutor(max_workers=8) as executor:
+        list(executor.map(lambda number: logs[number % 2].write({"number": number}), range(100)))
+    entries = [json.loads(line) for line in path.read_text().splitlines()]
+    assert len(entries) == 100
+    assert {entry["number"] for entry in entries} == set(range(100))
+
+
+def test_log_failure_does_not_discard_paid_translation(monkeypatch, tmp_path):
+    path = tmp_path / "usage.jsonl"
+    client = TranslationClient(config(), path)
+    path.unlink()
+    path.mkdir()
+    monkeypatch.setattr("phistory.translation.client.urlopen", lambda *args, **kwargs: response({"0": "读取文件。"}))
+    with pytest.warns(RuntimeWarning, match="usage log"):
+        result = client.translate([Segment("one", "Read files.")])
+    assert result.texts == {"one": "读取文件。"}
+    assert (result.input_tokens, result.output_tokens, result.requests) == (10, 20, 1)
+
+
 def test_feedback_retries_only_failed_entries_and_model_can_preserve_code(monkeypatch):
     calls = []
     client = TranslationClient(config())
     command = "cd /foo/bar && pytest tests"
 
-    def request(payload):
+    def request(payload, **kwargs):
         segments = json.loads(payload["messages"][1]["content"])["segments"]
         calls.append([item["id"] for item in segments])
         if len(calls) == 1:
@@ -232,7 +347,7 @@ def test_feedback_is_bounded_and_keeps_successful_entries(monkeypatch):
     calls = []
     client = TranslationClient(config())
 
-    def request(payload):
+    def request(payload, **kwargs):
         segments = json.loads(payload["messages"][1]["content"])["segments"]
         calls.append([item["id"] for item in segments])
         return json.load(
@@ -250,7 +365,7 @@ def test_review_feedback_uses_source_identity_and_the_normal_validation_loop(mon
     client = TranslationClient(config())
     hint = {"previous": {"text": "Search", "status": "preserved"}, "issue": "This is an ordinary heading."}
 
-    def request(payload):
+    def request(payload, **kwargs):
         segments = json.loads(payload["messages"][1]["content"])["segments"]
         assert segments[0]["feedback"] == hint
         assert "feedback" not in segments[1]
@@ -267,7 +382,7 @@ def test_missing_ids_keep_valid_results_and_unknown_ids_are_ignored(monkeypatch)
     calls = []
     client = TranslationClient(config())
 
-    def request(payload):
+    def request(payload, **kwargs):
         segments = json.loads(payload["messages"][1]["content"])["segments"]
         calls.append([item["id"] for item in segments])
         if len(calls) == 1:
@@ -283,7 +398,7 @@ def test_missing_ids_keep_valid_results_and_unknown_ids_are_ignored(monkeypatch)
 
 def test_single_word_translation_needs_chinese_or_explicit_preserved_status(monkeypatch):
     client = TranslationClient(config())
-    monkeypatch.setattr(client, "_request", lambda _: json.load(response({"0": "Search"})))
+    monkeypatch.setattr(client, "_request", lambda _, **kwargs: json.load(response({"0": "Search"})))
     result = client.translate([Segment("title", "Search")])
     assert not result.texts and "no Chinese prose" in result.errors[0]
 
@@ -294,7 +409,7 @@ def test_preserved_requires_exact_source_and_transport_failure_keeps_accepted_en
     calls = []
     client = TranslationClient(config())
 
-    def request(payload):
+    def request(payload, **kwargs):
         segments = json.loads(payload["messages"][1]["content"])["segments"]
         calls.append(segments)
         if len(calls) == 1:

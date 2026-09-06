@@ -12,7 +12,7 @@ from phistory.static_prompts.extract import (
     render_static_prompts_markdown,
     write_static_candidates,
 )
-from phistory.static_prompts.javascript import extract_prompt_candidates, extract_string_candidates
+from phistory.static_prompts.javascript import extract_prompt_candidates, extract_string_candidates, is_source_resource
 from phistory.static_prompts.models import StaticCandidatesResult, StaticPromptMatch, StaticPromptResult
 
 
@@ -63,6 +63,57 @@ def test_javascript_prompt_extraction_filters_static_resources():
 
     assert len(candidates) == 1
     assert "expert reviewer" in candidates[0].content
+
+
+@pytest.mark.parametrize("prologue", ['"use strict";', "/* bundled resource */\n'use strict';", "'use client';\n"])
+def test_javascript_bundle_is_filtered_even_when_its_strings_contain_prompt_markers(prologue):
+    bundle = prologue + (
+        'var labels={tool:"Use the tool to inspect the document.",'
+        'instructions:"You are a reviewer. Your task is to check the document.",'
+        'permission:"IMPORTANT: Do not proceed until the user grants permission."};'
+        "function lookup(name){return labels[name] || name;}"
+    )
+
+    assert is_source_resource(bundle)
+    assert extract_string_candidates(f"const resource = {json.dumps(bundle)};") == []
+    assert extract_prompt_candidates(f"const resource = {json.dumps(bundle)};") == []
+
+
+@pytest.mark.parametrize(
+    "resource",
+    [
+        '#!/usr/bin/env python3\n"""You are running a tool. Do not modify its instructions."""\nprint("ready")',
+        '#!/bin/sh\n# IMPORTANT: This tool requires permission.\nprintf "%s\\n" ready',
+        "<!doctype html><html><head><title>Instructions</title></head><body>Tool permission</body></html>",
+        "<!-- Resource metadata: You are an assistant. -->\n<!-- CSS follows. -->\n<style>.tool {color:red}</style>",
+        '<!-- Metadata -->\n<title><!-- Title slot -->Instructions</title>\n<script>const tool = "ready";</script>',
+    ],
+)
+def test_standalone_scripts_and_html_resources_are_filtered(resource):
+    assert is_source_resource(resource)
+    assert extract_string_candidates(f"const resource = {json.dumps(resource)};", min_length=20) == []
+
+
+@pytest.mark.parametrize(
+    "prompt",
+    [
+        "You are a code reviewer. Your task is to review this example. Do not execute it.\n\n"
+        '```javascript\n"use strict";\nconst values = [1, 2, 3];\nvalues.forEach(console.log);\n```',
+        '```javascript\n"use strict";\nconst values = [1, 2, 3];\n```\n\n'
+        "You are a code reviewer. Your task is to review this example. Do not execute it.",
+        '{"type":"object","description":"You are reviewing the tool schema. Your task is to explain '
+        'each parameter. Do not change the technical identifiers."}',
+        "You are reviewing this HTML example. Explain the style rule without changing it.\n\n"
+        "<style>.tool { color: red; }</style>",
+        "<title>Output format</title>\nYou are reviewing the tool descriptions. Your task is to explain "
+        "each parameter. Do not change the technical identifiers.",
+        "<!-- Instructions -->\nYou are reviewing a page. Your task is to explain its style rules. "
+        "Do not execute the code.\n<style>.tool { color: red; }</style>",
+    ],
+)
+def test_source_resource_detection_preserves_prompts_with_code_and_schema_descriptions(prompt):
+    assert not is_source_resource(prompt)
+    assert extract_string_candidates(f"const prompt = {json.dumps(prompt)};")[0].content == prompt
 
 
 def test_known_catalog_matches_are_kept_before_strict_unknown_filtering():

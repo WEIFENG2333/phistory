@@ -4,6 +4,7 @@ function storedLanguage() {
 }
 
 function toggleLanguage() {
+  if (state.view === 'static') return;
   saveTraceState();
   rememberTranslationPosition();
   state.language = state.language === 'zh-CN' ? 'original' : 'zh-CN';
@@ -46,9 +47,10 @@ async function sourceHashMatches(source, expected) {
 
 async function loadTranslation(item, kind, source) {
   // A source index references shared dictionary entries; stale indexes must never rewrite new source text.
+  if (!['prompt', 'trace'].includes(kind)) return null;
   const metadata = item.translations?.['zh-CN'];
   const descriptor = metadata?.[kind];
-  const dictionary = metadata?.[kind === 'static' ? 'static_dictionary' : 'runtime'];
+  const dictionary = metadata?.runtime;
   if (!descriptor?.index || !dictionary?.path) return null;
   try {
     const [index, words] = await Promise.all([
@@ -66,6 +68,23 @@ async function loadTranslation(item, kind, source) {
   } catch { return null; }
 }
 
+function validTranslationBindings(bindings) {
+  return bindings === undefined || (bindings && typeof bindings === 'object' && !Array.isArray(bindings)
+    && Object.entries(bindings).every(([token, binding]) => /^\$PHISTORY_[A-Z_]+$/.test(token)
+      && binding && typeof binding === 'object' && !Array.isArray(binding)
+      && typeof binding.value === 'string' && binding.value.length > 0 && !/[\r\n]/.test(binding.value)
+      && Number.isSafeInteger(binding.count) && binding.count > 0));
+}
+
+function restoreTranslationBindings(text, bindings) {
+  if (!bindings) return text;
+  const tokens = text.match(/\$PHISTORY_[A-Z_]+(?![A-Za-z0-9_])/g) || [];
+  if (Object.entries(bindings).some(([token, binding]) => tokens.filter(value => value === token).length !== binding.count)) return null;
+  // Restore each occurrence's literals once, before JSON escaping; values may contain dollars and backslashes.
+  return text.replace(/\$PHISTORY_[A-Z_]+(?![A-Za-z0-9_])/g,
+    token => Object.hasOwn(bindings, token) ? bindings[token].value : token);
+}
+
 function translationDocument(source, segments, entries = {}) {
   // Python records Unicode code-point offsets, whereas JavaScript string offsets count UTF-16 units.
   const points = Array.from(source);
@@ -75,6 +94,7 @@ function translationDocument(source, segments, entries = {}) {
     const ok = typeof segment.id === 'string' && Number.isInteger(segment.start) && Number.isInteger(segment.end)
       && segment.start >= end && segment.end > segment.start && segment.end <= points.length
       && ['text', 'json-string', 'json-string-part'].includes(segment.kind)
+      && validTranslationBindings(segment.bindings)
       && (segment.escape_depth === undefined || (Number.isInteger(segment.escape_depth) && segment.escape_depth > 0 && segment.escape_depth <= 16));
     end = segment.end;
     return ok;
@@ -93,7 +113,8 @@ function translatedRange(document, start = 0, end = document.points.length) {
     if (segment.end <= start) continue;
     if (segment.start >= end) break;
     total++;
-    const text = Object.hasOwn(document.entries, segment.id) ? document.entries[segment.id]?.text : null;
+    let text = Object.hasOwn(document.entries, segment.id) ? document.entries[segment.id]?.text : null;
+    if (typeof text === 'string') text = restoreTranslationBindings(text, segment.bindings);
     if (typeof text !== 'string' || !text.trim() || segment.start < start || segment.end > end) {
       missing++;
       continue;
@@ -110,24 +131,15 @@ function translatedRange(document, start = 0, end = document.points.length) {
   return { source, text: result.join(''), missing, total };
 }
 
-function clipTranslationDocument(document, body) {
-  const offset = Array.from(document.source.slice(0, document.source.indexOf(body))).length;
-  const length = Array.from(body).length;
-  const segments = document.segments?.filter(segment => segment.start >= offset && segment.end <= offset + length)
-    .map(segment => ({ ...segment, start: segment.start - offset, end: segment.end - offset }));
-  return translationDocument(body, segments, document.entries);
-}
-
-async function prepareTranslationComparison(from, to, original, modified, kind, sequence) {
+async function prepareTranslationComparison(from, to, original, modified, sequence) {
   if (state.language !== 'zh-CN') return;
   const translations = await Promise.all([
-    loadTranslation(from, kind, original), loadTranslation(to, kind, modified)
+    loadTranslation(from, 'prompt', original), loadTranslation(to, 'prompt', modified)
   ]);
   if (!isCurrentRender(sequence)) return;
   const documents = [original, modified].map((source, index) => {
     const data = translations[index];
-    const document = translationDocument(source, data?.index.segments, data?.entries);
-    return kind === 'static' ? clipTranslationDocument(document, staticPromptBodyMarkdown(source)) : document;
+    return translationDocument(source, data?.index.segments, data?.entries);
   });
   state.translationComparison = { documents, sequence };
   renderTranslationComparison();
@@ -313,7 +325,7 @@ function renderComparisonLanguage() {
   }
   const available = comparison.total - comparison.missing;
   const coverage = comparison.total ? Math.round(100 * available / comparison.total) : 100;
-  const status = comparison.missing ? (available ? `中文 ${coverage}%，未完成部分显示原文。` : '暂无中文译文，显示原文。') : '当前显示中文翻译。';
+  const status = comparison.missing ? (available ? `译文就绪 ${coverage}%，缺译的变更段落整段显示原文。` : '暂无中文译文，显示原文。') : '当前显示中文翻译。';
   els.language.title = `${status} 版本变更统计依据原文。点击切换原文。`;
   if (comparison.hiddenChanges.length) els.language.title += ' 黄色行标记表示原文有修改、中文相同。';
   state.translationDecorations.forEach((collection, side) => {

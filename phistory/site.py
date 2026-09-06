@@ -1751,6 +1751,7 @@ const state = {
   traceOpenTools: new Set(),
   traceRawSections: new Set(),
   editor: null,
+  editorViewModel: null,
   monaco: null,
   monacoPromise: null,
   monacoDiffReady: false,
@@ -1940,6 +1941,7 @@ function renderControls() {
   const next = nextView();
   els.viewToggle.textContent = next === 'diff' ? 'Diff' : (next === 'trace' ? 'Trace' : 'Static');
   els.viewToggle.title = next === 'diff' ? 'Open prompt diff' : (next === 'trace' ? 'Open trace detail' : 'Open static prompts');
+  els.language.hidden = state.view === 'static';
   els.language.textContent = state.language === 'zh-CN' ? '原文' : '中文';
   els.language.setAttribute('aria-pressed', String(state.language === 'zh-CN'));
   els.language.title = state.language === 'zh-CN' ? '显示原文' : '阅读中文翻译';
@@ -2144,6 +2146,7 @@ async function renderView(sequence) {
   try {
     if (state.view === 'trace') {
       snapshotTraceState();
+      disposeEditor();
       await renderTrace(sequence);
       return;
     }
@@ -2309,7 +2312,7 @@ async function renderDiff(sequence) {
   const [original, modified] = await Promise.all([loadPrompt(from), loadPrompt(to)]);
   if (!isCurrentRender(sequence)) return;
   renderMonacoDiff(original, modified);
-  await prepareTranslationComparison(from, to, original, modified, 'prompt', sequence);
+  await prepareTranslationComparison(from, to, original, modified, sequence);
 }
 
 function renderMonacoDiff(original, modified) {
@@ -2366,18 +2369,19 @@ function renderMonacoDiff(original, modified) {
     state.editor.updateOptions(options);
   }
   state.translationDecorations.forEach(collection => collection.clear());
-  // Keep model URIs alive while Monaco workers finish earlier language/version comparisons.
+  // Give each comparison immutable source models so late worker results cannot read newer text.
   const models = state.editor.getModel();
+  const previousViewModel = state.editorViewModel;
   state.monacoDiffReady = false;
-  if (models) {
-    models.original.setValue(original);
-    models.modified.setValue(modified);
-  } else {
-    state.editor.setModel({
-      original: monaco.editor.createModel(original, 'markdown'),
-      modified: monaco.editor.createModel(modified, 'markdown')
-    });
-  }
+  state.editorViewModel = state.editor.createViewModel({
+    original: monaco.editor.createModel(original, 'markdown'),
+    modified: monaco.editor.createModel(modified, 'markdown')
+  });
+  state.editor.setModel(state.editorViewModel);
+  // Cancel the previous view's pending work before disposing the models it still references.
+  previousViewModel?.dispose();
+  models?.original.dispose();
+  models?.modified.dispose();
   restoreTranslationPosition();
   hardenMobileEditorInputs();
   requestAnimationFrame(hardenMobileEditorInputs);
@@ -2388,6 +2392,8 @@ function disposeEditor() {
   const model = state.editor.getModel();
   state.editor.setModel(null);
   state.editor.dispose();
+  state.editorViewModel?.dispose();
+  state.editorViewModel = null;
   model?.original?.dispose();
   model?.modified?.dispose();
   state.editor = null;
@@ -2499,7 +2505,6 @@ async function renderStatic(sequence) {
   state.staticOutline = buildStaticOutline(originalBody, modifiedBody);
   renderStaticOutline();
   renderMonacoDiff(originalBody, modifiedBody);
-  await prepareTranslationComparison(from, to, original, modified, 'static', sequence);
 }
 
 function selectMainTraceRecord(records) {
@@ -2951,9 +2956,7 @@ function staticDeltaLabel(item) {
 
 function jumpToStaticSection(line) {
   if (!state.editor || !Number.isFinite(line)) return;
-  const target = state.language === 'zh-CN' && state.translationComparison?.ready
-    ? mapTranslationLine(state.translationComparison.maps[1], line)
-    : Math.max(1, line);
+  const target = Math.max(1, line);
   const editor = state.editor.getModifiedEditor();
   editor.revealLineInCenter(target);
   editor.setPosition({ lineNumber: target, column: 1 });

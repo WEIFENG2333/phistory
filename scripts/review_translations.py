@@ -16,21 +16,13 @@ from phistory.translation.storage import read_dictionary
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def candidates(rows, dictionaries):
+def candidates(rows, dictionary):
     versions = sorted({row["version"] for row in rows}, key=_version_key)
-    static_versions = sorted({row["version"] for row in rows if row.get("static_prompts")}, key=_version_key)
-    selected_versions = {
-        kind: {available[0], available[-1], available[len(available) // 2]} if available else set()
-        for kind, available in (("runtime", versions), ("static", static_versions))
-    }
+    selected_versions = {versions[0], versions[-1], versions[len(versions) // 2]} if versions else set()
     found = {}
     for row in rows:
-        for kind, path in (
-            ("runtime", row["prompt"]),
-            ("runtime", row["trace"]),
-            ("static", row.get("static_prompts")),
-        ):
-            if not path or row["version"] not in selected_versions[kind]:
+        for path in (row["prompt"], row["trace"]):
+            if not path or row["version"] not in selected_versions:
                 continue
             text = path.read_bytes().decode("utf-8")
             source = extract_trace(text) if path.suffix == ".jsonl" else extract_markdown(text)
@@ -44,27 +36,23 @@ def candidates(rows, dictionaries):
                         metadata[ref["id"]].add("schema")
                     if pointer:
                         pointers[ref["id"]] = pointer
-                    if kind == "static":
-                        heading = text[text.rfind("\n### ", 0, ref["start"]) : ref["start"]].split("\n\n", 1)[0]
-                        metadata[ref["id"]].add("static-unknown" if "Unknown static prompt" in heading else "static")
             for segment in source.segments:
-                entry = dictionaries[kind]["entries"].get(segment.id)
+                entry = dictionary["entries"].get(segment.id)
                 preserved = entry is not None and entry.get("status") == "preserved"
                 if len(segment.text) < 80 and not preserved:
                     continue
                 strata = metadata[segment.id]
                 if preserved:
                     strata.add("preserved")
-                if kind == "runtime":
-                    if row["version"] == versions[0]:
-                        strata.add("old")
-                    if row["version"] == versions[-1]:
-                        strata.add("latest")
-                    if len(segment.text) >= 500:
-                        strata.add("long")
-                    if "Tool:" in segment.context and "schema" not in strata:
-                        strata.add("tool")
-                identity = (kind, segment.id, row["version"])
+                if row["version"] == versions[0]:
+                    strata.add("old")
+                if row["version"] == versions[-1]:
+                    strata.add("latest")
+                if len(segment.text) >= 500:
+                    strata.add("long")
+                if "Tool:" in segment.context and "schema" not in strata:
+                    strata.add("tool")
+                identity = (segment.id, row["version"])
                 if identity in found:
                     found[identity]["strata"] = sorted(set(found[identity]["strata"]) | strata)
                     continue
@@ -73,7 +61,6 @@ def candidates(rows, dictionaries):
                     "version": row["version"],
                     "source": str(path),
                     "pointer": pointers.get(segment.id),
-                    "dictionary_kind": kind,
                     "strata": sorted(strata),
                     "context": segment.context,
                     "text": segment.text,
@@ -86,7 +73,7 @@ def candidates(rows, dictionaries):
 
 def select(rows, count, seed):
     chosen, seen, coverage = [], set(), {}
-    for stratum in ("preserved", "old", "latest", "long", "tool", "schema", "static", "static-unknown"):
+    for stratum in ("preserved", "old", "latest", "long", "tool", "schema"):
         available = [row for row in rows if stratum in row["strata"]]
         translated = [row for row in available if row["translation"] and row["id"] not in seen]
         if stratum == "long":
@@ -128,10 +115,8 @@ def main() -> int:
     )
     output.mkdir(parents=True, exist_ok=True)
     for agent, rows in sorted(grouped.items()):
-        dictionaries = {
-            kind: read_dictionary(args.root / "translations", agent, kind) for kind in ("runtime", "static")
-        }
-        selected, coverage = select(candidates(rows, dictionaries), args.count, args.seed)
+        dictionary = read_dictionary(args.root / "translations", agent)
+        selected, coverage = select(candidates(rows, dictionary), args.count, args.seed)
         report = {"agent": agent, "seed": args.seed, "coverage": coverage, "pairs": selected}
         (output / f"{agent}.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         review = "\n\n".join(

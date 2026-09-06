@@ -59,6 +59,139 @@ def test_dry_run_does_not_call_api_or_write_translations(tmp_path, monkeypatch):
     assert not (tmp_path / "translations").exists()
 
 
+def test_static_archive_never_enters_runtime_translation_queue(tmp_path, monkeypatch):
+    from phistory.translation.segments import source_hash
+    from phistory.translation.storage import read_dictionary
+
+    root = tmp_path / "captures"
+    path = capture(root, "1.0", "Read the runtime prompt.")
+    static = path.parents[1] / "static" / "prompts.md"
+    static.parent.mkdir()
+    static.write_text("# Static Prompts\n\nThis package document must never be translated.")
+    original = static.read_bytes()
+    assert read_capture_rows(root)[0]["static_prompts"] == static
+    calls = []
+
+    def translate(self, segments):
+        calls.extend(segment.text for segment in segments)
+        return TranslationBatch({segment.id: "读取运行时提示词。" for segment in segments})
+
+    monkeypatch.setattr("phistory.translation.workflow.TranslationClient.translate", translate)
+    result = translate_archive(
+        root, config=TranslationConfig("https://example.test/v1", "model", "test"), progress=lambda _: None
+    )
+    assert calls == ["Read the runtime prompt."]
+    assert result[0].total == result[0].translated == 1
+    translations = tmp_path / "translations"
+    assert len(read_dictionary(translations, "agent")["entries"]) == 1
+    assert not list(translations.glob("zh-CN/*/static.json"))
+    assert not list((translations / "sources").glob(f"{source_hash(static.read_text())}-*.json"))
+    assert static.read_bytes() == original
+
+
+def test_trace_dynamic_values_reuse_existing_prompt_translation(tmp_path, monkeypatch):
+    from phistory.translation.segments import extract_markdown
+    from phistory.translation.storage import write_dictionary
+
+    root = tmp_path / "captures"
+    text = "Primary working directory: $PHISTORY_WORKSPACE"
+    for version in ("1.0", "1.1"):
+        path = capture(root, version, text)
+        raw = text.replace("$PHISTORY_WORKSPACE", "/tmp/phistory-work-" + version.replace(".", ""))
+        (path / "trace.jsonl").write_text(json.dumps({"request": {"body": {"instructions": raw}}}))
+    key = extract_markdown(text).segments[0].id
+    write_dictionary(
+        tmp_path / "translations",
+        "agent",
+        {
+            "schema_version": 1,
+            "locale": "zh-CN",
+            "entries": {
+                key: {"text": "主工作目录：$PHISTORY_WORKSPACE", "model": "previous", "prompt_version": "previous"}
+            },
+        },
+    )
+    monkeypatch.setattr(
+        "phistory.translation.workflow.TranslationClient.translate",
+        lambda *args: (_ for _ in ()).throw(AssertionError("cached prose must not call API")),
+    )
+    result = translate_archive(root, progress=lambda _: None)[0]
+    assert result.total == result.reused == 1
+
+
+@pytest.mark.parametrize(
+    "translated,complete",
+    [
+        ("主工作目录：$PHISTORY_WORKSPACE", True),
+        ("主工作目录", False),
+        ("主工作目录：$PHISTORY_WORKSPACE $PHISTORY_WORKSPACE", False),
+    ],
+)
+def test_manifest_and_audit_do_not_count_unusable_trace_templates(tmp_path, monkeypatch, translated, complete):
+    import runpy
+
+    root = tmp_path / "captures"
+    path = capture(root, "1.0", "Primary working directory: $PHISTORY_WORKSPACE")
+    (path / "trace.jsonl").write_text(
+        json.dumps({"request": {"body": {"instructions": "Primary working directory: /tmp/phistory-work-one"}}})
+    )
+    monkeypatch.setattr(
+        "phistory.translation.workflow.TranslationClient.translate",
+        lambda self, segments: TranslationBatch({segment.id: translated for segment in segments}),
+    )
+    translate_archive(
+        root, config=TranslationConfig("https://example.test/v1", "model", "key"), progress=lambda _: None
+    )
+    trace = read_capture_rows(root)[0]["translations"]["zh-CN"]["trace"]
+    assert trace["total"] == 1
+    assert trace["translated"] == int(complete)
+    assert (trace["translated_chars"] == trace["source_chars"]) == complete
+
+    audit = runpy.run_path(str(Path(__file__).parents[1] / "scripts" / "audit_translations.py"))["main"]
+    monkeypatch.setitem(audit.__globals__, "REPO", tmp_path)
+    monkeypatch.setitem(audit.__globals__, "git_paths", lambda *args: [])
+    report_path = tmp_path / "audit.json"
+    monkeypatch.setattr("sys.argv", ["audit_translations.py", "--report", str(report_path)])
+    assert audit() == int(not complete)
+    report = json.loads(report_path.read_text())
+    assert report["coverage"][0]["translated"] == int(complete)
+    assert report["coverage"][0]["missing"] == int(not complete)
+    assert bool(report["errors"]) != complete
+
+
+def test_audit_checks_each_trace_binding_after_seeing_its_prompt_template(tmp_path, monkeypatch):
+    import runpy
+
+    root = tmp_path / "captures"
+    path = capture(root, "1.0", "Primary working directory: $PHISTORY_WORKSPACE")
+    (path / "trace.jsonl").write_text(
+        json.dumps({"request": {"body": {"instructions": "Primary working directory: /tmp/phistory-work-one"}}})
+    )
+    monkeypatch.setattr(
+        "phistory.translation.workflow.TranslationClient.translate",
+        lambda self, segments: TranslationBatch(
+            {segment.id: "主工作目录：$PHISTORY_WORKSPACE" for segment in segments}
+        ),
+    )
+    translate_archive(
+        root, config=TranslationConfig("https://example.test/v1", "model", "key"), progress=lambda _: None
+    )
+    trace = read_capture_rows(root)[0]["translations"]["zh-CN"]["trace"]
+    index_path = tmp_path / trace["index"]
+    index = json.loads(index_path.read_text())
+    index["fields"][0]["segments"][0]["bindings"]["$PHISTORY_WORKSPACE"]["value"] = "/tmp/phistory-work-wrong"
+    index_path.write_text(json.dumps(index))
+
+    audit = runpy.run_path(str(Path(__file__).parents[1] / "scripts" / "audit_translations.py"))["main"]
+    monkeypatch.setitem(audit.__globals__, "REPO", tmp_path)
+    monkeypatch.setitem(audit.__globals__, "git_paths", lambda *args: [])
+    report_path = tmp_path / "audit.json"
+    monkeypatch.setattr("sys.argv", ["audit_translations.py", "--report", str(report_path)])
+    assert audit() == 1
+    errors = json.loads(report_path.read_text())["errors"]
+    assert any("does not restore its original source" in error["error"] for error in errors)
+
+
 def test_source_index_shared_between_identical_versions(tmp_path, monkeypatch):
     root = tmp_path / "captures"
     capture(root, "1.0", "Confirm before deleting.\n")
@@ -144,7 +277,7 @@ def test_fatal_error_during_correction_saves_already_accepted_entries(tmp_path, 
     capture(root, "1.0", "Read files.\n\nRetry 2 times.\n")
     calls = []
 
-    def request(self, payload):
+    def request(self, payload, **kwargs):
         calls.append(payload)
         if len(calls) == 1:
             return {

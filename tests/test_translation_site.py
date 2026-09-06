@@ -5,7 +5,10 @@ from pathlib import Path
 
 import pytest
 
-from phistory.site import render_site
+from phistory.site import _HTML, render_site
+from phistory.translation.index import TranslationIndex
+from phistory.translation.segments import extract_markdown, extract_trace
+from phistory.translation.storage import write_dictionary, write_source
 
 SCRIPT = Path(__file__).parents[1] / "phistory/web/translation.js"
 
@@ -99,6 +102,31 @@ assert.match(rows[0].sides[0].text,/读取文件/);
 """)
 
 
+def test_partial_coverage_describes_ready_translations_when_changed_block_falls_back():
+    run_javascript(r"""
+const original='Read the file.\n\nAsk the user.\n';
+const modified='Read this file.\n\nAsk this user.\n';
+const before=translationDocument(original,
+  [{id:'a',start:0,end:14,kind:'text'},{id:'b',start:16,end:29,kind:'text'}],
+  {a:{text:'读取文件。'},b:{text:'询问用户。'}});
+const after=translationDocument(modified,
+  [{id:'c',start:0,end:15,kind:'text'},{id:'d',start:17,end:31,kind:'text'}],
+  {c:{text:'读取此文件。'}});
+const changes=[{originalStartLineNumber:1,originalEndLineNumber:3,modifiedStartLineNumber:1,modifiedEndLineNumber:3}];
+const comparison={...assembleTranslationComparison([before,after],changes),documents:[before,after],ready:true};
+assert.deepEqual(comparison.texts,[original,modified]);
+assert.equal(comparison.total,4);
+assert.equal(comparison.missing,1);
+const state={language:'zh-CN',translationComparison:comparison,translationDecorations:[],
+  editor:{getModel:()=>({original:{getValue:()=>original},modified:{getValue:()=>modified}})}};
+const els={language:{}};
+restoreTranslationPosition=()=>{};
+renderComparisonLanguage();
+assert.match(els.language.title,/译文就绪 75%/);
+assert.match(els.language.title,/缺译的变更段落整段显示原文/);
+""")
+
+
 def test_native_diff_assembly_preserves_source_changes_and_line_mapping():
     run_javascript(r"""
 const original='Read the file.\n\nThen ask the user.\n';
@@ -154,6 +182,38 @@ queueMicrotask(()=>assert.equal(rendered,true));
 """)
 
 
+def test_replacing_diff_cancels_old_comparison_before_disposing_its_models():
+    render_diff = (
+        "function renderMonacoDiff(original, modified)"
+        + _HTML.split("function renderMonacoDiff(original, modified)", 1)[1].split("\nfunction disposeEditor", 1)[0]
+    )
+    run_javascript(
+        render_diff
+        + r"""
+let cancelled=false;
+const oldModels=Object.fromEntries(['original','modified'].map(side=>[side,{
+  dispose(){assert.equal(cancelled,true);this.disposed=true;}
+}]));
+const previous={dispose(){cancelled=true;}};
+let current=oldModels;
+const state={view:'diff',translationDecorations:[],editorViewModel:previous,
+  monaco:{editor:{createModel:text=>({text})}},
+  editor:{updateOptions(){},getModel:()=>current,
+    createViewModel:models=>({model:models}),setModel:view=>{current=view.model;}}};
+const matchMedia=()=>({matches:false});
+restoreTranslationPosition=()=>{};
+const hardenMobileEditorInputs=()=>{};
+const requestAnimationFrame=()=>{};
+renderMonacoDiff('Old source.','New source.');
+assert.equal(current.original.text,'Old source.');
+assert.equal(current.modified.text,'New source.');
+assert.ok(oldModels.original.disposed&&oldModels.modified.disposed);
+assert.notEqual(state.editorViewModel,previous);
+assert.equal(state.monacoDiffReady,false);
+"""
+    )
+
+
 def test_source_change_markers_are_cleared_when_switching_back_to_original():
     run_javascript(r"""
 const collections=[0,1].map(()=>({items:[],set(items){this.items=items;},clear(){this.items=[];}}));
@@ -205,6 +265,81 @@ assert.equal(translatedRange(document).text,source);
 """)
 
 
+def test_trace_bindings_reuse_one_translation_without_reusing_old_paths():
+    run_javascript(r"""
+const entries={shared:{text:'在 $PHISTORY_WORKSPACE 中工作。'}};
+for (const path of ['/tmp/phistory-work-first','/tmp/phistory-work-second']) {
+  const source=`Work in ${path}.`;
+  const document=translationDocument(source,[{id:'shared',start:0,end:Array.from(source).length,kind:'text',
+    bindings:{$PHISTORY_WORKSPACE:{value:path,count:1}}}],entries);
+  const result=translatedRange(document);
+  assert.equal(result.text,`在 ${path} 中工作。`);
+  assert.equal(result.missing,0);
+  assert.equal(document.source,source);
+}
+assert.equal(entries.shared.text,'在 $PHISTORY_WORKSPACE 中工作。');
+""")
+
+
+def test_trace_bindings_restore_literals_once_before_nested_json_escaping():
+    run_javascript(r"""
+const path='/tmp/"🚀"\\$&$PHISTORY_DATE';
+const original=`Read ${path} twice: ${path}; date 2026-09-06.`;
+const expected=`读取 ${path} 两次：${path}；日期 2026-09-06。`;
+const entries={shared:{text:'读取 $PHISTORY_WORKSPACE 两次：$PHISTORY_WORKSPACE；日期 $PHISTORY_DATE。'}};
+const bindings={$PHISTORY_WORKSPACE:{value:path,count:2},$PHISTORY_DATE:{value:'2026-09-06',count:1}};
+for (const [kind,depth] of [['text',0],['json-string',0],['json-string-part',1],['json-string-part',2]]) {
+  const encode=value=>{
+    if (kind==='json-string') return JSON.stringify(value);
+    for (let level=0;level<depth;level++) value=JSON.stringify(value).slice(1,-1);
+    return value;
+  };
+  const source=encode(original);
+  const segment={id:'shared',start:0,end:Array.from(source).length,kind,bindings};
+  if (depth) segment.escape_depth=depth;
+  const result=translatedRange(translationDocument(source,[segment],entries));
+  assert.equal(result.text,encode(expected));
+  assert.equal(result.missing,0);
+}
+""")
+
+
+def test_trace_bindings_reject_missing_repeated_or_changed_tokens():
+    run_javascript(r"""
+const source='Work in /tmp/phistory-work-first.';
+const segment={id:'shared',start:0,end:source.length,kind:'text',
+  bindings:{$PHISTORY_WORKSPACE:{value:'/tmp/phistory-work-first',count:1}}};
+for (const text of ['在工作区中工作。','在 $PHISTORY_WORKSPACE 和 $PHISTORY_WORKSPACE 中工作。',
+  '在 $PHISTORY_WORKSPACE_EXTRA 中工作。','在 $PHISTORY_WORKSPACE1 中工作。','在 $PHISTORY_WORKSPACEextra 中工作。']) {
+  const result=translatedRange(translationDocument(source,[segment],{shared:{text}}));
+  assert.equal(result.text,source);
+  assert.equal(result.missing,1);
+}
+const dateSource='Today is 2026-09-06.';
+const dateRef={id:'date',start:0,end:dateSource.length,kind:'text',
+  bindings:{$PHISTORY_DATE:{value:'2026-09-06',count:1}}};
+assert.equal(translatedRange(translationDocument(dateSource,[dateRef],
+  {date:{text:'今天是 $PHISTORY_DATETIME。'}})).text,dateSource);
+""")
+
+
+def test_invalid_trace_binding_metadata_falls_back_to_source():
+    run_javascript(r"""
+const source='Work in /tmp/phistory-work-first.';
+const valid={value:'/tmp/phistory-work-first',count:1};
+for (const bindings of [null,[],1,{['__proto__']:valid},{HOME:valid},
+  {$PHISTORY_WORKSPACE:null},{$PHISTORY_WORKSPACE:[]},{$PHISTORY_WORKSPACE:{...valid,value:''}},
+  {$PHISTORY_WORKSPACE:{...valid,value:'first\nsecond'}},{$PHISTORY_WORKSPACE:{...valid,value:'first\rsecond'}},
+  {$PHISTORY_WORKSPACE:{...valid,count:0}},{$PHISTORY_WORKSPACE:{...valid,count:1.5}},
+  {$PHISTORY_WORKSPACE:{...valid,count:'1'}},{$PHISTORY_WORKSPACE:{...valid,count:true}}]) {
+  const segment={id:'shared',start:0,end:source.length,kind:'text',bindings};
+  const result=translatedRange(translationDocument(source,[segment],{shared:{text:'在 $PHISTORY_WORKSPACE 中工作。'}}));
+  assert.equal(result.text,source);
+  assert.equal(result.missing,1);
+}
+""")
+
+
 def test_trace_pointer_validation_and_original_data_are_preserved():
     run_javascript(r"""
 const source = {request:{body:{'a/b':{'~text':'Read a file.'},tools:[{description:'Run a command.'}]}}};
@@ -243,6 +378,105 @@ globalThis.fetch=async url=>{calls++;return {ok:true,json:async()=>url.includes(
   assert.equal(state.translationCache.size,0);
 })().catch(error=>{console.error(error);process.exitCode=1;});
 """)
+
+
+def test_static_view_keeps_original_content_and_runtime_language_preference():
+    controls = (
+        "function renderControls()"
+        + _HTML.split("function renderControls()", 1)[1].split("\nfunction agentControlNameHtml", 1)[0]
+    )
+    render_static = (
+        "async function renderStatic(sequence)"
+        + _HTML.split("async function renderStatic(sequence)", 1)[1].split("\nfunction selectMainTraceRecord", 1)[0]
+    )
+    run_javascript(
+        controls
+        + render_static
+        + r"""
+const state={view:'diff',language:'zh-CN',translationCache:new Map()};
+const button=()=>({setAttribute(){}});
+const els={agent:button(),from:button(),to:button(),viewToggle:button(),language:button()};
+const document={querySelector:()=>null};
+const agent={name:'Agent',variants:[{}]};
+const currentAgent=()=>agent;
+const variantInfo=()=>({});
+const snapshot={version:'1.0',static_prompts:'static.md',translations:{'zh-CN':{
+  static:{index:'old-static-index.json'},static_dictionary:{path:'old-static-words.json'},
+  runtime:{path:'runtime.json'}}}};
+const snapshotInfo=()=>snapshot;
+const agentIconHtml=()=>'';
+const agentControlNameHtml=()=>'';
+const versionLabel=()=>'';
+const isLatestVersion=()=>true;
+const snapshotLabel=()=>'';
+const nextView=()=>state.view==='static'?'diff':'static';
+const stored=[];
+const localStorage={setItem:(...args)=>stored.push(args)};
+const requests=[];
+const loadStaticPrompts=async item=>{requests.push(item.static_prompts);return 'Read the original.';};
+const isCurrentRender=()=>true;
+const staticPromptBodyMarkdown=text=>text;
+const buildStaticOutline=(before,after)=>[{before,after}];
+const renderStaticOutline=()=>{};
+let comparison;
+const renderMonacoDiff=(before,after)=>{comparison=[before,after];};
+globalThis.fetch=()=>{throw new Error('Static must not fetch translation assets');};
+prepareTranslationComparison=()=>{throw new Error('Static must not prepare translations');};
+(async()=>{
+  renderControls();
+  assert.equal(els.language.hidden,false);
+  assert.equal(els.language.textContent,'原文');
+  state.view='static';
+  renderControls();
+  assert.equal(els.language.hidden,true);
+  toggleLanguage();
+  assert.equal(state.language,'zh-CN');
+  assert.deepEqual(stored,[]);
+  await renderStatic(1);
+  assert.deepEqual(comparison,['Read the original.','Read the original.']);
+  assert.deepEqual(requests,['static.md','static.md']);
+  assert.equal(await loadTranslation(snapshot,'static','Read the original.'),null);
+  for(const view of ['diff','trace']){
+    state.view=view;
+    renderControls();
+    assert.equal(els.language.hidden,false);
+    assert.equal(els.language.textContent,'原文');
+    assert.equal(state.language,'zh-CN');
+  }
+})().catch(error=>{console.error(error);process.exitCode=1;});
+"""
+    )
+
+
+def test_manifest_ignores_legacy_static_translations_and_keeps_runtime(tmp_path):
+    captures = tmp_path / "captures"
+    captures.mkdir()
+    root = tmp_path / "translations"
+    prompt = captures / "prompt.md"
+    trace = captures / "trace.jsonl"
+    static = captures / "static.md"
+    prompt.write_text("Read the file.")
+    trace.write_text(json.dumps({"request": {"body": {"instructions": "Read the file."}}}))
+    static.write_text("A static prompt.")
+    sources = [extract_markdown(prompt.read_text()), extract_trace(trace.read_text())]
+    entries = {
+        segment.id: {"text": "读取文件。", "model": "test", "prompt_version": "test"}
+        for source in sources
+        for segment in source.segments
+    }
+    dictionary = {"schema_version": 1, "locale": "zh-CN", "entries": entries}
+    write_dictionary(root, "agent", dictionary)
+    legacy_dictionary = root / "zh-CN" / "agent" / "static.json"
+    legacy_dictionary.write_text(json.dumps(dictionary))
+    for source in [*sources, extract_markdown(static.read_text())]:
+        write_source(root, source.index)
+    metadata = TranslationIndex(captures).for_row(
+        {"agent_id": "agent", "prompt": prompt, "trace": trace, "static_prompts": static}
+    )["zh-CN"]
+    assert set(metadata) == {"prompt", "trace", "runtime"}
+    assert metadata["runtime"]["path"] == "translations/zh-CN/agent/runtime.json"
+    assert metadata["prompt"]["translated"] == metadata["prompt"]["total"] == 1
+    assert metadata["trace"]["translated"] == metadata["trace"]["total"] == 1
 
 
 def test_site_embeds_translation_assets_without_language_query_parameters(tmp_path: Path):

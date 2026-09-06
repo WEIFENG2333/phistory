@@ -60,10 +60,26 @@ jobs:
             exit 0
           fi
           set +e
-          uv run phistory translate --latest-captured 10 --max-batches 200
+          uv run phistory translate --latest-captured 10 --max-batches 200 --usage-log "$RUNNER_TEMP/translation-usage.jsonl"
           status=$?
           echo "status=$status" >> "$GITHUB_OUTPUT"
           exit 0
+      - name: Save translation usage
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: translation-usage
+          path: ${{ runner.temp }}/translation-usage.jsonl
+          if-no-files-found: ignore
+          retention-days: 30
+      - name: Save translated dictionaries
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: translation-dictionaries
+          path: translations/zh-CN/
+          if-no-files-found: ignore
+          retention-days: 30
       - run: uv run phistory render-index
       - run: uv run phistory render-site
       - name: Commit capture updates

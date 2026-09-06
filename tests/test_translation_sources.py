@@ -129,62 +129,6 @@ def test_invalid_explicit_source_hash_rejected():
         extract_markdown("Read the file.", source_hash="0" * 64)
 
 
-def test_static_export_nested_fences_do_not_hide_following_prompt():
-    original = """# Static Prompts
-
-### First prompt
-
-```text
-Read these instructions.
-
-```python
-print("Do not translate code.")
-```
-
-Keep following the instructions.
-```
-
-### Second prompt
-
-```text
-Translate this complete prompt too.
-```
-"""
-    document = extract_markdown(original)
-    assert "Read these instructions." in texts(document)
-    assert "Keep following the instructions." in texts(document)
-    assert "Translate this complete prompt too." in texts(document)
-    assert not any("print(" in value for value in texts(document))
-
-
-def test_static_export_incomplete_candidate_does_not_hide_following_candidates():
-    original = """# Static Prompts
-
-### First prompt
-
-An incomplete extracted template.
-
-
-```text
-Keep the natural language instruction.
-
-```python
-print("An unfinished code sample.")
-```
-
-### Second prompt
-
-
-```text
-Keep the next prompt fully visible.
-```
-"""
-    document = extract_markdown(original)
-    assert "Keep the natural language instruction." in texts(document)
-    assert "Keep the next prompt fully visible." in texts(document)
-    assert not any("print(" in value for value in texts(document))
-
-
 def test_json_prose_parts_escape_unicode_and_preserve_embedded_code():
     instruction = "😀 Read the file before changing it."
     description = instruction + '\n\n```python\nprint("Keep the code.")\n```\n\n' + "Read the instructions. " * 400
@@ -216,13 +160,6 @@ def test_nested_json_prose_escaping_depth():
 
 def test_unfenced_json_examples_keep_machine_identifiers():
     assert not needs_translation('{"op":"send","message":"Keep this literal payload."}')
-
-
-def test_static_generated_metadata_is_not_translated():
-    original = "# Static Prompts\n\nAgent: `claude-code`\nVersion: `1.2.3`\n\n## System Prompt\n\n### Follow instructions\n\n\n```text\nFollow these instructions.\n```\n"
-    document = extract_markdown(original)
-    assert texts(document) == ["System Prompt", "Follow instructions", "Follow these instructions."]
-    assert document.index["source_hash"] == source_hash(original)
 
 
 def test_xml_machine_fields_keep_values_but_descriptions_translate():
@@ -524,3 +461,9 @@ def test_shared_dictionary_provenance_and_corruption(tmp_path):
     (tmp_path / "zh-CN" / "codex" / "runtime.json").write_text("{}")
     with pytest.raises(ValueError, match="Invalid translation dictionary"):
         read_dictionary(tmp_path, "codex")
+
+
+def test_static_archive_never_enters_translation_queue():
+    source = extract_markdown("# Static Prompts\n\n### Internal prompt\n\n```text\nRead all files.\n```\n")
+    assert source.segments == ()
+    assert source.index["segments"] == []

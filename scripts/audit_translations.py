@@ -12,8 +12,9 @@ from pathlib import Path
 
 from phistory.render import read_capture_rows
 from phistory.translation.client import protect
-from phistory.translation.segments import EXTRACTOR_VERSION, extract_markdown, extract_trace
+from phistory.translation.segments import EXTRACTOR_VERSION, SEGMENT_VERSION, extract_markdown, extract_trace
 from phistory.translation.storage import read_dictionary, read_source
+from phistory.translation.templates import TOKEN, restore_template, trace_template
 
 REPO = Path(__file__).resolve().parents[1]
 
@@ -70,7 +71,7 @@ def main() -> int:
     rows = read_capture_rows(capture_root)
     documents = {}
     for row in rows:
-        for surface, kind in (("prompt", "runtime"), ("trace", "runtime"), ("static_prompts", "static")):
+        for surface, kind in (("prompt", "runtime"), ("trace", "runtime")):
             if path := row.get(surface):
                 documents[path] = (row["agent_id"], kind)
     unknown_sources = deep_sources - {path.resolve() for path in documents}
@@ -79,6 +80,7 @@ def main() -> int:
     errors, missing_maps = [], []
     needed = defaultdict(set)
     origins, unit_texts, index_cache = {}, {}, {}
+    bound_templates = set()
     deep_checked, references = 0, 0
 
     for path, (agent, kind) in sorted(documents.items()):
@@ -117,9 +119,15 @@ def main() -> int:
                     if ref["end"] > len(original):
                         raise ValueError(f"span outside source field: {key}")
                     # Verify content identity once per unique paragraph, plus all explicitly selected new sources.
-                    if key not in unit_texts or check_every_span:
+                    if key not in unit_texts or check_every_span or ref.get("bindings"):
                         value = span_text(original, ref)
-                        expected_id = hashlib.sha256(f"{EXTRACTOR_VERSION}\0{value}".encode()).hexdigest()
+                        if ref.get("bindings"):
+                            template, bindings = trace_template(value)
+                            if bindings != ref["bindings"] or restore_template(template, bindings) != value:
+                                raise ValueError("capture template does not restore its original source")
+                            value = template
+                            bound_templates.add(key)
+                        expected_id = hashlib.sha256(f"{SEGMENT_VERSION}\0{value}".encode()).hexdigest()
                         if expected_id != key:
                             raise ValueError(f"span content does not match its text-only identity: {key}")
                         unit_texts[key] = value
@@ -132,7 +140,7 @@ def main() -> int:
     dictionaries = {}
     for (agent, kind), keys in sorted(needed.items()):
         try:
-            entries = read_dictionary(translation_root, agent, kind)["entries"]
+            entries = read_dictionary(translation_root, agent)["entries"]
         except (OSError, ValueError) as exc:
             errors.append({"dictionary": f"{agent}/{kind}", "error": str(exc)})
             entries = {}
@@ -151,13 +159,19 @@ def main() -> int:
             if args.expected_model and entry["model"] != args.expected_model:
                 errors.append({"dictionary": f"{agent}/{kind}", "id": key, "error": "unexpected model"})
         available = keys & entries.keys()
+        for key in sorted(available & bound_templates):
+            if Counter(TOKEN.findall(unit_texts[key])) != Counter(TOKEN.findall(entries[key]["text"])):
+                errors.append(
+                    {"agent": agent, "kind": kind, "id": key, "error": "translation changed capture placeholders"}
+                )
+                available.remove(key)
         coverage.append(
             {
                 "agent": agent,
                 "kind": kind,
                 "total": len(keys),
                 "translated": len(available),
-                "missing": len(keys - entries.keys()),
+                "missing": len(keys - available),
                 "source_chars": sum(len(unit_texts[key]) for key in keys),
                 "models": dict(models),
                 "prompt_versions": dict(prompt_versions),
@@ -201,13 +215,6 @@ def main() -> int:
             lost = sorted(token for token in set(SNAKE_CASE.findall(bare)) - STYLE_WORDS if token not in translated)
             if lost:
                 identifier_review.append({**comparison, "missing_identifiers": lost})
-    for agent in sorted({agent for agent, _ in needed}):
-        runtime = dictionaries.get((agent, "runtime"), {})
-        static = dictionaries.get((agent, "static"), {})
-        for key in runtime.keys() & static.keys():
-            if runtime[key]["text"] != static[key]["text"]:
-                errors.append({"agent": agent, "id": key, "error": "runtime/static shared translation differs"})
-
     # New captures are expected during incremental runs, including after git add.
     changed = set(git_paths("diff", "--name-only", "--diff-filter=DMRTUXB", "--", "captures")) | set(
         git_paths("diff", "--cached", "--name-only", "--diff-filter=DMRTUXB", "--", "captures")

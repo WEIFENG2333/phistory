@@ -78,7 +78,9 @@ def build_parser() -> argparse.ArgumentParser:
     translate.add_argument(
         "--dry-run", action="store_true", help="report missing segments without calling an API or writing files"
     )
-    translate.add_argument("--no-static", action="store_true", help="only translate request captures")
+    translate.add_argument(
+        "--usage-log", type=Path, help="request usage JSONL (default: .phistory-cache/translation-usage.jsonl)"
+    )
     translate.add_argument("--config", type=Path, help="private translation TOML config path")
     translate.add_argument("--model", help="override the configured translation model")
     translate.add_argument("--concurrency", type=int, help="maximum concurrent translation requests")
@@ -161,10 +163,10 @@ def main(argv: list[str] | None = None) -> int:
                 root,
                 agent_ids=parse_agent_ids(args.agents) if args.agents else None,
                 latest_captured=args.latest_captured,
-                include_static=not args.no_static,
                 dry_run=args.dry_run,
                 config=config,
                 max_batches=args.max_batches,
+                usage_log=args.usage_log,
                 progress=lambda message: print(message, flush=True),
             )
         except (ValueError, OSError, RuntimeError) as exc:
@@ -172,6 +174,11 @@ def main(argv: list[str] | None = None) -> int:
             return 1
         remaining = sum(item.total - item.reused - item.translated for item in results)
         message = f"Translation: {sum(item.translated for item in results)} new, {sum(item.reused for item in results)} reused, {remaining} remaining."
+        message += (
+            f" Requests: {sum(item.requests for item in results)}; "
+            f"input tokens: {sum(item.input_tokens for item in results)}; "
+            f"output tokens: {sum(item.output_tokens for item in results)}."
+        )
         print(message, flush=True)
         if summary := os.environ.get("GITHUB_STEP_SUMMARY"):
             with Path(summary).open("a", encoding="utf-8") as output:

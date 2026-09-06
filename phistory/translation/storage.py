@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any
 
 from .segments import EXTRACTOR_VERSION
+from .templates import TOKEN
 
 _HASH = re.compile(r"[0-9a-f]{64}")
 _NAME = re.compile(r"[A-Za-z0-9][A-Za-z0-9-]*")
@@ -40,10 +41,10 @@ def atomic_write_json(path: Path, data: dict, *, compact: bool = False) -> bool:
     return True
 
 
-def dictionary_path(root: Path, agent: str, kind: str = "runtime", locale: str = "zh-CN") -> Path:
-    if not all(_NAME.fullmatch(value) for value in (agent, locale)) or kind not in {"runtime", "static"}:
+def dictionary_path(root: Path, agent: str, locale: str = "zh-CN") -> Path:
+    if not all(_NAME.fullmatch(value) for value in (agent, locale)):
         raise ValueError("Invalid translation dictionary name")
-    return root / locale / agent / f"{kind}.json"
+    return root / locale / agent / "runtime.json"
 
 
 def _validate_dictionary(data: Any, locale: str):
@@ -61,8 +62,8 @@ def _validate_dictionary(data: Any, locale: str):
             raise ValueError(f"Missing translation provenance: {key}")
 
 
-def read_dictionary(root: Path, agent: str, kind: str = "runtime", locale: str = "zh-CN") -> dict:
-    path = dictionary_path(root, agent, kind, locale)
+def read_dictionary(root: Path, agent: str, locale: str = "zh-CN") -> dict:
+    path = dictionary_path(root, agent, locale)
     if not path.exists():
         return {"schema_version": 1, "locale": locale, "entries": {}}
     try:
@@ -73,9 +74,9 @@ def read_dictionary(root: Path, agent: str, kind: str = "runtime", locale: str =
     return data
 
 
-def write_dictionary(root: Path, agent: str, dictionary: dict, kind: str = "runtime", locale: str = "zh-CN") -> bool:
+def write_dictionary(root: Path, agent: str, dictionary: dict, locale: str = "zh-CN") -> bool:
     _validate_dictionary(dictionary, locale)
-    return atomic_write_json(dictionary_path(root, agent, kind, locale), dictionary)
+    return atomic_write_json(dictionary_path(root, agent, locale), dictionary)
 
 
 def _validate_refs(refs: Any):
@@ -96,6 +97,22 @@ def _validate_refs(refs: Any):
         depth = ref.get("escape_depth", 1)
         if type(depth) is not int or not 1 <= depth <= 8:
             raise ValueError("Invalid JSON escaping depth")
+        bindings = ref.get("bindings", {})
+        if not isinstance(bindings, dict):
+            raise ValueError("Invalid capture placeholder bindings")
+        for name, binding in bindings.items():
+            if (
+                not isinstance(name, str)
+                or not TOKEN.fullmatch(name)
+                or not isinstance(binding, dict)
+                or not isinstance(binding.get("value"), str)
+                or not binding["value"]
+                or "\n" in binding["value"]
+                or "\r" in binding["value"]
+                or type(binding.get("count")) is not int
+                or binding["count"] < 1
+            ):
+                raise ValueError("Invalid capture placeholder binding")
         end = ref["end"]
 
 

@@ -8,7 +8,11 @@ import re
 from dataclasses import dataclass
 from typing import Any
 
-EXTRACTOR_VERSION = "1"
+from phistory.translation.templates import trace_template
+
+EXTRACTOR_VERSION = "2"
+# Source indexes evolve independently of already translated paragraph identities.
+SEGMENT_VERSION = "1"
 MAX_SEGMENT_CHARS = 5000
 _FENCE = re.compile(r"^ {0,3}(`{3,}|~{3,})([^\r\n]*)")
 _HEADING = re.compile(r"^ {0,3}#{1,6}\s+(.*?)(?:\s+#+)?\s*$")
@@ -19,7 +23,6 @@ _CODE = re.compile(r"(`+).*?\1|[A-Za-z][A-Za-z0-9+.-]*://\S*|\$\{[^{}]*\}|\$[A-Z
 _MACHINE_XML = re.compile(r"<(name|id|location|path|url|uri|model|type|version|command)(?:\s[^<>]*)?>[^<]*</\1\s*>")
 _IDENTIFIER = re.compile(r"(?:[a-z][A-Z]|[a-zA-Z]_\w|[a-zA-Z]/\w|[a-zA-Z]\.\w)")
 _PROSE_FENCES = {"text", "plaintext", "markdown", "md", "prompt"}
-_STATIC_WRAPPER = re.compile(r"^### [^\n]+\n\n(?:[^\n]+\n\n)?\n```text\n", re.MULTILINE)
 _WRAPPER_HEADINGS = {
     "system prompt",
     "developer prompt",
@@ -81,7 +84,7 @@ def needs_translation(text: str) -> bool:
 
 def _segment(text: str, context: str = "") -> Segment:
     """Keep one translation per source text; context guides the API, not cache identity."""
-    identity = f"{EXTRACTOR_VERSION}\0{text}"
+    identity = f"{SEGMENT_VERSION}\0{text}"
     return Segment(source_hash(identity), text, context)
 
 
@@ -274,31 +277,9 @@ def _markdown_spans(text: str, context: str = "", scope: str = "") -> tuple[list
     return refs, tuple(unique.values())
 
 
-def _static_spans(text: str) -> tuple[list[dict], tuple[Segment, ...]]:
-    """Isolate generated wrappers: extracted templates can contain unfinished fences."""
-    wrappers = list(_STATIC_WRAPPER.finditer(text))
-    if not wrappers:
-        return _markdown_spans(text)
-    refs = []
-    unique = {}
-    metadata = re.match(r"# Static Prompts\s*\n+\s*Agent:\s*`[^`]*`\s*\n\s*Version:\s*`[^`]*`\s*\n+", text)
-    previous = metadata.end() if metadata else 0
-    for index, wrapper in enumerate(wrappers):
-        boundary = wrappers[index + 1].start() if index + 1 < len(wrappers) else len(text)
-        closing = text.rfind("\n```\n", wrapper.end(), boundary)
-        if closing < 0:
-            raise ValueError("Unclosed static prompt export wrapper")
-        for start, end in ((previous, wrapper.end() - len("```text\n")), (wrapper.end(), closing)):
-            nested, units = _markdown_spans(text[start:end])
-            refs.extend({**ref, "start": start + ref["start"], "end": start + ref["end"]} for ref in nested)
-            unique.update((unit.id, unit) for unit in units)
-        previous = closing + len("\n```\n")
-    return refs, tuple(unique.values())
-
-
 def extract_markdown(text: str, *, source_hash: str | None = None) -> ExtractedSource:
     """Index prose by Unicode offsets; preserve raw Markdown and JSON escaping."""
-    refs, segments = _static_spans(text) if text.startswith("# Static Prompts\n") else _markdown_spans(text)
+    refs, segments = ([], ()) if text.startswith("# Static Prompts\n") else _markdown_spans(text)
     digest = hashlib.sha256(text.encode("utf-8")).hexdigest()
     if source_hash is not None and source_hash != digest:
         raise ValueError("Source hash does not match Markdown text")
@@ -399,8 +380,18 @@ def extract_trace(text: str) -> ExtractedSource:
         visited.add(path)
         refs, units = _markdown_spans(value, context, scope)
         if refs:
+            templates = {}
+            for unit in units:
+                text, bindings = trace_template(unit.text)
+                template = _segment(text, unit.context)
+                templates[unit.id] = template, bindings
+                unique[template.id] = template
+            for ref in refs:
+                template, bindings = templates[ref["id"]]
+                ref["id"] = template.id
+                if bindings:
+                    ref["bindings"] = bindings
             fields.append({"record": selected, "pointer": _pointer(path), "segments": refs})
-            unique.update((unit.id, unit) for unit in units)
 
     def content(value, path):
         if isinstance(value, str):

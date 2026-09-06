@@ -1,0 +1,4 @@
+# Generated location indexes are reviewable on demand; prompt text and dictionaries stay visible.
+translations/sources/*.json linguist-generated=true
+captures/index.json linguist-generated=true
+index.html linguist-generated=true

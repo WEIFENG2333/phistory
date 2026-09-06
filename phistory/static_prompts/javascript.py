@@ -115,6 +115,62 @@ def is_prompt_like(text: str, *, min_score: int = 5) -> bool:
     return _prompt_score(text) >= min_score
 
 
+def is_source_resource(text: str) -> bool:
+    """Recognize standalone programs and web resources before extracting their prose."""
+    stripped = text.strip()
+    if stripped.startswith("#!"):
+        return True
+    # Resource metadata may precede the HTML; prose merely quoting tags is kept.
+    html = re.sub(r"^(?:<!--.*?-->\s*)+", "", stripped, flags=re.DOTALL)
+    if re.match(
+        r"^(?:<!doctype\s+html(?:\s|>)|<(?:html|head|style|script)(?:\s|>)|"
+        r"<title(?:\s[^>]*)?>.*?</title>\s*<(?:style|script)(?:\s|>))",
+        html,
+        flags=re.IGNORECASE | re.DOTALL,
+    ):
+        return True
+    if _looks_like_source_resource(stripped, stripped[:1200].lower()):
+        return True
+    if not stripped.startswith(
+        (
+            '"',
+            "'",
+            "/*",
+            "//",
+            ";",
+            "const ",
+            "let ",
+            "var ",
+            "function ",
+            "async function ",
+            "class ",
+            "import ",
+            "export ",
+        )
+    ):
+        return False
+
+    # Inspect the program opening: prompt words inside bundled strings are not evidence of prose.
+    # A short prefix also works on archived bundles with normalized template expressions later on.
+    opening = _PARSER.parse(stripped[:4096].encode("utf-8", errors="surrogatepass"))
+    for node in opening.root_node.named_children:
+        if node.type in {"comment", "empty_statement"}:
+            continue
+        if node.type == "expression_statement" and len(node.named_children) == 1:
+            if node.named_children[0].type == "string":
+                continue
+        return not node.has_error and node.type in {
+            "variable_declaration",
+            "lexical_declaration",
+            "function_declaration",
+            "generator_function_declaration",
+            "class_declaration",
+            "import_statement",
+            "export_statement",
+        }
+    return False
+
+
 def _iter_literals(root: Node, source: bytes):
     stack = [root]
     while stack:
@@ -289,7 +345,7 @@ def _looks_like_non_prompt_resource(text: str, words: list[str], marker_hits: in
     lower = stripped[:1200].lower()
     if _looks_like_regex_resource(stripped):
         return True
-    if _looks_like_source_resource(stripped, lower):
+    if is_source_resource(stripped):
         return True
     if marker_hits >= 3:
         return False
@@ -312,7 +368,7 @@ def _should_skip_static_archive_candidate(text: str, score: int) -> bool:
         stripped.startswith("#!/usr/bin/env node")
         or _looks_like_large_source_template(stripped, lower_head)
         or _looks_like_html_resource(stripped, lower_head)
-        or _looks_like_source_resource(stripped, lower_head)
+        or is_source_resource(stripped)
         or _looks_like_script_resource(stripped, lower_head)
         or _looks_like_token_vocabulary(stripped, words)
     ):

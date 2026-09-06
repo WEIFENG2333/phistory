@@ -10,12 +10,15 @@ from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
 from http.client import HTTPException
+from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
+from uuid import uuid4
 
 from phistory.translation.config import TranslationConfig
-from phistory.translation.prompts import SYSTEM_PROMPT
+from phistory.translation.prompts import PROMPT_VERSION, SYSTEM_PROMPT
 from phistory.translation.segments import Segment
+from phistory.translation.usage import UsageLog
 
 _PROTECTED = re.compile(
     r"[ \t]*\r?\n[ \t]*|(?P<code>`+)[^`\n]+(?P=code)|\$\{[^\n{}]*(?:\{[^\n{}]*\}[^\n{}]*)*\}"
@@ -57,6 +60,15 @@ class TranslationBatch:
     output_tokens: int = 0
     errors: tuple[str, ...] = ()
     statuses: dict[str, str] = field(default_factory=dict)
+    requests: int = 0
+
+
+@dataclass
+class _BatchUsage:
+    batch_id: str = field(default_factory=lambda: uuid4().hex)
+    source_ids: dict[str, str] = field(default_factory=dict)
+    correction_round: int = 0
+    requests: int = 0
 
 
 def protect(text: str) -> tuple[str, dict[str, str]]:
@@ -164,8 +176,9 @@ def retry_delay(attempt: int, retry_after: str | None = None) -> float:
 
 
 class TranslationClient:
-    def __init__(self, config: TranslationConfig):
+    def __init__(self, config: TranslationConfig, usage_log: Path | None = None, context: dict | None = None):
         self.config = config
+        self.usage_log = UsageLog(usage_log, context) if usage_log is not None else None
 
     def translate(self, segments: list[Segment], *, feedback: dict[str, dict] | None = None) -> TranslationBatch:
         """Translate with up to two corrections, retaining accepted entries.
@@ -185,13 +198,17 @@ class TranslationClient:
         texts, statuses = {}, {}
         errors = {}
         input_tokens = output_tokens = 0
-        for _ in range(3):
+        accounting = _BatchUsage(source_ids=identifiers)
+        for correction_round in range(3):
             if not pending:
                 break
+            accounting.correction_round = correction_round
             try:
-                response = self._request(self._payload(list(pending.values())))
+                response = self._request(self._payload(list(pending.values())), accounting=accounting)
             except PermanentTranslationError as exc:
-                exc.partial = TranslationBatch(texts, input_tokens, output_tokens, statuses=statuses)
+                exc.partial = TranslationBatch(
+                    texts, input_tokens, output_tokens, statuses=statuses, requests=accounting.requests
+                )
                 raise
             except TranslationError as exc:
                 # HTTP retries already ran; keep accepted siblings without multiplying transport retries.
@@ -238,6 +255,7 @@ class TranslationClient:
             output_tokens,
             tuple(f"segment {identifiers[key][:12]}: {issue}" for key, issue in errors.items()),
             statuses,
+            accounting.requests,
         )
 
     def _payload(self, segments: list[dict]) -> dict:
@@ -259,7 +277,10 @@ class TranslationClient:
             payload["thinking_budget"] = self.config.thinking_budget
         return payload
 
-    def _request(self, payload: dict) -> dict:
+    def _request(self, payload: dict, *, accounting: _BatchUsage | None = None) -> dict:
+        accounting = accounting or _BatchUsage()
+        segments = json.loads(payload["messages"][1]["content"])["segments"]
+        source_chars = sum(len(segment["text"]) for segment in segments)
         request = Request(
             self.config.base_url.rstrip("/") + "/chat/completions",
             data=json.dumps(payload, ensure_ascii=False).encode(),
@@ -267,11 +288,17 @@ class TranslationClient:
         )
         for attempt in range(self.config.attempts):
             retry_after = None
+            started = time.perf_counter()
+            status, http_status, body = "success", None, None
+            accounting.requests += 1
             try:
                 deadline = time.monotonic() + self.config.timeout
                 with urlopen(request, timeout=self.config.timeout) as response:
-                    return _read_response(response, deadline)
+                    http_status = getattr(response, "status", 200)
+                    body = _read_response(response, deadline)
+                    return body
             except HTTPError as exc:
+                status, http_status = "http_error", exc.code
                 if exc.code in {401, 403}:
                     raise AuthenticationError(f"translation API authentication failed (HTTP {exc.code})") from None
                 if exc.code not in {408, 409, 425, 429, 500, 502, 503, 504}:
@@ -279,9 +306,38 @@ class TranslationClient:
                 retry_after = exc.headers.get("Retry-After")
                 error = f"translation API temporarily unavailable (HTTP {exc.code})"
             except (URLError, TimeoutError, ConnectionError, OSError, HTTPException):
+                status = "connection_error"
                 error = "translation API connection failed or timed out"
             except (json.JSONDecodeError, UnicodeDecodeError):
+                status = "invalid_response"
                 error = "translation API returned malformed JSON"
+            finally:
+                if self.usage_log:
+                    # Record before model JSON validation: rejected output still consumes tokens.
+                    self.usage_log.write(
+                        {
+                            "batch_id": accounting.batch_id,
+                            "correction_round": accounting.correction_round,
+                            "attempt": attempt + 1,
+                            "status": status,
+                            "http_status": http_status,
+                            "elapsed_ms": round((time.perf_counter() - started) * 1000),
+                            "model": self.config.model,
+                            "prompt_version": PROMPT_VERSION,
+                            "thinking_budget": self.config.thinking_budget if self.config.enable_thinking else 0,
+                            "segment_count": len(segments),
+                            "segment_ids": [
+                                accounting.source_ids[item["id"]]
+                                for item in segments
+                                if item["id"] in accounting.source_ids
+                            ],
+                            "source_chars": source_chars,
+                            "source_chars_basis": "protected_text",
+                            "response_id": body.get("id") if isinstance(body, dict) else None,
+                            # Missing usage is unknown, not a zero-cost request.
+                            "usage": body.get("usage") if isinstance(body, dict) else None,
+                        }
+                    )
             if attempt + 1 == self.config.attempts:
                 raise TranslationError(f"{error}; exhausted {self.config.attempts} attempts")
             time.sleep(retry_delay(attempt, retry_after))

@@ -24,6 +24,7 @@ class TranslationResult:
     source_chars: int = 0
     input_tokens: int = 0
     output_tokens: int = 0
+    requests: int = 0
 
 
 def translate_archive(
@@ -32,10 +33,10 @@ def translate_archive(
     translation_root: Path | None = None,
     agent_ids: list[str] | None = None,
     latest_captured: int | None = None,
-    include_static: bool = True,
     dry_run: bool = False,
     config: TranslationConfig | None = None,
     max_batches: int | None = None,
+    usage_log: Path | None = None,
     progress: Callable[[str], None] = print,
 ) -> list[TranslationResult]:
     """Index archived prose and persist only missing translations, batch by batch."""
@@ -51,16 +52,13 @@ def translate_archive(
         if latest_captured is not None:
             versions = sorted({row["version"] for row in rows}, key=_version_key, reverse=True)[:latest_captured]
             rows = [row for row in rows if row["version"] in versions]
-        dictionaries = {kind: read_dictionary(translation_root, agent_id, kind) for kind in ("runtime", "static")}
-        needed = {kind: {} for kind in dictionaries}
+        dictionary = read_dictionary(translation_root, agent_id)
+        all_segments = {}
         seen = set()
         for row in rows:
-            paths = [("runtime", row["prompt"]), ("runtime", row["trace"])]
-            if include_static and row.get("static_prompts"):
-                paths.append(("static", row["static_prompts"]))
-            for kind, path in paths:
+            for path in (row["prompt"], row["trace"]):
                 raw = path.read_bytes()
-                identity = (kind, hashlib.sha256(raw).hexdigest())
+                identity = hashlib.sha256(raw).hexdigest()
                 if identity in seen:
                     continue
                 seen.add(identity)
@@ -71,9 +69,8 @@ def translate_archive(
                 )
                 if not dry_run:
                     write_source(translation_root, source.index)
-                needed[kind].update((segment.id, segment) for segment in source.segments)
-        all_segments = {key: segment for segments in needed.values() for key, segment in segments.items()}
-        existing = {key: entry for dictionary in dictionaries.values() for key, entry in dictionary["entries"].items()}
+                all_segments.update((segment.id, segment) for segment in source.segments)
+        existing = dictionary["entries"]
         pending = [segment for key, segment in all_segments.items() if key not in existing]
         result = TranslationResult(
             agent_id,
@@ -85,19 +82,10 @@ def translate_archive(
         progress(
             f"[{agent_id}] {result.total} unique segments; {result.reused} reused; {len(pending)} pending ({result.source_chars:,} characters)"
         )
+        progress(f"[{agent_id}] scope: {len(rows)} runtime snapshots")
         if dry_run:
             continue
 
-        def save() -> None:
-            # Share identical translations across runtime/static without coupling their downloads.
-            for kind, segments in needed.items():
-                for key in segments:
-                    if key in existing:
-                        dictionaries[kind]["entries"][key] = existing[key]
-                if dictionaries[kind]["entries"]:
-                    write_dictionary(translation_root, agent_id, dictionaries[kind], kind)
-
-        save()
         if not pending:
             continue
         if config is None:
@@ -105,7 +93,11 @@ def translate_archive(
         batches = list(_batches(pending, config.batch_chars))
         if max_batches is not None:
             batches = batches[:max_batches]
-        client = TranslationClient(config)
+        client = TranslationClient(
+            config,
+            usage_log=usage_log or root.parent / ".phistory-cache" / "translation-usage.jsonl",
+            context={"agent": agent_id},
+        )
 
         def accept(outcome: TranslationBatch, batch_size: int) -> None:
             for key, text in outcome.texts.items():
@@ -119,10 +111,11 @@ def translate_archive(
             result.translated += len(outcome.texts)
             result.input_tokens += outcome.input_tokens
             result.output_tokens += outcome.output_tokens
+            result.requests += outcome.requests
             result.failed += batch_size - len(outcome.texts)
             for error in outcome.errors:
                 progress(f"[{agent_id}] {error}")
-            save()
+            write_dictionary(translation_root, agent_id, dictionary)
 
         iterator = iter(batches)
         done_count = 0
@@ -161,7 +154,7 @@ def translate_archive(
                         accept(outcome, len(batch))
                     done_count += 1
                     progress(
-                        f"[{agent_id}] batch {done_count}/{len(batches)}; translated {result.translated}; failed {result.failed}; tokens {result.input_tokens}/{result.output_tokens}"
+                        f"[{agent_id}] batch {done_count}/{len(batches)}; translated {result.translated}; failed {result.failed}; requests {result.requests}; tokens {result.input_tokens}/{result.output_tokens}"
                     )
                 # Stop scheduling on permanent errors, but save results already in flight.
                 if fatal_error is None:
