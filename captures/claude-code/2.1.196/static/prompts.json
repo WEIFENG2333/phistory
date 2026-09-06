@@ -4,9 +4,9 @@
   "version": "2.1.196",
   "source": "node_modules/@anthropic-ai/claude-code/bin/claude.exe",
   "summary": {
-    "total": 809,
+    "total": 810,
     "known": 499,
-    "unknown": 310
+    "unknown": 311
   },
   "prompts": [
     {
@@ -13100,6 +13100,21 @@
         "Ef"
       ],
       "content": "Only if you did NOT show the cloud-offer ${Ef} above (i.e., neither trigger condition applied), end the confirmation with this exact line on its own, italicized: ${\"`_Runs until you close this session · For durable cloud-based loops, use /schedule_`\"}. If the user already answered that question, omit this line."
+    },
+    {
+      "id": "unknown-d07933678771e430",
+      "name": "Unknown static prompt",
+      "category": "unknown",
+      "description": "",
+      "confidence": "unknown",
+      "match_reason": "no conservative match",
+      "similarity": 0.0,
+      "content_hash": "d07933678771e430b8f173602e29cbb948b32cd6633c690a447c2e521dfe4c97",
+      "source_order": 180777,
+      "source_kind": "template",
+      "score": 0,
+      "variables": [],
+      "content": "# Message Batches — PHP\n\n## Message Batches API\n\n```php\n$batch = $client->messages->batches->create(requests: [\n    ['customId' => 'req-1', 'params' => ['model' => '{{OPUS_ID}}', 'maxTokens' => 1024, 'messages' => [...]]],\n    ['customId' => 'req-2', 'params' => [...]],\n]);\n// Poll $client->messages->batches->retrieve($batch->id) until processingStatus === 'ended',\n// then iterate $client->messages->batches->results($batch->id).\n```\n\n---"
     },
     {
       "id": "data-streaming-reference-php",

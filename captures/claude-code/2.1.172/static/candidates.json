@@ -6,7 +6,7 @@
   "extractor": "tree-sitter-javascript/raw-template-body",
   "min_length": 20,
   "summary": {
-    "total": 1686
+    "total": 1667
   },
   "candidates": [
     {
@@ -152,15 +152,6 @@
       "variables": [],
       "content_hash": "3e418a6c5da0ed90867d12aa25a318fc269ade2446886631477f240d020566e3",
       "content": "Streaming is required for operations that may take longer than 10 minutes. See https://github.com/anthropics/anthropic-sdk-typescript#long-requests for more details"
-    },
-    {
-      "id": "ab249a906c909549",
-      "kind": "template",
-      "order": 2162,
-      "score": 0,
-      "variables": [],
-      "content_hash": "ab249a906c909549ab33547a80fd811488e4d41c0dfd84f207a7c2f913a54140",
-      "content": "\\b(sk-(?:proj|svcacct|admin)-(?:[A-Za-z0-9_-]{74}|[A-Za-z0-9_-]{58})T3BlbkFJ(?:[A-Za-z0-9_-]{74}|[A-Za-z0-9_-]{58})\\b|sk-[a-zA-Z0-9]{20}T3BlbkFJ[a-zA-Z0-9]{20})(?:[\\x60'\"\\s;]|\\\\[nr]|$)"
     },
     {
       "id": "ef5c51eee7af0c0a",
@@ -1605,18 +1596,6 @@
       ],
       "content_hash": "6487d33200f5733a73f7654b6caadbb5a4770863277b63eb3475918a002fb297",
       "content": "${{ISSUES_EXPLAINER:\"report the issue at https://github.com/anthropics/claude-code/issues\",PACKAGE_URL:\"@anthropic-ai/claude-code\",README_URL:\"https://code.claude.com/docs/en/overview\",VERSION:\"2.1.172\",FEEDBACK_CHANNEL:\"https://github.com/anthropics/claude-code/issues\",BUILD_TIME:\"2026-06-10T16:30:37Z\",GIT_SHA:\"1b719ca2781a2dccc4a769b66bc35b4a60509ad7\"}.VERSION}.${H}"
-    },
-    {
-      "id": "546c22b5472a0789",
-      "kind": "template",
-      "order": 29529,
-      "score": 0,
-      "variables": [
-        "$",
-        "String(H)"
-      ],
-      "content_hash": "546c22b5472a07892e1174d4ab97c2adb2b96fa2ca165f9fb7e5aada09bd7cae",
-      "content": "pid=${String(H)}; for i in $(seq 1 ${$}); do ppid=$(ps -o ppid= -p $pid 2>/dev/null | tr -d ' '); if [ -z \"$ppid\" ] || [ \"$ppid\" = \"0\" ] || [ \"$ppid\" = \"1\" ]; then break; fi; echo $ppid; pid=$ppid; done"
     },
     {
       "id": "622b2cfa15cf4561",
@@ -4490,15 +4469,6 @@
       "content": "int float while private char char8_t char16_t char32_t catch import module export virtual operator sizeof dynamic_cast|10 typedef const_cast|10 const for static_cast|10 union namespace unsigned long volatile static protected bool template mutable if public friend do goto auto void enum else break extern using asm case typeid wchar_t short reinterpret_cast|10 default double register explicit signed typename try this switch continue inline delete alignas alignof constexpr consteval constinit decltype concept co_await co_return co_yield requires noexcept static_assert thread_local restrict final override atomic_bool atomic_char atomic_schar atomic_uchar atomic_short atomic_ushort atomic_int atomic_uint atomic_long atomic_ulong atomic_llong atomic_ullong new throw return and and_eq bitand bitor compl not not_eq or or_eq xor xor_eq"
     },
     {
-      "id": "891e8093d3e34ee1",
-      "kind": "string",
-      "order": 62018,
-      "score": 0,
-      "variables": [],
-      "content_hash": "891e8093d3e34ee1ebae510700a33e58aa5cebf5c76e18febbf238f8ec98faa9",
-      "content": "\\b(deque|list|queue|priority_queue|pair|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<"
-    },
-    {
       "id": "ec53ae6e855c785b",
       "kind": "string",
       "order": 62028,
@@ -4506,15 +4476,6 @@
       "variables": [],
       "content_hash": "ec53ae6e855c785b0185c2167c59c8c42ed6f0b867eae9597f3ba41a320e8294",
       "content": "DIGITAL_MESSAGE FIRMATA_STRING ANALOG_MESSAGE REPORT_DIGITAL REPORT_ANALOG INPUT_PULLUP SET_PIN_MODE INTERNAL2V56 SYSTEM_RESET LED_BUILTIN INTERNAL1V1 SYSEX_START INTERNAL EXTERNAL DEFAULT OUTPUT INPUT HIGH LOW"
-    },
-    {
-      "id": "95514a46ff976ae8",
-      "kind": "string",
-      "order": 62046,
-      "score": 0,
-      "variables": [],
-      "content_hash": "95514a46ff976ae83fc0774a98053a1de2bad6a340e9c5c688fe1be0731076d2",
-      "content": "\\b(adc|(qd?|sh?|u[qh]?)?add(8|16)?|usada?8|(q|sh?|u[qh]?)?(as|sa)x|and|adrl?|sbc|rs[bc]|asr|b[lx]?|blx|bxj|cbn?z|tb[bh]|bic|bfc|bfi|[su]bfx|bkpt|cdp2?|clz|clrex|cmp|cmn|cpsi[ed]|cps|setend|dbg|dmb|dsb|eor|isb|it[te]{0,3}|lsl|lsr|ror|rrx|ldm(([id][ab])|f[ds])?|ldr((s|ex)?[bhd])?|movt?|mvn|mra|mar|mul|[us]mull|smul[bwt][bt]|smu[as]d|smmul|smmla|mla|umlaal|smlal?([wbt][bt]|d)|mls|smlsl?[ds]|smc|svc|sev|mia([bt]{2}|ph)?|mrr?c2?|mcrr2?|mrs|msr|orr|orn|pkh(tb|bt)|rbit|rev(16|sh)?|sel|[su]sat(16)?|nop|pop|push|rfe([id][ab])?|stm([id][ab])?|str(ex)?[bhd]?|(qd?)?sub|(sh?|q|u[qh]?)?sub(8|16)|[su]xt(a?h|a?b(16)?)|srs([id][ab])?|swpb?|swi|smi|tst|teq|wfe|wfi|yield)(eq|ne|cs|cc|mi|pl|vs|vc|hi|ls|ge|lt|gt|le|al|hs|lo)?[sptrx]?(?=\\s)"
     },
     {
       "id": "f82fdd1b64e39ad4",
@@ -5012,42 +4973,6 @@
       "content": "$_COOKIE $_FILES $_GET $_GET_BINARY $_GET_RAW $_POST $_POST_BINARY $_POST_RAW $_SESSION $_SERVER codepoint codepoints segment segments codeunit codeunits sentence sentences trueWord trueWords paragraph after byte bytes english the until http forever descending using line real8 with seventh for stdout finally element word words fourth before black ninth sixth characters chars stderr uInt1 uInt1s uInt2 uInt2s stdin string lines relative rel any fifth items from middle mid at else of catch then third it file milliseconds seconds second secs sec int1 int1s int4 int4s internet int2 int2s normal text item last long detailed effective uInt4 uInt4s repeat end repeat URL in try into switch to words https token binfile each tenth as ticks tick system real4 by dateItems without char character ascending eighth whole dateTime numeric short first ftp integer abbreviated abbr abbrev private case while if div mod wrap and or bitAnd bitNot bitOr bitXor among not in a an within contains ends with begins the keys of keys"
     },
     {
-      "id": "3561f32ac92e8827",
-      "kind": "string",
-      "order": 66899,
-      "score": 0,
-      "variables": [],
-      "content_hash": "3561f32ac92e8827fff6e13cbe726b2ecd056f8c871ddc9f182364d8d54b4aaf",
-      "content": "\\b(XP_ERROR_(EXPERIENCES_DISABLED|EXPERIENCE_(DISABLED|SUSPENDED)|INVALID_(EXPERIENCE|PARAMETERS)|KEY_NOT_FOUND|MATURITY_EXCEEDED|NONE|NOT_(FOUND|PERMITTED(_LAND)?)|NO_EXPERIENCE|QUOTA_EXCEEDED|RETRY_UPDATE|STORAGE_EXCEPTION|STORE_DISABLED|THROTTLED|UNKNOWN_ERROR)|JSON_APPEND|STATUS_(PHYSICS|ROTATE_[XYZ]|PHANTOM|SANDBOX|BLOCK_GRAB(_OBJECT)?|(DIE|RETURN)_AT_EDGE|CAST_SHADOWS|OK|MALFORMED_PARAMS|TYPE_MISMATCH|BOUNDS_ERROR|NOT_(FOUND|SUPPORTED)|INTERNAL_ERROR|WHITELIST_FAILED)|AGENT(_(BY_(LEGACY_|USER)NAME|FLYING|ATTACHMENTS|SCRIPTED|MOUSELOOK|SITTING|ON_OBJECT|AWAY|WALKING|IN_AIR|TYPING|CROUCHING|BUSY|ALWAYS_RUN|AUTOPILOT|LIST_(PARCEL(_OWNER)?|REGION)))?|CAMERA_(PITCH|DISTANCE|BEHINDNESS_(ANGLE|LAG)|(FOCUS|POSITION)(_(THRESHOLD|LOCKED|LAG))?|FOCUS_OFFSET|ACTIVE)|ANIM_ON|LOOP|REVERSE|PING_PONG|SMOOTH|ROTATE|SCALE|ALL_SIDES|LINK_(ROOT|SET|ALL_(OTHERS|CHILDREN)|THIS)|ACTIVE|PASS(IVE|_(ALWAYS|IF_NOT_HANDLED|NEVER))|SCRIPTED|CONTROL_(FWD|BACK|(ROT_)?(LEFT|RIGHT)|UP|DOWN|(ML_)?LBUTTON)|PERMISSION_(RETURN_OBJECTS|DEBIT|OVERRIDE_ANIMATIONS|SILENT_ESTATE_MANAGEMENT|TAKE_CONTROLS|TRIGGER_ANIMATION|ATTACH|CHANGE_LINKS|(CONTROL|TRACK)_CAMERA|TELEPORT)|INVENTORY_(TEXTURE|SOUND|OBJECT|SCRIPT|LANDMARK|CLOTHING|NOTECARD|BODYPART|ANIMATION|GESTURE|ALL|NONE)|CHANGED_(INVENTORY|COLOR|SHAPE|SCALE|TEXTURE|LINK|ALLOWED_DROP|OWNER|REGION(_START)?|TELEPORT|MEDIA)|OBJECT_(CLICK_ACTION|HOVER_HEIGHT|LAST_OWNER_ID|(PHYSICS|SERVER|STREAMING)_COST|UNKNOWN_DETAIL|CHARACTER_TIME|PHANTOM|PHYSICS|TEMP_(ATTACHED|ON_REZ)|NAME|DESC|POS|PRIM_(COUNT|EQUIVALENCE)|RETURN_(PARCEL(_OWNER)?|REGION)|REZZER_KEY|ROO?T|VELOCITY|OMEGA|OWNER|GROUP(_TAG)?|CREATOR|ATTACHED_(POINT|SLOTS_AVAILABLE)|RENDER_WEIGHT|(BODY_SHAPE|PATHFINDING)_TYPE|(RUNNING|TOTAL)_SCRIPT_COUNT|TOTAL_INVENTORY_COUNT|SCRIPT_(MEMORY|TIME))|TYPE_(INTEGER|FLOAT|STRING|KEY|VECTOR|ROTATION|INVALID)|(DEBUG|PUBLIC)_CHANNEL|ATTACH_(AVATAR_CENTER|CHEST|HEAD|BACK|PELVIS|MOUTH|CHIN|NECK|NOSE|BELLY|[LR](SHOULDER|HAND|FOOT|EAR|EYE|[UL](ARM|LEG)|HIP)|(LEFT|RIGHT)_PEC|HUD_(CENTER_[12]|TOP_(RIGHT|CENTER|LEFT)|BOTTOM(_(RIGHT|LEFT))?)|[LR]HAND_RING1|TAIL_(BASE|TIP)|[LR]WING|FACE_(JAW|[LR]EAR|[LR]EYE|TOUNGE)|GROIN|HIND_[LR]FOOT)|LAND_(LEVEL|RAISE|LOWER|SMOOTH|NOISE|REVERT)|DATA_(ONLINE|NAME|BORN|SIM_(POS|STATUS|RATING)|PAYINFO)|PAYMENT_INFO_(ON_FILE|USED)|REMOTE_DATA_(CHANNEL|REQUEST|REPLY)|PSYS_(PART_(BF_(ZERO|ONE(_MINUS_(DEST_COLOR|SOURCE_(ALPHA|COLOR)))?|DEST_COLOR|SOURCE_(ALPHA|COLOR))|BLEND_FUNC_(DEST|SOURCE)|FLAGS|(START|END)_(COLOR|ALPHA|SCALE|GLOW)|MAX_AGE|(RIBBON|WIND|INTERP_(COLOR|SCALE)|BOUNCE|FOLLOW_(SRC|VELOCITY)|TARGET_(POS|LINEAR)|EMISSIVE)_MASK)|SRC_(MAX_AGE|PATTERN|ANGLE_(BEGIN|END)|BURST_(RATE|PART_COUNT|RADIUS|SPEED_(MIN|MAX))|ACCEL|TEXTURE|TARGET_KEY|OMEGA|PATTERN_(DROP|EXPLODE|ANGLE(_CONE(_EMPTY)?)?)))|VEHICLE_(REFERENCE_FRAME|TYPE_(NONE|SLED|CAR|BOAT|AIRPLANE|BALLOON)|(LINEAR|ANGULAR)_(FRICTION_TIMESCALE|MOTOR_DIRECTION)|LINEAR_MOTOR_OFFSET|HOVER_(HEIGHT|EFFICIENCY|TIMESCALE)|BUOYANCY|(LINEAR|ANGULAR)_(DEFLECTION_(EFFICIENCY|TIMESCALE)|MOTOR_(DECAY_)?TIMESCALE)|VERTICAL_ATTRACTION_(EFFICIENCY|TIMESCALE)|BANKING_(EFFICIENCY|MIX|TIMESCALE)|FLAG_(NO_DEFLECTION_UP|LIMIT_(ROLL_ONLY|MOTOR_UP)|HOVER_((WATER|TERRAIN|UP)_ONLY|GLOBAL_HEIGHT)|MOUSELOOK_(STEER|BANK)|CAMERA_DECOUPLED))|PRIM_(ALLOW_UNSIT|ALPHA_MODE(_(BLEND|EMISSIVE|MASK|NONE))?|NORMAL|SPECULAR|TYPE(_(BOX|CYLINDER|PRISM|SPHERE|TORUS|TUBE|RING|SCULPT))?|HOLE_(DEFAULT|CIRCLE|SQUARE|TRIANGLE)|MATERIAL(_(STONE|METAL|GLASS|WOOD|FLESH|PLASTIC|RUBBER))?|SHINY_(NONE|LOW|MEDIUM|HIGH)|BUMP_(NONE|BRIGHT|DARK|WOOD|BARK|BRICKS|CHECKER|CONCRETE|TILE|STONE|DISKS|GRAVEL|BLOBS|SIDING|LARGETILE|STUCCO|SUCTION|WEAVE)|TEXGEN_(DEFAULT|PLANAR)|SCRIPTED_SIT_ONLY|SCULPT_(TYPE_(SPHERE|TORUS|PLANE|CYLINDER|MASK)|FLAG_(MIRROR|INVERT))|PHYSICS(_(SHAPE_(CONVEX|NONE|PRIM|TYPE)))?|(POS|ROT)_LOCAL|SLICE|TEXT|FLEXIBLE|POINT_LIGHT|TEMP_ON_REZ|PHANTOM|POSITION|SIT_TARGET|SIZE|ROTATION|TEXTURE|NAME|OMEGA|DESC|LINK_TARGET|COLOR|BUMP_SHINY|FULLBRIGHT|TEXGEN|GLOW|MEDIA_(ALT_IMAGE_ENABLE|CONTROLS|(CURRENT|HOME)_URL|AUTO_(LOOP|PLAY|SCALE|ZOOM)|FIRST_CLICK_INTERACT|(WIDTH|HEIGHT)_PIXELS|WHITELIST(_ENABLE)?|PERMS_(INTERACT|CONTROL)|PARAM_MAX|CONTROLS_(STANDARD|MINI)|PERM_(NONE|OWNER|GROUP|ANYONE)|MAX_(URL_LENGTH|WHITELIST_(SIZE|COUNT)|(WIDTH|HEIGHT)_PIXELS)))|MASK_(BASE|OWNER|GROUP|EVERYONE|NEXT)|PERM_(TRANSFER|MODIFY|COPY|MOVE|ALL)|PARCEL_(MEDIA_COMMAND_(STOP|PAUSE|PLAY|LOOP|TEXTURE|URL|TIME|AGENT|UNLOAD|AUTO_ALIGN|TYPE|SIZE|DESC|LOOP_SET)|FLAG_(ALLOW_(FLY|(GROUP_)?SCRIPTS|LANDMARK|TERRAFORM|DAMAGE|CREATE_(GROUP_)?OBJECTS)|USE_(ACCESS_(GROUP|LIST)|BAN_LIST|LAND_PASS_LIST)|LOCAL_SOUND_ONLY|RESTRICT_PUSHOBJECT|ALLOW_(GROUP|ALL)_OBJECT_ENTRY)|COUNT_(TOTAL|OWNER|GROUP|OTHER|SELECTED|TEMP)|DETAILS_(NAME|DESC|OWNER|GROUP|AREA|ID|SEE_AVATARS))|LIST_STAT_(MAX|MIN|MEAN|MEDIAN|STD_DEV|SUM(_SQUARES)?|NUM_COUNT|GEOMETRIC_MEAN|RANGE)|PAY_(HIDE|DEFAULT)|REGION_FLAG_(ALLOW_DAMAGE|FIXED_SUN|BLOCK_TERRAFORM|SANDBOX|DISABLE_(COLLISIONS|PHYSICS)|BLOCK_FLY|ALLOW_DIRECT_TELEPORT|RESTRICT_PUSHOBJECT)|HTTP_(METHOD|MIMETYPE|BODY_(MAXLENGTH|TRUNCATED)|CUSTOM_HEADER|PRAGMA_NO_CACHE|VERBOSE_THROTTLE|VERIFY_CERT)|SIT_(INVALID_(AGENT|LINK_OBJECT)|NO(T_EXPERIENCE|_(ACCESS|EXPERIENCE_PERMISSION|SIT_TARGET)))|STRING_(TRIM(_(HEAD|TAIL))?)|CLICK_ACTION_(NONE|TOUCH|SIT|BUY|PAY|OPEN(_MEDIA)?|PLAY|ZOOM)|TOUCH_INVALID_FACE|PROFILE_(NONE|SCRIPT_MEMORY)|RC_(DATA_FLAGS|DETECT_PHANTOM|GET_(LINK_NUM|NORMAL|ROOT_KEY)|MAX_HITS|REJECT_(TYPES|AGENTS|(NON)?PHYSICAL|LAND))|RCERR_(CAST_TIME_EXCEEDED|SIM_PERF_LOW|UNKNOWN)|ESTATE_ACCESS_(ALLOWED_(AGENT|GROUP)_(ADD|REMOVE)|BANNED_AGENT_(ADD|REMOVE))|DENSITY|FRICTION|RESTITUTION|GRAVITY_MULTIPLIER|KFM_(COMMAND|CMD_(PLAY|STOP|PAUSE)|MODE|FORWARD|LOOP|PING_PONG|REVERSE|DATA|ROTATION|TRANSLATION)|ERR_(GENERIC|PARCEL_PERMISSIONS|MALFORMED_PARAMS|RUNTIME_PERMISSIONS|THROTTLED)|CHARACTER_(CMD_((SMOOTH_)?STOP|JUMP)|DESIRED_(TURN_)?SPEED|RADIUS|STAY_WITHIN_PARCEL|LENGTH|ORIENTATION|ACCOUNT_FOR_SKIPPED_FRAMES|AVOIDANCE_MODE|TYPE(_([ABCD]|NONE))?|MAX_(DECEL|TURN_RADIUS|(ACCEL|SPEED)))|PURSUIT_(OFFSET|FUZZ_FACTOR|GOAL_TOLERANCE|INTERCEPT)|REQUIRE_LINE_OF_SIGHT|FORCE_DIRECT_PATH|VERTICAL|HORIZONTAL|AVOID_(CHARACTERS|DYNAMIC_OBSTACLES|NONE)|PU_(EVADE_(HIDDEN|SPOTTED)|FAILURE_(DYNAMIC_PATHFINDING_DISABLED|INVALID_(GOAL|START)|NO_(NAVMESH|VALID_DESTINATION)|OTHER|TARGET_GONE|(PARCEL_)?UNREACHABLE)|(GOAL|SLOWDOWN_DISTANCE)_REACHED)|TRAVERSAL_TYPE(_(FAST|NONE|SLOW))?|CONTENT_TYPE_(ATOM|FORM|HTML|JSON|LLSD|RSS|TEXT|XHTML|XML)|GCNP_(RADIUS|STATIC)|(PATROL|WANDER)_PAUSE_AT_WAYPOINTS|OPT_(AVATAR|CHARACTER|EXCLUSION_VOLUME|LEGACY_LINKSET|MATERIAL_VOLUME|OTHER|STATIC_OBSTACLE|WALKABLE)|SIM_STAT_PCT_CHARS_STEPPED)\\b"
-    },
-    {
-      "id": "3ddb31a72deb4bdc",
-      "kind": "string",
-      "order": 66902,
-      "score": 0,
-      "variables": [],
-      "content_hash": "3ddb31a72deb4bdc77fa1030eba5af0d4c782e05c010f97051c6d627fe8051ec",
-      "content": "\\b(EOF|JSON_(ARRAY|DELETE|FALSE|INVALID|NULL|NUMBER|OBJECT|STRING|TRUE)|NULL_KEY|TEXTURE_(BLANK|DEFAULT|MEDIA|PLYWOOD|TRANSPARENT)|URL_REQUEST_(GRANTED|DENIED))\\b"
-    },
-    {
-      "id": "ca3186a48f5e8de3",
-      "kind": "string",
-      "order": 66905,
-      "score": 0,
-      "variables": [],
-      "content_hash": "ca3186a48f5e8de33e7ff0a04d35dd08bac246a01a344895def82bf9583f2dcf",
-      "content": "\\b(ll(AgentInExperience|(Create|DataSize|Delete|KeyCount|Keys|Read|Update)KeyValue|GetExperience(Details|ErrorMessage)|ReturnObjectsBy(ID|Owner)|Json(2List|[GS]etValue|ValueType)|Sin|Cos|Tan|Atan2|Sqrt|Pow|Abs|Fabs|Frand|Floor|Ceil|Round|Vec(Mag|Norm|Dist)|Rot(Between|2(Euler|Fwd|Left|Up))|(Euler|Axes)2Rot|Whisper|(Region|Owner)?Say|Shout|Listen(Control|Remove)?|Sensor(Repeat|Remove)?|Detected(Name|Key|Owner|Type|Pos|Vel|Grab|Rot|Group|LinkNumber)|Die|Ground|Wind|([GS]et)(AnimationOverride|MemoryLimit|PrimMediaParams|ParcelMusicURL|Object(Desc|Name)|PhysicsMaterial|Status|Scale|Color|Alpha|Texture|Pos|Rot|Force|Torque)|ResetAnimationOverride|(Scale|Offset|Rotate)Texture|(Rot)?Target(Remove)?|(Stop)?MoveToTarget|Apply(Rotational)?Impulse|Set(KeyframedMotion|ContentType|RegionPos|(Angular)?Velocity|Buoyancy|HoverHeight|ForceAndTorque|TimerEvent|ScriptState|Damage|TextureAnim|Sound(Queueing|Radius)|Vehicle(Type|(Float|Vector|Rotation)Param)|(Touch|Sit)?Text|Camera(Eye|At)Offset|PrimitiveParams|ClickAction|Link(Alpha|Color|PrimitiveParams(Fast)?|Texture(Anim)?|Camera|Media)|RemoteScriptAccessPin|PayPrice|LocalRot)|ScaleByFactor|Get((Max|Min)ScaleFactor|ClosestNavPoint|StaticPath|SimStats|Env|PrimitiveParams|Link(PrimitiveParams|Number(OfSides)?|Key|Name|Media)|HTTPHeader|FreeURLs|Object(Details|PermMask|PrimCount)|Parcel(MaxPrims|Details|Prim(Count|Owners))|Attached(List)?|(SPMax|Free|Used)Memory|Region(Name|TimeDilation|FPS|Corner|AgentCount)|Root(Position|Rotation)|UnixTime|(Parcel|Region)Flags|(Wall|GMT)clock|SimulatorHostname|BoundingBox|GeometricCenter|Creator|NumberOf(Prims|NotecardLines|Sides)|Animation(List)?|(Camera|Local)(Pos|Rot)|Vel|Accel|Omega|Time(stamp|OfDay)|(Object|CenterOf)?Mass|MassMKS|Energy|Owner|(Owner)?Key|SunDirection|Texture(Offset|Scale|Rot)|Inventory(Number|Name|Key|Type|Creator|PermMask)|Permissions(Key)?|StartParameter|List(Length|EntryType)|Date|Agent(Size|Info|Language|List)|LandOwnerAt|NotecardLine|Script(Name|State))|(Get|Reset|GetAndReset)Time|PlaySound(Slave)?|LoopSound(Master|Slave)?|(Trigger|Stop|Preload)Sound|((Get|Delete)Sub|Insert)String|To(Upper|Lower)|Give(InventoryList|Money)|RezObject|(Stop)?LookAt|Sleep|CollisionFilter|(Take|Release)Controls|DetachFromAvatar|AttachToAvatar(Temp)?|InstantMessage|(GetNext)?Email|StopHover|MinEventDelay|RotLookAt|String(Length|Trim)|(Start|Stop)Animation|TargetOmega|Request(Experience)?Permissions|(Create|Break)Link|BreakAllLinks|(Give|Remove)Inventory|Water|PassTouches|Request(Agent|Inventory)Data|TeleportAgent(Home|GlobalCoords)?|ModifyLand|CollisionSound|ResetScript|MessageLinked|PushObject|PassCollisions|AxisAngle2Rot|Rot2(Axis|Angle)|A(cos|sin)|AngleBetween|AllowInventoryDrop|SubStringIndex|List2(CSV|Integer|Json|Float|String|Key|Vector|Rot|List(Strided)?)|DeleteSubList|List(Statistics|Sort|Randomize|(Insert|Find|Replace)List)|EdgeOfWorld|AdjustSoundVolume|Key2Name|TriggerSoundLimited|EjectFromLand|(CSV|ParseString)2List|OverMyLand|SameGroup|UnSit|Ground(Slope|Normal|Contour)|GroundRepel|(Set|Remove)VehicleFlags|SitOnLink|(AvatarOn)?(Link)?SitTarget|Script(Danger|Profiler)|Dialog|VolumeDetect|ResetOtherScript|RemoteLoadScriptPin|(Open|Close)RemoteDataChannel|SendRemoteData|RemoteDataReply|(Integer|String)ToBase64|XorBase64|Log(10)?|Base64To(String|Integer)|ParseStringKeepNulls|RezAtRoot|RequestSimulatorData|ForceMouselook|(Load|Release|(E|Une)scape)URL|ParcelMedia(CommandList|Query)|ModPow|MapDestination|(RemoveFrom|AddTo|Reset)Land(Pass|Ban)List|(Set|Clear)CameraParams|HTTP(Request|Response)|TextBox|DetectedTouch(UV|Face|Pos|(N|Bin)ormal|ST)|(MD5|SHA1|DumpList2)String|Request(Secure)?URL|Clear(Prim|Link)Media|(Link)?ParticleSystem|(Get|Request)(Username|DisplayName)|RegionSayTo|CastRay|GenerateKey|TransferLindenDollars|ManageEstateAccess|(Create|Delete)Character|ExecCharacterCmd|Evade|FleeFrom|NavigateTo|PatrolPoints|Pursue|UpdateCharacter|WanderWithin))\\b"
-    },
-    {
-      "id": "efa6fa49cc88f989",
-      "kind": "string",
-      "order": 66915,
-      "score": 0,
-      "variables": [],
-      "content_hash": "efa6fa49cc88f9893c3619ce161fb527e6150d534e1f086522e2c875b555f8ce",
-      "content": "\\b(state_(entry|exit)|touch(_(start|end))?|(land_)?collision(_(start|end))?|timer|listen|(no_)?sensor|control|(not_)?at_(rot_)?target|money|email|experience_permissions(_denied)?|run_time_permissions|changed|attach|dataserver|moving_(start|end)|link_message|(on|object)_rez|remote_data|http_re(sponse|quest)|path_update|transaction_result)\\b"
-    },
-    {
       "id": "5cfbe6352e1484fb",
       "kind": "string",
       "order": 66943,
@@ -5091,15 +5016,6 @@
       "variables": [],
       "content_hash": "81fe7f8617cdd016f64b3182b9091f7481d55b0bfe13f440419bbc23cfd6aa12",
       "content": ".2byte .4byte .align .ascii .asciz .balign .byte .code .data .else .end .endif .endm .endr .equ .err .exitm .extern .global .hword .if .ifdef .ifndef .include .irp .long .macro .rept .req .section .set .skip .space .text .word .ltorg"
-    },
-    {
-      "id": "4fb208d85a168767",
-      "kind": "string",
-      "order": 73735,
-      "score": 0,
-      "variables": [],
-      "content_hash": "4fb208d85a16876766dfe3a87722f76f0447a9a8907aeb6705206b38b2d56204",
-      "content": "\\b(addi?u?|andi?|b(al)?|beql?|bgez(al)?l?|bgtzl?|blezl?|bltz(al)?l?|bnel?|cl[oz]|divu?|ext|ins|j(al)?|jalr(\\.hb)?|jr(\\.hb)?|lbu?|lhu?|ll|lui|lw[lr]?|maddu?|mfhi|mflo|movn|movz|move|msubu?|mthi|mtlo|mul|multu?|nop|nor|ori?|rotrv?|sb|sc|se[bh]|sh|sllv?|slti?u?|srav?|srlv?|subu?|sw[lr]?|xori?|wsbh|abs\\.[sd]|add\\.[sd]|alnv.ps|bc1[ft]l?|c\\.(s?f|un|u?eq|[ou]lt|[ou]le|ngle?|seq|l[et]|ng[et])\\.[sd]|(ceil|floor|round|trunc)\\.[lw]\\.[sd]|cfc1|cvt\\.d\\.[lsw]|cvt\\.l\\.[dsw]|cvt\\.ps\\.s|cvt\\.s\\.[dlw]|cvt\\.s\\.p[lu]|cvt\\.w\\.[dls]|div\\.[ds]|ldx?c1|luxc1|lwx?c1|madd\\.[sd]|mfc1|mov[fntz]?\\.[ds]|msub\\.[sd]|mth?c1|mul\\.[ds]|neg\\.[ds]|nmadd\\.[ds]|nmsub\\.[ds]|p[lu][lu]\\.ps|recip\\.fmt|r?sqrt\\.[ds]|sdx?c1|sub\\.[ds]|suxc1|swx?c1|break|cache|d?eret|[de]i|ehb|mfc0|mtc0|pause|prefx?|rdhwr|rdpgpr|sdbbp|ssnop|synci?|syscall|teqi?|tgei?u?|tlb(p|r|w[ir])|tlti?u?|tnei?|wait|wrpgpr)"
     },
     {
       "id": "8f5604669e3fe088",
@@ -5345,15 +5261,6 @@
       "content": "type yield lazy override def with val var sealed abstract private trait object if forSome for while throw finally protected extends import final return else break new catch super class case package default try this match continue throws implicit"
     },
     {
-      "id": "d596b694e2c0e452",
-      "kind": "string",
-      "order": 75670,
-      "score": 0,
-      "variables": [],
-      "content_hash": "d596b694e2c0e4527bb70c86e4d3cba97c147f2eedd2d1b3dca9c0f2c22cab85",
-      "content": "\\b(whitespace|wait|w-resize|visible|vertical-text|vertical-ideographic|uppercase|upper-roman|upper-alpha|underline|transparent|top|thin|thick|text|text-top|text-bottom|tb-rl|table-header-group|table-footer-group|sw-resize|super|strict|static|square|solid|small-caps|separate|se-resize|scroll|s-resize|rtl|row-resize|ridge|right|repeat|repeat-y|repeat-x|relative|progress|pointer|overline|outside|outset|oblique|nowrap|not-allowed|normal|none|nw-resize|no-repeat|no-drop|newspaper|ne-resize|n-resize|move|middle|medium|ltr|lr-tb|lowercase|lower-roman|lower-alpha|loose|list-item|line|line-through|line-edge|lighter|left|keep-all|justify|italic|inter-word|inter-ideograph|inside|inset|inline|inline-block|inherit|inactive|ideograph-space|ideograph-parenthesis|ideograph-numeric|ideograph-alpha|horizontal|hidden|help|hand|groove|fixed|ellipsis|e-resize|double|dotted|distribute|distribute-space|distribute-letter|distribute-all-lines|disc|disabled|default|decimal|dashed|crosshair|collapse|col-resize|circle|char|center|capitalize|break-word|break-all|bottom|both|bolder|bold|block|bidi-override|below|baseline|auto|always|all-scroll|absolute|table|table-cell)\\b"
-    },
-    {
       "id": "23c19629002a5a7d",
       "kind": "string",
       "order": 75789,
@@ -5388,15 +5295,6 @@
       "variables": [],
       "content_hash": "ad19f2617bf0b1957bc562abc264fef61b302afea34194cc308d9f0451647b50",
       "content": "array bigint binary bit blob bool boolean char character date dec decimal float int int8 integer interval number numeric real record serial serial8 smallint text time timestamp tinyint varchar varchar2 varying void"
-    },
-    {
-      "id": "434f5f778d0c55e3",
-      "kind": "string",
-      "order": 76853,
-      "score": 0,
-      "variables": [],
-      "content_hash": "434f5f778d0c55e3e8a4e5edfb081f2e49bb977604fbe7069cce34b0fc1f9b88",
-      "content": "\\b(abs|acos|asin|atan|atan2|atanh|ceil|cloglog|comb|cos|digamma|exp|floor|invcloglog|invlogit|ln|lnfact|lnfactorial|lngamma|log|log10|max|min|mod|reldif|round|sign|sin|sqrt|sum|tan|tanh|trigamma|trunc|betaden|Binomial|binorm|binormal|chi2|chi2tail|dgammapda|dgammapdada|dgammapdadx|dgammapdx|dgammapdxdx|F|Fden|Ftail|gammaden|gammap|ibeta|invbinomial|invchi2|invchi2tail|invF|invFtail|invgammap|invibeta|invnchi2|invnFtail|invnibeta|invnorm|invnormal|invttail|nbetaden|nchi2|nFden|nFtail|nibeta|norm|normal|normalden|normd|npnchi2|tden|ttail|uniform|abbrev|char|index|indexnot|length|lower|ltrim|match|plural|proper|real|regexm|regexr|regexs|reverse|rtrim|string|strlen|strlower|strltrim|strmatch|strofreal|strpos|strproper|strreverse|strrtrim|strtrim|strupper|subinstr|subinword|substr|trim|upper|word|wordcount|_caller|autocode|byteorder|chop|clip|cond|e|epsdouble|epsfloat|group|inlist|inrange|irecode|matrix|maxbyte|maxdouble|maxfloat|maxint|maxlong|mi|minbyte|mindouble|minfloat|minint|minlong|missing|r|recode|replay|return|s|scalar|d|date|day|dow|doy|halfyear|mdy|month|quarter|week|year|d|daily|dofd|dofh|dofm|dofq|dofw|dofy|h|halfyearly|hofd|m|mofd|monthly|q|qofd|quarterly|tin|twithin|w|weekly|wofd|y|yearly|yh|ym|yofd|yq|yw|cholesky|colnumb|colsof|corr|det|diag|diag0cnt|el|get|hadamard|I|inv|invsym|issym|issymmetric|J|matmissing|matuniform|mreldif|nullmat|rownumb|rowsof|sweep|syminv|trace|vec|vecdiag)(?=\\()"
     },
     {
       "id": "af6362e67c27e0b8",
@@ -5469,15 +5367,6 @@
       "variables": [],
       "content_hash": "2ec7c02cd3e18dcd80dec3c90048fe06c3b9a4040180cc0dadb3620ed2b0faba",
       "content": "eq ne lt le gt ge is self:: child:: descendant:: descendant-or-self:: attribute:: following:: following-sibling:: parent:: ancestor:: ancestor-or-self:: preceding:: preceding-sibling:: NaN"
-    },
-    {
-      "id": "0ee7e1bbd2007d82",
-      "kind": "string",
-      "order": 80417,
-      "score": 0,
-      "variables": [],
-      "content_hash": "0ee7e1bbd2007d82b822ff21599daa821244940d4eba1da996fbd3d345861ce1",
-      "content": ";var __w=require('worker_threads');__w.parentPort.on('message',function(m){onmessage({data:m})}),postMessage=function(m,t){__w.parentPort.postMessage(m,t)},close=process.exit;self=global"
     },
     {
       "id": "8b1f41b0b1f9f05e",
@@ -6307,17 +6196,6 @@
       "content": "Plugins from ${H}/ are blocked by your organization's managed settings (strictKnownMarketplaces or blockedMarketplaces). Ask your administrator to add {\"source\":\"skills-dir\"} to strictKnownMarketplaces, or remove it from blockedMarketplaces."
     },
     {
-      "id": "8ffdbd5534762ca7",
-      "kind": "template",
-      "order": 86462,
-      "score": 0,
-      "variables": [
-        "Un7"
-      ],
-      "content_hash": "8ffdbd5534762ca7e8aa19e844874607758f27f56958cafd185e877d00c981d7",
-      "content": "$EncodedCommand = '${typeof Buffer<\"u\"?Buffer.from(H,\"utf8\").toString(\"base64\"):btoa(new TextEncoder().encode(H).reduce((q,K)=>q+String.fromCharCode(K),\"\"))}'\n${Un7}"
-    },
-    {
       "id": "0dd380b1b287e419",
       "kind": "template",
       "order": 86716,
@@ -6386,20 +6264,6 @@
       ],
       "content_hash": "4244b5c7427b0541fc71e48362552405f736f7885ce0acba39509adff31aaa79",
       "content": "# Shadow find/grep with embedded bfs/ugrep (ant-native only)\n      echo \"# Shadow find/grep with embedded bfs/ugrep\" >> \"$SNAPSHOT_FILE\"\n      cat >> \"$SNAPSHOT_FILE\" << 'FIND_GREP_FUNC_END'\n${f}\nFIND_GREP_FUNC_END"
-    },
-    {
-      "id": "d2e0a77b61270cf3",
-      "kind": "template",
-      "order": 86971,
-      "score": 0,
-      "variables": [
-        "A",
-        "K",
-        "f",
-        "g4([$])"
-      ],
-      "content_hash": "d2e0a77b61270cf330f789406b71ea74631bb7a3d6186f94f7b63f08b0ee1f53",
-      "content": "SNAPSHOT_FILE=${g4([$])}\n      ${q?`source \"${K}\" < /dev/null`:\"# No user config file to source\"}\n\n      # First, create/clear the snapshot file\n      echo \"# Snapshot file\" >| \"$SNAPSHOT_FILE\"\n\n      # When this file is sourced, we first unalias to avoid conflicts\n      # This is necessary because aliases get \"frozen\" inside function definitions at definition time,\n      # which can cause unexpected behavior when functions use commands that conflict with aliases\n      echo \"# Unset all aliases to avoid conflicts with functions\" >> \"$SNAPSHOT_FILE\"\n      echo \"unalias -a 2>/dev/null || true\" >> \"$SNAPSHOT_FILE\"\n\n      ${f}\n\n      ${A}\n\n      # Exit silently on success, only report errors\n      if [ ! -f \"$SNAPSHOT_FILE\" ]; then\n        echo \"Error: Snapshot file was not created at $SNAPSHOT_FILE\" >&2\n        exit 1\n      fi"
     },
     {
       "id": "b5b357218da203bf",
@@ -8331,15 +8195,6 @@
       "content": "URL not in provenance set. web_fetch can only retrieve URLs that appeared in a user message or a prior web_fetch result. Ask the user to include the URL in a message first."
     },
     {
-      "id": "58c3c85b1419177d",
-      "kind": "string",
-      "order": 111557,
-      "score": 0,
-      "variables": [],
-      "content_hash": "58c3c85b1419177d4023899b5841eda6e1ab866fd8c550415e303d455f0e04d3",
-      "content": "<style>:root{color-scheme:light}body{margin:0;padding:20px;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}</style>"
-    },
-    {
       "id": "1a1f3388326c15e3",
       "kind": "template",
       "order": 111611,
@@ -8460,30 +8315,6 @@
       "variables": [],
       "content_hash": "7bb924e8e555eaebd33c88f9d7799f9687eabe484efbea34cfa3d5ac55b95fbe",
       "content": "Gara Garay Gukh Gurung_Khema Hrkt Katakana_Or_Hiragana Kawi Kirat_Rai Krai Nag_Mundari Nagm Ol_Onal Onao Sunu Sunuwar Todhri Todr Tulu_Tigalari Tutg Unknown Zzzz"
-    },
-    {
-      "id": "d023d1232e89945f",
-      "kind": "template",
-      "order": 113094,
-      "score": 0,
-      "variables": [
-        "$",
-        "Uf"
-      ],
-      "content_hash": "d023d1232e89945f5d1b23734df1a3117189226d3ff9c4c6834f03462ad1cd10",
-      "content": "((${Uf} => ((${Uf}a) => async () => {'use strict';\n${$}\n})(${Uf}it => ({[Symbol.asyncIterator](){const ${Uf}ai = ${Uf}it[Symbol.asyncIterator];if (${Uf}ai != null && typeof ${Uf}ai !== 'function') throw new TypeError('@@asyncIterator is not a function');const ${Uf}i = ${Uf}ai != null ? ${Uf}ai.call(${Uf}it) : ${Uf}it[Symbol.iterator]();if (${Uf}i === null || (typeof ${Uf}i !== 'object' && typeof ${Uf}i !== 'function')) throw new TypeError('Iterator is not an object');const ${Uf}nxt = ${Uf}i.next;if (typeof ${Uf}nxt !== 'function') throw new TypeError('Iterator.next is not a function');const ${Uf}ret = ${Uf}i.return;const ${Uf}thr = ${Uf}i.throw;const ${Uf}w = s => ${Uf}(s).then(s => { if (s === null || (typeof s !== 'object' && typeof s !== 'function')) throw new TypeError('Iterator result is not an object'); const done = s.done; return ${Uf}(s.value).then(value => ({value, done})) });return {next:v=>${Uf}w(${Uf}nxt.call(${Uf}i,v)),return:v=>${Uf}w(typeof ${Uf}ret==='function'?${Uf}ret.call(${Uf}i,v):{value:v,done:true}),throw:e=>typeof ${Uf}thr==='function'?${Uf}w(${Uf}thr.call(${Uf}i,e)):${Uf}(typeof ${Uf}ret==='function'?${Uf}ret.call(${Uf}i):undefined).then(()=>{throw new TypeError('The iterator does not provide a throw method')})}}})))(Promise.resolve.bind(Promise)))()"
-    },
-    {
-      "id": "99ea6972e2879759",
-      "kind": "template",
-      "order": 113102,
-      "score": 0,
-      "variables": [
-        "CH(G9f)",
-        "CH(Z9f)"
-      ],
-      "content_hash": "99ea6972e2879759178eeea93c8abb863940d9a9fafd4df2025ae431f06bf2a4",
-      "content": "(() => {\n      const NOW_ERR = ${CH(Z9f)};\n      const RANDOM_ERR = ${CH(G9f)};\n      Math.random = function random() { throw new Error(RANDOM_ERR) };\n      const RealDate = Date;\n      RealDate.now = function now() { throw new Error(NOW_ERR) };\n      function ShimDate(...a) {\n        if (!new.target) throw new Error(NOW_ERR); // bare Date() → now-string\n        if (a.length === 0) throw new Error(NOW_ERR);\n        return Reflect.construct(RealDate, a, new.target);\n      }\n      ShimDate.now = RealDate.now;\n      ShimDate.parse = RealDate.parse;\n      ShimDate.UTC = RealDate.UTC;\n      ShimDate.prototype = RealDate.prototype;\n      // Close the (new Date(x)).constructor backdoor to RealDate.now — point\n      // .constructor at the shim, then freeze RealDate so it can't be undone.\n      RealDate.prototype.constructor = ShimDate;\n      Object.freeze(RealDate);\n      globalThis.Date = ShimDate;\n    })()"
     },
     {
       "id": "17b60995858b2818",
@@ -9325,15 +9156,6 @@
       "content": "({\n      arr: () => [],\n      obj: () => ({}),\n      wrap: (hostFn, cloneFn) => (input) => {\n        const p = (async () => {\n          try { return cloneFn(await hostFn(input)) }\n          catch (e) {\n            if (e?.name === 'ReplayCacheExhausted') throw e\n            return { error: typeof e?.message === 'string' ? e.message : String(e) }\n          }\n        })()\n        p.catch(() => {})\n        return p\n      },\n      wrapN: (hostFn, cloneFn) => (...args) => {\n        const p = (async () => {\n          try { return cloneFn(await hostFn(...args)) }\n          catch (e) {\n            if (e?.name === 'ReplayCacheExhausted') throw e\n            return { error: typeof e?.message === 'string' ? e.message : String(e) }\n          }\n        })()\n        p.catch(() => {})\n        return p\n      },\n      wrapPropagate: (hostFn, cloneFn, Err) => (input) => {\n        const p = (async () => {\n          try { return cloneFn(await hostFn(input)) }\n          catch (e) {\n            const err = new Err(typeof e?.message === 'string' ? e.message : String(e))\n            if (typeof e?.name === 'string') {\n              Object.defineProperty(err, 'name', { value: e.name, configurable: true, writable: true })\n            }\n            throw err\n          }\n        })()\n        p.catch(() => {})\n        return p\n      },\n      callVM: (vmFn, cloneFn) => async (input) => cloneFn(await vmFn(input)),\n      resolveDeep: async (v, cloneFn) => {\n        try { v = await v } catch (e) { return { error: typeof e?.message === 'string' ? e.message : String(e) } }\n        if (v !== null && typeof v === 'object' && !Array.isArray(v)) {\n          try {\n            for (const k of Object.keys(v)) {\n              try {\n                const val = v[k]\n                if (val === null || typeof val !== 'object' || typeof val.then !== 'function') continue\n                Object.defineProperty(v, k, { value: await val, writable: true, enumerable: true, configurable: true })\n              } catch (e) {\n                Object.defineProperty(v, k, { value: { error: typeof e?.message === 'string' ? e.message : String(e) }, writable: true, enumerable: true, configurable: true })\n              }\n            }\n          } catch {}\n        }\n        try { return cloneFn(v) } catch { return undefined }\n      },\n      awaitVM: async (v) => v,\n      exotics: new Set([\n        Date, Map, Set, WeakMap, WeakSet, RegExp, Promise,\n        Error, EvalError, RangeError, ReferenceError, SyntaxError, TypeError, URIError, AggregateError,\n        ArrayBuffer, SharedArrayBuffer, DataView,\n        Int8Array, Uint8Array, Uint8ClampedArray, Int16Array, Uint16Array,\n        Int32Array, Uint32Array, Float32Array, Float64Array, BigInt64Array, BigUint64Array,\n        ...(typeof URL !== 'undefined' ? [URL] : []),\n      ].map(C => C.prototype)),\n      Err: Error,\n      stringify: JSON.stringify,\n      parse: JSON.parse,\n      toStr: String,\n    })"
     },
     {
-      "id": "56dece0fd5c69b49",
-      "kind": "template",
-      "order": 120420,
-      "score": 0,
-      "variables": [],
-      "content_hash": "56dece0fd5c69b49c12cf5143ac326848ba9d29ad1e658acf00e9e0e1c29b706",
-      "content": "Promise.prototype.toString = function () {\n      throw new TypeError(\n        \"REPL: unawaited Promise coerced to string. Shorthand results used \" +\n        \"inline need 'await' — e.g. const c = await cat(f); put(f, c + s). \" +\n        \"Auto-await applies only to o.* keys at return time.\",\n      )\n    }"
-    },
-    {
       "id": "f74e62dfb6c40198",
       "kind": "template",
       "order": 120602,
@@ -9709,15 +9531,6 @@
       "variables": [],
       "content_hash": "0c73b8b373d38b2bfa4c14b2fcfa2e2a442e62fdd8414439ee0cd364b8dba935",
       "content": "message text must not be a teammate protocol frame (permission/mode/plan/shutdown JSON) — to respond to a plan or shutdown request, use the structured object form ({\"message\": {\"type\": ...}}); otherwise send plain text"
-    },
-    {
-      "id": "1984711d0c849458",
-      "kind": "template",
-      "order": 122104,
-      "score": 0,
-      "variables": [],
-      "content_hash": "1984711d0c849458366dbe9371f3b93733a5429562fd1873a403de4206050f61",
-      "content": "<style>:root{color-scheme:light}body{background:#faf9f5;color:#141413;max-width:760px;margin:0 auto;padding:20px 32px;font:14px/1.5 ui-rounded,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}h1,h2,h3,h4,h5,h6{margin:1em 0 .3em;line-height:1.2;font-weight:600}h1{font-size:1.5em}h2{font-size:1.2em}h3{font-size:1.05em}p,ul,ol{margin:.5em 0}a{color:#c6613f;text-decoration:none}a:hover{text-decoration:underline}code{background:#f0ede4;padding:.1em .3em;border-radius:4px;font:.92em ui-monospace,Menlo,monospace;color:#141413}pre{background:#f0ede4;padding:10px;border-radius:8px;overflow-x:auto;line-height:1.4}pre code{background:none;padding:0}blockquote{border-left:3px solid #d97757;margin:.6em 0;padding:.1em .8em;color:#5c5b57}table{border-collapse:collapse;margin:.6em 0}th,td{border:1px solid #e5e1d8;padding:4px 10px}th{background:#f0ede4}hr{border:0;border-top:1px solid #e5e1d8;margin:1em 0}</style>"
     },
     {
       "id": "6b79887439c53c9f",

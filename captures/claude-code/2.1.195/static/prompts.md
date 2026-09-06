@@ -29569,6 +29569,26 @@ Emitted when a tool call is auto-denied without an interactive permission prompt
 Without pinning, Claude Code uses its built-in defaults. When a new model ships, your install will try to call it even if it is not yet available in your project — Claude Code will fail to connect to Vertex AI until you enable the model or pin to one you have.
 ```
 
+### Unknown static prompt d0793367
+
+
+```text
+# Message Batches — PHP
+
+## Message Batches API
+
+```php
+$batch = $client->messages->batches->create(requests: [
+    ['customId' => 'req-1', 'params' => ['model' => '{{OPUS_ID}}', 'maxTokens' => 1024, 'messages' => [...]]],
+    ['customId' => 'req-2', 'params' => [...]],
+]);
+// Poll $client->messages->batches->retrieve($batch->id) until processingStatus === 'ended',
+// then iterate $client->messages->batches->results($batch->id).
+```
+
+---
+```
+
 ### Unknown static prompt d18ffd84
 
 
