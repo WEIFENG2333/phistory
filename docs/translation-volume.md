@@ -1,6 +1,8 @@
 # 翻译范围、数据结构与数量审计
 
-本次按约定只翻译 Runtime：历史 Prompt 和 Trace 中的自然语言。**Static 完全不翻译**，已删除 Static 译文词典及其 49 个专用源索引；原始 Static 归档继续供查看和比较。以下统计针对 14 个 Agent 的 1,229 份运行时快照，不代表 1,228 份各不相同的完整提示词。段数按各 Agent 词典内去重后相加；跨 Agent 完全相同的原文仍各自缓存，便于页面按需加载。全站不同原文哈希实际为 11,128 个。
+本次按约定只翻译 Runtime：历史 Prompt 和 Trace 中的自然语言。**Static 完全不翻译**，已删除 Static 译文词典及其 49 个专用源索引；原始 Static 归档继续供查看和比较。以下是 2026-09-06 回填验收时的统计，覆盖 14 个 Agent 的 1,229 份运行时快照，不代表 1,229 份各不相同的完整提示词。段数按各 Agent 词典内去重后相加；跨 Agent 完全相同的原文仍各自缓存，便于页面按需加载。全站不同原文哈希实际为 11,128 个。
+
+后续目录调整将源索引和网页 HTML 移出 Git，改为构建时生成。原始归档和已付费得到的共享词典继续保存；这次调整不需要重新翻译。
 
 ## 当前覆盖率
 
@@ -70,11 +72,19 @@ captures/<agent>/<version>/variants/<variant>/
   trace.jsonl                       原始请求证据
 
 translations/
-  sources/<原文件 SHA-256>-v2.json   定位原文的源索引
   zh-CN/<agent>/runtime.json         该 Agent 跨版本共享的运行时词典
+
+.phistory-cache/site/               构建产物，不提交 Git
+  index.html                        网页与运行时 manifest
+  captures/...                      公开归档的副本
+  translations/
+    sources/<原文件 SHA-256>-v2.json 定位原文的源索引
+    zh-CN/<agent>/runtime.json       发布的共享词典副本
 ```
 
 词典的 `entries` 以原文段落哈希为键。每项保存中文 `text`、模型、统一翻译提示词版本和请求的思考预算；新条目另带 `translated` / `preserved` 状态，历史缺少状态字段的 2,437 条记录仍有效，审计中标为 legacy。没有为每个版本另存完整中文提示词。模型使用的翻译指令只在 `phistory/translation/prompts.py` 中维护。
+
+`translate` 只保存共享词典。`build-site` 读取全部历史原档和词典，生成网站需要的源索引与 manifest，并复制公开资源到输出目录。构建不读取翻译凭据、不调用模型、不改原档或词典；删除输出目录后可以无费用重建。仓库内的 `captures/index.json` 只负责归档元数据，中文可用性在网页构建时关联。
 
 源索引不存译文：Prompt 索引记录原文件哈希和段落 `id/start/end/kind`；Trace 索引另有记录序号和 JSON Pointer。可逆动态值通过 `bindings` 保存，例如当前文件的 `$PHISTORY_WORKSPACE` 对应哪条真实路径。浏览器验证占位符数量后代入该文件自己的值，最后进行 JSON 转义；无法完整还原就使用原文。
 
@@ -82,11 +92,13 @@ translations/
 
 ## 文件多和“空文件”是怎么回事
 
-当前有 **2,010 个源索引、14 个非空 Runtime 词典，共 2,024 个翻译数据文件**。2,458 份 Prompt/Trace 文档中，完全相同的源文件共用索引。源索引约 109.7 MB，词典合计约 4.8 MB；索引体积来自历史版本的位置引用，不等于模型调用量。
+原实现把 **2,010 个源索引和 14 个非空 Runtime 词典，共 2,024 个翻译数据文件**都提交到 Git。2,458 份 Prompt/Trace 文档中，完全相同的源文件共用索引。源索引约 109.7 MB，词典合计约 4.8 MB；索引体积来自历史版本的位置引用，不等于模型调用量。
+
+现在 Git 中只保留 **14 个 Runtime 词典**。2,010 个可重建源索引和网页 HTML 移到构建输出，Pages 上传该目录。源索引仍是网站按需获取的静态资源，不再占据日常代码审查和提交列表。这个调整不重写过去的 Git 历史；旧提交仍能查看原来的索引文件。
 
 14 个词典共保留 12,494 条当前归档实际引用的记录。本轮按全量历史归档清理了 1,237 条无引用缓存（Antigravity 132、Claude Code 643、Codex 462）和 2 个被最新 OpenClaw 归档替代的源索引。清理不修改原始 Prompt 或 Trace。
 
-翻译目录没有 0 字节文件、空词典或空源索引。PR 中有三种容易误认的显示：旧 `*-v1.json` 删除后的右侧为空；对应的当前位置索引是 `*-v2.json`；较大单行 JSON 的 diff 会被 GitHub 省略。`.gitattributes` 只将位置索引和生成的页面/清单标为 generated，词典仍可正常审阅，不以空文件占位。
+首次回填的翻译目录没有 0 字节文件、空词典或空源索引。原 PR 中有三种容易误认的显示：旧 `*-v1.json` 删除后的右侧为空；对应的当前位置索引是 `*-v2.json`；较大单行 JSON 的 diff 会被 GitHub 省略。这次构建目录迁移会显示那些源索引的删除；它们不再作为仓库源文件维护，网站会在构建时重新生成。
 
 ## 抓取、翻译、网页链路
 
@@ -103,20 +115,37 @@ flowchart TD
     H -- 否 --> I[附具体问题，最多两轮模型修订]
     I --> H
     H -- 是 --> J[原子保存 Runtime 词典]
-    F --> K[生成网页 manifest]
+    F --> K
+    B --> K[build-site 读取全部历史归档与词典]
     J --> K
-    K --> L[浏览器用原文、索引和词典组装中文]
+    K --> N[在忽略目录生成索引、网页与公开资源]
+    N --> P[Pages 仅发布构建目录]
+    P --> L[浏览器用原文、索引和词典组装中文]
     L --> M[缺译或无效时回退原文]
     A --> S[Static 独立提取与原文展示]
 ```
 
 修订有上限；失败项保持缺译，成功项及时保存。限流与暂时网络错误使用独立的有界重试，永久错误停止调度新请求。Static 不进入翻译 API 或词典。
 
-原文决定 diff 变化范围。语言偏好保存在浏览器，不增加 URL 参数；Static 隐藏语言按钮，切回 Runtime 后恢复偏好。CI 抓取完成后翻译最新十个已归档版本，随后重新生成 manifest 和网页。API 用量 JSONL 单独上传为 CI artifact，不放进网页或译文词典。
+原文决定 diff 变化范围。语言偏好保存在浏览器，不增加 URL 参数；Static 隐藏语言按钮，切回 Runtime 后恢复偏好。CI 抓取完成后只翻译最新十个已归档版本中的缺失段落；网站构建始终覆盖全部历史版本。API 用量 JSONL 单独上传为 CI artifact，不放进网页或译文词典。
 
-复现统计：`uv run phistory translate --all-captured --dry-run`，不调用 API、不改数据。完整性检查：`uv run python scripts/audit_translations.py --require-complete`。
+网页从同一域名获取原档、当前文档的索引和对应 Agent 的共享词典，例如 `https://phistory.cc/translations/sources/<hash>-v2.json` 与 `https://phistory.cc/translations/zh-CN/codex/runtime.json`。它不请求翻译供应商。索引并非全量下载：首次中文 Diff 通常请求两份原文、两个索引和一个词典，切换同 Agent 的其他版本复用词典。
 
-## 本轮验证
+复现统计：`uv run phistory translate --all-captured --dry-run`，不调用 API、不改数据。构建、完整性检查与本地预览使用同一输出目录：
+
+```bash
+uv run phistory build-site --output .phistory-cache/site
+uv run python scripts/audit_translations.py --site-dir .phistory-cache/site --require-complete
+python -m http.server --directory .phistory-cache/site
+```
+
+## 2026-09-06 构建目录迁移验证
+
+删除 Git 中的 2,010 个源索引和根目录生成的 `index.html`，保留 14 份共享词典及全部原始归档。新构建产出的全部索引、词典和网页 HTML 与迁移前逐字节一致，因此不需要重新翻译。`captures/index.json` 去掉翻译描述，只保留归档信息。
+
+263 项测试、Ruff 和 Python 包构建通过。全量 dry-run 复用 12,494 条词典记录，待翻译 0 条、API 请求 0 次。发布目录审计验证 1,020,116 处原文引用，缺译、缺索引和结构错误均为 0。新增构建测试覆盖无密钥、缺译回退、原始换行保留、目录误覆盖保护、重建清理过期资源，以及发布副本与原始数据一致性。
+
+## 2026-09-06 回填验证记录
 
 245 项测试、Ruff 格式与 lint、构建通过。14 个 Agent、21 个变体的全新本地抓取通过，翻译凭据未传入被抓取的 CLI。Antigravity 的旧占位归档已经使用上游 CloudCode 抓取修复重新采集；本轮另修正七个版本的 observed 元数据，让其反映主请求模型和工具数，原始请求证据不作展示性改写。
 

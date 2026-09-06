@@ -11,7 +11,7 @@ from phistory.translation.client import PermanentTranslationError, TranslationBa
 from phistory.translation.config import TranslationConfig
 from phistory.translation.prompts import PROMPT_VERSION
 from phistory.translation.segments import Segment, extract_markdown, extract_trace
-from phistory.translation.storage import read_dictionary, write_dictionary, write_source
+from phistory.translation.storage import read_dictionary, write_dictionary
 
 
 @dataclass
@@ -39,7 +39,7 @@ def translate_archive(
     usage_log: Path | None = None,
     progress: Callable[[str], None] = print,
 ) -> list[TranslationResult]:
-    """Index archived prose and persist only missing translations, batch by batch."""
+    """Extract archived prose and persist only missing translations, batch by batch."""
     from phistory.render import _version_key, read_capture_rows
 
     translation_root = translation_root or root.parent / "translations"
@@ -67,8 +67,6 @@ def translate_archive(
                     if path.suffix == ".jsonl"
                     else extract_markdown(raw.decode("utf-8"))
                 )
-                if not dry_run:
-                    write_source(translation_root, source.index)
                 all_segments.update((segment.id, segment) for segment in source.segments)
         existing = dictionary["entries"]
         pending = [segment for key, segment in all_segments.items() if key not in existing]

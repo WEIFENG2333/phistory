@@ -1,6 +1,6 @@
 # Chinese translations
 
-Phistory translates archived runtime Prompt and Trace prose after capture. Package-embedded Static archives stay in their original language and are excluded from translation. The captured CLI still runs through `claude-tap` without calling its model provider. Translation is an independent API operation; the website only reads static files.
+Phistory translates archived runtime Prompt and Trace prose after capture. Package-embedded Static archives stay in their original language and are excluded from translation. The captured CLI still runs through `claude-tap` without calling its model provider. Translation is an independent API operation; the website only reads static files. Git stores the original archives and shared translation dictionaries. Site HTML and source indexes are rebuilt for publication and are not committed.
 
 ## Configuration
 
@@ -39,7 +39,10 @@ uv run phistory translate --all-captured
 uv run phistory translate --agents claude-code,codex
 
 uv run phistory render-index
-uv run phistory render-site
+uv run phistory build-site --output .phistory-cache/site
+
+# Preview exactly the directory that Pages deploys.
+python -m http.server --directory .phistory-cache/site
 ```
 
 `--max-batches N` caps batches per agent. The command exits nonzero if selected prose remains untranslated, including after reaching this cap. Running the same command resumes missing work; changing keys or model settings does not discard existing translations. `--dry-run` succeeds while reporting pending work.
@@ -51,17 +54,20 @@ Summarize one or more logs with `uv run python scripts/summarize_translation_usa
 ## Validation
 
 ```bash
-# Check source maps, dictionaries, provenance and deployment size without API calls.
-uv run python scripts/audit_translations.py
+# Build every historical source index without API calls or translation credentials.
+uv run phistory build-site --output .phistory-cache/site
+
+# Check the built source maps, dictionaries, provenance and deployment size.
+uv run python scripts/audit_translations.py --site-dir .phistory-cache/site
 
 # Require complete coverage after a historical backfill.
-uv run python scripts/audit_translations.py --require-complete
+uv run python scripts/audit_translations.py --site-dir .phistory-cache/site --require-complete
 
 # Export representative source/translation pairs, including preserved text.
 uv run python scripts/review_translations.py --count 2
 ```
 
-The audit reads archived runtime Prompt and Trace files and writes its report to `.phistory-cache/translation-audit.json`. It checks source hashes, span bounds, each unique segment's text identity, shared runtime translations and changes to existing raw captures. Repeat `--verify-source PATH` to also re-extract selected runtime documents and verify every span against the current extractor. The default reports actual model and prompt-version provenance, allowing historical translations to coexist; `--expected-model` and `--expected-prompt-version` optionally enforce a specific value.
+The audit reads original runtime Prompt and Trace files and shared dictionaries from the repository, then checks the generated indexes and published copies in the site output. Build the site first: `--site-dir` defaults to `.phistory-cache/site`, and a missing build is an error. The report is written to `.phistory-cache/translation-audit.json`. It checks source hashes, span bounds, each unique segment's text identity, translation coverage and changes to existing raw captures. Repeat `--verify-source PATH` to also re-extract selected runtime documents and verify every span against the current extractor. The default reports actual model and prompt-version provenance, allowing historical translations to coexist; `--expected-model` and `--expected-prompt-version` optionally enforce a specific value.
 
 Missing translations are reported and only fail with `--require-complete`; invalid data and a deployment candidate of 1 GB or more always fail. Harness terminology and missing bare `snake_case` identifiers appear as source/translation pairs for manual review, not automatic failures. The audit never changes captures, source maps or dictionaries.
 
@@ -70,10 +76,25 @@ The audit reports stored status counts and samples up to five `preserved` entrie
 ## Data model
 
 ```text
+# Version-controlled data
+captures/<agent>/<version>/variants/<variant>/
+  prompt.md
+  trace.jsonl
 translations/
-  sources/<original-sha256>-v<extractor-version>.json
   zh-CN/<agent>/runtime.json
+
+# Disposable build output, ignored by Git
+.phistory-cache/site/
+  index.html
+  captures/...
+  translations/
+    sources/<original-sha256>-v<extractor-version>.json
+    zh-CN/<agent>/runtime.json
 ```
+
+`translate` extracts prose and persists only dictionary entries. `build-site` independently regenerates indexes from all archived versions, copies the public archive assets and dictionaries into the output directory, and joins translation availability into the page manifest. `captures/index.json` remains archive metadata. Neither generated HTML nor source indexes belong in Git. Building requires no API key and makes no translation requests; it never changes archived source files or shared dictionaries. Deleting the output directory is safe because the next build recreates it without paying for translation again.
+
+`build-site` replaces the former `render-site` CLI command. Its output defaults to `<cache-dir>/site`; `--output` can select an empty directory or a previous Phistory build. A failed build leaves the previous preview intact. Rebuilding removes obsolete generated assets from the output.
 
 Source indexes contain original-file hashes and non-overlapping spans, not full copies of the original or translated documents. Identical source files share an index. Each segment ID hashes the prose and `SEGMENT_VERSION`; the source index's `EXTRACTOR_VERSION` can change without invalidating existing translations. Surrounding context does not change that identity. Dictionaries store one text per segment with model and translation-prompt provenance. New entries also record `status: "translated"` or `status: "preserved"`; historical entries without this optional field remain usable. An optional `review: "edited-against-source"` marks editorial corrections checked against the original; these retain their original API provenance. All versions of an agent reuse one runtime dictionary for Prompt and Trace. Context supplies the nearest heading, tool name, neighboring prose and schema property/type structure for the first translation of a segment. Union types retain their alternatives instead of borrowing only the last branch; context changes do not invalidate cached text identities.
 
@@ -95,11 +116,15 @@ The 原文 / 中文 control appears in runtime Diff and Trace views and stores i
 
 Static always displays original text, hides the language control and makes no translation asset requests. Opening Static preserves the runtime language preference, so returning to Diff or Trace restores it. Static archives use Monaco's legacy diff algorithm with a 20-second computation budget, which performed better on the large historical files in browser checks. Ordinary prompt diffs keep the advanced algorithm. Very large comparisons can still reach the time budget and produce coarser changes; the complete original text remains available.
 
-Trace translates readable fields on a copy. Raw request bodies and raw tool definitions remain original. Translation assets are fetched only when needed and cached using content fingerprints.
+Trace translates readable fields on a copy. Raw request bodies and raw tool definitions remain original. Translation assets are fetched only when needed and cached using content fingerprints. On `https://phistory.cc/`, these requests use the same origin: `/captures/.../prompt.md` or `trace.jsonl`, `/translations/sources/<hash>-v2.json`, and `/translations/zh-CN/<agent>/runtime.json`. The `?v=` fingerprint refreshes stale assets; it does not encode a language. The browser does not contact the translation provider.
+
+The source indexes remain useful published assets: they tell the browser which original spans and Trace fields to replace. Precomputing them keeps the Python extractor as the single implementation for translation and display. They are downloaded only for the selected documents, while the agent's dictionary is shared across versions. A typical uncached Chinese Diff needs two original documents, two source indexes and one shared dictionary; a Trace needs one original document, one index and that same dictionary. Moving indexes out of Git does not make the browser download the full historical index set.
 
 ## CI
 
-Configure repository Secret `PHISTORY_TRANSLATION_API_KEY` and Variables `PHISTORY_TRANSLATION_BASE_URL`, `PHISTORY_TRANSLATION_MODEL`. The hourly capture workflow supplies them only to its translation step, after capture and static extraction. It translates runtime Prompt and Trace prose from the latest ten archived versions per agent, regenerates indexes and commits translation data with the capture artifacts. Static extraction remains independent and its output is never sent for translation. Translation failure does not prevent publishing successful captures; the workflow reports incomplete work for a later retry. Repositories without a key continue publishing original text.
+Configure repository Secret `PHISTORY_TRANSLATION_API_KEY` and Variables `PHISTORY_TRANSLATION_BASE_URL`, `PHISTORY_TRANSLATION_MODEL`. The hourly capture workflow supplies them only to its translation step, after capture and static extraction. It translates runtime Prompt and Trace prose from the latest ten archived versions per agent, runs `render-index`, and validates the complete site with `build-site`. It commits original captures, archive metadata, documentation and shared dictionaries under `translations/zh-CN/`; it does not commit site HTML or source indexes. Static extraction remains independent and its output is never sent for translation. Translation failure does not prevent publishing successful captures; the workflow reports incomplete work for a later retry. Repositories without a key continue publishing original text.
+
+The Pages workflow checks out `main` and runs the same `build-site --output .phistory-cache/site` command used for local preview. It builds indexes for all historical versions and uploads only that directory. This build does not use translation credentials or depend on provider availability. Caches, usage logs and development files are not included in the published output.
 
 Before rendering or committing, the workflow saves `translation-usage` and `translation-dictionaries` artifacts for 30 days, including after translation failures. The first contains request accounting; the second contains the shared dictionaries under `translations/zh-CN/`. This preserves paid results if a later render, commit or push fails. Usage logs are not published with the website.
 

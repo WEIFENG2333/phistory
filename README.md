@@ -55,8 +55,9 @@ uv run phistory translate --all-captured
 # Regenerate README.md, README_zh.md, docs/captures.md, captures/index.json, and llms.txt.
 uv run phistory render-index
 
-# Regenerate the static web viewer at index.html.
-uv run phistory render-site
+# Build the complete static site, including Chinese translation indexes.
+uv run phistory build-site
+python -m http.server --directory .phistory-cache/site
 ```
 
 ## Supported Agents

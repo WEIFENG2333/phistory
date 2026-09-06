@@ -9,7 +9,6 @@ from typing import Any
 from urllib.parse import quote
 
 from phistory.registry import agent_sort_key
-from phistory.translation.index import TranslationIndex
 
 _VERSION_PART_RE = re.compile(r"\d+|[A-Za-z]+")
 
@@ -70,9 +69,6 @@ def read_capture_rows(root: Path) -> list[dict[str, Any]]:
                 "meta": meta_path,
             }
         )
-    translations = TranslationIndex(root)
-    for row in rows:
-        row["translations"] = translations.for_row(row)
     return rows
 
 
@@ -164,8 +160,9 @@ def _readme_markdown(rows: list[dict[str, Any]], base: Path) -> str:
             "# Regenerate README.md, README_zh.md, docs/captures.md, captures/index.json, and llms.txt.",
             "uv run phistory render-index",
             "",
-            "# Regenerate the static web viewer at index.html.",
-            "uv run phistory render-site",
+            "# Build the complete static site, including Chinese translation indexes.",
+            "uv run phistory build-site",
+            "python -m http.server --directory .phistory-cache/site",
             "```",
             "",
             "## Supported Agents",
@@ -302,8 +299,9 @@ def _readme_zh_markdown(rows: list[dict[str, Any]], base: Path) -> str:
             "# 重新生成 README.md、README_zh.md、docs/captures.md、captures/index.json 和 llms.txt。",
             "uv run phistory render-index",
             "",
-            "# 重新生成静态网页查看器 index.html。",
-            "uv run phistory render-site",
+            "# 构建完整静态网站，包括中文翻译索引。",
+            "uv run phistory build-site",
+            "python -m http.server --directory .phistory-cache/site",
             "```",
             "",
             "## 支持的 Agent",
@@ -497,8 +495,6 @@ def _capture_json_row(row: dict[str, Any], base: Path) -> dict[str, Any]:
         payload["static_prompts_json"] = _rel(row["static_prompts_json"], base)
     if row.get("static_candidates_json"):
         payload["static_candidates_json"] = _rel(row["static_candidates_json"], base)
-    if row.get("translations"):
-        payload["translations"] = row["translations"]
     return payload
 
 

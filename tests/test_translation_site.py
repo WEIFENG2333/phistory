@@ -6,9 +6,9 @@ from pathlib import Path
 import pytest
 
 from phistory.site import _HTML, render_site
-from phistory.translation.index import TranslationIndex
+from phistory.translation.assets import TranslationAssets
 from phistory.translation.segments import extract_markdown, extract_trace
-from phistory.translation.storage import write_dictionary, write_source
+from phistory.translation.storage import write_dictionary
 
 SCRIPT = Path(__file__).parents[1] / "phistory/web/translation.js"
 
@@ -514,15 +514,15 @@ def test_manifest_ignores_legacy_static_translations_and_keeps_runtime(tmp_path)
     write_dictionary(root, "agent", dictionary)
     legacy_dictionary = root / "zh-CN" / "agent" / "static.json"
     legacy_dictionary.write_text(json.dumps(dictionary))
-    for source in [*sources, extract_markdown(static.read_text())]:
-        write_source(root, source.index)
-    metadata = TranslationIndex(captures).for_row(
+    assert not (root / "sources").exists()
+    metadata = TranslationAssets(tmp_path).for_row(
         {"agent_id": "agent", "prompt": prompt, "trace": trace, "static_prompts": static}
     )["zh-CN"]
     assert set(metadata) == {"prompt", "trace", "runtime"}
     assert metadata["runtime"]["path"] == "translations/zh-CN/agent/runtime.json"
     assert metadata["prompt"]["translated"] == metadata["prompt"]["total"] == 1
     assert metadata["trace"]["translated"] == metadata["trace"]["total"] == 1
+    assert len(list((root / "sources").glob("*.json"))) == 2
 
 
 def test_site_embeds_translation_assets_without_language_query_parameters(tmp_path: Path):

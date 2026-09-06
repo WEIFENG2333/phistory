@@ -1,4 +1,4 @@
-"""Read-only release checks for source maps, translated dictionaries and deployment size."""
+"""Read-only checks of a built site's source maps, archived copies and translated dictionaries."""
 
 from __future__ import annotations
 
@@ -48,6 +48,12 @@ def span_text(source: str, ref: dict) -> str:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
+        "--site-dir",
+        type=Path,
+        default=REPO / ".phistory-cache/site",
+        help="Published output to audit; generate it first with phistory build-site.",
+    )
+    parser.add_argument(
         "--require-complete", action="store_true", help="fail when source maps or translations are missing"
     )
     parser.add_argument(
@@ -68,6 +74,8 @@ def main() -> int:
         parser.error("--preserved-samples must be nonnegative")
     deep_sources = {(REPO / path).resolve() for path in args.verify_source}
     capture_root, translation_root = REPO / "captures", REPO / "translations"
+    site_root = args.site_dir.resolve()
+    published_translations = site_root / "translations"
     rows = read_capture_rows(capture_root)
     documents = {}
     for row in rows:
@@ -78,6 +86,30 @@ def main() -> int:
     if unknown_sources:
         parser.error("--verify-source is not an archived source: " + ", ".join(map(str, sorted(unknown_sources))))
     errors, missing_maps = [], []
+    if not (site_root / "index.html").is_file():
+        errors.append({"error": "built site is missing index.html; run phistory build-site first"})
+    # The deploy artifact must contain the same evidence and paid translations as the repository.
+    copied_sources = [
+        path
+        for pattern in (
+            "*/*/variants/*/prompt.md",
+            "*/*/variants/*/trace.jsonl",
+            "*/*/variants/*/meta.json",
+            "*/*/static/candidates.json",
+            "*/*/static/prompts.json",
+            "*/*/static/prompts.md",
+        )
+        for path in capture_root.glob(pattern)
+    ]
+    copied_sources.extend(translation_root.glob("zh-CN/*/runtime.json"))
+    for source in sorted(copied_sources):
+        relative = source.relative_to(REPO)
+        published = site_root / relative
+        try:
+            if source.read_bytes() != published.read_bytes():
+                errors.append({"source": str(relative), "error": "published copy differs from repository source"})
+        except OSError as exc:
+            errors.append({"source": str(relative), "error": f"cannot read published copy: {exc}"})
     needed = defaultdict(set)
     origins, unit_texts, index_cache = {}, {}, {}
     bound_templates = set()
@@ -88,7 +120,7 @@ def main() -> int:
         try:
             raw = path.read_bytes()
             digest = hashlib.sha256(raw).hexdigest()
-            index_path = translation_root / "sources" / f"{digest}-v{EXTRACTOR_VERSION}.json"
+            index_path = published_translations / "sources" / f"{digest}-v{EXTRACTOR_VERSION}.json"
             if index_path not in index_cache:
                 index_cache[index_path] = read_source(index_path, digest)
             index = index_cache[index_path]
@@ -137,14 +169,12 @@ def main() -> int:
             errors.append({"source": relative, "error": str(exc)})
 
     coverage, harness_review, identifier_review, preserved_review = [], [], [], []
-    dictionaries = {}
     for (agent, kind), keys in sorted(needed.items()):
         try:
             entries = read_dictionary(translation_root, agent)["entries"]
         except (OSError, ValueError) as exc:
             errors.append({"dictionary": f"{agent}/{kind}", "error": str(exc)})
             entries = {}
-        dictionaries[agent, kind] = entries
         models, prompt_versions, statuses = Counter(), Counter(), Counter()
         for key, entry in entries.items():
             models[entry["model"]] += 1
@@ -222,12 +252,11 @@ def main() -> int:
     raw_changes = sorted(path for path in changed if path != "captures/index.json")
     if raw_changes:
         errors.append({"error": "existing raw captures changed", "files": raw_changes})
-    deploy_paths = set(git_paths("ls-files", "--cached", "--others", "--exclude-standard"))
     sizes = Counter()
-    for name in sorted(deploy_paths):
-        path = REPO / name
+    for path in sorted(site_root.rglob("*")):
         if not path.is_file():
             continue
+        name = path.relative_to(site_root).as_posix()
         try:
             size = path.stat().st_size
         except FileNotFoundError:
@@ -248,6 +277,8 @@ def main() -> int:
         errors.append({"error": "deployment size exceeds the configured limit", "bytes": total_bytes})
     missing = sum(item["missing"] for item in coverage)
     report = {
+        "site_directory": str(site_root),
+        "published_source_copies_checked": len(copied_sources),
         "snapshots": len(rows),
         "documents": len(documents),
         "source_maps": len(index_cache),

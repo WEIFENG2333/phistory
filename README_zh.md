@@ -55,8 +55,9 @@ uv run phistory translate --all-captured
 # 重新生成 README.md、README_zh.md、docs/captures.md、captures/index.json 和 llms.txt。
 uv run phistory render-index
 
-# 重新生成静态网页查看器 index.html。
-uv run phistory render-site
+# 构建完整静态网站，包括中文翻译索引。
+uv run phistory build-site
+python -m http.server --directory .phistory-cache/site
 ```
 
 ## 支持的 Agent

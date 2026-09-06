@@ -4,7 +4,9 @@ from pathlib import Path
 
 import pytest
 
+from phistory.build import build_site
 from phistory.render import read_capture_rows
+from phistory.translation.assets import TranslationAssets
 from phistory.translation.client import PermanentTranslationError, TranslationBatch
 from phistory.translation.config import TranslationConfig
 from phistory.translation.workflow import translate_archive
@@ -17,6 +19,30 @@ def capture(root: Path, version: str, text: str):
     (path / "trace.jsonl").write_text("{}\n")
     (path / "meta.json").write_text(json.dumps({"agent_id": "agent", "version": version}))
     return path
+
+
+def publish(root: Path):
+    site = root.parent / "site"
+    build_site(root, site)
+    assets = TranslationAssets(site)
+    rows = read_capture_rows(site / "captures")
+    for row in rows:
+        row["translations"] = assets.for_row(row)
+    return site, rows
+
+
+def run_audit(tmp_path, monkeypatch, site, *args):
+    import runpy
+
+    audit = runpy.run_path(str(Path(__file__).parents[1] / "scripts" / "audit_translations.py"))["main"]
+    monkeypatch.setitem(audit.__globals__, "REPO", tmp_path)
+    monkeypatch.setitem(audit.__globals__, "git_paths", lambda *args: [])
+    report_path = tmp_path / "audit.json"
+    monkeypatch.setattr(
+        "sys.argv", ["audit_translations.py", "--site-dir", str(site), "--report", str(report_path), *args]
+    )
+    result = audit()
+    return result, json.loads(report_path.read_text())
 
 
 def test_incremental_translation_reuses_archived_dictionary_and_preserves_sources(tmp_path, monkeypatch):
@@ -38,11 +64,8 @@ def test_incremental_translation_reuses_archived_dictionary_and_preserves_source
     assert len(calls) == 3 and second[0].reused == 3
     assert all(path.read_bytes() == data for path, data in original.items())
     assert not list(root.rglob("translations"))
-    rows = read_capture_rows(root)
-    assert all(
-        row["translations"]["zh-CN"]["prompt"]["translated"] == row["translations"]["zh-CN"]["prompt"]["total"]
-        for row in rows
-    )
+    assert not (tmp_path / "translations" / "sources").exists()
+    assert all("translations" not in row for row in read_capture_rows(root))
     for path in (one, two):
         assert not (path / "prompt.zh.md").exists()
 
@@ -60,7 +83,6 @@ def test_dry_run_does_not_call_api_or_write_translations(tmp_path, monkeypatch):
 
 
 def test_static_archive_never_enters_runtime_translation_queue(tmp_path, monkeypatch):
-    from phistory.translation.segments import source_hash
     from phistory.translation.storage import read_dictionary
 
     root = tmp_path / "captures"
@@ -85,7 +107,7 @@ def test_static_archive_never_enters_runtime_translation_queue(tmp_path, monkeyp
     translations = tmp_path / "translations"
     assert len(read_dictionary(translations, "agent")["entries"]) == 1
     assert not list(translations.glob("zh-CN/*/static.json"))
-    assert not list((translations / "sources").glob(f"{source_hash(static.read_text())}-*.json"))
+    assert not (translations / "sources").exists()
     assert static.read_bytes() == original
 
 
@@ -128,8 +150,6 @@ def test_trace_dynamic_values_reuse_existing_prompt_translation(tmp_path, monkey
     ],
 )
 def test_manifest_and_audit_do_not_count_unusable_trace_templates(tmp_path, monkeypatch, translated, complete):
-    import runpy
-
     root = tmp_path / "captures"
     path = capture(root, "1.0", "Primary working directory: $PHISTORY_WORKSPACE")
     (path / "trace.jsonl").write_text(
@@ -142,26 +162,20 @@ def test_manifest_and_audit_do_not_count_unusable_trace_templates(tmp_path, monk
     translate_archive(
         root, config=TranslationConfig("https://example.test/v1", "model", "key"), progress=lambda _: None
     )
-    trace = read_capture_rows(root)[0]["translations"]["zh-CN"]["trace"]
+    site, rows = publish(root)
+    trace = rows[0]["translations"]["zh-CN"]["trace"]
     assert trace["total"] == 1
     assert trace["translated"] == int(complete)
     assert (trace["translated_chars"] == trace["source_chars"]) == complete
 
-    audit = runpy.run_path(str(Path(__file__).parents[1] / "scripts" / "audit_translations.py"))["main"]
-    monkeypatch.setitem(audit.__globals__, "REPO", tmp_path)
-    monkeypatch.setitem(audit.__globals__, "git_paths", lambda *args: [])
-    report_path = tmp_path / "audit.json"
-    monkeypatch.setattr("sys.argv", ["audit_translations.py", "--report", str(report_path)])
-    assert audit() == int(not complete)
-    report = json.loads(report_path.read_text())
+    result, report = run_audit(tmp_path, monkeypatch, site, "--require-complete")
+    assert result == int(not complete)
     assert report["coverage"][0]["translated"] == int(complete)
     assert report["coverage"][0]["missing"] == int(not complete)
     assert bool(report["errors"]) != complete
 
 
 def test_audit_checks_each_trace_binding_after_seeing_its_prompt_template(tmp_path, monkeypatch):
-    import runpy
-
     root = tmp_path / "captures"
     path = capture(root, "1.0", "Primary working directory: $PHISTORY_WORKSPACE")
     (path / "trace.jsonl").write_text(
@@ -176,23 +190,19 @@ def test_audit_checks_each_trace_binding_after_seeing_its_prompt_template(tmp_pa
     translate_archive(
         root, config=TranslationConfig("https://example.test/v1", "model", "key"), progress=lambda _: None
     )
-    trace = read_capture_rows(root)[0]["translations"]["zh-CN"]["trace"]
-    index_path = tmp_path / trace["index"]
+    site, rows = publish(root)
+    trace = rows[0]["translations"]["zh-CN"]["trace"]
+    index_path = site / trace["index"]
     index = json.loads(index_path.read_text())
     index["fields"][0]["segments"][0]["bindings"]["$PHISTORY_WORKSPACE"]["value"] = "/tmp/phistory-work-wrong"
     index_path.write_text(json.dumps(index))
 
-    audit = runpy.run_path(str(Path(__file__).parents[1] / "scripts" / "audit_translations.py"))["main"]
-    monkeypatch.setitem(audit.__globals__, "REPO", tmp_path)
-    monkeypatch.setitem(audit.__globals__, "git_paths", lambda *args: [])
-    report_path = tmp_path / "audit.json"
-    monkeypatch.setattr("sys.argv", ["audit_translations.py", "--report", str(report_path)])
-    assert audit() == 1
-    errors = json.loads(report_path.read_text())["errors"]
-    assert any("does not restore its original source" in error["error"] for error in errors)
+    result, report = run_audit(tmp_path, monkeypatch, site)
+    assert result == 1
+    assert any("does not restore its original source" in error["error"] for error in report["errors"])
 
 
-def test_source_index_shared_between_identical_versions(tmp_path, monkeypatch):
+def test_published_source_index_shared_between_identical_versions(tmp_path, monkeypatch):
     root = tmp_path / "captures"
     capture(root, "1.0", "Confirm before deleting.\n")
     capture(root, "1.1", "Confirm before deleting.\n")
@@ -203,8 +213,53 @@ def test_source_index_shared_between_identical_versions(tmp_path, monkeypatch):
     translate_archive(
         root, config=TranslationConfig("https://example.test/v1", "model", "key"), progress=lambda _: None
     )
-    rows = read_capture_rows(root)
+    assert not (tmp_path / "translations" / "sources").exists()
+    _, rows = publish(root)
     assert rows[0]["translations"]["zh-CN"]["prompt"]["index"] == rows[1]["translations"]["zh-CN"]["prompt"]["index"]
+
+
+@pytest.mark.parametrize("damaged", ["prompt", "dictionary", "source-index", "index.html"])
+def test_audit_requires_consistent_published_assets(tmp_path, monkeypatch, damaged):
+    root = tmp_path / "captures"
+    path = capture(root, "1.0", "Read files before editing.")
+    monkeypatch.setattr(
+        "phistory.translation.workflow.TranslationClient.translate",
+        lambda self, segments: TranslationBatch({s.id: "编辑前先阅读文件。" for s in segments}),
+    )
+    translate_archive(
+        root, config=TranslationConfig("https://example.test/v1", "model", "key"), progress=lambda _: None
+    )
+    site, rows = publish(root)
+    assert not (tmp_path / "translations" / "sources").exists()
+    expected_bytes = sum(file.stat().st_size for file in site.rglob("*") if file.is_file())
+    # Cache and other workspace files never contribute to the published site's size.
+    (tmp_path / "local-cache.bin").write_bytes(b"x" * expected_bytes)
+    result, report = run_audit(
+        tmp_path, monkeypatch, site, "--require-complete", "--size-limit", str(expected_bytes + 1)
+    )
+    assert result == 0 and report["errors"] == []
+    assert report["deployment_total_bytes"] == expected_bytes
+    assert report["published_source_copies_checked"] == 4
+
+    metadata = rows[0]["translations"]["zh-CN"]
+    if damaged == "prompt":
+        (site / path.relative_to(tmp_path) / "prompt.md").write_text("A stale published prompt.")
+    elif damaged == "dictionary":
+        (site / metadata["runtime"]["path"]).write_text("{}")
+    elif damaged == "source-index":
+        (site / metadata["prompt"]["index"]).unlink()
+    else:
+        (site / "index.html").unlink()
+
+    result, report = run_audit(tmp_path, monkeypatch, site, "--require-complete")
+    assert result == 1
+    if damaged == "source-index":
+        assert report["missing_source_maps"] == [str((path / "prompt.md").relative_to(tmp_path))]
+        assert report["errors"] == []
+    elif damaged == "index.html":
+        assert any("missing index.html" in error["error"] for error in report["errors"])
+    else:
+        assert any("published copy differs" in error["error"] for error in report["errors"])
 
 
 def test_partial_batch_is_saved_and_resume_requests_only_missing_entries(tmp_path, monkeypatch):

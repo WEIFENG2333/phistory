@@ -31,11 +31,15 @@ jobs:
       - uses: actions/checkout@v6
         with:
           ref: main
+      - uses: astral-sh/setup-uv@v8.1.0
+      - run: uv sync --frozen
+      - name: Build site from archived data
+        run: uv run phistory build-site --output .phistory-cache/site
       - uses: actions/configure-pages@v5
         with:
           enablement: true
       - uses: actions/upload-pages-artifact@v4
         with:
-          path: .
+          path: .phistory-cache/site
       - id: deployment
         uses: actions/deploy-pages@v4

@@ -81,11 +81,12 @@ jobs:
           if-no-files-found: ignore
           retention-days: 30
       - run: uv run phistory render-index
-      - run: uv run phistory render-site
+      - name: Validate site build
+        run: uv run phistory build-site --output .phistory-cache/site
       - name: Commit capture updates
         run: |
-          git add README.md README_zh.md index.html llms.txt docs captures
-          if [ -d translations ]; then git add translations; fi
+          git add README.md README_zh.md llms.txt docs captures
+          if [ -d translations/zh-CN ]; then git add translations/zh-CN; fi
           if git diff --cached --quiet; then
             echo "No capture changes."
             exit 0

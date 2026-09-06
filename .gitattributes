@@ -1,4 +1,2 @@
-# Generated location indexes are reviewable on demand; prompt text and dictionaries stay visible.
-translations/sources/*.json linguist-generated=true
+# Archive metadata is generated; prompt text and dictionaries stay visible.
 captures/index.json linguist-generated=true
-index.html linguist-generated=true

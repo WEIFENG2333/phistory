@@ -1,6 +1,7 @@
 import difflib
 import hashlib
 import json
+from collections.abc import Callable
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -30,15 +31,15 @@ CHANGE_FULL_SCALE_RATIO = 0.30
 CHANGE_MIN_SCALE = 14
 
 
-def render_site(root: Path, output: Path) -> None:
-    html = _HTML.replace("__PHISTORY_MANIFEST__", _json_for_script(_build_manifest(root)))
+def render_site(root: Path, output: Path, *, translations: Callable[[dict], dict] | None = None) -> None:
+    html = _HTML.replace("__PHISTORY_MANIFEST__", _json_for_script(_build_manifest(root, translations=translations)))
     for suffix in ("css", "js"):
         asset = Path(__file__).with_name("web") / f"translation.{suffix}"
         html = html.replace(f"__TRANSLATION_{suffix.upper()}__", asset.read_text(encoding="utf-8"))
     output.write_text(html, encoding="utf-8")
 
 
-def _build_manifest(root: Path) -> dict:
+def _build_manifest(root: Path, *, translations: Callable[[dict], dict] | None = None) -> dict:
     rows = read_capture_rows(root)
     agents = []
     for agent_id in sorted({row["agent_id"] for row in rows}, key=agent_sort_key):
@@ -54,7 +55,7 @@ def _build_manifest(root: Path) -> dict:
                 key=lambda row: _version_key(row["version"]),
                 reverse=True,
             )
-            versions = _site_versions(variant_rows)
+            versions = _site_versions(variant_rows, root.parent, translations=translations)
             first = variant_rows[0]
             variants.append(
                 {
@@ -90,18 +91,22 @@ def _variant_sort_key(agent_id: str, variant_id: str) -> tuple[int, str]:
     return (positions.get(variant_id, len(positions)), variant_id)
 
 
-def _site_versions(rows: list[dict]) -> list[dict]:
+def _site_versions(rows: list[dict], base: Path, *, translations: Callable[[dict], dict] | None = None) -> list[dict]:
     versions = []
     for index, row in enumerate(rows):
         previous = rows[index + 1] if index + 1 < len(rows) else None
-        item = _site_row(row)
+        item = _site_row(row, base)
+        item["translations"] = translations(row) if translations else {}
         item["change"] = _change_summary(row, previous)
         versions.append(item)
     _add_relative_change_scale(versions)
     return versions
 
 
-def _site_row(row: dict) -> dict:
+def _site_row(row: dict, base: Path) -> dict:
+    def asset_path(key: str) -> str:
+        return row[key].relative_to(base).as_posix() if row.get(key) else ""
+
     return {
         "agent_id": row["agent_id"],
         "agent": row["agent"],
@@ -113,15 +118,14 @@ def _site_row(row: dict) -> dict:
         "published_compact": _compact_date(row["published_at"]),
         "published_display": _display_time(row["published_at"]),
         "captured_display": _display_time(row.get("captured_at") or ""),
-        "prompt": row["prompt"].as_posix(),
+        "prompt": asset_path("prompt"),
         "prompt_fingerprint": _file_fingerprint(row["prompt"]),
-        "trace": row["trace"].as_posix(),
+        "trace": asset_path("trace"),
         "trace_fingerprint": _file_fingerprint(row["trace"]),
-        "static_prompts": row["static_prompts"].as_posix() if row.get("static_prompts") else "",
+        "static_prompts": asset_path("static_prompts"),
         "static_prompts_fingerprint": _file_fingerprint(row["static_prompts"]) if row.get("static_prompts") else "",
-        "static_prompts_json": row["static_prompts_json"].as_posix() if row.get("static_prompts_json") else "",
-        "static_candidates_json": row["static_candidates_json"].as_posix() if row.get("static_candidates_json") else "",
-        "translations": row.get("translations", {}),
+        "static_prompts_json": asset_path("static_prompts_json"),
+        "static_candidates_json": asset_path("static_candidates_json"),
     }
 
 
