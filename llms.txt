@@ -13,7 +13,7 @@ Paths in `captures/index.json` are relative to the site root. Archived prompts a
 
 ## Latest prompts
 
-- [Claude Code 2.1.268 — Default](https://phistory.cc/captures/claude-code/2.1.268/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
+- [Claude Code 2.1.269 — Default](https://phistory.cc/captures/claude-code/2.1.269/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
 - [Codex CLI 0.154.0 — Default](https://phistory.cc/captures/codex/0.154.0/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
 - [DeepSeek Harness 0.1.5-rc.1 — Default](https://phistory.cc/captures/dsh/0.1.5-rc.1/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
 - [Antigravity CLI 1.2.1 — Default](https://phistory.cc/captures/antigravity/1.2.1/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
@@ -22,7 +22,7 @@ Paths in `captures/index.json` are relative to the site root. Archived prompts a
 - [Kimi Code 0.42.0 — Default](https://phistory.cc/captures/kimi-code/0.42.0/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
 - [MiMo Code 0.1.14 — Default](https://phistory.cc/captures/mimo/0.1.14/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
 - [OpenClaw 2026.9.4 — Default](https://phistory.cc/captures/openclaw/2026.9.4/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
-- [Hermes Agent v2026.9.7 — Default](https://phistory.cc/captures/hermes/v2026.9.7/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
+- [Hermes Agent v2026.9.11 — Default](https://phistory.cc/captures/hermes/v2026.9.11/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
 - [Kimi CLI 1.50.0 — Default](https://phistory.cc/captures/kimi/1.50.0/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
 - [opencode 1.18.30 — Default](https://phistory.cc/captures/opencode/1.18.30/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
 - [Pi 0.85.1 — Default](https://phistory.cc/captures/pi/0.85.1/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.

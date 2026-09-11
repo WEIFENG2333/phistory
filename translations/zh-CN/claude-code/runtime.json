@@ -1626,6 +1626,13 @@
       "text": "写入文件后，在 `MEMORY.md`（`- [Title](file.md) — hook`）中添加一行指针。`MEMORY.md` 是每个会话都会加载到上下文中的索引——每条记忆一行，不含 frontmatter，绝不要把记忆内容放在那里。",
       "thinking_budget": 4096
     },
+    "2175c142170c51b2e5d41834f52d69add7781c0d9c53cc719a68bfb3a842f98d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "你从现在起创建的 git 提交和拉取请求的署名（本提醒取代 Claude Code 自身先前的署名指引，例如本提醒的先前副本；用户自己关于这些行的指令，例如 CLAUDE.md 或记忆规则，优先于本提醒，但不要添加本提醒未列出的署名行）：",
+      "thinking_budget": 4096
+    },
     "21cbb2a3704789253277c9f40ba02022b24c9f910286e5e39b45cea4cbcb2bd6": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",

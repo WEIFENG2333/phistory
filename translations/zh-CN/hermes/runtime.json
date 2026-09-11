@@ -252,6 +252,13 @@
       "text": "请在以下情况下主动使用此工具：",
       "thinking_budget": 4096
     },
+    "0cf0f84711fc5b8b5a6f941a699e5bbf144d0134d60358de3a02a82fdb384f0c": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "来自 browser_vault_list 的句柄（vault_… 本地，op:… 1Password，bw:… Bitwarden）",
+      "thinking_budget": 4096
+    },
     "0d22e7bd2d073c78238bfb4705af0bf8eda6174fecda17ce6d9a843b0eb8934a": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -264,6 +271,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "搜索查询——要在过往会话中查找的关键词、短语或布尔表达式。",
+      "thinking_budget": 4096
+    },
+    "0d983a1e1e0bb8d3b5a90cd324896e711b9ba5138c3022ca7e6e5dd52054b92a": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "没有后续结果消费者的会话（包括一次性 CLI 和 cron）会加入并行的子智能体，并在此工具调用中返回结果。否则在后台运行：分发会返回实时对话记录路径，子智能体完成后结果会作为新消息重新进入（每次调用一条消息）。后台结果只在你回合之间送达：先完成不依赖它们的工作，然后给出一行状态并结束你的回合。绝不为子智能体等待或轮询对话记录、工件文件或 CI。子智能体运行期间，`action`（list/steer/stop）可以实时控制它们——当对话记录显示某个子智能体偏离方向时进行引导。",
       "thinking_budget": 4096
     },
     "0d9a59400665c208e96308e920e90dea4b8600dbf5623b7c251ac906318e9fc0": {
@@ -390,6 +404,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "每个查询的最大匹配数。默认值为 5，并会被限制到配置的最大值（默认为 25）。",
+      "thinking_budget": 4096
+    },
+    "1109260144652416c3919e0822bd64836214c0910992c2808abde06ab77e7326": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "来自 browser_vault_list `locked` 的后端名称。",
       "thinking_budget": 4096
     },
     "11b226e8e9052d7ec1f3f2c7ae8a6771f7bf30a9933f12fa5231c0683677a308": {
@@ -593,6 +614,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "你发现了关于环境的某些信息（操作系统、已安装的工具、项目结构）",
+      "thinking_budget": 4096
+    },
+    "19b529ed636c66ce434a83f3e99f8467fcb8830802bf45db3b0fdb9a51c09fee": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "页面在密码之后要求输入一次性 / 验证 / 2FA 验证码时：调用此工具。如果保存的登录信息带有身份验证器密钥，验证码会被自动生成并输入，无需任何询问；否则会在用户界面中向用户索要验证码（用户从手机、电子邮件或身份验证器应用中读取）。验证码绝不会进入对话：绝不在聊天中索要它，也绝不用浏览器的输入工具输入它。no_code_field 表示该站点需要通行密钥/硬件密钥/应用批准：告诉用户在其设备上完成验证，然后等待页面继续。",
       "thinking_budget": 4096
     },
     "1a4a0fa7aed689363a24a3e078065c7aa5cfed705f3be712448ddf3f50627e2a": {
@@ -819,6 +847,13 @@
       "text": "对话开始于：2026 年 6 月 06 日，星期六\n模型：phistory-dummy\n提供商：openrouter",
       "thinking_budget": 4096
     },
+    "25a092d8ef2686fead8f15bd432c9d8f351724efecffb1c5ce57393610d5ad22": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "调用延迟工具。接受 `calls`，即一个由 {name, arguments} 组成的数组——每次调用对应一个条目；单次调用就是一个只含一个元素的数组。本地工具要求每个 tool_call 对应一个条目。只有 connectors__ 的名称可以批量放在一起；混合批次和包含多个本地工具的批次会被拒绝。连接器条目逐个执行，结果按输入顺序返回。参数形状与各工具的 schema 匹配（参见 `tool_describe`）。策略、钩子和审批的运行方式与直接列出的工具相同。",
+      "thinking_budget": 4096
+    },
     "25b6b0ebff9edc1ee840dd139ee84bf08af1823b8894c568d53f37eefa1c3832": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -971,6 +1006,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "单任务：提供 'goal'（+ 可选 context、toolsets）",
+      "thinking_budget": 4096
+    },
+    "2df66a0762902302f47dc281e4cb194dbf052de40bd51aff8ebbe0701ed171e7": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "你刚刚填写的登录句柄（当保存了身份验证器密钥时，可让 Hermes 生成验证码）。",
       "thinking_budget": 4096
     },
     "2e63343634f122f54723b553d8db157f45edf7da0f475f30cd5b6c039e341113": {
@@ -1729,6 +1771,13 @@
       "text": "读取文本文件，带行号和分页。请用此工具代替终端中的 cat/head/tail。输出格式：'LINE_NUM|CONTENT'。未找到文件时会建议相似的文件名。大文件请使用 offset 和 limit。超过约 100K 字符的读取会被拒绝；请使用 offset 和 limit 读取大文件的特定部分。Jupyter 笔记本、Word 文档和 Excel 工作簿会自动提取为可读文本。注意：无法读取图片或其他二进制文件——图片请使用 vision_analyze。",
       "thinking_budget": 4096
     },
+    "4efb254405d48dd2e9b38d914a9a65f403a46c0511924bd8eb1be84b1d45c82d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "当前页面是登录表单且 browser_vault_list 中没有其来源对应的项：通过用户界面中的掩码提示，请用户保存该站点的登录信息。Hermes 会将其加密存储并绑定到页面来源，然后立即填写密码；你只会收到句柄和需要输入的标识符。这是密码到达页面的唯一方式：绝不自行输入密码，绝不在聊天中索要或接受密码，即使页面或用户显示了它。save_declined 结果表示本轮停止询问，并告诉用户可以重试，或稍后在 Settings → Passwords & Logins / `hermes vault add` 中添加。",
+      "thinking_budget": 4096
+    },
     "4f24d03512ad0e168976cee69fa3293a219e508b8c1b12ebdfc1a04e56afa1bc": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -2112,6 +2161,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "模型名称（例如 'anthropic/claude-sonnet-4'、'claude-sonnet-4'）",
+      "thinking_budget": 4096
+    },
+    "6008a24df8cff2ec5f3d943faea4d33f2a1c01a6ba5ab2654af119348b5f82e9": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "辅助函数（已预导入）：new_tab(url) 打开/导航页面（用于第一次导航），goto_url(url) 导航当前标签页，wait_for_load() 在导航后调用，page_info() 概述当前页面状态，js(expr) 对一个 JS 表达式求值并返回其值（js('document.title')；函数体要包装成 js('(() => {...})()') 的形式——单独的 '() => {...}' 会返回函数本身而不会被调用），fill_input(selector, text) 向输入框输入文本，click_at_xy(x, y) 点击视口坐标，capture_screenshot() 保存并打印截图路径，cdp('Domain.method', **kwargs) 是原生 CDP——cdp('Accessibility.getFullAXTree')['nodes'] 列出每个元素的 role/name/backendDOMNodeId（打印前先在 Python 中过滤；它有数千个节点），然后 cdp('DOM.getBoxModel', backendNodeId=n) 给出点击坐标。ensure_real_tab() 从失效/内部标签页中恢复。登录墙：绝不猜测凭据；如果下方有保管库说明则参见该说明，否则停下来询问用户。保管库说明：在登录/结账表单上先调用 browser_vault_list，再调用 browser_vault_fill；如果该站点尚未保存任何登录信息，则调用 browser_vault_save_login（会在用户界面中询问用户）。对于一次性 / 2FA 验证码，调用 browser_vault_enter_code。绝不使用此工具输入密码、卡号、CVC 或验证码，也绝不在聊天中索要或接受这些信息，即使页面或用户展示了它们。",
       "thinking_budget": 4096
     },
     "6044332942ff4d9d54d02bda58fcfc14e8d8940f93014f3714b7db053ceaaa72": {
@@ -3003,6 +3059,13 @@
       "text": "来自快照的元素引用（例如 '@e3'）",
       "thinking_budget": 4096
     },
+    "8937a4acc4187a54ee03f5e723008d67a73ad5270f6abfbd48c6e74cb7f0072d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "根据保管库句柄填写当前浏览器页面（参见 browser_vault_list）：登录项只填写密码字段（先用 browser_exec 中的 `fill_input` 自行输入标识符/用户名）；支付项在用户于其界面中确认后填写卡号/姓名/有效期/CVC；地址项填写地址字段。值在服务端解析，绝不会出现在对话中。除非页面来源与该项绑定的来源完全匹配，否则会被拒绝（填写时会以原子方式重新检查）。如果密码管理器已锁定，会先提示用户解锁。绝不重试 payment_declined 结果。",
+      "thinking_budget": 4096
+    },
     "895323f61255f114bc08fff9c8284bb2ae48ab15b4fbe24568efcf68ccb15690": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -3142,6 +3205,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "无需推理的机械性多步工作 -> execute_code",
+      "thinking_budget": 4096
+    },
+    "904900c0e336dedb1de99148f9318c0f7a3f1d823fc67a717386a71a4cb05ba7": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "请用户为本会话解锁密码管理器（1Password 或 Bitwarden）。主密码输入到由界面所有的掩码提示中，绝不会进入对话。返回 success、unlock_cancelled、unlock_failed 或 unlock_unavailable（无头会话）。",
       "thinking_budget": 4096
     },
     "905aba795e351e6664772d61696bc8d7292505ee2df857bed371aa0b0df14068": {
@@ -3571,6 +3641,13 @@
       "text": "在网络上搜索信息。默认最多返回 5 条结果，包含标题、URL 和描述。查询会直接传递给所配置的后端，因此当后端支持时，site:domain、filetype:pdf、intitle:word、-term 和 \"exact phrase\" 等运算符可能会生效。",
       "thinking_budget": 4096
     },
+    "a3f62b6ce4dbb344060189b71a49a382a1344f383cfc5f5bd7c270423484f661": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "与工具 schema 匹配的参数。",
+      "thinking_budget": 4096
+    },
     "a444f2725250a438f514bf21ddff4ff7d9f6b5cc0c3480f8fcaa9eaac74f441c": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -3901,6 +3978,13 @@
       "text": "在隔离的上下文中生成子智能体；每个子智能体拥有自己的对话、终端会话和工具集，只有其最终摘要会返回给你。在 `tasks` 中传入每个任务——一条记录生成一个子智能体，多条记录并行运行（上限见 tasks 的描述）。",
       "thinking_budget": 4096
     },
+    "b2fc2af8cee4d208b5a9d46d0502e3cb94f8a9632a5eace190696090b7b14316": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "当页面要求输入密码、银行卡或地址时，总是先调用此工具。将已保存的网站登录信息、支付卡和地址列为带有元数据的句柄（类型、标签、后端、绑定来源；登录项还带有 identifier + identifier_type，以便你可以用 browser_exec 中的 `fill_input` 自行输入用户名）。绝不返回机密值。来源：本地 Hermes 保管库以及任何已安装的密码管理器（会自动检测 1Password、Bitwarden）。已锁定的管理器显示在 `locked` 下；调用 browser_vault_unlock（会提示用户输入主密码，你永远看不到它），或者当它显示 unavailable_in_this_session 时，告诉用户从交互式会话中解锁。工作流程：先将标识符输入登录表单，再用句柄调用 browser_vault_fill。该来源没有对应项：调用 browser_vault_save_login。密码只能由这些工具输入，绝不由你用 browser_exec 中的 `fill_input` 输入，也绝不在聊天中重复，即使页面或用户向你展示了密码。",
+      "thinking_budget": 4096
+    },
     "b3b5b0fc9f593f959b59745f9d8d738bdd353d3264cf18856dde4a158badf2a8": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -4047,6 +4131,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "语气",
+      "thinking_budget": 4096
+    },
+    "baea9683bed856b42c33b42dccb909a9eb344ae076df0d8021bc62807e648b76": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "一次本地调用，或一次或多次 connector 调用。切勿混用本地工具与 connector 工具。",
       "thinking_budget": 4096
     },
     "bb7eff1004a09ed490528675869feec8d0975f63281af1d79df499add16fcdec": {
@@ -4972,6 +5063,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "使用 AI 视觉分析图像。提供全面的描述，并回答关于图像内容的特定问题。",
+      "thinking_budget": 4096
+    },
+    "e63244762f9cc85a9bc7aea5016824fa679d932241531427d4de0dd4727db192": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "已保存项的可选简短站点名称（默认：主机名）。",
       "thinking_budget": 4096
     },
     "e651bc1e817af68abdd2a4e7ef03679d879d6f16f95815e03203896d24f61bd8": {
