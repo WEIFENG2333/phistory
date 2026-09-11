@@ -6809,6 +6809,13 @@
       "text": "web_search — Web Search",
       "thinking_budget": 4096
     },
+    "a8a8f90717f4bb0dcacd3a904d7fc981a0187a202bdb0aff6c09545dce682349": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "今天是 2026-09-11；当前工作目录：'$PHISTORY_WORKSPACE'。不要在回复中重复此信息。",
+      "thinking_budget": 4096
+    },
     "a8a9ed9e7a264d670061f61be72f0d954a066f751aa84eb4319d3fcc9bb6c712": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
