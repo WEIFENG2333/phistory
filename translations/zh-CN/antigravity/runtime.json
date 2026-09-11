@@ -770,6 +770,13 @@
       "text": "轮播图",
       "thinking_budget": 4096
     },
+    "4d7057bc962a5936ce328f724a01f67e8c43886abd4a83a5a59b7ff82b90b3dc": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "策略性地使用 GitHub 风格的警示框来强调关键信息。不要连续放置或嵌套：\n  > [!NOTE] 背景信息、实现细节或说明\n  > [!TIP] 性能优化、最佳实践或效率建议\n  > [!IMPORTANT] 必要要求、关键步骤或必须了解的信息\n  > [!WARNING] 破坏性变更、兼容性问题或潜在问题\n  > [!CAUTION] 可能导致数据丢失或安全漏洞的高风险操作",
+      "thinking_budget": 4096
+    },
     "4dbbc631ad0eba2ad9fd15885453ccdfe7f2750a7faacbef009c4c740afe4c33": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",
@@ -1469,6 +1476,13 @@
       "text": "如何引用对话",
       "thinking_budget": 4096
     },
+    "9747f23aee0f7cdbfa235f32ea65eba3ae6f2953fad1d285da81da803a56bcdc": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "**重要**：如果要在 artifact 中嵌入某个文件，而该文件尚未位于 <appDataDir>/brain/<conversation-id>，必须先将该文件复制到 artifacts 目录，然后再嵌入。只嵌入位于 artifacts 目录中的文件。始终使用其绝对路径 `![caption](/absolute/path)`。",
+      "thinking_budget": 4096
+    },
     "9821287c46ccc89b780540f109f3346bc08dc01fbe418abf148c8c02c1bef7a5": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -1693,6 +1707,13 @@
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",
       "text": "**标题标签**：为每个页面提供恰当、具有描述性的标题标签，",
+      "thinking_budget": 4096
+    },
+    "b34a51b8c2a6178121903e1c6fa685134ea5a882ec9d7f0688c597714e1f5125": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "使用 [link text](file:///absolute/path/to/file#L123-L145) 格式链接到行范围。",
       "thinking_budget": 4096
     },
     "b34a88bff0e3a35af56ab7684d7ce765d82cf8adbfed938345f41077a95b6324": {
@@ -1938,6 +1959,13 @@
       "text": "每个选项的文本，格式化为用户的回答。必须至少有 2 个选项。不要为问题添加 'Other' 选项。",
       "thinking_budget": 4096
     },
+    "cd843265bea55b82563c817f43f932b38fb42ab10eb7819e6a9a7999a7846a6d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "文件链接",
+      "thinking_budget": 4096
+    },
     "ce29d2e068d3b8f2c855bc039d9c9dbbcee630c41291e481cbe71fa1bdd08c34": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",
@@ -1972,6 +2000,13 @@
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",
       "text": "**一次性定时器**：为指定时长设置一个定时器，到期时会以你的 Prompt 通知你。你可以使用 TimerCondition 控制提前终止行为：",
+      "thinking_budget": 4096
+    },
+    "d260daae41adedeb6cfc2f933b765556bd810156b40711123ea9456b9e6e52eb": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "简单的一次性回答或非常短的段落内容——直接回复即可",
       "thinking_budget": 4096
     },
     "d2a9450f4c00b6b0398e2693e318962dd2e3985326315e41b46673352e6e51d7": {
@@ -2052,6 +2087,13 @@
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",
       "text": "斜杠命令是聊天界面中面向用户的快捷方式（例如输入 `/goal` 或 `/schedule`），用于自动执行复杂的工作流或触发专门的智能体行为。",
+      "thinking_budget": 4096
+    },
+    "da44d8cdf12afa6774bc452e8e32c63932edcc596c47f2e15dc021fd2e502368": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "使用 ````carousel syntax with `<!-- slide -->` HTML 注释来按顺序展示相关的 markdown 片段（前后对比、UI 演进、替代方案、分步演示）。四个反引号可以在幻灯片中嵌套代码块。",
       "thinking_budget": 4096
     },
     "dace8a142f76de96b516446bbc08a72b1a323c82c8ff112b2168f37002fb8f4d": {
@@ -2294,6 +2336,13 @@
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",
       "text": "简要的 2-5 个词的摘要，说明此工具正在做什么。首字母大写方式与句子相同。一些示例：'Analyzing directory'、'Searching the web'、'Editing file'、'Viewing file'、'Running command'、'Semantic searching'。",
+      "thinking_budget": 4096
+    },
+    "f44b963ad0c570e1265551924580236adfcddb92accf416fc8f682afdfedd7ac": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "使用语言为 `mermaid` 的围栏代码块创建 mermaid 图表，以可视化呈现关系、工作流和架构。",
       "thinking_budget": 4096
     },
     "f455c9ebfdf2e81f0dce4eb21fd5e1df23f1bafd6c7c9223f29399a0601d44fa": {

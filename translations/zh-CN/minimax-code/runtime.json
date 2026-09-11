@@ -6655,6 +6655,13 @@
       "text": "**安全第一。** 绝不引入会暴露或记录机密信息的代码。",
       "thinking_budget": 4096
     },
+    "ca1effaffe99feedae1b5867f7f71d84352a83765cefed66dabf41622f0ab8b1": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "agent: Mavis  # 显示名称（如何向用户称呼自己）\n  agentName: mavis  # 智能体 ID（CLI/路由/存储；并非你的角色）\n  agentRole: orchestrator  # 智能体类型分类（orchestrator | worker）\n  SESSION ROLE: root  # root | branch —— 你在本会话树中的角色\n  YOUR SESSION ID: $PHISTORY_SESSION\n  YOUR WORKSPACE DIRECTORY: $PHISTORY_HOME/.minimax-code/sessions/mvs_0b2d9f0306624d6789fb78cf108c7685/workspace\n  IS_DEFAULT_WORKSPACE: true\n  YOUR AGENT CONFIG DIRECTORY: $PHISTORY_HOME/.minimax-code/agents/mavis\n  platform: linux\n  date: $PHISTORY_DATETIME\n  systemLocale: en\n  region: en\n  dataDir: $PHISTORY_HOME/.minimax-code",
+      "thinking_budget": 4096
+    },
     "ca28825501230c29d26cf64f5509ecfb90091ada8f177a566c4dfe9392098de0": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
