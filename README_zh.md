@@ -41,7 +41,7 @@ uv sync --all-groups
 uv run phistory capture --latest --agents claude-code,codex,dsh,antigravity,grok,minimax-code,kimi-code,mimo,openclaw,hermes,kimi,opencode,pi,omp
 
 # 只抓取 Codex 的指定快照。
-uv run phistory capture --latest --agents codex --variants default,gpt-5.5,gpt-5.6
+uv run phistory capture --latest --agents codex --variants default,gpt-5.6-sol,gpt-5.6-terra,gpt-5.6-luna,gpt-5.5
 
 # 回填某个 agent 的历史版本区间。
 uv run phistory backfill claude-code --from 2.1.113 --to latest
@@ -84,7 +84,7 @@ python -m http.server --directory .phistory-cache/site
 | Agent | 最新版本 | 版本数 | 快照数 | 最近抓取 |
 | --- | --- | ---: | ---: | --- |
 | Claude Code | [2.1.268 - 2026-09-10](captures/claude-code/2.1.268/variants/default/prompt.md) | 413 | 413 | 2026-09-10 22:44 UTC |
-| Codex CLI | [0.154.0 - 2026-09-09](captures/codex/0.154.0/variants/default/prompt.md) | 88 | 122 | 2026-09-09 22:42 UTC |
+| Codex CLI | [0.154.0 - 2026-09-09](captures/codex/0.154.0/variants/default/prompt.md) | 88 | 125 | 2026-09-09 22:42 UTC |
 | DeepSeek Harness | [0.1.5-rc.1 - 2026-09-10](captures/dsh/0.1.5-rc.1/variants/default/prompt.md) | 10 | 51 | 2026-09-10 06:35 UTC |
 | Antigravity CLI | [1.2.1 - 2026-09-11](captures/antigravity/1.2.1/variants/default/prompt.md) | 44 | 44 | 2026-09-11 11:44 UTC |
 | Grok Build | [1.0.25 - 2026-09-09](captures/grok/1.0.25/variants/default/prompt.md) | 133 | 133 | 2026-09-09 19:59 UTC |
