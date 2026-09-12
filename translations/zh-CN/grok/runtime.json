@@ -714,6 +714,13 @@
       "text": "仓库中通常包含名为 `AGENTS.md`、`Agents.md`、`Claude.md` 或 `AGENT.md` 的项目指令文件。这些文件可以出现在仓库中的任何位置。它们为在代码库中工作提供指令或上下文。",
       "thinking_budget": 4096
     },
+    "19b3071d4bf87cb8990b976139c75c7c33e258b8e246dad45dba82974352204c": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "**general-purpose**：用于多步骤任务的通用智能体。可访问：run_terminal_command、read_file、search_replace、list_dir、grep、kill_command_or_subagent、todo_write、get_command_or_subagent_output、wait_commands_or_subagents、scheduler_create、scheduler_delete、scheduler_list、monitor、search_tool、use_tool、web_search、image_gen、image_edit、image_to_video、reference_to_video 和 write。",
+      "thinking_budget": 4096
+    },
     "19dd6ea76310e7ae08c669d9d747ae864fdd858e45225d1df1292f1b99258be6": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -929,6 +936,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "最长等待时间（毫秒），最大为 3600000（约 1 小时）。正值表示等待完成；省略或传入 0 则进行非阻塞的状态轮询。",
+      "thinking_budget": 4096
+    },
+    "20685eaf00473f02559d18477d460f7db500e7f6fdeb00368978f0bff26901f7": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "**plan**：负责规划实现策略的软件架构师。可访问：read_file、list_dir、grep、todo_write、web_search、image_gen、image_edit、image_to_video 和 reference_to_video。",
       "thinking_budget": 4096
     },
     "20966a2f44f245060194c5288d99efac96d63fbbf0116ac5457aebf8e097d860": {
@@ -1751,6 +1765,13 @@
       "text": "不要删除已有注释，除非你正在删除它们所描述的代码，或者你确定它们是错误的。在你看来毫无用处的注释，可能编码了当前 diff 中看不到的约束或过去 bug 留下的教训。",
       "thinking_budget": 4096
     },
+    "3c756495fec443015694e26a67351e90d9e42f92f61662f8321cb12c46858f22": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "本次会话的草稿文件是 $PHISTORY_HOME/.grok/sessions/%2Ftmp%2Fphistory-work-alc7_ofp/01a09448-d65c-7e01-ac68-27e9dd9c8591/feedback_drafts.json。\n如果用户的反馈可以从文档中得到解答（例如 UI 元素位置或安装设置），请在本地或在线阅读 Grok Build 文档，并在创建草稿的同时给出解答。",
+      "thinking_budget": 4096
+    },
     "3c818949cbe98a2a85dad659a018b1ea613b18129bccd1275eb0add5140ff00a": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -1819,6 +1840,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "输出模式：\"content\" 显示匹配的行（支持 -A/-B/-C 上下文、-n 行号、head_limit），\"files_with_matches\" 只显示文件路径（支持 head_limit），\"count\" 显示匹配计数（支持 head_limit）。默认为 \"content\"。",
+      "thinking_budget": 4096
+    },
+    "3d9cdcc4ac16bb496870dc5c34dcd24e84db85b48682e821bf1abf41c84ada29": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "当用户在提示栏中单独输入 `/feedback` 时，表单会打开并显示 Write 和 Drafts 两个标签页。Write 标签页仅供用户手写反馈。\n`/feedback <text>` 会立即发送用户的报告，无需你参与。仅当用户明确要求你更新现有反馈草稿时，才使用 draft_id 字段。\n当 draft_id 已设置时，更新该现有草稿。不要创建重复的草稿。draft_id 只是一个工具参数。绝不要将它写入 title、details 或 area。",
       "thinking_budget": 4096
     },
     "3da474b08fd7318607315b10442d1993bbee429b610ea999209e7deb43273a04": {
@@ -3161,6 +3189,13 @@
       "text": "视频生成的时长，为 6 秒或 10 秒。除非用户要求更长时间，否则默认为 6 秒。",
       "thinking_budget": 4096
     },
+    "6e4b46171f860411a606a9c8e17e1d225bc998aaee9f52089724a15dc41d1800": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "保存或更新用户反馈，供日后审阅。反馈以本地草稿形式存储，未经 Grok TUI 中 `/feedback` Drafts 标签页的明确批准，绝不会发送。此工具不打开任何 UI，也不会停止当前回合。",
+      "thinking_budget": 4096
+    },
     "6e86ee720963727df8da895c155f0a6e4e1524584a7198ebd7056fb46586de40": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -3348,6 +3383,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "明确告诉智能体你期望它编写代码还是仅做研究（搜索、读取文件、抓取网页等），因为它并不了解用户的意图",
+      "thinking_budget": 4096
+    },
+    "753182e6f8e8c9f71159c2e4eea7c8fa88e276a7c342350ed55665b650a38b96": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "**explore**：快速、只读的智能体，专用于代码库探索。可访问：read_file、list_dir、grep、web_search、image_gen、image_edit、image_to_video 和 reference_to_video。",
       "thinking_budget": 4096
     },
     "757fbf7683e08b91fc8546e45f0e8c39838a5721257ed7fa48d653f3e10b7519": {
@@ -6408,6 +6450,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "开始着手某个交付物时：\n  update_goal(deliverables: [{id: 1, title: \"Setup project\", status: \"in_progress\"}])",
+      "thinking_budget": 4096
+    },
+    "db1a41cf7a782ee96bc18445eaa16de01b72ebd906cbd21189bde9b74afabc0d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "起草反馈并结束你的回合后，告诉用户草稿已为本次会话保存在本地。在 Grok CLI 中，他们通过输入 `/feedback` 并打开 Drafts 标签页来审阅和发送；如果使用其他客户端，请让他们先在 Grok CLI 中恢复此会话。",
       "thinking_budget": 4096
     },
     "db34e0eddff4c2ca00e05a98fbcb649a8dc7e70601bf96dfd3cfaa66a39d4910": {

@@ -91,6 +91,13 @@
       "text": "**不使用标题上方的 biscuit/pill 徽章**：放置在主标题正上方、带脉动圆点的 biscuit/pill 徽章。",
       "thinking_budget": 4096
     },
+    "0535ae64fe22bcc2564d5e5e75fdb574163846d64cfda6174cd992ee99ce5c74": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "创建 artifact 时，始终提供 ArtifactMetadata。创建非 artifact 文件时，不要提供它。",
+      "thinking_budget": 4096
+    },
     "056dc9c7e1bb975496f27c5b4a08cd7a5fdd1a4c0cd5aebc4ea6e6a5c012c5d3": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",
@@ -1362,6 +1369,13 @@
       "text": "如果为 true，则在找到 'targetContent' 的多处出现时，会将它们全部替换为 'replacementContent'。否则，若找到多处出现，将返回错误。",
       "thinking_budget": 4096
     },
+    "8ae6243fce1f42f599c0f78b4d6cc9ddc248b4aa6cf8ef40621d2bcc79b1e08e": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "大于 100 MB 的文件无法查看。",
+      "thinking_budget": 4096
+    },
     "8c6e3051f5676a721323a0c5c2052652a6d6331ff33d955671c33e200ed39239": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",
@@ -2270,6 +2284,13 @@
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",
       "text": "如果要对同一个文件进行多处编辑，请改用 multi_replace_file_content 工具。不要尝试用新内容替换全部现有内容，这样做的开销非常高。",
+      "thinking_budget": 4096
+    },
+    "ed3c78409cd555837a6eddb766872e844417e37058a1632d30fecbc45ce159b5": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "定义 artifact 属性的元数据。仅在 artifact 目录中创建 artifact 文件时才提供。创建非 artifact 文件时，省略此字段。",
       "thinking_budget": 4096
     },
     "ed76379991d3b754192fd54a6a2ca5a6f4d97c76876bce87411cde3e72b24df5": {
