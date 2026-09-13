@@ -2769,6 +2769,13 @@
       "text": "标记为 **blocked**——处于打开状态但正在等待外部输入；不计入停止时的未完成 todo 提醒",
       "thinking_budget": 4096
     },
+    "451b53c5c75eb63d383ce3597f33c5787bb3b79dc59f62e207019602a4b90c5d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "今天是 2026-09-13；当前工作目录为 '$PHISTORY_WORKSPACE'。不要在回复中重复此信息。",
+      "thinking_budget": 4096
+    },
     "452648f9a530d33584ba7437db5f97492c4f03aefdc99ab91b94594884ea4c1f": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
