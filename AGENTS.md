@@ -50,7 +50,7 @@ Phistory does not call the real model provider when exporting prompts. It relies
 Typical latest capture:
 
 ```bash
-uv run phistory capture --latest --agents claude-code,codex,dsh,antigravity,grok,minimax-code,kimi-code,mimo,openclaw,hermes,kimi,opencode,pi,omp
+uv run phistory capture --latest --agents claude-code,codex,dsh,antigravity,grok,minimax-code,kimi-code,mimo,openclaw,hermes,kimi,opencode,pi,omp,qwen-code
 ```
 
 For each agent/version/variant, the flow is:
@@ -101,6 +101,7 @@ Current agents are defined in `phistory/registry.py`:
 - `opencode`: npm package `opencode-ai`, tap client `opencode`, reverse tap mode so opencode can fetch its model registry while the model request is redirected locally.
 - `pi`: npm package `@earendil-works/pi-coding-agent`, tap client `pi`, isolated Pi provider config.
 - `omp`: npm package `@oh-my-pi/pi-coding-agent` for version discovery, official `can1357/oh-my-pi` release binary for installation, tap client `omp`, isolated Oh My Pi provider config.
+- `qwen-code`: npm package `@qwen-code/qwen-code`, tap client `qwen` (generic forward-proxy capture), fake OpenAI-compatible provider env (`OPENAI_API_KEY` + `OPENAI_MODEL` + `OPENAI_BASE_URL`).
 
 The DSH Web driver exchanges the printed local launch URL for a session cookie when authentication is required. It supports Remote RPC and legacy RPC by endpoint discovery. The PTC archive variant remains `code`; current releases call its preset `ptc`, and older releases can use the archive variant ID when the server reports it as available. Driver-observed preset IDs are saved in `meta.json` alongside model and tool observations.
 
@@ -136,7 +137,7 @@ uv run pytest
 For capture-affecting changes, also run a local latest smoke:
 
 ```bash
-uv run phistory --root /tmp/phistory-smoke --cache-dir /tmp/phistory-smoke-cache capture --latest --agents claude-code,codex,dsh,antigravity,grok,minimax-code,kimi-code,mimo,openclaw,hermes,kimi,opencode,pi,omp --force
+uv run phistory --root /tmp/phistory-smoke --cache-dir /tmp/phistory-smoke-cache capture --latest --agents claude-code,codex,dsh,antigravity,grok,minimax-code,kimi-code,mimo,openclaw,hermes,kimi,opencode,pi,omp,qwen-code --force
 ```
 
 For generated artifacts:
