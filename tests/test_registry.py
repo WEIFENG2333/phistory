@@ -30,11 +30,25 @@ def test_get_agent_has_capture_contract():
     assert agent.package == "@openai/codex"
     assert agent.tap_client == "codex"
     assert agent.fake_chatgpt_auth
+    assert agent.hidden_capture_variants == ("gpt-5.6",)
+    assert agent.default_variant.label == "Default"
     assert "--" in agent.default_variant.run_args
+    assert "--model" not in agent.default_variant.run_args
     assert [(variant.id, variant.dimensions) for variant in agent.variants] == [
+        ("gpt-5.6-sol", {"model": "gpt-5.6-sol"}),
+        ("gpt-5.6-terra", {"model": "gpt-5.6-terra"}),
+        ("gpt-5.6-luna", {"model": "gpt-5.6-luna"}),
         ("gpt-5.5", {"model": "gpt-5.5"}),
-        ("gpt-5.6", {"model": "gpt-5.6"}),
     ]
+    assert {variant.id: variant.min_version for variant in agent.variants} == {
+        "gpt-5.6-sol": "0.144.0",
+        "gpt-5.6-terra": "0.144.0",
+        "gpt-5.6-luna": "0.144.0",
+        "gpt-5.5": "0.125.0",
+    }
+    for variant in agent.variants:
+        model_index = variant.run_args.index("--model")
+        assert variant.run_args[model_index + 1] == variant.dimensions["model"]
 
 
 def test_claude_code_uses_full_prompt_surface_with_isolated_sessions():

@@ -41,7 +41,7 @@ uv sync --all-groups
 uv run phistory capture --latest --agents claude-code,codex,dsh,antigravity,grok,minimax-code,kimi-code,mimo,openclaw,hermes,kimi,opencode,pi,omp
 
 # Capture only selected Codex snapshots.
-uv run phistory capture --latest --agents codex --variants default,gpt-5.5,gpt-5.6
+uv run phistory capture --latest --agents codex --variants default,gpt-5.6-sol,gpt-5.6-terra,gpt-5.6-luna,gpt-5.5
 
 # Capture a historical version range for one agent.
 uv run phistory backfill claude-code --from 2.1.113 --to latest
@@ -84,7 +84,7 @@ Last capture update: 2026-09-18 11:41 UTC
 | Agent | Latest | Versions | Snapshots | Last Captured |
 | --- | --- | ---: | ---: | --- |
 | Claude Code | [2.1.276 - 2026-09-18](captures/claude-code/2.1.276/variants/default/prompt.md) | 421 | 421 | 2026-09-18 06:31 UTC |
-| Codex CLI | [0.155.0 - 2026-09-17](captures/codex/0.155.0/variants/default/prompt.md) | 89 | 125 | 2026-09-18 00:44 UTC |
+| Codex CLI | [0.155.0 - 2026-09-17](captures/codex/0.155.0/variants/default/prompt.md) | 89 | 128 | 2026-09-18 00:44 UTC |
 | DeepSeek Harness | [0.1.5-rc.2 - 2026-09-10](captures/dsh/0.1.5-rc.2/variants/default/prompt.md) | 11 | 57 | 2026-09-17 13:44 UTC |
 | Antigravity CLI | [1.2.6 - 2026-09-18](captures/antigravity/1.2.6/variants/default/prompt.md) | 49 | 49 | 2026-09-18 06:31 UTC |
 | Grok Build | [1.0.34 - 2026-09-16](captures/grok/1.0.34/variants/default/prompt.md) | 135 | 135 | 2026-09-16 17:14 UTC |
