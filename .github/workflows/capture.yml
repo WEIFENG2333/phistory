@@ -15,7 +15,7 @@ concurrency:
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
   GH_TOKEN: ${{ github.token }}
-  CAPTURE_AGENTS: claude-code,codex,dsh,antigravity,grok,minimax-code,kimi-code,mimo,openclaw,hermes,kimi,opencode,pi,omp
+  CAPTURE_AGENTS: claude-code,codex,dsh,antigravity,grok,minimax-code,kimi-code,mimo,openclaw,hermes,kimi,opencode,pi,omp,qwen-code
 
 jobs:
   capture:

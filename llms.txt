@@ -28,6 +28,7 @@ Paths in `captures/index.json` are relative to the site root. Archived prompts a
 - [opencode 1.18.32 — Default](https://phistory.cc/captures/opencode/1.18.32/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
 - [Pi 0.87.1 — Default](https://phistory.cc/captures/pi/0.87.1/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
 - [Oh My Pi 18.3.2 — Default](https://phistory.cc/captures/omp/18.3.2/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
+- [Qwen Code 0.22.3 — Default](https://phistory.cc/captures/qwen-code/0.22.3/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
 
 ## Optional
 
