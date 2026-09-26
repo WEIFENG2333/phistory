@@ -240,6 +240,12 @@ def test_render_site_writes_viewer_manifest(tmp_path: Path):
     assert "captures/agent/1.1.0/variants/default/trace.jsonl" in text
     assert "Trace detail" in text
     assert "Raw Request Body" in text
+    assert "Wrap lines" in text
+    assert "traceWrappedSections" in text
+    assert "wrappedSections" in text
+    assert "is-wrapped" in text
+    assert "In-conversation message · <code>role: system</code>" in text
+    assert "block.title === 'System Message'" in text
     assert "Redacted trace" in text
     assert "Redacted Request Body" in text
     assert "toolDeclarations" in text
