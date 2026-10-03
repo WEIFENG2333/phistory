@@ -2,7 +2,7 @@
 
 [中文](README_zh.md)
 
-Phistory tracks how system prompts change across popular coding-agent CLIs like Claude Code, Codex, DeepSeek Harness, Antigravity, Grok Build, MiniMax Code, Kimi Code, MiMo Code, OpenClaw, Hermes, Kimi CLI, opencode, Pi, and Oh My Pi.
+Phistory tracks how system prompts change across popular coding-agent CLIs like Claude Code, Codex, DeepSeek Harness, Antigravity, Grok Build, MiniMax Code, Kimi Code, MiMo Code, OpenClaw, Hermes, Kimi CLI, opencode, Pi, Oh My Pi, and Qwen Code.
 
 Open the web viewer to compare prompt snapshots across versions and see how agent design changes through prompts, tools, policies, and runtime instructions.
 
@@ -36,7 +36,7 @@ Use the hosted viewer at [phistory.cc](https://phistory.cc/). These commands are
 uv sync --all-groups
 
 # Capture the latest release and every configured snapshot for each CLI.
-uv run phistory capture --latest --agents claude-code,codex,dsh,antigravity,grok,minimax-code,kimi-code,mimo,openclaw,hermes,kimi,opencode,pi,omp
+uv run phistory capture --latest --agents claude-code,codex,dsh,antigravity,grok,minimax-code,kimi-code,mimo,openclaw,hermes,kimi,opencode,pi,omp,qwen-code
 
 # Capture only selected Codex snapshots.
 uv run phistory capture --latest --agents codex --variants default,gpt-5.5,gpt-5.6
@@ -71,6 +71,7 @@ python -m http.server --directory .phistory-cache/site
 - opencode (`opencode-ai`)
 - Pi (`@earendil-works/pi-coding-agent`)
 - Oh My Pi (`@oh-my-pi/pi-coding-agent`)
+- Qwen Code (`@qwen-code/qwen-code`)
 
 ## Capture Status
 
@@ -93,6 +94,7 @@ Last capture update: 2026-10-03 12:41 UTC
 | opencode | [1.18.34 - 2026-09-30](captures/opencode/1.18.34/variants/default/prompt.md) | 118 | 118 | 2026-09-30 23:11 UTC |
 | Pi | [1.0.1 - 2026-10-03](captures/pi/1.0.1/variants/default/prompt.md) | 53 | 53 | 2026-10-03 12:41 UTC |
 | Oh My Pi | [18.5.1 - 2026-10-03](captures/omp/18.5.1/variants/default/prompt.md) | 125 | 125 | 2026-10-03 12:41 UTC |
+| Qwen Code | [0.22.3 - 2026-08-28](captures/qwen-code/0.22.3/variants/default/prompt.md) | 1 | 1 | 2026-09-02 08:33 UTC |
 
 ## Project Trend
 
