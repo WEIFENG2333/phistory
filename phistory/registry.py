@@ -28,6 +28,7 @@ def _variant(
     *,
     driver: CaptureDriver = "oneshot",
     dimensions: dict[str, str] | None = None,
+    min_version: str | None = None,
     pty_message: str = "",
 ) -> CaptureVariant:
     return CaptureVariant(
@@ -36,6 +37,7 @@ def _variant(
         run_args=run_args,
         driver=driver,
         dimensions=dimensions or {},
+        min_version=min_version,
         pty_message=pty_message,
     )
 
@@ -86,6 +88,7 @@ CODEX = AgentSpec(
         "CI": "1",
     },
     fake_chatgpt_auth=True,
+    hidden_capture_variants=("gpt-5.6",),
     default_variant=_default(
         (
             "--no-yolo",
@@ -94,9 +97,57 @@ CODEX = AgentSpec(
             "Reply with one short sentence.",
             "--skip-git-repo-check",
             "--json",
-        )
+        ),
     ),
     variants=(
+        _variant(
+            "gpt-5.6-sol",
+            "GPT-5.6 Sol",
+            (
+                "--no-yolo",
+                "--",
+                "exec",
+                "Reply with one short sentence.",
+                "--model",
+                "gpt-5.6-sol",
+                "--skip-git-repo-check",
+                "--json",
+            ),
+            dimensions={"model": "gpt-5.6-sol"},
+            min_version="0.144.0",
+        ),
+        _variant(
+            "gpt-5.6-terra",
+            "GPT-5.6 Terra",
+            (
+                "--no-yolo",
+                "--",
+                "exec",
+                "Reply with one short sentence.",
+                "--model",
+                "gpt-5.6-terra",
+                "--skip-git-repo-check",
+                "--json",
+            ),
+            dimensions={"model": "gpt-5.6-terra"},
+            min_version="0.144.0",
+        ),
+        _variant(
+            "gpt-5.6-luna",
+            "GPT-5.6 Luna",
+            (
+                "--no-yolo",
+                "--",
+                "exec",
+                "Reply with one short sentence.",
+                "--model",
+                "gpt-5.6-luna",
+                "--skip-git-repo-check",
+                "--json",
+            ),
+            dimensions={"model": "gpt-5.6-luna"},
+            min_version="0.144.0",
+        ),
         _variant(
             "gpt-5.5",
             "GPT-5.5",
@@ -111,21 +162,7 @@ CODEX = AgentSpec(
                 "--json",
             ),
             dimensions={"model": "gpt-5.5"},
-        ),
-        _variant(
-            "gpt-5.6",
-            "GPT-5.6",
-            (
-                "--no-yolo",
-                "--",
-                "exec",
-                "Reply with one short sentence.",
-                "--model",
-                "gpt-5.6",
-                "--skip-git-repo-check",
-                "--json",
-            ),
-            dimensions={"model": "gpt-5.6"},
+            min_version="0.125.0",
         ),
     ),
 )

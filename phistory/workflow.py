@@ -40,7 +40,7 @@ def capture_latest(
         except Exception as exc:
             results.append(CaptureResult(agent_id, "unknown", "default", "failed", error=str(exc)))
             continue
-        for variant in variants:
+        for variant in _variants_for_version(variants, version):
             try:
                 result = capture_target(
                     CaptureTarget(agent, version, variant, root),
@@ -114,7 +114,7 @@ def iter_backfill(
         versions = versions[:limit]
     variants = _selected_variants(agent, tuple(variant_ids) if variant_ids is not None else None)
     for version in versions:
-        for variant in variants:
+        for variant in _variants_for_version(variants, version):
             yield capture_target(
                 CaptureTarget(agent, version, variant, root),
                 cache_dir=cache_dir,
@@ -127,6 +127,10 @@ def _selected_variants(agent: AgentSpec, variant_ids: tuple[str, ...] | None) ->
     if variant_ids is None:
         return agent.capture_variants
     return tuple(agent.variant(variant_id) for variant_id in variant_ids)
+
+
+def _variants_for_version(variants: tuple[CaptureVariant, ...], version: VersionInfo) -> tuple[CaptureVariant, ...]:
+    return tuple(variant for variant in variants if variant.supports_version(version.version))
 
 
 def rerender_archive(root: Path, agent_ids: Iterable[str] | None = None) -> list[RerenderResult]:
