@@ -1325,6 +1325,13 @@
       "text": "`app.relay: true` → 通过 omp browser relay 操控用户自己的 Chrome 标签页（自动启动；需已安装 OMP Browser Relay 扩展）。`app.target` 按 URL/标题子串选取标签页；未提供时，采用当前可见的标签页，且不抢占焦点。",
       "thinking_budget": 4096
     },
+    "1abafd388ace607e65284fd408d4e0132ed2c4cb5a42d2491649477793a1cb66": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "今天：2026-10-10；当前工作目录：'$PHISTORY_WORKSPACE'。不要在回复中重复此信息。",
+      "thinking_budget": 4096
+    },
     "1af3e22a10d294b6f26854c0827552593dfb94356ca8b8ffaae3f062a6eac398": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",

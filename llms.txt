@@ -27,7 +27,7 @@ Paths in `captures/index.json` are relative to the site root. Archived prompts a
 - [Kimi CLI 1.51.0 — Default](https://phistory.cc/captures/kimi/1.51.0/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
 - [opencode 1.18.35 — Default](https://phistory.cc/captures/opencode/1.18.35/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
 - [Pi 1.1.0 — Default](https://phistory.cc/captures/pi/1.1.0/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
-- [Oh My Pi 18.8.7 — Default](https://phistory.cc/captures/omp/18.8.7/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
+- [Oh My Pi 18.8.9 — Default](https://phistory.cc/captures/omp/18.8.9/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
 
 ## Optional
 
