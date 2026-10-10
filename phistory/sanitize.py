@@ -20,6 +20,24 @@ _CAPTURE_PATHS = (
 )
 
 _VOLATILE = (
+    (re.compile(r"Today's date is [A-Z][a-z]+, [A-Z][a-z]+ \d{1,2}, \d{4}\."), "Today's date is $PHISTORY_DATE."),
+    (
+        re.compile(r"The current date is: [A-Z][a-z]+, [A-Z][a-z]+ \d{1,2}, \d{4}\."),
+        "The current date is: $PHISTORY_DATE.",
+    ),
+    (re.compile(r"(?m)^My operating system is: \w+$"), "My operating system is: $PHISTORY_OS"),
+    (
+        re.compile(r"(?:\.\./|\.\.)+\$PHISTORY_HOME/\.qwen/output-language\.md"),
+        "$PHISTORY_HOME/.qwen/output-language.md",
+    ),
+    (
+        re.compile(r"(?:\.\./)+phistory-home-[A-Za-z0-9_-]+/\.qwen/output-language\.md"),
+        "$PHISTORY_HOME/.qwen/output-language.md",
+    ),
+    (
+        re.compile(r"\$PHISTORY_HOME/\.qwen/projects/[^/\s]+"),
+        "$PHISTORY_HOME/.qwen/projects/$PHISTORY_PROJECT",
+    ),
     (re.compile(r"\bcch=[^;\s]+"), "cch=<normalized>"),
     # Local service URLs carry a per-run port; the scheme marks them as live endpoints.
     (re.compile(r"http://(?:127\.0\.0\.1|localhost):\d+"), "http://127.0.0.1:$PHISTORY_PORT"),
