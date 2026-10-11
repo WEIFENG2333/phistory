@@ -3045,6 +3045,13 @@
       "text": "除非用户明确要求，绝不跳过钩子（--no-verify、--no-gpg-sign 等）",
       "thinking_budget": 4096
     },
+    "dc06c59abc13f4ed7c485590f030613955b9a1861bc4ed8c9032ce4e09014aed": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "工作目录：$PHISTORY_WORKSPACE\n  工作区根文件夹：/\n  目录是否为 git 仓库：否\n  平台：linux\n  今天的日期：2026 年 10 月 11 日（星期日）",
+      "thinking_budget": 4096
+    },
     "dd4af27b654c021e5ff697395a6bd74b106f3014f5e6ac9f1d612e40d3ea986a": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
