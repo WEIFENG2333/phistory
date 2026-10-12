@@ -1,0 +1,51 @@
+{
+  "agent_id": "opencode",
+  "agent": "opencode",
+  "package": "opencode-ai",
+  "version": "1.19.0",
+  "variant": {
+    "id": "default",
+    "label": "Default",
+    "dimensions": {}
+  },
+  "requested": {},
+  "observed": {
+    "provider": "openai-responses",
+    "model": "gpt-4.1",
+    "tool_count": 10
+  },
+  "published_at": "2026-10-11T01:38:53.143Z",
+  "tarball_url": "https://registry.npmjs.org/opencode-ai/-/opencode-ai-1.19.0.tgz",
+  "binary_version": "1.19.0",
+  "captured_at": "2026-10-11T02:07:30.001733+00:00",
+  "tap_client": "opencode",
+  "target": "claude-tap capture-only",
+  "client_exit_code": 0,
+  "duration_seconds": 10.528,
+  "command": [
+    "python",
+    "-m",
+    "claude_tap",
+    "run",
+    "opencode",
+    "--no-yolo",
+    "--export-prompt",
+    ".tap/tap-export.md",
+    "--no-live",
+    "--no-open",
+    "--no-update-check",
+    "--output-dir",
+    ".tap",
+    "--mode",
+    "reverse",
+    "--",
+    "run",
+    "Reply with one short sentence.",
+    "--model",
+    "openai/gpt-4.1",
+    "--format",
+    "json",
+    "--dir",
+    "."
+  ]
+}
