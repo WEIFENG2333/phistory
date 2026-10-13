@@ -8635,6 +8635,13 @@
       "text": "经策略批准的 MCP 和客户端工具也可能可以通过搜索发现。\n使用 tool_search 获取紧凑的输入签名，或使用 tool_describe 获取完整 schema。延迟加载的名称不可直接调用。调用 tool_call，在 id 中传入结果的 id 或名称，并在 args 中传入所有工具参数。即使其他指导直接点名某个延迟工具，也要使用这个包装器。\nAGENTS.md 的 Tools 部分指导用法；它从不授予可用性。\n长时间等待：不要快速轮询。使用 exec yieldMs 或 process(poll, timeout=<ms>)。\n大型工作：`sessions_spawn`；遵循已接受的完成模式。\n`sessions_spawn`：需要干净上下文 => `context:\"isolated\"`；需要对话记录 => `context:\"fork\"`。\n内部工作默认使用子智能体；仅当用户请求或需要可独立回访并引导的单独会话时，才使用 `visible:true`。\n同一项工作被第 3 次提出时：先完成它，然后提议一个例程。先检查 `automations` 列表；绝不重复已有的。\n提升 = 直白地重述计划+任务，获得同意，创建它（交付默认设置以此为准），然后强制运行 `run` 一次作为可见的测试；测试失败 => 如实说明并将其移除。\n绝不循环轮询 `subagents list`/`sessions_list`。宣布子智能体：用 `sessions_yield` 等待。状态仅在按需/干预/调试/请求时提供。\n被问及不在上下文中的其他聊天/群组/会话时：先检查 `sessions_list`/`sessions_search`，再声称无法访问。",
       "thinking_budget": 4096
     },
+    "9d401c16943bb3e6f84ad228c09cfb49421c8f420d1e66d9e580204019f904aa": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "当前日期：2026-10-12\n时区：UTC\n如需确切的当前时间，请使用 `session_status`。",
+      "thinking_budget": 4096
+    },
     "9d492e795ddb5170385b8b90bb075711b71e6e077f8382cf05319ff1cba45a86": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -12519,6 +12526,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "最大行数。",
+      "thinking_budget": 4096
+    },
+    "e3dc71295763f42a8ca3316705109c22a5f08d76ca563894937ccc3170a72550": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "[Mon 2026-10-12 06:25 UTC] 请用一句简短的话回复。",
       "thinking_budget": 4096
     },
     "e4029634e85229ea912760897ff7be920ce5198acd1372ac53add06d3596a1be": {

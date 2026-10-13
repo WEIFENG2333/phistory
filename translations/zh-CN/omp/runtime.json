@@ -5661,6 +5661,13 @@
       "text": "探索",
       "thinking_budget": 4096
     },
+    "79f3cfc5253015fc52699c04d68fa147ef49bf9e93c9c0acf24a574cd3d52620": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "今天是 2026-10-12；当前工作目录为 '$PHISTORY_WORKSPACE'。不要在回复中重复此信息。",
+      "thinking_budget": 4096
+    },
     "7a074fc2db4189047bb3ed337e93f011791bf7fcca42bd424e6aec4f8a01bd61": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -9579,6 +9586,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "每次编辑都会重新编号，并把 `#TAG` 更新为编辑响应中的下一个编号或新的 `read`。",
+      "thinking_budget": 4096
+    },
+    "cca0179ec5cb5170832b620bdb46e68dfe464faf393668df6e059d9c36583cf1": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`name`：驼峰式，不超过 32 个字符，省略时自动生成；按名称称呼智能体。\n`solutionSpace`：描述子智能体问题的开放程度：修复方案或设计是否已给定，还是哪些原因或设计仍待确定。工作量大小并不会扩大它；绝不提及兄弟智能体或协调事宜。（`one fix: rename, names given`；`one fix: slice end in paginate`；`single-flight cache load; races easy to miss`；`several retry API shapes; error classes to choose`；`deadlock cause open, no repro`）\n`tools`：由评测定义，在你的内核中运行。\n子智能体初始为空白；父智能体的 IRC 立即引导；大型载荷通过 `local://<path>` 传递，绝不内联。",
       "thinking_budget": 4096
     },
     "cca356b856171c5b803205aee33d9da890c3fbbc556872b696760e1457adac9e": {
