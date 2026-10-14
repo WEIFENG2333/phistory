@@ -2815,6 +2815,13 @@
       "text": "将系统设置或修复委托给单独的模型轮次。常规状态和会话/工作区检查优先使用你可用的工具。包括 Gateway 重启、配置、频道、插件、智能体、模型/提供商。设置流程通过掩码输入收集凭据；绝不要在聊天中索要凭据。Full Access 会在不请求批准的情况下应用被允许的更改。",
       "thinking_budget": 4096
     },
+    "35a26919e593f0f53a2f37c07261a71fc2aef46ced20c8a983f66f7c999f37b8": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "当前日期：2026-10-13\n时区：UTC\n如需确切的当前时间，请使用 `session_status`。",
+      "thinking_budget": 4096
+    },
     "35a77608c6812a52b2febb2e68b634890e7ba7c6e858950e29bc750d848de1d3": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -8696,6 +8703,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "使用可用的视觉模型分析一张或多张图片。单个路径/URL 请使用 image，多个（最多 20 个）请使用 images。请提供描述要分析内容的提示词。",
+      "thinking_budget": 4096
+    },
+    "9e0b20bc14946a674d03a65aeb36827ab218dafba05af3b89094edc5060c8c79": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "[Tue 2026-10-13 19:29 UTC] 用一句简短的话回复。",
       "thinking_budget": 4096
     },
     "9e37991c36ff9764d58ac6ec7bc47c8a80e2dd10e4a84b739988573b0910a95a": {

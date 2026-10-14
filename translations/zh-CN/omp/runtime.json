@@ -4093,6 +4093,13 @@
       "text": "如果你的工作与其他智能体重叠，或需要使用对方正在改动的文件，请在编辑前先私信对方。",
       "thinking_budget": 4096
     },
+    "572fb8df37c52721b9d450ed6e62bbd423adee336c694c8427a6e3202e4cb635": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "今天是 2026-10-13；当前工作目录为 '$PHISTORY_WORKSPACE'。不要在回复中重复此信息。",
+      "thinking_budget": 4096
+    },
     "5773806482221e8ea8b654e173a65bcfd09e42fefc246e8062a515a67089a2c6": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
