@@ -1,16 +1,16 @@
 {
   "description": "Phistory automatically archives versioned system prompt snapshots from agent CLIs like Claude Code, Codex, DeepSeek Harness, Antigravity, Grok Build, MiniMax Code, Kimi Code, MiMo Code, OpenClaw, Hermes, Kimi CLI, opencode, Pi, Oh My Pi, and Qwen Code.",
   "site": "https://phistory.cc/",
-  "updated_at": "2026-10-13T23:24:42.611414Z",
+  "updated_at": "2026-10-14T22:33:17.938195Z",
   "agents": [
     {
       "agent_id": "claude-code",
       "agent": "Claude Code",
-      "latest_version": "2.1.296",
-      "latest_published_at": "2026-10-09T16:58:10.924Z",
-      "latest_captured_at": "2026-10-09T21:10:07.180459+00:00",
-      "versions": 439,
-      "snapshots": 758
+      "latest_version": "2.1.300",
+      "latest_published_at": "2026-10-14T14:27:26.554Z",
+      "latest_captured_at": "2026-10-14T18:50:01.499249+00:00",
+      "versions": 441,
+      "snapshots": 762
     },
     {
       "agent_id": "codex",
@@ -33,11 +33,11 @@
     {
       "agent_id": "antigravity",
       "agent": "Antigravity CLI",
-      "latest_version": "1.3.4",
-      "latest_published_at": "2026-10-13T05:09:33Z",
-      "latest_captured_at": "2026-10-13T12:05:27.206630+00:00",
-      "versions": 65,
-      "snapshots": 65
+      "latest_version": "1.3.5",
+      "latest_published_at": "2026-10-14T03:16:53Z",
+      "latest_captured_at": "2026-10-14T07:58:19.937306+00:00",
+      "versions": 66,
+      "snapshots": 66
     },
     {
       "agent_id": "claude-tag",
@@ -69,11 +69,11 @@
     {
       "agent_id": "kimi-code",
       "agent": "Kimi Code",
-      "latest_version": "2.1.1",
-      "latest_published_at": "2026-09-24T07:27:15.480Z",
-      "latest_captured_at": "2026-09-24T10:26:38.403213+00:00",
-      "versions": 79,
-      "snapshots": 79
+      "latest_version": "2.2.0",
+      "latest_published_at": "2026-10-14T15:35:26.375Z",
+      "latest_captured_at": "2026-10-14T18:50:19.065770+00:00",
+      "versions": 80,
+      "snapshots": 80
     },
     {
       "agent_id": "mimo",
@@ -132,11 +132,11 @@
     {
       "agent_id": "omp",
       "agent": "Oh My Pi",
-      "latest_version": "18.10.4",
-      "latest_published_at": "2026-10-13T19:54:08.077Z",
-      "latest_captured_at": "2026-10-13T23:24:42.611414+00:00",
-      "versions": 143,
-      "snapshots": 143
+      "latest_version": "18.11.0",
+      "latest_published_at": "2026-10-14T22:10:25.482Z",
+      "latest_captured_at": "2026-10-14T22:33:17.938195+00:00",
+      "versions": 144,
+      "snapshots": 144
     },
     {
       "agent_id": "qwen-code",
@@ -149,6 +149,88 @@
     }
   ],
   "captures": [
+    {
+      "agent_id": "claude-code",
+      "agent": "Claude Code",
+      "version": "2.1.300",
+      "variant_id": "default",
+      "variant_label": "Terminal",
+      "variant_dimensions": {
+        "surface": "terminal"
+      },
+      "observed": {
+        "provider": "anthropic",
+        "model": "claude-opus-5-5",
+        "tool_count": 31,
+        "surface": "interactive-tty"
+      },
+      "published_at": "2026-10-14T14:27:26.554Z",
+      "captured_at": "2026-10-14T18:50:01.499249+00:00",
+      "prompt": "captures/claude-code/2.1.300/variants/default/prompt.md",
+      "trace": "captures/claude-code/2.1.300/variants/default/trace.jsonl",
+      "meta": "captures/claude-code/2.1.300/variants/default/meta.json"
+    },
+    {
+      "agent_id": "claude-code",
+      "agent": "Claude Code",
+      "version": "2.1.300",
+      "variant_id": "sdk",
+      "variant_label": "Headless (-p)",
+      "variant_dimensions": {
+        "surface": "headless"
+      },
+      "observed": {
+        "provider": "anthropic",
+        "model": "claude-opus-5-5",
+        "tool_count": 23
+      },
+      "published_at": "2026-10-14T14:27:26.554Z",
+      "captured_at": "2026-10-14T18:50:02.978299+00:00",
+      "prompt": "captures/claude-code/2.1.300/variants/sdk/prompt.md",
+      "trace": "captures/claude-code/2.1.300/variants/sdk/trace.jsonl",
+      "meta": "captures/claude-code/2.1.300/variants/sdk/meta.json"
+    },
+    {
+      "agent_id": "claude-code",
+      "agent": "Claude Code",
+      "version": "2.1.299",
+      "variant_id": "default",
+      "variant_label": "Terminal",
+      "variant_dimensions": {
+        "surface": "terminal"
+      },
+      "observed": {
+        "provider": "anthropic",
+        "model": "claude-opus-5-5",
+        "tool_count": 31,
+        "surface": "interactive-tty"
+      },
+      "published_at": "2026-10-14T00:23:19.588Z",
+      "captured_at": "2026-10-14T07:58:13.199368+00:00",
+      "prompt": "captures/claude-code/2.1.299/variants/default/prompt.md",
+      "trace": "captures/claude-code/2.1.299/variants/default/trace.jsonl",
+      "meta": "captures/claude-code/2.1.299/variants/default/meta.json"
+    },
+    {
+      "agent_id": "claude-code",
+      "agent": "Claude Code",
+      "version": "2.1.299",
+      "variant_id": "sdk",
+      "variant_label": "Headless (-p)",
+      "variant_dimensions": {
+        "surface": "headless"
+      },
+      "observed": {
+        "provider": "anthropic",
+        "model": "claude-opus-5-5",
+        "tool_count": 23
+      },
+      "published_at": "2026-10-14T00:23:19.588Z",
+      "captured_at": "2026-10-14T07:58:14.639293+00:00",
+      "prompt": "captures/claude-code/2.1.299/variants/sdk/prompt.md",
+      "trace": "captures/claude-code/2.1.299/variants/sdk/trace.jsonl",
+      "meta": "captures/claude-code/2.1.299/variants/sdk/meta.json"
+    },
     {
       "agent_id": "claude-code",
       "agent": "Claude Code",
@@ -20401,6 +20483,24 @@
     {
       "agent_id": "antigravity",
       "agent": "Antigravity CLI",
+      "version": "1.3.5",
+      "variant_id": "default",
+      "variant_label": "Default",
+      "variant_dimensions": {},
+      "observed": {
+        "provider": "gemini",
+        "model": "MODEL_GOOGLE_GEMINI_2_5_FLASH",
+        "tool_count": 11
+      },
+      "published_at": "2026-10-14T03:16:53Z",
+      "captured_at": "2026-10-14T07:58:19.937306+00:00",
+      "prompt": "captures/antigravity/1.3.5/variants/default/prompt.md",
+      "trace": "captures/antigravity/1.3.5/variants/default/trace.jsonl",
+      "meta": "captures/antigravity/1.3.5/variants/default/meta.json"
+    },
+    {
+      "agent_id": "antigravity",
+      "agent": "Antigravity CLI",
       "version": "1.3.4",
       "variant_id": "default",
       "variant_label": "Default",
@@ -24888,6 +24988,24 @@
       "prompt": "captures/minimax-code/3.0.33/variants/default/prompt.md",
       "trace": "captures/minimax-code/3.0.33/variants/default/trace.jsonl",
       "meta": "captures/minimax-code/3.0.33/variants/default/meta.json"
+    },
+    {
+      "agent_id": "kimi-code",
+      "agent": "Kimi Code",
+      "version": "2.2.0",
+      "variant_id": "default",
+      "variant_label": "Default",
+      "variant_dimensions": {},
+      "observed": {
+        "provider": "openai-chat",
+        "model": "kimi-for-coding",
+        "tool_count": 25
+      },
+      "published_at": "2026-10-14T15:35:26.375Z",
+      "captured_at": "2026-10-14T18:50:19.065770+00:00",
+      "prompt": "captures/kimi-code/2.2.0/variants/default/prompt.md",
+      "trace": "captures/kimi-code/2.2.0/variants/default/trace.jsonl",
+      "meta": "captures/kimi-code/2.2.0/variants/default/meta.json"
     },
     {
       "agent_id": "kimi-code",
@@ -32304,6 +32422,24 @@
       "prompt": "captures/pi/0.74.0/variants/default/prompt.md",
       "trace": "captures/pi/0.74.0/variants/default/trace.jsonl",
       "meta": "captures/pi/0.74.0/variants/default/meta.json"
+    },
+    {
+      "agent_id": "omp",
+      "agent": "Oh My Pi",
+      "version": "18.11.0",
+      "variant_id": "default",
+      "variant_label": "Default",
+      "variant_dimensions": {},
+      "observed": {
+        "provider": "openai-responses",
+        "model": "gpt-4.1",
+        "tool_count": 11
+      },
+      "published_at": "2026-10-14T22:10:25.482Z",
+      "captured_at": "2026-10-14T22:33:17.938195+00:00",
+      "prompt": "captures/omp/18.11.0/variants/default/prompt.md",
+      "trace": "captures/omp/18.11.0/variants/default/trace.jsonl",
+      "meta": "captures/omp/18.11.0/variants/default/meta.json"
     },
     {
       "agent_id": "omp",

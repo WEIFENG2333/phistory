@@ -2550,6 +2550,13 @@
       "text": "**重叠是安全的：** 对同一文件的并发编辑会自动解决；最坏情况下，智能体直接通过 IRC 协调。绝不要为了避开文件重叠而缩减或串行化批次。两个前提条件：",
       "thinking_budget": 4096
     },
+    "34dac73f23f648c5ec338f620a000a09d5c159d1ac215af669b79269cb50a2a3": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`read proc://` 列出作业/服务；`read proc://<id>` 查看状态/输出而不消耗送达结果。`write proc://<id>/kill` 取消/停止；省略 `content`。",
+      "thinking_budget": 4096
+    },
     "355570a4282ca96785e9315d860b4778c113e695586266799de7bd2a6d88fa99": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -9315,6 +9322,13 @@
       "text": "TS：容忍注解——`async function $NAME($$$ARGS): $_ { $$$BODY }`。用空的 `out` 进行删除：`{\"pat\":\"console.log($$$)\",\"out\":\"\"}`。",
       "thinking_budget": 4096
     },
+    "c61e4b29b4fbe90c5f66adb092d097dd1b08017ac207c0610340c5684376cc9b": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "结果会自动送达；绝不轮询。完全被阻塞？调用 `wait` 以接收你启动的第一个已结束的作业。\n在其他智能体运行期间，通过 `write agent://<id>` 进行协调（或用 `agent://all` 广播）。",
+      "thinking_budget": 4096
+    },
     "c62ffad88428f672beed26e36b3b015c8b3dbaf05ad9f063e2181816c543b344": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -9369,6 +9383,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "子智能体从空白开始——没有对话历史。父智能体发给子智能体的 IRC 会立即送达，作为引导。\n通过 `local://<path>` URI 传递大型载荷，绝不以内联文本方式传递。",
+      "thinking_budget": 4096
+    },
+    "c862a93cf983791c0c18d47cb180a7ac1a71fb0e5f764d490d86213aad0e785b": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "今天是 2026-10-14；当前工作目录：'$PHISTORY_WORKSPACE'。不要在回复中重复此信息。",
       "thinking_budget": 4096
     },
     "c8e9ce533433740e86d7f4e377e62e218705fbbe1c9c735dc62ba807b83c4c78": {
@@ -9432,6 +9453,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "内嵌 shell 使用简单参数调用真实的二进制程序；它不是完整的 GNU Bash，也不是脚本编写平台。循环、条件判断、heredoc、存在 eval 运行时时的内联解释器脚本（`-e`/`-c`/`--eval`）、多个管道阶段、精确的管道语义，或引号/JSON 转义，都意味着你在编写一个程序 → 使用 `eval` 单元格：可重启、有状态，并且没有 shell 引号陷阱。",
+      "thinking_budget": 4096
+    },
+    "c99f13dbc0f6bf7581e319b0751604717299c6791d291fed6531a1869790956e": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`completed`：子智能体成功返回；其声称的产物未经核实。",
       "thinking_budget": 4096
     },
     "c9f46c26df99d45c3bddcc260f8cd2b1da773eae5f748790863dfee8b07dec8a": {
@@ -11189,6 +11217,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "scout（只读：无编辑/写入/命令工具）",
+      "thinking_budget": 4096
+    },
+    "ef4bfa47658af4ec1457270107ed85c74cc84fc7ab502af776a0d5a6c5fbfb8b": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "作业 ID 仅在进程内有效；已送达的结果很快过期（约 30 秒），未消耗的结果在约 5 分钟内过期。智能体输出/对话记录仍可在 `agent://<id>` / `history://<id>` 处读取。`write agent://<id>` 向活跃的智能体发送消息。",
       "thinking_budget": 4096
     },
     "ef5bbca008257857929c9ef8b87459b8b5e2ae3445ab97d746025cac121f4ef1": {

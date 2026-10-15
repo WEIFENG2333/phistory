@@ -966,6 +966,13 @@
       "text": "先思考最佳方案，然后果断采取行动。",
       "thinking_budget": 4096
     },
+    "2cb0f2eadbd607d0ba6213ad330f5743cabf8e748359a07ac0be21eeedcf4929": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "后台任务完成时会自动通知你，因此你不需要为它们忙等。",
+      "thinking_budget": 4096
+    },
     "2d127e23d5e3b1ce72a02d7aebdab8c4fcf54e2621a0c962f16698ccb6222ad0": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -1217,6 +1224,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "每次 shell 工具调用都会在全新的 shell 环境中执行。shell 变量、当前工作目录的变更以及 shell 历史记录不会在调用之间保留。要在特定目录中运行命令，请传入 `cwd` 参数（或使用绝对路径），而不要依赖先前调用中的 `cd`。",
+      "thinking_budget": 4096
+    },
+    "3b21eefb6ad48e7c73e50c0054c7b44af3613db543dc37ccd012b7ce429e9df5": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "等待对被等待的任务没有副作用：WaitFor 从不停止任务，而中断等待（例如一条新的用户消息）后，每个任务都仍会继续运行。",
       "thinking_budget": 4096
     },
     "3b6709cc6b8e3f52d1097f30278c5dac272fdc44d007b22f69d9014cad793090": {
@@ -1898,6 +1912,13 @@
       "text": "如果摘要确实缺少你继续工作所需的内容，请询问用户或用工具恢复——不要猜测。",
       "thinking_budget": 4096
     },
+    "5d5f2bcc5bd8fa51d27af853422bfe3f3a934c6fe424dfbc2f3a53ec7d890960": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "在调用 WaitFor 之前，先想想与此同时你还能做什么：任务的其他部分、验证先前的工作，或者以一条进度更新结束你的轮次。如果有，就转而去做那件事。",
+      "thinking_budget": 4096
+    },
     "5d6ce39c64b858cac8e46a4c4d7837f5136c1f615c601f2e2ddbbe753651fb13": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -2386,6 +2407,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "找出对你当前正在处理的任务可能有用的技能，阅读技能文件以获取详细说明、指南、脚本等更多内容。",
+      "thinking_budget": 4096
+    },
+    "76272e4d3949fcbf024085c03652f1c00ab1c6e276b8b5c02d36400aabf12b22": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "超时不是错误：结果中会列出仍在运行的任务。优先转去做其他工作，而不是再次调用 WaitFor；反复等待会让用户一直等待。",
       "thinking_budget": 4096
     },
     "76e04b3eaa4974309cbb68830c72e3a74ebe0091667f8bab5c10733690d173a1": {
@@ -3354,6 +3382,13 @@
       "text": "此选项的简短名称（1-8 个词）。如果你推荐此选项，请在其后附加 \"(Recommended)\"。",
       "thinking_budget": 4096
     },
+    "a513d3b41d1d863eeeb2bc1f297b99dad642a53b64aae29b9f3bfa07f7dd8541": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "在工具调用之间，把进度说明控制在一两句话——说明较复杂的步骤上你接下来要做什么，或你刚发现了什么——并且不要对每次工具调用都进行解说。用户在本轮需要的一切——回答、发现、交付物——都必须出现在你的最终消息中，而这条消息应能独立成立。",
+      "thinking_budget": 4096
+    },
     "a51f9434af3a222c00a1be347d3e35866e9878fbc3875f889b2642dd48578e70": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -3408,6 +3443,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "默认选择推进，而不是提问：一旦目标明确，并且你已获得用户同意据此行动，就贯彻到底，自己处理遇到的阻碍；只有当用户的回答会真正改变你的下一步时才提问。这绝不凌驾于这些规则之上：目标不明确时应停下来讨论，编写代码前应等待明确指示。",
+      "thinking_budget": 4096
+    },
+    "a6227b86fc6168db06b8a5ba8b798f5b4e1b23fe178832d11e28b2d16503dd0e": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`timeout` 为必填项，单位为秒，上限为 90。请根据你预计任务所需的时间来选取，而不是取最大值。",
       "thinking_budget": 4096
     },
     "a6a5ecc8acdebdc9b9a15bd4e58f84329b4bf083437d00cced4b58aecca30f09": {
@@ -3576,6 +3618,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "**可用命令：**\n以下常见命令类别通常可用。是否可用仍取决于宿主机，因此如有疑问，请先运行 `which <command>` 确认命令存在，再依赖它。",
+      "thinking_budget": 4096
+    },
+    "b106eebdff43266d32465b426b50af1ee4ecc71b8bc4c704d1c22c2aa255e814": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "等待的最长时间，单位为秒（1-90）。请根据你预计任务所需的时间来选取，而不是取最大值。超时不是错误：工具会返回仍在运行的任务。",
       "thinking_budget": 4096
     },
     "b18d39180586c43a7f7280a2c1784ff42eb4ea5f9964dba4dd899480ab36456a": {
@@ -3807,6 +3856,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "编码",
+      "thinking_budget": 4096
+    },
+    "be9c2f5bd9f0a03b79965c31332bc47c844556b4ba059bf9a7ced0f7905abf89": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "不要在刚派发一项你尚不需要其结果的工作后，就立即调用 WaitFor。",
       "thinking_budget": 4096
     },
     "bea0d33e20dfaf13a9a22a9b02398206f29376616698bd981d2b07916a4eb5f1": {
@@ -4045,6 +4101,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "在同一个响应中并行发起相互独立的工具调用。",
+      "thinking_budget": 4096
+    },
+    "c6a6b96dc23b9abc9e3a0de100479f1c2662ed742104d3a6c12320be22ec3134": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "仅当你确实没有其他工作可做，且下一步必须依赖某个正在运行的后台任务（子智能体、后台 bash 命令或后台 AskUserQuestion）的结果才能继续时，才调用此工具。该调用会在当前轮次内挂起，直到任务完成或超时到期，然后返回结果，让你能在同一轮次中继续工作。等待期间不会发起任何 LLM 请求，但用户也同样在等待。",
       "thinking_budget": 4096
     },
     "c7b2e89d67fc362d7ea4c0be478995d59be1f65ce41158a7639436430152a579": {
