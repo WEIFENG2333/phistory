@@ -1148,6 +1148,13 @@
       "text": "展示给用户的可选消息。与 `completed: true` 一起使用可提供完成总结（例如 \"All 4 deliverables verified, tests pass\"）。单独使用可更新状态栏（例如 \"Running tests...\"）。不要把完成/成功相关的文本放在 `blocked_reason` 里——应改用此字段。",
       "thinking_budget": 4096
     },
+    "20cb4103f1d3f6d9224d5233231606206a153e1b7b4c052738409c1061602698": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "deep-research：以有界并行度研究查询，交叉核验证据，并撰写带引用的报告\n  使用场景：比较、调查或研究一个需要有来源依据的论断的问题。 /deep-research，研究这个问题，撰写带引用的报告。\n  绝对路径： /buildkite/builds/buildkite-agent-ci-cpu-cuda-xlarge-689bfdbf7f-zjcnx-1/xai/spacexai-checks/crates/codegen/xai-grok-shell/src/session/workflows/deep_research.rhai",
+      "thinking_budget": 4096
+    },
     "20d20b174470bd482839023d4726dca3b2e8d0413aa1d0d08cce54f05f1aec62": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
