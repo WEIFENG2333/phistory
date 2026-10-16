@@ -8,7 +8,7 @@ Phistory 追踪 Claude Code、Codex、DeepSeek Harness、Antigravity、Grok Buil
 
 **从这里开始：** [phistory.cc](https://phistory.cc/)
 
-> 每小时自动检查新版本，归档最近更新于 **2026-10-14 22:33 UTC**。
+> 每小时自动检查新版本，归档最近更新于 **2026-10-16 01:37 UTC**。
 
 ![Phistory prompt diff viewer](docs/screenshot.png)
 
@@ -74,25 +74,25 @@ python -m http.server --directory .phistory-cache/site
 
 ## 抓取状态
 
-最近抓取更新：2026-10-14 22:33 UTC
+最近抓取更新：2026-10-16 01:37 UTC
 
 | Agent | 最新版本 | 版本数 | 快照数 | 最近抓取 |
 | --- | --- | ---: | ---: | --- |
-| Claude Code | [2.1.300 - 2026-10-14](captures/claude-code/2.1.300/variants/default/prompt.md) | 441 | 762 | 2026-10-14 18:50 UTC |
-| Codex CLI | [0.162.1 - 2026-10-09](captures/codex/0.162.1/variants/default/prompt.md) | 104 | 173 | 2026-10-09 21:10 UTC |
+| Claude Code | [2.1.301 - 2026-10-15](captures/claude-code/2.1.301/variants/default/prompt.md) | 442 | 764 | 2026-10-15 20:30 UTC |
+| Codex CLI | [0.163.0 - 2026-10-15](captures/codex/0.163.0/variants/default/prompt.md) | 105 | 176 | 2026-10-15 23:13 UTC |
 | DeepSeek Harness | [0.2.0-rc.2 - 2026-09-29](captures/dsh/0.2.0-rc.2/variants/default/prompt.md) | 14 | 75 | 2026-09-29 16:06 UTC |
-| Antigravity CLI | [1.3.5 - 2026-10-14](captures/antigravity/1.3.5/variants/default/prompt.md) | 66 | 66 | 2026-10-14 07:58 UTC |
+| Antigravity CLI | [1.3.6 - 2026-10-15](captures/antigravity/1.3.6/variants/default/prompt.md) | 67 | 67 | 2026-10-15 20:30 UTC |
 | Claude Tag | [2026-10-07 - 2026-10-06](captures/claude-tag/2026-10-07/variants/default/prompt.md) | 3 | 3 | 2026-10-06 18:05 UTC |
-| Grok Build | [1.0.52 - 2026-10-11](captures/grok/1.0.52/variants/default/prompt.md) | 141 | 141 | 2026-10-12 23:09 UTC |
+| Grok Build | [1.0.60 - 2026-10-15](captures/grok/1.0.60/variants/default/prompt.md) | 142 | 142 | 2026-10-15 23:13 UTC |
 | MiniMax Code | [3.1.1 - 2026-10-04](captures/minimax-code/3.1.1/variants/default/prompt.md) | 40 | 40 | 2026-10-04 15:28 UTC |
 | Kimi Code | [2.2.0 - 2026-10-14](captures/kimi-code/2.2.0/variants/default/prompt.md) | 80 | 80 | 2026-10-14 18:50 UTC |
 | MiMo Code | [0.1.15 - 2026-09-22](captures/mimo/0.1.15/variants/default/prompt.md) | 15 | 15 | 2026-09-22 19:03 UTC |
-| OpenClaw | [2026.10.3 - 2026-10-13](captures/openclaw/2026.10.3/variants/default/prompt.md) | 83 | 83 | 2026-10-13 19:29 UTC |
+| OpenClaw | [2026.10.4 - 2026-10-15](captures/openclaw/2026.10.4/variants/default/prompt.md) | 84 | 84 | 2026-10-16 01:37 UTC |
 | Hermes Agent | [v2026.9.24 - 2026-09-24](captures/hermes/v2026.9.24/variants/default/prompt.md) | 34 | 34 | 2026-09-24 10:27 UTC |
 | Kimi CLI | [1.51.0 - 2026-09-21](captures/kimi/1.51.0/variants/default/prompt.md) | 23 | 23 | 2026-09-21 17:12 UTC |
-| opencode | [1.19.0 - 2026-10-11](captures/opencode/1.19.0/variants/default/prompt.md) | 120 | 120 | 2026-10-11 02:07 UTC |
-| Pi | [1.2.0 - 2026-10-12](captures/pi/1.2.0/variants/default/prompt.md) | 58 | 58 | 2026-10-12 23:10 UTC |
-| Oh My Pi | [18.11.0 - 2026-10-14](captures/omp/18.11.0/variants/default/prompt.md) | 144 | 144 | 2026-10-14 22:33 UTC |
+| opencode | [1.19.1 - 2026-10-15](captures/opencode/1.19.1/variants/default/prompt.md) | 121 | 121 | 2026-10-15 20:30 UTC |
+| Pi | [1.3.0 - 2026-10-15](captures/pi/1.3.0/variants/default/prompt.md) | 59 | 59 | 2026-10-15 20:30 UTC |
+| Oh My Pi | [18.11.1 - 2026-10-15](captures/omp/18.11.1/variants/default/prompt.md) | 145 | 145 | 2026-10-15 17:18 UTC |
 
 ## 项目趋势
 

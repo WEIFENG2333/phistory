@@ -1,25 +1,25 @@
 {
   "description": "Phistory automatically archives versioned system prompt snapshots from agent CLIs like Claude Code, Codex, DeepSeek Harness, Antigravity, Grok Build, MiniMax Code, Kimi Code, MiMo Code, OpenClaw, Hermes, Kimi CLI, opencode, Pi, and Oh My Pi.",
   "site": "https://phistory.cc/",
-  "updated_at": "2026-10-14T22:33:17.938195Z",
+  "updated_at": "2026-10-16T01:37:12.394978Z",
   "agents": [
     {
       "agent_id": "claude-code",
       "agent": "Claude Code",
-      "latest_version": "2.1.300",
-      "latest_published_at": "2026-10-14T14:27:26.554Z",
-      "latest_captured_at": "2026-10-14T18:50:01.499249+00:00",
-      "versions": 441,
-      "snapshots": 762
+      "latest_version": "2.1.301",
+      "latest_published_at": "2026-10-15T14:34:23.330Z",
+      "latest_captured_at": "2026-10-15T20:30:00.143476+00:00",
+      "versions": 442,
+      "snapshots": 764
     },
     {
       "agent_id": "codex",
       "agent": "Codex CLI",
-      "latest_version": "0.162.1",
-      "latest_published_at": "2026-10-09T19:50:30.512Z",
-      "latest_captured_at": "2026-10-09T21:10:13.907826+00:00",
-      "versions": 104,
-      "snapshots": 173
+      "latest_version": "0.163.0",
+      "latest_published_at": "2026-10-15T21:37:11.083Z",
+      "latest_captured_at": "2026-10-15T23:13:46.329095+00:00",
+      "versions": 105,
+      "snapshots": 176
     },
     {
       "agent_id": "dsh",
@@ -33,11 +33,11 @@
     {
       "agent_id": "antigravity",
       "agent": "Antigravity CLI",
-      "latest_version": "1.3.5",
-      "latest_published_at": "2026-10-14T03:16:53Z",
-      "latest_captured_at": "2026-10-14T07:58:19.937306+00:00",
-      "versions": 66,
-      "snapshots": 66
+      "latest_version": "1.3.6",
+      "latest_published_at": "2026-10-15T17:51:16Z",
+      "latest_captured_at": "2026-10-15T20:30:06.633052+00:00",
+      "versions": 67,
+      "snapshots": 67
     },
     {
       "agent_id": "claude-tag",
@@ -51,11 +51,11 @@
     {
       "agent_id": "grok",
       "agent": "Grok Build",
-      "latest_version": "1.0.52",
-      "latest_published_at": "2026-10-11T23:59:56.991Z",
-      "latest_captured_at": "2026-10-12T23:09:50.870871+00:00",
-      "versions": 141,
-      "snapshots": 141
+      "latest_version": "1.0.60",
+      "latest_published_at": "2026-10-15T03:01:22.338Z",
+      "latest_captured_at": "2026-10-15T23:13:57.662110+00:00",
+      "versions": 142,
+      "snapshots": 142
     },
     {
       "agent_id": "minimax-code",
@@ -87,11 +87,11 @@
     {
       "agent_id": "openclaw",
       "agent": "OpenClaw",
-      "latest_version": "2026.10.3",
-      "latest_published_at": "2026-10-13T13:43:36.600Z",
-      "latest_captured_at": "2026-10-13T19:29:32.743223+00:00",
-      "versions": 83,
-      "snapshots": 83
+      "latest_version": "2026.10.4",
+      "latest_published_at": "2026-10-15T23:58:28.695Z",
+      "latest_captured_at": "2026-10-16T01:37:12.394978+00:00",
+      "versions": 84,
+      "snapshots": 84
     },
     {
       "agent_id": "hermes",
@@ -114,32 +114,73 @@
     {
       "agent_id": "opencode",
       "agent": "opencode",
-      "latest_version": "1.19.0",
-      "latest_published_at": "2026-10-11T01:38:53.143Z",
-      "latest_captured_at": "2026-10-11T02:07:30.001733+00:00",
-      "versions": 120,
-      "snapshots": 120
+      "latest_version": "1.19.1",
+      "latest_published_at": "2026-10-15T19:20:16.648Z",
+      "latest_captured_at": "2026-10-15T20:30:44.134604+00:00",
+      "versions": 121,
+      "snapshots": 121
     },
     {
       "agent_id": "pi",
       "agent": "Pi",
-      "latest_version": "1.2.0",
-      "latest_published_at": "2026-10-12T23:03:25.459Z",
-      "latest_captured_at": "2026-10-12T23:10:24.241804+00:00",
-      "versions": 58,
-      "snapshots": 58
+      "latest_version": "1.3.0",
+      "latest_published_at": "2026-10-15T19:13:30.662Z",
+      "latest_captured_at": "2026-10-15T20:30:50.620369+00:00",
+      "versions": 59,
+      "snapshots": 59
     },
     {
       "agent_id": "omp",
       "agent": "Oh My Pi",
-      "latest_version": "18.11.0",
-      "latest_published_at": "2026-10-14T22:10:25.482Z",
-      "latest_captured_at": "2026-10-14T22:33:17.938195+00:00",
-      "versions": 144,
-      "snapshots": 144
+      "latest_version": "18.11.1",
+      "latest_published_at": "2026-10-15T15:10:36.141Z",
+      "latest_captured_at": "2026-10-15T17:18:13.249258+00:00",
+      "versions": 145,
+      "snapshots": 145
     }
   ],
   "captures": [
+    {
+      "agent_id": "claude-code",
+      "agent": "Claude Code",
+      "version": "2.1.301",
+      "variant_id": "default",
+      "variant_label": "Terminal",
+      "variant_dimensions": {
+        "surface": "terminal"
+      },
+      "observed": {
+        "provider": "anthropic",
+        "model": "claude-opus-5-5",
+        "tool_count": 31,
+        "surface": "interactive-tty"
+      },
+      "published_at": "2026-10-15T14:34:23.330Z",
+      "captured_at": "2026-10-15T20:30:00.143476+00:00",
+      "prompt": "captures/claude-code/2.1.301/variants/default/prompt.md",
+      "trace": "captures/claude-code/2.1.301/variants/default/trace.jsonl",
+      "meta": "captures/claude-code/2.1.301/variants/default/meta.json"
+    },
+    {
+      "agent_id": "claude-code",
+      "agent": "Claude Code",
+      "version": "2.1.301",
+      "variant_id": "sdk",
+      "variant_label": "Headless (-p)",
+      "variant_dimensions": {
+        "surface": "headless"
+      },
+      "observed": {
+        "provider": "anthropic",
+        "model": "claude-opus-5-5",
+        "tool_count": 23
+      },
+      "published_at": "2026-10-15T14:34:23.330Z",
+      "captured_at": "2026-10-15T20:30:01.491917+00:00",
+      "prompt": "captures/claude-code/2.1.301/variants/sdk/prompt.md",
+      "trace": "captures/claude-code/2.1.301/variants/sdk/trace.jsonl",
+      "meta": "captures/claude-code/2.1.301/variants/sdk/meta.json"
+    },
     {
       "agent_id": "claude-code",
       "agent": "Claude Code",
@@ -15704,6 +15745,64 @@
     {
       "agent_id": "codex",
       "agent": "Codex CLI",
+      "version": "0.163.0",
+      "variant_id": "default",
+      "variant_label": "Default",
+      "variant_dimensions": {},
+      "observed": {
+        "provider": "openai-responses",
+        "model": "gpt-6.1-sol",
+        "tool_count": 11
+      },
+      "published_at": "2026-10-15T21:37:11.083Z",
+      "captured_at": "2026-10-15T23:13:46.329095+00:00",
+      "prompt": "captures/codex/0.163.0/variants/default/prompt.md",
+      "trace": "captures/codex/0.163.0/variants/default/trace.jsonl",
+      "meta": "captures/codex/0.163.0/variants/default/meta.json"
+    },
+    {
+      "agent_id": "codex",
+      "agent": "Codex CLI",
+      "version": "0.163.0",
+      "variant_id": "gpt-5.6",
+      "variant_label": "GPT-5.6",
+      "variant_dimensions": {
+        "model": "gpt-5.6"
+      },
+      "observed": {
+        "provider": "openai-responses",
+        "model": "gpt-5.6",
+        "tool_count": 17
+      },
+      "published_at": "2026-10-15T21:37:11.083Z",
+      "captured_at": "2026-10-15T23:13:51.587401+00:00",
+      "prompt": "captures/codex/0.163.0/variants/gpt-5.6/prompt.md",
+      "trace": "captures/codex/0.163.0/variants/gpt-5.6/trace.jsonl",
+      "meta": "captures/codex/0.163.0/variants/gpt-5.6/meta.json"
+    },
+    {
+      "agent_id": "codex",
+      "agent": "Codex CLI",
+      "version": "0.163.0",
+      "variant_id": "gpt-5.5",
+      "variant_label": "GPT-5.5",
+      "variant_dimensions": {
+        "model": "gpt-5.5"
+      },
+      "observed": {
+        "provider": "openai-responses",
+        "model": "gpt-5.5",
+        "tool_count": 14
+      },
+      "published_at": "2026-10-15T21:37:11.083Z",
+      "captured_at": "2026-10-15T23:13:48.649983+00:00",
+      "prompt": "captures/codex/0.163.0/variants/gpt-5.5/prompt.md",
+      "trace": "captures/codex/0.163.0/variants/gpt-5.5/trace.jsonl",
+      "meta": "captures/codex/0.163.0/variants/gpt-5.5/meta.json"
+    },
+    {
+      "agent_id": "codex",
+      "agent": "Codex CLI",
       "version": "0.162.1",
       "variant_id": "default",
       "variant_label": "Default",
@@ -20531,6 +20630,24 @@
     {
       "agent_id": "antigravity",
       "agent": "Antigravity CLI",
+      "version": "1.3.6",
+      "variant_id": "default",
+      "variant_label": "Default",
+      "variant_dimensions": {},
+      "observed": {
+        "provider": "gemini",
+        "model": "MODEL_GOOGLE_GEMINI_2_5_FLASH",
+        "tool_count": 11
+      },
+      "published_at": "2026-10-15T17:51:16Z",
+      "captured_at": "2026-10-15T20:30:06.633052+00:00",
+      "prompt": "captures/antigravity/1.3.6/variants/default/prompt.md",
+      "trace": "captures/antigravity/1.3.6/variants/default/trace.jsonl",
+      "meta": "captures/antigravity/1.3.6/variants/default/meta.json"
+    },
+    {
+      "agent_id": "antigravity",
+      "agent": "Antigravity CLI",
       "version": "1.3.5",
       "variant_id": "default",
       "variant_label": "Default",
@@ -21778,6 +21895,24 @@
       "trace": "captures/claude-tag/2026-09-22/variants/default/trace.jsonl",
       "meta": "captures/claude-tag/2026-09-22/variants/default/meta.json",
       "trace_redacted": true
+    },
+    {
+      "agent_id": "grok",
+      "agent": "Grok Build",
+      "version": "1.0.60",
+      "variant_id": "default",
+      "variant_label": "Default",
+      "variant_dimensions": {},
+      "observed": {
+        "provider": "openai-responses",
+        "model": "grok-build",
+        "tool_count": 25
+      },
+      "published_at": "2026-10-15T03:01:22.338Z",
+      "captured_at": "2026-10-15T23:13:57.662110+00:00",
+      "prompt": "captures/grok/1.0.60/variants/default/prompt.md",
+      "trace": "captures/grok/1.0.60/variants/default/trace.jsonl",
+      "meta": "captures/grok/1.0.60/variants/default/meta.json"
     },
     {
       "agent_id": "grok",
@@ -26750,6 +26885,24 @@
     {
       "agent_id": "openclaw",
       "agent": "OpenClaw",
+      "version": "2026.10.4",
+      "variant_id": "default",
+      "variant_label": "Default",
+      "variant_dimensions": {},
+      "observed": {
+        "provider": "openai-responses",
+        "model": "phistory-dummy",
+        "tool_count": 12
+      },
+      "published_at": "2026-10-15T23:58:28.695Z",
+      "captured_at": "2026-10-16T01:37:12.394978+00:00",
+      "prompt": "captures/openclaw/2026.10.4/variants/default/prompt.md",
+      "trace": "captures/openclaw/2026.10.4/variants/default/trace.jsonl",
+      "meta": "captures/openclaw/2026.10.4/variants/default/meta.json"
+    },
+    {
+      "agent_id": "openclaw",
+      "agent": "OpenClaw",
       "version": "2026.10.3",
       "variant_id": "default",
       "variant_label": "Default",
@@ -29270,6 +29423,24 @@
     {
       "agent_id": "opencode",
       "agent": "opencode",
+      "version": "1.19.1",
+      "variant_id": "default",
+      "variant_label": "Default",
+      "variant_dimensions": {},
+      "observed": {
+        "provider": "openai-responses",
+        "model": "gpt-4.1",
+        "tool_count": 10
+      },
+      "published_at": "2026-10-15T19:20:16.648Z",
+      "captured_at": "2026-10-15T20:30:44.134604+00:00",
+      "prompt": "captures/opencode/1.19.1/variants/default/prompt.md",
+      "trace": "captures/opencode/1.19.1/variants/default/trace.jsonl",
+      "meta": "captures/opencode/1.19.1/variants/default/meta.json"
+    },
+    {
+      "agent_id": "opencode",
+      "agent": "opencode",
       "version": "1.19.0",
       "variant_id": "default",
       "variant_label": "Default",
@@ -31430,6 +31601,24 @@
     {
       "agent_id": "pi",
       "agent": "Pi",
+      "version": "1.3.0",
+      "variant_id": "default",
+      "variant_label": "Default",
+      "variant_dimensions": {},
+      "observed": {
+        "provider": "openai-responses",
+        "model": "gpt-4.1",
+        "tool_count": 4
+      },
+      "published_at": "2026-10-15T19:13:30.662Z",
+      "captured_at": "2026-10-15T20:30:50.620369+00:00",
+      "prompt": "captures/pi/1.3.0/variants/default/prompt.md",
+      "trace": "captures/pi/1.3.0/variants/default/trace.jsonl",
+      "meta": "captures/pi/1.3.0/variants/default/meta.json"
+    },
+    {
+      "agent_id": "pi",
+      "agent": "Pi",
       "version": "1.2.0",
       "variant_id": "default",
       "variant_label": "Default",
@@ -32470,6 +32659,24 @@
       "prompt": "captures/pi/0.74.0/variants/default/prompt.md",
       "trace": "captures/pi/0.74.0/variants/default/trace.jsonl",
       "meta": "captures/pi/0.74.0/variants/default/meta.json"
+    },
+    {
+      "agent_id": "omp",
+      "agent": "Oh My Pi",
+      "version": "18.11.1",
+      "variant_id": "default",
+      "variant_label": "Default",
+      "variant_dimensions": {},
+      "observed": {
+        "provider": "openai-responses",
+        "model": "gpt-4.1",
+        "tool_count": 11
+      },
+      "published_at": "2026-10-15T15:10:36.141Z",
+      "captured_at": "2026-10-15T17:18:13.249258+00:00",
+      "prompt": "captures/omp/18.11.1/variants/default/prompt.md",
+      "trace": "captures/omp/18.11.1/variants/default/trace.jsonl",
+      "meta": "captures/omp/18.11.1/variants/default/meta.json"
     },
     {
       "agent_id": "omp",
