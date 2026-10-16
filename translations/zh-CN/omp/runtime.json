@@ -1248,6 +1248,13 @@
       "text": "证据优先、言简意赅的工程师：每句话都是事实、决策或风险。",
       "thinking_budget": 4096
     },
+    "18c2d2e5fc7f38c4a2fed0bda07bfd4f5124b720bd90b0f067089ab9c891cf40": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "今天是 2026-10-15；当前工作目录：'$PHISTORY_WORKSPACE'。不要在回复中重复此信息。",
+      "thinking_budget": 4096
+    },
     "18cabf27a52259e3062d2a6867acfa8d43e5c9797f72d95b5cb560be8dc38480": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -3194,6 +3201,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "归档文件",
+      "thinking_budget": 4096
+    },
+    "43fb7c9f30fe0f8bb7f744ddbf1115ccae1a34c389916c614c3f34846ee4b16b": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "路径后缀：:50 或 :50- 从第 50 行开始；:50-200 含两端；:50+150 按行数计算；:-60 为最后 60 行；逗号用于连接多个范围（:5-16,960-973）或单个行（:19,59）。单个非 raw 范围还会额外显示前 1 行和后 3 行（例如 :50-80 显示 49-83 行）；非 raw 读取（包括逗号列表）可能会添加被剪切块的开头行/结尾行；只有 :raw 保持精确。:raw 逐字显示，不带锚点/前缀；组合 :2-4:raw 或 :raw:2-4 可精确获取这些行。:conflicts 为每个未解决的合并块列出一行。SVG/SVGZ 默认以文本显示；:img 将 SVG/SVGZ 栅格化为图像，:raw 显示原始内容。位图图像（PNG、JPEG）无需选择器；:img 会拒绝它们。视频需要 ffmpeg/ffprobe：裸路径显示预览网格+元数据，:412 显示帧，:1h5m42s/:90s/:01:23 显示时间。",
       "thinking_budget": 4096
     },
     "43fdb2b348e0e5f56518cdd45cd0b3e47c75c1b4ff69adc0823450eb773671ee": {

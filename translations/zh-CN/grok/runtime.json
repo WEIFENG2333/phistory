@@ -6242,6 +6242,13 @@
       "text": "示例查询：'如何在 React TypeScript 中使用 Stripe 支付？'。",
       "thinking_budget": 4096
     },
+    "b015ba95a37b118c7a50213126f8d800c4427517d513b694154ff5fde6081138": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "deep-research：以有界并行度研究查询，交叉核验证据，并撰写带引用的报告\n  使用时机：比较、调查或研究需要带来源论断的问题。 /deep-research，研究这个问题，撰写带引用的报告。\n  绝对路径：/buildkite/builds/buildkite-agent-ci-cpu-cuda-xlarge-689bfdbf7f-57qcx-1/xai/spacexai-checks/crates/codegen/xai-grok-shell/src/session/workflows/deep_research.rhai",
+      "thinking_budget": 4096
+    },
     "b01f91201cdf37383d3f2e94234ccab4b10ed6ba5e87d578e6cce1774fc583eb": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",

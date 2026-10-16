@@ -2030,6 +2030,13 @@
       "text": "任务的优先级：high、medium、low",
       "thinking_budget": 4096
     },
+    "9f354310b3f693e72f1e57c9e5a7dba325f714b3782647f93d0715bbbba6739c": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "工作目录：$PHISTORY_WORKSPACE\n  工作区根目录：/\n  目录是否为 git 仓库：no\n  平台：linux\n  今天的日期：Thu Oct 15 2026",
+      "thinking_budget": 4096
+    },
     "9f455ea6b36af64dd15558f548f3a6cb867d36e99e213819f7635e9070072bf3": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",

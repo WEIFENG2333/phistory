@@ -1950,6 +1950,13 @@
       "text": "由于用户在打招呼，请使用 greeting-responder 智能体以一句友好的玩笑作出回应。",
       "thinking_budget": 4096
     },
+    "1df4bc9db404c0b27971dc1c27e188805f1984806570b71c56a479827a1400e0": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "publish：Claude 在同一次调用中对 `file_path` 处的文件做出小幅修改，而不是先用 Edit 编辑该文件、之后再发布。在页面上使用它（添加 `url` 可更新来自其他对话的 artifact）。不允许与 `files` 一起使用。每个 old_str 都是从文件当前内容中原样复制的文本，并且必须在该文件中恰好出现一次；new_str 会取代其位置（留空则将其删除）。这些编辑按顺序应用，要么全部生效，要么全部不生效：文件会连同这些编辑一起发布，然后连同它们一起保存到磁盘，因此它仍是后续修改的来源；若有编辑未命中，则不会更改或发布任何内容，结果会指出是哪条编辑失败以及原因。",
+      "thinking_budget": 4096
+    },
     "1e0e73f2fb6a656419a7c0f3a9cdcee7e119d08668c30ffbeb3f34c0ab66628a": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",

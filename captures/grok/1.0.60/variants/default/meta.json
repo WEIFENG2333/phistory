@@ -1,0 +1,44 @@
+{
+  "agent_id": "grok",
+  "agent": "Grok Build",
+  "package": "@xai-official/grok",
+  "version": "1.0.60",
+  "variant": {
+    "id": "default",
+    "label": "Default",
+    "dimensions": {}
+  },
+  "requested": {},
+  "observed": {
+    "provider": "openai-responses",
+    "model": "grok-build",
+    "tool_count": 25
+  },
+  "published_at": "2026-10-15T03:01:22.338Z",
+  "tarball_url": "https://registry.npmjs.org/@xai-official/grok/-/grok-1.0.60.tgz",
+  "binary_version": "grok 1.0.60 (01a8e1c591c0)",
+  "captured_at": "2026-10-15T23:13:57.662110+00:00",
+  "tap_client": "grok",
+  "target": "claude-tap capture-only",
+  "client_exit_code": 0,
+  "duration_seconds": 4.013,
+  "command": [
+    "python",
+    "-m",
+    "claude_tap",
+    "run",
+    "grok",
+    "--no-yolo",
+    "--export-prompt",
+    ".tap/tap-export.md",
+    "--no-live",
+    "--no-open",
+    "--no-update-check",
+    "--output-dir",
+    ".tap",
+    "--",
+    "--no-auto-update",
+    "--single",
+    "Reply with one short sentence."
+  ]
+}

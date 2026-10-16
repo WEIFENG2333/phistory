@@ -4648,6 +4648,13 @@
       "text": "以 markdown/文本形式提取。",
       "thinking_budget": 4096
     },
+    "55f999fd5d7aabb29dc40974c4f7af9caa14156774da66414e17a32ac8069db4": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "[Fri 2026-10-16 01:37 UTC] 请用一句简短的话回复。",
+      "thinking_budget": 4096
+    },
     "5603b1f228bce9f37c865ec1a9bc285e8c23220854691b4c85ef3dadba885c25": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -4989,6 +4996,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "投递目标",
+      "thinking_budget": 4096
+    },
+    "5b601b4dc15606c957d721a2788505c896f36cad6678c6d0ac60a3b187e2b091": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "当前日期：2026-10-16\n时区：UTC\n如需确切的当前时间，请使用 `session_status`。",
       "thinking_budget": 4096
     },
     "5b6736b78e1ae3b9ae5841a9c237313e85429d4067b8a82003d9c0a9fa3f44a3": {
@@ -6390,6 +6404,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "可选的输出文件名提示。OpenClaw 会保留 basename，并保存到其管理的媒体目录下。",
+      "thinking_budget": 4096
+    },
+    "74e415c33b92c8412f2c8bd79438664cbe7db6b1df5e3d8213372e9a4c7d999e": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "运行时：agent=main | session=agent:main:main | host=runnervm8k3b6 | repo=$PHISTORY_HOME/.openclaw/workspace | os=Linux 6.17.0-1022-azure (x64) | node=v24.21.0 | active_node=unknown | active_node_identity=unknown | model=phistory/phistory-dummy | default_model=phistory/phistory-dummy | shell=bash",
       "thinking_budget": 4096
     },
     "74f021fb8792041adb1adef61928f96fd91563d6af6d4a97d9c87d796f3990e0": {
