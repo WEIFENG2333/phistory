@@ -3092,6 +3092,13 @@
       "text": "关键：始终创建新提交，而不是 amend，除非用户明确要求 git amend。当 pre-commit 钩子失败时，提交并未发生——因此 --amend 会修改上一个提交，这可能毁掉工作或丢失之前的更改。相反，钩子失败后，应修复问题、重新暂存，并创建一个新提交",
       "thinking_budget": 4096
     },
+    "2fbd7b2d1901bc456f6c1fae8c9ffff8f1fd0b966ff010a797f5e9a6aba1bc0c": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "独立版 Claude Design（claude.ai/design）将于 2026 年 12 月 14 日前关闭。Claude Design 现已整合到 Claude 中。如果服务器因独立版 Claude Design 或该项目已关闭或迁移而拒绝调用，请将服务器的消息原样转达给用户，然后停止。",
+      "thinking_budget": 4096
+    },
     "2fc929f24be22fb9161b108a397bdc4930d546b12ffaf4554c8103583f5355e6": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",
@@ -10648,6 +10655,13 @@
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",
       "text": "需要完成的内容",
+      "thinking_budget": 4096
+    },
+    "b023e2e05ff5b9fa7988d78c0e94adfcf8610c620c2d69ff02a64ad31e96208b": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "fork 会将其工具输出排除在你的上下文之外。如果你就是这个 fork，请直接执行——不要再次委派。",
       "thinking_budget": 4096
     },
     "b071e8da9b275211d94b2550d9ca8e1712ce26a754fd68f16ed23463203304bc": {

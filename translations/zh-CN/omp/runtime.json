@@ -504,6 +504,13 @@
       "text": "异步任务契约",
       "thinking_budget": 4096
     },
+    "08fd3fb3af5262898e0d21fd3e41bc2c35b44287004523c65991bd30a5f07928": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`agent://<id>`：最新完成的输出（未发布时为状态 + 进度）；嵌套 ID 以点号连接，`/key/index` 为 JSON 路径；write = message，`agent://all` 仅广播。",
+      "thinking_budget": 4096
+    },
     "093e07d4500ad6d7b6b3d40c4afe30368bcbd8036626a575c1ac5706c1060dac": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -1423,6 +1430,13 @@
       "text": "多行、引号密集或不可信的值使用 `env: { NAME: \"…\" }`；以 `$NAME` 引用",
       "thinking_budget": 4096
     },
+    "1c72c10af6853ca0aef84d93969c47593f147df585b0eba006519ac6875b21f5": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`tools`：由 eval 定义，在你的内核中运行。\n子智能体从空白状态开始；父级 IRC 立即进行引导；大型载荷通过 `local://<path>` 传递，绝不内联。",
+      "thinking_budget": 4096
+    },
     "1c9ce71c26787d3cf4637dce6fea684a33b5856c1572de01bde6a6b977a1e1bc": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -1435,6 +1449,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "`app.target`（配合 `path`/`cdp_url`）——用 url+title 上的子串匹配来选取 BrowserWindow。",
+      "thinking_budget": 4096
+    },
+    "1ccebf99c129b9496e080edfee14304116a5117654433e6af4b70bf983c7e5d3": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "绝不发起仅含 todo 的回合：在包含本回合真实调用的同一响应中发送 `todo`（并行工具调用）；`init` 随第一项工作，`done` 随下一动作/验证。",
       "thinking_budget": 4096
     },
     "1ce703b153f59497a233bf9c6cc14020f9be29d4ef50a6dfd55b8b72b57d400a": {
@@ -1554,6 +1575,13 @@
       "prompt_version": "zh-CN-11",
       "status": "preserved",
       "text": "extra = compute(name)",
+      "thinking_budget": 4096
+    },
+    "1f3d5a35167d8e1a1505dbdc61a9998a5dbf3550c4e55d77974649ab38e74df4": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`todo` 绝不单独占用一个回合：在下一次真实工具调用的同一响应中发出它（并行工具调用），`init` 紧邻首次读取或动作，`done`/`start` 紧邻下一动作或检查。唯一调用是 `todo` 的响应会浪费整整一次模型往返。\n任务按逐字内容识别，绝不用生成的 ID（task-1）。任务/阶段名称唯一且稳定；文本丢失：查看，绝不猜测。\n开工前，遇 3 步以上、请求的任务集合或新指令时初始化。必须把每一个用户条目单独列出（分阶段/编号/项目符号/N）；绝不省略，也不把剩余项留在记忆里。\n成功变更后：无活跃项时，最早的待处理项启动（阶段顺序）；多项活跃时，仅最早的一项保留。被阻塞项绝不自动启动；解除阻塞后回到待处理。乱序完成可使指针回退，但绝不重新打开已完成项。立即标记完成；遵循阶段顺序。\n外部等待（用户/智能体/服务）：附可选原因的阻塞会抑制停止提醒，并启动下一个待处理项。可行动时解除阻塞；对智能体可处理的阻塞，追加一个清除任务。",
       "thinking_budget": 4096
     },
     "1f6c4d09bb80e02506884089e3eaf402de7bff36e322222f6ed68c94cf18a37b": {
@@ -1834,6 +1862,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "现有文件应使用 `edit`；必需的新文件或整文件替换则用 `write`。除非另有要求，绝不创建文档或表情符号。\n`archive.ext:member`：ZIP/tar 系列和 `.asar` 可写，其余只读。`db.sqlite:table`：插入；`db.sqlite:table:key`：JSON 更新，内容为空则删除。\n取消作业或停止服务：`{\"path\":\"proc://<id>/kill\"}`（`content` 被忽略）。裸 `proc://<id>` 写入会发送服务 stdin，包括空输入。除 `/kill` 外的所有写入都需要 `content`。\n`proc://<id>/mode`：`persist`|`session`|`detached`。",
+      "thinking_budget": 4096
+    },
+    "25301a061845b24993b5425635b41dfa02a6b97dfefa7e6c5b6fc15375ece799": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`name`：CamelCase 命名，不超过 32 个字符，省略时自动生成；按名称称呼智能体。\n`solutionSpace`：描述子智能体所面临问题的开放程度：修复方案或设计是否已经给定，或者哪些原因或设计仍未确定。工作量不会扩大这一开放程度；绝不提及兄弟智能体或协调。（`one fix: rename, names given`；`one fix: slice end in paginate`；`single-flight cache load; races easy to miss`；`several retry API shapes; error classes to choose`；`deadlock cause open, no repro`）\n历史咨询：使用 `agent: \"seance\"` 并配合 `sourceSession`（id/path）；可选的 `model` 会覆盖已保存的源模型。源保持不变。\n如果已保存的模型缺失或不可用，请显式设置 `model`。",
       "thinking_budget": 4096
     },
     "2538e727eeb56d293a2530ecd1b30d93cb930dcfc8598c6c636b2d0efd193342": {
@@ -6585,6 +6620,13 @@
       "text": "修改导出符号之前，必须运行 `lsp references`；漏掉调用点就是 bug。",
       "thinking_budget": 4096
     },
+    "8c9025524b1418ade5debed9f201ff19070ae8b706488077201fc20eaa1b207e": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "今天是 2026-10-16；当前工作目录：'$PHISTORY_WORKSPACE'。不要在回复中重复此信息。",
+      "thinking_budget": 4096
+    },
     "8c9357e3e5782b8d0fc9872654772c8e1b6422bcec41f3edcfaeb30621fd8ccf": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -9488,6 +9530,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "今天：2026-08-19；当前工作目录：'$PHISTORY_WORKSPACE'。不要在回复中重复此信息。",
+      "thinking_budget": 4096
+    },
+    "ca0c2b9bf6d0615e9ed839914bf8a930096907377ebd74077ca9204a39a8dc57": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`seance`（只读；仅用于调查，不做编辑）：读取历史会话及嵌套的对话记录来回答咨询。",
       "thinking_budget": 4096
     },
     "ca0d00aad14a1baae3fa6fb3981c0688699491df89ef0e9d34e7dff9db5d3e0b": {

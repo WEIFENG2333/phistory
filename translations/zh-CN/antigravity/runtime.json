@@ -2773,6 +2773,13 @@
       "text": "四个反引号使得可以在幻灯片内嵌套代码块",
       "thinking_budget": 4096
     },
+    "e44846f79da8fc3bec80ffcb97058a6bf0a1950bf8d79b9ab3671d0a1c6250c7": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "提议一个代表用户运行的命令。操作系统：linux。Shell：bash。\n**绝不提议 cd 命令**。\n如果你拥有此工具，请注意你确实有能力直接在用户的系统上运行命令。\n务必将 CommandLine 精确指定为该命令在 shell 中运行时的原样形式。\n如果该步骤没有返回命令输出，说明该命令已作为任务发送到后台。命令运行时，你会收到包含命令输出的消息。要与正在运行的命令交互，请使用 manage_task 工具。使用 `send_input` 发送 stdin，使用 `kill` 终止命令，使用 `status` 查看当前状态。重要：不要轮询或循环调用 `status` 来等待完成。命令完成时，系统会自动通过消息通知你。启动命令后，只需继续处理其他工作或停止调用工具即可。\n命令运行时将设置 PAGER=cat。对于通常依赖分页且可能产生很长输出的命令，你可能需要限制其输出长度（例如 git log，可使用 git log -n <N>）。\n重要：Cwd（工作目录）必须位于用户的工作区内。如果需要用于临时脚本或中间输出的临时目录，请使用 artifact 目录中的 scratch/ 目录，而不要将临时文件写入工作区。",
+      "thinking_budget": 4096
+    },
     "e49b662b61daec2495b3381ac39f82d3320a2c28b63f93e8e25e635ab4594397": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",
