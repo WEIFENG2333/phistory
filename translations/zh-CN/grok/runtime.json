@@ -2213,6 +2213,13 @@
       "text": "最多同时 50 个定时任务",
       "thinking_budget": 4096
     },
+    "3e18397032a7b621c3e0bd4f9fe10b39dd4c3199a5d41b53abaab5652f92fcd3": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "deep-research：以有界并行的方式研究查询，交叉核验证据，并写一份带引用的报告\n  使用场景：比较、调查或研究需要有来源支撑论断的问题。/deep-research，研究一下这个，写一份带引用的报告。\n  绝对路径：/buildkite/builds/buildkite-agent-ci-cpu-cuda-xlarge-689bfdbf7f-26g26-1/xai/spacexai-checks/crates/codegen/xai-grok-shell/src/session/workflows/deep_research.rhai",
+      "thinking_budget": 4096
+    },
     "3e7f6f13790ce598394109dcecf8bb61b4dff80625ec26a148be70dce6c18376": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",

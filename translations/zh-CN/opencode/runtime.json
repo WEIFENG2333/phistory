@@ -3297,6 +3297,13 @@
       "text": "命令执行：",
       "thinking_budget": 4096
     },
+    "ed99b54458aeaee4924fb7b517d709092973d197a8da50615f18300ae1b4bd05": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "工作目录：$PHISTORY_WORKSPACE\n  工作区根目录：/\n  目录是否为 git 仓库：否\n  平台：linux\n  今天的日期：Fri Oct 16 2026",
+      "thinking_budget": 4096
+    },
     "ef2271e2f32d52197f40e091d2c992e26028f0f75057cc1f4cef946237006703": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
