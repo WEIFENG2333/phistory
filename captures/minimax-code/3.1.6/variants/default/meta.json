@@ -1,0 +1,42 @@
+{
+  "agent_id": "minimax-code",
+  "agent": "MiniMax Code",
+  "package": "MiniMax Code desktop app",
+  "version": "3.1.6",
+  "variant": {
+    "id": "default",
+    "label": "Default",
+    "dimensions": {}
+  },
+  "requested": {},
+  "observed": {
+    "provider": "anthropic",
+    "model": "minimax-code-capture",
+    "tool_count": 23
+  },
+  "published_at": "2026-10-23T13:56:40.104Z",
+  "tarball_url": "https://file.cdn.minimax.io/public/minimax-agent-prod/release/MiniMax%20Code-3.1.6-arm64-mac.zip",
+  "binary_version": "MiniMax Code 3.1.6",
+  "captured_at": "2026-10-23T18:39:22.923293+00:00",
+  "tap_client": "minimax-code",
+  "target": "claude-tap capture-only",
+  "client_exit_code": 0,
+  "duration_seconds": 14.902,
+  "command": [
+    "python",
+    "-m",
+    "claude_tap",
+    "run",
+    "minimax-code",
+    "--export-prompt",
+    ".tap/tap-export.md",
+    "--no-live",
+    "--no-open",
+    "--no-update-check",
+    "--output-dir",
+    ".tap",
+    "--mode",
+    "reverse",
+    "--"
+  ]
+}
