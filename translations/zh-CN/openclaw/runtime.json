@@ -8383,6 +8383,13 @@
       "text": "图像生成提示词。",
       "thinking_budget": 4096
     },
+    "97254bdba303921d912ee68e35c9656460f750eba16ac1a5ac56c15e41f8b900": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "运行时：agent=main | session=agent:main:main | host=runnervmtai0g | repo=$PHISTORY_HOME/.openclaw/workspace | os=Linux 6.17.0-1022-azure (x64) | node=v24.22.1 | active_node=unknown | active_node_identity=unknown | model=phistory/phistory-dummy | default_model=phistory/phistory-dummy | shell=bash",
+      "thinking_budget": 4096
+    },
     "9729971b8a13af04773257e8c79e966b65c9a50a500b5d2e9eed331e96f33bcd": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -8948,6 +8955,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "持续推进直至完成或遇到真正的阻碍；在工具可以行动时，不得以纯计划收尾。",
+      "thinking_budget": 4096
+    },
+    "a0742afaead5815acadac4378bde35b5e7cec0bd8052c8e7d6a36dc309dab58d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "当前日期：2026-10-24\n时区：UTC\n如需确切的当前时间，请使用 `session_status`。",
       "thinking_budget": 4096
     },
     "a099353e0e088784691c97b264b0984838f7f0cb9df51c2a70c9622d6035e062": {
@@ -11836,6 +11850,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "Brave UI 的 locale。",
+      "thinking_budget": 4096
+    },
+    "d581270172e64dbf576c5b8a4dfbb36135ab71a4d8e982c54e387a76495d56eb": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "[Sat 2026-10-24 11:29 UTC] 用一句简短的话回复。",
       "thinking_budget": 4096
     },
     "d5870608d8546d563ecbcb5e5012467726543ab41096ad899c439e063a3bd6d9": {
