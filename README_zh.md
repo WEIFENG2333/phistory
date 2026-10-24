@@ -8,7 +8,7 @@ Phistory 追踪 Claude Code、Codex、DeepSeek Harness、Antigravity、Grok Buil
 
 **从这里开始：** [phistory.cc](https://phistory.cc/)
 
-> 每小时自动检查新版本，归档最近更新于 **2026-10-23 18:39 UTC**。
+> 每小时自动检查新版本，归档最近更新于 **2026-10-24 01:00 UTC**。
 
 ![Phistory prompt diff viewer](docs/screenshot.png)
 
@@ -74,11 +74,11 @@ python -m http.server --directory .phistory-cache/site
 
 ## 抓取状态
 
-最近抓取更新：2026-10-23 18:39 UTC
+最近抓取更新：2026-10-24 01:00 UTC
 
 | Agent | 最新版本 | 版本数 | 快照数 | 最近抓取 |
 | --- | --- | ---: | ---: | --- |
-| Claude Code | [2.1.309 - 2026-10-22](captures/claude-code/2.1.309/variants/default/prompt.md) | 450 | 780 | 2026-10-22 22:40 UTC |
+| Claude Code | [2.1.310 - 2026-10-23](captures/claude-code/2.1.310/variants/default/prompt.md) | 451 | 782 | 2026-10-24 01:00 UTC |
 | Codex CLI | [0.164.0 - 2026-10-23](captures/codex/0.164.0/variants/default/prompt.md) | 106 | 176 | 2026-10-23 07:53 UTC |
 | DeepSeek Harness | [0.2.1-rc.2 - 2026-10-17](captures/dsh/0.2.1-rc.2/variants/default/prompt.md) | 15 | 81 | 2026-10-19 11:10 UTC |
 | Antigravity CLI | [1.4.6 - 2026-10-23](captures/antigravity/1.4.6/variants/default/prompt.md) | 74 | 74 | 2026-10-23 07:53 UTC |

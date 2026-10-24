@@ -1,0 +1,48 @@
+{
+  "agent_id": "claude-code",
+  "agent": "Claude Code",
+  "package": "@anthropic-ai/claude-code",
+  "version": "2.1.310",
+  "variant": {
+    "id": "sdk",
+    "label": "Headless (-p)",
+    "dimensions": {
+      "surface": "headless"
+    }
+  },
+  "requested": {
+    "surface": "headless"
+  },
+  "observed": {
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "tool_count": 12
+  },
+  "published_at": "2026-10-23T21:20:46.540Z",
+  "tarball_url": "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-2.1.310.tgz",
+  "binary_version": "2.1.310 (Claude Code)",
+  "captured_at": "2026-10-24T01:00:06.909568+00:00",
+  "tap_client": "claude",
+  "target": "claude-tap capture-only",
+  "client_exit_code": 0,
+  "duration_seconds": 1.238,
+  "command": [
+    "python",
+    "-m",
+    "claude_tap",
+    "run",
+    "claude",
+    "--no-yolo",
+    "--export-prompt",
+    ".tap/tap-export.md",
+    "--no-live",
+    "--no-open",
+    "--no-update-check",
+    "--output-dir",
+    ".tap",
+    "--",
+    "--no-session-persistence",
+    "-p",
+    "Reply with one short sentence."
+  ]
+}
