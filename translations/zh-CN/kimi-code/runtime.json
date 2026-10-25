@@ -238,6 +238,13 @@
       "text": "write-goal：帮助用户为 goal 模式制定一个定义明确的 `/goal` 目标——把粗略的意图转化为一份完成契约，包含清晰的终点线、证明、边界和停止规则。当用户请求帮助编写、完善或改进 go…\n   时使用。Path: builtin://write-goal",
       "thinking_budget": 4096
     },
+    "0910442742aaf64d4a1999f29a6cd959fd98e44f8a698eed3b5d27a03fc5467e": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "除非用户、AGENTS.md 或某个技能要求启动子智能体，或者用户开启了 swarm 或 tower 之类的多智能体模式，否则不要使用 Agent 启动子智能体。",
+      "thinking_budget": 4096
+    },
     "0a17020ed2589cf08e76c2ecb4bfa8735b2c018e40b69eb5650b02e4ffdbc790": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -1926,6 +1933,13 @@
       "text": "在调用 WaitFor 之前，先想想与此同时你还能做什么：任务的其他部分、验证先前的工作，或者以一条进度更新结束你的轮次。如果有，就转而去做那件事。",
       "thinking_budget": 4096
     },
+    "5d68bfc04e4e8e3905cf759990fd34981f900327fab7c95e4cca7bc08ccca001": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "除非用户明确要求，否则不要启动子智能体。每个子智能体都是冷启动，需要重新推导你已经掌握的上下文，这会耗费用户的时间和 token。所谓“要求”是指：用户要求使用子智能体、委托任务或并行智能体，或者按名称请求下文列出的某种智能体类型（例如 \"use an explore agent\"）。AGENTS.md 或某个技能中的明确指示，以及用户开启的多智能体模式（如 swarm 或 tower 模式），同样算作要求。其他任何情况都不算：大型或多部分的任务，或者对深度、彻底性、研究或调查的要求，都不是启动子智能体的请求——请用你自己的工具亲自完成这些工作。下文的智能体类型描述只在启动已获授权后帮助你选择类型；它们本身从不构成授权。恢复子智能体以继续已获授权的工作不需要新的请求。",
+      "thinking_budget": 4096
+    },
     "5d6ce39c64b858cac8e46a4c4d7837f5136c1f615c601f2e2ddbbe753651fb13": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -2456,6 +2470,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "One-shot：仅当理想触发时间落在每小时的 `:00` 或 `:30` 时，触发时间才会**提前** ≤ 90 秒。其他分钟则原样通过。",
+      "thinking_budget": 4096
+    },
+    "77b9ff644bc755193b78e89087aaeddf2e76b8d7fc954ae0444f88549c77a4db": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "进入计划模式后，会有一个提醒引导你完成整个工作流程（探索 → 设计 → 编写计划文件 → `ExitPlanMode`），并强制只读访问。",
       "thinking_budget": 4096
     },
     "780736ee4364955469a3005a60f5776fbd7eaf0248c4965c368455b32ade0150": {
@@ -3753,6 +3774,13 @@
       "text": "不确定当前状态时，先调用查询模式（省略 `todos`）查看列表，再决定要更新什么。",
       "thinking_budget": 4096
     },
+    "b4c1a8eef3b7f4e37681b26e8a193cd3b40100630fda6249b9b46266866f1d50": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "explore：快速探索代码库，通过提示词强制只读行为。专为探索代码库而设计的快速智能体：它按模式查找文件（例如 \"src/**/*.yaml\"），在代码中搜索关键词（例如 \"database connection\"），并回答有关代码库的问题（例如 \"how does the auth module work?\"）。调用此智能体时，请指明所需的彻底程度：\"quick\" 用于基本搜索，\"medium\" 用于适度探索，\"thorough\" 用于跨多个位置和命名约定的全面分析。\n  工具：Bash、Read、Glob、Grep、FetchURL",
+      "thinking_budget": 4096
+    },
     "b51961cc5cf1bc95bf8734bfbd830b7c7e39b1f83d36d55d83113abe526a6950": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -4542,6 +4570,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "技能是模块化的扩展，提供以下内容：",
+      "thinking_budget": 4096
+    },
+    "d6e1f2b9c69c694f60737ed9a817c45f7cd0649264e4df4c5e3dc821b6f8cf93": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "AgentSwarm 仅在 swarm 模式开启时运行，且只有用户才能开启 swarm 模式。swarm 模式关闭时，不要调用 AgentSwarm：调用会被拒绝，不会启动任何子智能体。",
       "thinking_budget": 4096
     },
     "d6e6c5393f215d2374c6c0f746b3fb34c7043e97a261e4d46495eecdd54ad130": {

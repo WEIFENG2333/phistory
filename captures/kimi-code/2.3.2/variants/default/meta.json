@@ -1,0 +1,45 @@
+{
+  "agent_id": "kimi-code",
+  "agent": "Kimi Code",
+  "package": "@moonshot-ai/kimi-code",
+  "version": "2.3.2",
+  "variant": {
+    "id": "default",
+    "label": "Default",
+    "dimensions": {}
+  },
+  "requested": {},
+  "observed": {
+    "provider": "openai-chat",
+    "model": "kimi-for-coding",
+    "tool_count": 25
+  },
+  "published_at": "2026-10-25T08:01:23.373Z",
+  "tarball_url": "https://registry.npmjs.org/@moonshot-ai/kimi-code/-/kimi-code-2.3.2.tgz",
+  "binary_version": "2.3.2",
+  "captured_at": "2026-10-25T12:43:27.975534+00:00",
+  "tap_client": "kimi-code",
+  "target": "claude-tap capture-only",
+  "client_exit_code": 0,
+  "duration_seconds": 10.887,
+  "command": [
+    "python",
+    "-m",
+    "claude_tap",
+    "run",
+    "kimi-code",
+    "--no-yolo",
+    "--export-prompt",
+    ".tap/tap-export.md",
+    "--no-live",
+    "--no-open",
+    "--no-update-check",
+    "--output-dir",
+    ".tap",
+    "--",
+    "--prompt",
+    "Reply with one short sentence.",
+    "--output-format",
+    "text"
+  ]
+}
