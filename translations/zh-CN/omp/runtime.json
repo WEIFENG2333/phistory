@@ -4072,6 +4072,13 @@
       "text": "`:50` / `:50-` — 从第 50 行起 | `:50-200` — 含端点 | `:50+150` — 从第 50 行起的 150 行 | `:5-16,960-973` — 多个区间",
       "thinking_budget": 4096
     },
+    "55e3a143f8b9334a488b561455cb217688b912135883010e7dee572f0b329102": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "今天：2026-10-27；当前工作目录：'$PHISTORY_WORKSPACE'。不要在回复中重复此信息。",
+      "thinking_budget": 4096
+    },
     "55f8dca22b02a22d11afb6704c10b84a992ef296e014d19f57e621617eea7432": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -6457,6 +6464,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "考虑编译后的代码：绝不进行可避免的分配、复制或计算。",
+      "thinking_budget": 4096
+    },
+    "89c51f9889d855baf684ed2a6034cf3bda8907a8b547150e5ceea629a3419629": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "Python 辅助函数接受关键字参数；JS 辅助函数接受位置参数或恰好一个尾随选项对象。",
       "thinking_budget": 4096
     },
     "89d1a5a799cce3a21c6248087717d60e84474374888cae8a422a3269dc71bd72": {
@@ -10797,6 +10811,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "将真正的切片在同一个 `tasks[]` 批次中扇出。绝不凑数、将独立工作串行化，或派生后闲置；工作期间允许一个只读侦察。",
+      "thinking_budget": 4096
+    },
+    "e54066307d881db60b28059e95284d8f2638a63e18c02edba7bb1ae4ea4e4a9c": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "正则表达式：Rust，然后是 PCRE2。`path`：以 `;` 分隔的文件/目录/glob/URL；默认为 `.`。默认区分大小写，遵循 gitignore；`skip` 会对文件分页。\n仅匹配文件的选择器：`src/foo.ts:50-100`。字面量 `\\n`/`\\\\n` 可启用跨行匹配。\n裸 glob `*.ts` 匹配任意深度；`dir/*.ts` 仅匹配 `dir` 的直接子项（`dir/**/*.ts` 会递归）。`!glob` 条目会排除搜索路径下匹配的文件和文件夹（`src;!**/*.test.ts`）。",
       "thinking_budget": 4096
     },
     "e549d7b8321c1fa3ef6afdbca590fd1d263f08a65d36f1224619c3f269dd388b": {
