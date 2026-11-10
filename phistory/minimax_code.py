@@ -92,10 +92,14 @@ def install(version: str, install_dir: Path) -> Path:
     sqlite_package_json = app_dir / "node_modules" / "better-sqlite3" / "package.json"
     common_required = (package_json, sqlite_package_json)
     missing = [str(path.relative_to(app_dir)) for path in common_required if not path.is_file()]
-    modern_runtime = app_dir / "node_modules" / "@mavis" / "local-runtime" / "dist" / "index.js"
+    modern_runtimes = [
+        app_dir / "node_modules" / "@mavis" / package / "dist" / "index.js"
+        for package in ("local-runtime-v2", "local-runtime")
+    ]
+    has_modern_runtime = any(path.is_file() for path in modern_runtimes)
     modern_config = app_dir / "node_modules" / "@mavis" / "config" / "dist" / "index.js"
     legacy_daemon = resources_dir / "resources" / "daemon" / "daemon.js"
-    if not (modern_runtime.is_file() and modern_config.is_file()) and not legacy_daemon.is_file():
+    if not (has_modern_runtime and modern_config.is_file()) and not legacy_daemon.is_file():
         missing.append("a supported local runtime")
     if missing:
         detail = (extraction.stderr or extraction.stdout).strip()[-4000:]
@@ -132,7 +136,7 @@ def install(version: str, install_dir: Path) -> Path:
     executable.chmod(executable.stat().st_mode | 0o755)
 
     archive.unlink(missing_ok=True)
-    if modern_runtime.is_file():
+    if has_modern_runtime:
         shutil.rmtree(resources_dir, ignore_errors=True)
     return bin_dir
 

@@ -83,7 +83,8 @@ def test_package_dispatches_minimax_code_source(monkeypatch, tmp_path):
     assert install_agent(agent, version.version, tmp_path) == tmp_path / "bin"
 
 
-def test_install_builds_headless_launcher_and_linux_native_module(monkeypatch, tmp_path):
+@pytest.mark.parametrize("runtime_package", ["local-runtime", "local-runtime-v2"])
+def test_install_builds_headless_launcher_and_linux_native_module(monkeypatch, tmp_path, runtime_package):
     version = "3.0.56"
     monkeypatch.setattr(
         minimax_code,
@@ -111,7 +112,7 @@ def test_install_builds_headless_launcher_and_linux_native_module(monkeypatch, t
             files = {
                 "package.json": {"version": version},
                 "node_modules/@mavis/config/dist/index.js": {},
-                "node_modules/@mavis/local-runtime/dist/index.js": {},
+                f"node_modules/@mavis/{runtime_package}/dist/index.js": {},
                 "node_modules/better-sqlite3/package.json": {"version": "12.11.1"},
             }
             for name, content in files.items():

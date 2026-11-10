@@ -1,0 +1,55 @@
+{
+  "agent_id": "dsh",
+  "agent": "DeepSeek Harness",
+  "package": "@deepseek-ai/dsh",
+  "version": "0.2.2-rc.1",
+  "variant": {
+    "id": "code",
+    "label": "PTC",
+    "dimensions": {
+      "surface": "web",
+      "mode": "ptc"
+    }
+  },
+  "requested": {
+    "surface": "web",
+    "mode": "ptc"
+  },
+  "observed": {
+    "provider": "anthropic",
+    "model": "deepseek-flash",
+    "tool_count": 1,
+    "mode": "ptc"
+  },
+  "published_at": "2026-11-04T09:20:32.310Z",
+  "tarball_url": "https://registry.npmjs.org/@deepseek-ai/dsh/-/dsh-0.2.2-rc.1.tgz",
+  "binary_version": "0.2.2-rc.1",
+  "captured_at": "2026-11-10T15:56:04.762163+00:00",
+  "tap_client": "dsh",
+  "target": "claude-tap capture-only",
+  "client_exit_code": 0,
+  "duration_seconds": 7.216,
+  "command": [
+    "python",
+    "-m",
+    "claude_tap",
+    "run",
+    "dsh",
+    "--no-yolo",
+    "--export-prompt",
+    ".tap/tap-export.md",
+    "--no-live",
+    "--no-open",
+    "--no-update-check",
+    "--output-dir",
+    ".tap",
+    "--mode",
+    "forward",
+    "--",
+    "web",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "46021"
+  ]
+}

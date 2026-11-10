@@ -3868,6 +3868,13 @@
       "text": "**plan**：用于设计实现方案的软件架构师智能体。当你需要为任务规划实现策略时，可以使用它。它会返回分步计划，识别关键文件，并考虑架构上的权衡。只读 — 可访问除文件编辑之外的所有工具（search_replace 不可用）：read_file、list_dir、grep、web_search 和 todo_write。",
       "thinking_budget": 4096
     },
+    "6e8e142b6fbbd88b117315e7be245f7a7f54a49a9fd15378d31446b302762209": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "deep-research：以有界并行度研究一个查询，交叉核对证据，并撰写带引用的报告\n  使用时机：比较、调查或研究需要带来源论断的问题。 /deep-research，研究这个问题，撰写带引用的报告。\n  绝对路径：/buildkite/builds/buildkite-agent-ci-cpu-cuda-xlarge-654bfd995f-dfb6m-1/xai/spacexai-checks/crates/codegen/xai-grok-shell/src/session/workflows/deep_research.rhai",
+      "thinking_budget": 4096
+    },
     "6ed0b6641956ec3694f7edc2085996b44c572136bc199bed1560cb9a7428e264": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -6520,6 +6527,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "在这些标题下以简短的行撰写详情。它们之间留一个空行。",
+      "thinking_budget": 4096
+    },
+    "b6f09b8fdd276f7566f0089aeb738818eb89ff15e45da50a9cf23e94a953ec8c": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "如果用户没有 _明确_ 请求某个模型，就省略 `model` 字段。这样子智能体就会在你自己的模型上运行，而这正是用户期望的默认行为。",
       "thinking_budget": 4096
     },
     "b701d88b42a658531921a9ee0d8ca68859ee64031dbe495e99f5d9a2c1aeed90": {

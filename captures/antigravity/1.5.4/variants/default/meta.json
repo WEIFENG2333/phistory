@@ -1,0 +1,48 @@
+{
+  "agent_id": "antigravity",
+  "agent": "Antigravity CLI",
+  "package": "google-antigravity/antigravity-cli",
+  "version": "1.5.4",
+  "variant": {
+    "id": "default",
+    "label": "Default",
+    "dimensions": {}
+  },
+  "requested": {},
+  "observed": {
+    "provider": "gemini",
+    "model": "MODEL_GOOGLE_GEMINI_2_5_FLASH",
+    "tool_count": 10
+  },
+  "published_at": "2026-11-10T04:32:55Z",
+  "tarball_url": "https://github.com/google-antigravity/antigravity-cli/releases/download/1.5.4/agy_cli_linux_x64.tar.gz",
+  "binary_version": "1.5.4",
+  "captured_at": "2026-11-10T16:01:39.249289+00:00",
+  "tap_client": "agy",
+  "target": "claude-tap capture-only",
+  "client_exit_code": 0,
+  "duration_seconds": 1.009,
+  "command": [
+    "python",
+    "-m",
+    "claude_tap",
+    "run",
+    "agy",
+    "--no-yolo",
+    "--export-prompt",
+    ".tap/tap-export.md",
+    "--no-live",
+    "--no-open",
+    "--no-update-check",
+    "--output-dir",
+    ".tap",
+    "--mode",
+    "forward",
+    "--",
+    "--print",
+    "Reply with one short sentence.",
+    "--print-timeout",
+    "1s",
+    "--dangerously-skip-permissions"
+  ]
+}

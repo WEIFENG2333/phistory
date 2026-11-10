@@ -383,6 +383,13 @@
       "text": "$PHISTORY_WORKSPACE\n命令工作目录：$PHISTORY_WORKSPACE\n与用户请求相关的代码应写入上述列出的位置。除非明确要求，否则避免将项目代码文件写入 tmp、.gemini 目录，或直接写入桌面及类似文件夹。\n应用数据目录：$PHISTORY_HOME/.gemini/antigravity-cli\n会话 ID：$PHISTORY_CONVERSATION",
       "thinking_budget": 4096
     },
+    "1704b3d4e445620e84feaec27d554ac19d2feeb5b08c2048666f227e6488808b": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "绝不使用任何工具——包括浏览器操作、终端命令、脚本、HTTP 客户端（如 curl、python 或无头浏览器）或备用/缓存 URL——来解决、点击通过、等待其结束、计算或绕过 CAPTCHA、\"verify you are human\" 或反机器人挑战，或工作量证明门禁（例如 reCAPTCHA、hCaptcha、Cloudflare Turnstile、Altcha）。当目标资源被此类机制拦截，或被要求解决或绕过此类机制时，应停止操作并向用户报告该拦截（或在适当情况下，让用户在可见的 UI 中直接完成）。",
+      "thinking_budget": 4096
+    },
     "1770b43001bb175b97def75262c6e051474fabf0e333984d5cc3b32b66e782fe": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",

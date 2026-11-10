@@ -288,3 +288,19 @@ def test_change_summary_keeps_repeated_prompt_lines_matchable(tmp_path: Path):
     assert change["added_lines"] == 1
     assert change["removed_lines"] == 1
     assert change["changed_lines"] == 2
+
+
+def test_release_order_handles_date_tags_followed_by_semver():
+    from phistory.render import _agent_status_rows, _sorted_capture_rows
+
+    rows = [
+        {
+            "agent_id": "hermes",
+            "version": "v2026.9.24",
+            "published_at": "2026-09-24T10:09:38Z",
+            "variant_id": "default",
+        },
+        {"agent_id": "hermes", "version": "v0.23.1", "published_at": "2026-11-09T00:00:00Z", "variant_id": "default"},
+    ]
+    assert _agent_status_rows(rows)[0]["latest"]["version"] == "v0.23.1"
+    assert _sorted_capture_rows(rows)[0]["version"] == "v0.23.1"

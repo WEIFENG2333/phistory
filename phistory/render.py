@@ -488,6 +488,11 @@ def _rel(path: Path, base: Path) -> str:
         return Path(os.path.relpath(path.resolve(), base.resolve())).as_posix()
 
 
+def _release_key(row: dict[str, Any]) -> tuple:
+    published = _parse_time(row.get("published_at") or "")
+    return (published.timestamp() if published else 0, _version_key(row["version"]))
+
+
 def _version_key(version: str) -> tuple:
     parts: list[tuple[int, int | str]] = []
     for part in _VERSION_PART_RE.findall(version):
@@ -562,7 +567,7 @@ def _agent_status_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
         by_agent.setdefault(row["agent_id"], []).append(row)
     status = []
     for agent_id, agent_rows in by_agent.items():
-        latest_version = max(agent_rows, key=lambda item: _version_key(item["version"]))["version"]
+        latest_version = max(agent_rows, key=_release_key)["version"]
         latest_rows = [row for row in agent_rows if row["version"] == latest_version]
         latest = next((row for row in latest_rows if row["variant_id"] == "default"), latest_rows[0])
         status.append(
@@ -583,7 +588,7 @@ def _sorted_capture_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
             sorted(
                 (row for row in rows if row["agent_id"] == agent_id),
                 key=lambda item: (
-                    _version_key(item["version"]),
+                    _release_key(item),
                     item["variant_id"] == "default",
                     item["variant_id"],
                 ),

@@ -373,6 +373,13 @@
       "text": "替换 old_string 的所有出现（默认 false）",
       "thinking_budget": 4096
     },
+    "05a1d1111970089bed2dff9caf2d287ff318c5632641f615c5d47c24d1f896fb": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "claude-api：Claude API / Anthropic SDK 的参考文档 — 模型 ID、定价、参数、流式传输、工具使用、MCP、智能体、缓存、token 计数、模型迁移。\n触发 — 首先阅读，要在你回答、运行命令或打开文件之前（已经开始？现在就读）；不要因为它\"看起来是个一行命令的事\"就跳过 — 以下情况均适用：提示词以任何形式提到 Claude/Anthropic（Claude、Anthropic、Fable、Opus、Sonnet、Haiku、`anthropic`、`@anthropic-ai`、`claude-*`、`us.anthropic.*`、`[1m]`）；用户询问 LLM 相关问题（定价/模型选择/限制/缓存）— 绝不要凭记忆回答；或者任务属于 LLM 类型且未指明提供商（agent/MCP/tool-definition/multi-agent/RAG/LLM-judge/computer-use；生成/摘要/提取/分类/改写/自然语言对话；调试拒答/知识截止/流式传输/工具调用/token）。\n跳过 — 仅当正在处理其他提供商时（此条件覆盖所有触发条件）：查询中提到 OpenAI/GPT/Gemini/Llama/Mistral/Cohere/Ollama；或者 `grep -rE 'openai|langchain_openai|google.generativeai|genai|mistralai|cohere|ollama'` 在项目中有命中（如果未指明提供商，先运行这个 grep — 不要 Read 该文件；如果没有命中，则加载此技能）。",
+      "thinking_budget": 4096
+    },
     "061781bf38600895c716230df218eff6c1469a4fdfccf21ccbb4af1a2bc9b4d6": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -1643,6 +1650,13 @@
       "text": "command 参数是必需的。",
       "thinking_budget": 4096
     },
+    "18408438a275d72745d8c7859dc936f0f484ab361f7caa678952383bdbfc79fd": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "此上下文由 Claude Code 自动附加，不属于用户消息的一部分。它描述的是用户自己的账户和工作区，因此无需向用户复述这些内容。",
+      "thinking_budget": 4096
+    },
     "184127000ef1fbfe6d7cea418a3726bdb321a9934d9d7957d08fda4d0dcd8c37": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -2605,6 +2619,13 @@
       "text": "\"list directory\" - 查找用于列出目录的工具",
       "thinking_budget": 4096
     },
+    "28461cf28b7f95ff44c1fd1b145373ad4cc90633bbf8ea811420c5ebca3357b2": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "preserved",
+      "text": "Status:\n(unavailable)",
+      "thinking_budget": 4096
+    },
     "287955f66de8d247c1a602c22acb9ccba4c5eab5f5b36f26605a772551ce3f91": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",
@@ -3093,6 +3114,13 @@
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",
       "text": "如果智能体描述中提到应当主动使用，你就应尽力在用户提出要求之前就使用它。",
+      "thinking_budget": 4096
+    },
+    "2f76e9954e570dcbf93a6b46ef026a8371c303d5d4a7b6482ab229401699436c": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "用户可能只能看到提问对话框：在对话框打开期间，本轮中你此前编写的工具结果和文本可能不会显示在他们的屏幕上。让每个问题都能独立成立：如果问题依赖于你发现的内容，请简要说明，并在问题本身中点名你要询问的条目。",
       "thinking_budget": 4096
     },
     "2f7a875740430f5336980c6a307b3f7ad151ff61844687561fbee890ea110dcf": {
@@ -4138,6 +4166,13 @@
       "text": "在使用此工具之前，请确保你的计划清晰且无歧义。如果存在多种可行的方案或需求不明确：",
       "thinking_budget": 4096
     },
+    "3ecad7aec9979d75549b166b8f1c7cbc1c178f9b8972762fe77853079369b7e9": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "EndConversation（延迟加载工具）：用于用户持续辱骂智能体的情况（需在警告之后），或用户主动请求时。使用前请通过 ToolSearch(\"select:EndConversation\") 加载完整指引。",
+      "thinking_budget": 4096
+    },
     "3ef07bce29427fd508792554b31a5826fccae1db8002260a4ef11a0098fa31b5": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",
@@ -4977,6 +5012,13 @@
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",
       "text": "我现在要用 Bash 运行构建。",
+      "thinking_budget": 4096
+    },
+    "4c97f6c6e39bac02f38c2304460337c05f90ee103457ec7eaa0b235dfa20d8f3": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "仅限 list：同一范围的列表操作所给出的 `next_page_token`，用于列出其后的工件。",
       "thinking_budget": 4096
     },
     "4ca91d25a4a5e939cf66cd4af03929f07868ca6e2d63bc2f79bd1786626a52d3": {
@@ -11555,6 +11597,13 @@
       "text": "**好处：**",
       "thinking_budget": 4096
     },
+    "bb93a1fd1d1df588d041a1c9fc3c41721ef30a7a4e3fb6a145d145152f6b37f2": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "可以构建原创游戏、属于某一类型或采用类似机制的游戏，以及基于用户自己的设计和素材的游戏。不要构建对某个特定现有游戏的复刻（包括其名称、角色、美术、音乐、关卡或外观），即使它被重命名或被称为原创也不行。",
+      "thinking_budget": 4096
+    },
     "bb9713420067fd27b5b98384b25ef1826d8cce46d0fa52a478c676d411cd002e": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",
@@ -13811,6 +13860,13 @@
       "text": "loop：按固定间隔运行提示词或斜杠命令（例如 /loop 5m /foo，默认为 10m）——当用户想要设置循环任务、轮询状态，或按时间间隔重复运行某项操作时使用（例如 \"check the deploy every 5 minutes\"、\"keep…",
       "thinking_budget": 4096
     },
+    "e0253ed20c082db489798791aef48d16a0bb1f9fa86e581aea593d8a66c9cb59": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "最新的 Claude 模型是 Claude 5 系列。模型 ID — Fable 5.2：'claude-fable-5-2'，Opus 5.5：'claude-opus-5-5'，Sonnet 5.5：'claude-sonnet-5-5'，Haiku 5.5：'claude-haiku-5-5'。构建 AI 应用时，默认选用最新、能力最强的 Claude 模型。",
+      "thinking_budget": 4096
+    },
     "e037e5269feb4811b5462c0e5765399900553632e594b517e9b0acbbd749fc9c": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",
@@ -14365,6 +14421,13 @@
       "text": "即使你最近运行命令时使用了 `dangerouslyOverrideSandbox: true`，也不得继续这种做法",
       "thinking_budget": 4096
     },
+    "e8c5ac762ebe50f8b4ffc1a9e78c6f6548be7c35d2363ab033efcbba3d1314bb": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "你必须将你了解到的关于用户及其项目的信息视为私密信息。绝不要在发往外部服务的请求中包含用户的姓名、项目、电子邮箱地址或其他个人详情，例如放在 header、URL 或 payload 中，除非用户明确要求你这样做。如果外部服务要求自动化客户端提供联系方式，例如 User-Agent 中的电子邮箱，请使用通用的客户端名称或询问用户。",
+      "thinking_budget": 4096
+    },
     "e8d12c55c76e8dd6f55bb57ecfce7d3bea99670abd3035fc8665d3f1da8d8e24": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -14394,6 +14457,13 @@
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",
       "text": "skill 的可选参数",
+      "thinking_budget": 4096
+    },
+    "e935a307a2e17085463cf1b0355530fab2e90d9c22614b865cc4cfc45d8fa29b": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "Claude Code 的快速模式在本会话的模型支持快速模式时会提供更快的输出，否则会将本会话切换到 Claude Opus。可以通过 /fast 切换该模式。",
       "thinking_budget": 4096
     },
     "e954655cacd5a9ea12d8d47b5530cdd66dd2f3eddf73357a4d87c8f1c1914c3b": {

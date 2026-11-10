@@ -578,6 +578,13 @@
       "text": "向已有智能体发送消息。使用 interrupt=true 立即重定向工作。如果你认为分配给你的任务高度依赖先前任务的上下文，应通过 send_input 复用该智能体。",
       "thinking_budget": 4096
     },
+    "1812dab9e510985675581b1798d4edce849ed70d8aeedeab2372b04208a73bba": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "multi_agent_v1：用于创建和管理子智能体的工具。",
+      "thinking_budget": 4096
+    },
     "181b2291c8bb955774a716422c3594c9a80d3b31072e88c1ad03e5f37157d5a4": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-10",
@@ -4411,6 +4418,13 @@
       "text": "在把向用户请求许可作为最后一步之前，你必须先完成那些已获授权且必要的工作，使拟议的操作变得具体且可审查。用户批准的应当是一个具体、可审查的结果。例如，在部署变更、写入外部应用、合并 PR 或发布站点之前，先完成所有工作，让用户批准成为最后一步。对于可逆任务、只读操作、审查或修复，以及会话早前已提供授权或任务指令中隐含授权的任何事情，你都不需要用户许可。",
       "thinking_budget": 4096
     },
+    "a504e2837cb22315aa9efcd9200c6d92e29da7d73ab37ccf6539936985cf33b6": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "部分工具可能没有预先提供给你，你应使用此工具（`tool_search`）来搜索所需的工具。对于 MCP 工具发现，始终使用 `tool_search`，而不是 `list_mcp_resources` 或 `list_mcp_resource_templates`。",
+      "thinking_budget": 4096
+    },
     "a5522703d18c07abc8b0203a7b2d9897ce3e0cf300742f9cac20b47851a56468": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-10",
@@ -6676,6 +6690,13 @@
       "prompt_version": "zh-CN-10",
       "status": "translated",
       "text": "对于随意的闲聊，正常聊天即可。",
+      "thinking_budget": 4096
+    },
+    "f2ab59d7c6884deb71fc075350c2d001ed324920eafcca33951d138ce098dbb8": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "延迟加载的工具命名空间：",
       "thinking_budget": 4096
     },
     "f2b6335c86c6947c12e1471fdf45c7060219dba41b5d40e8f35885f576ff77f6": {

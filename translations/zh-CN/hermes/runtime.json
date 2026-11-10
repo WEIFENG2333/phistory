@@ -5597,6 +5597,13 @@
       "text": "该子智能体应完成的内容。要具体且自包含——它对你的对话历史一无所知。",
       "thinking_budget": 4096
     },
+    "ee539b9dc26f909ec9d8b87f0dfa32b6d8056a228dfcf6c83e9fa748cceee2c4": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "主机：Linux (7.0.0-1017-azure)\n用户主目录：$PHISTORY_HOME\n当前工作目录：$PHISTORY_WORKSPACE\n暂存目录：$PHISTORY_HOME/.hermes/cache/scratch（TMPDIR 指向此处；临时文件和探测文件请写入该目录，切勿写入系统临时目录；闲置 24 小时的条目会被清理）",
+      "thinking_budget": 4096
+    },
     "ee5c585f8864a198635fc9f68c88bc3090fdbd6435812f62154bad3266e069d0": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",

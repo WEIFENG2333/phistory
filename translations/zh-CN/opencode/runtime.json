@@ -854,6 +854,13 @@
       "text": "首先，助手进行了搜索，以了解任务的范围",
       "thinking_budget": 4096
     },
+    "3d3bc1765aa0ddf48d964cc2e6794c3835921f463f26cd8dbfc6a3a53400b999": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "工作目录：$PHISTORY_WORKSPACE\n  工作区根文件夹：/\n  目录是否为 git 仓库：否\n  平台：linux\n  今日日期：2026 年 11 月 10 日（星期二）",
+      "thinking_budget": 4096
+    },
     "3d4d236c327b1b87f20ad265cc063e10dd266b0141b609a11df84203347ef8fa": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",

@@ -180,6 +180,7 @@ def _capture_env(
         _write_opencode_config(home)
     if target.agent.home_profile == "pi":
         _write_pi_config(home)
+    (home / ".runtime").mkdir(mode=0o700, exist_ok=True)
     env = {
         **target.agent.fake_env,
         **target.agent.extra_env,
@@ -191,6 +192,8 @@ def _capture_env(
         "XDG_DATA_HOME": str(home / ".local" / "share"),
         "CODEX_HOME": str(home / ".codex"),
         "CLAUDE_CONFIG_DIR": str(home / ".claude"),
+        "DBUS_SESSION_BUS_ADDRESS": "unix:path=" + str(home / ".dbus-unavailable"),
+        "XDG_RUNTIME_DIR": str(home / ".runtime"),
         "CI": "true",
         "GITHUB_ACTIONS": "true",
         "TZ": "Etc/UTC",

@@ -1,5 +1,12 @@
 {
   "entries": {
+    "00c0d91f8b2c650580193dd3fe7191a1e1fa74d0f312452c0d8240506bd06cbf": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "Pi 文档（仅当用户询问 Harness 本身、其 SDK、扩展、主题、技能或 TUI 时才阅读）：",
+      "thinking_budget": 4096
+    },
     "0693b377fa970e8c67c1fdc8f0d04dddd1223de0eb2ece8e37d312ef427abe82": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -105,6 +112,13 @@
       "text": "系统提示词",
       "thinking_budget": 4096
     },
+    "306cfbda88b32e6a1baf8d666b22c38d8eed1d76a7bf573af7bfa7d239ee0e30": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "当被问及以下内容时：扩展（docs/extensions.md、examples/extensions/）、主题（docs/themes.md）、技能（docs/skills.md）、提示词模板（docs/prompt-templates.md）、TUI 组件（docs/tui.md）、按键绑定（docs/keybindings.md）、SDK 集成（docs/sdk.md）、自定义提供程序（docs/custom-provider.md）、添加模型（docs/models.md）、包（docs/packages.md）、环境变量（docs/environment-variables.md）、MCP 服务器（docs/mcp.md）、codemode 脚本以及分类器和图像模型等非 LLM 模型（docs/codemode.md）",
+      "thinking_budget": 4096
+    },
     "361442e891ba76409c8c28bbe71e732f802eb7d5812dd398b08b51c164ae7ea5": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -131,6 +145,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "read：读取文件内容",
+      "thinking_budget": 4096
+    },
+    "4bf60214599d973aece4dc54a1c0064b20ae1e11853d0800859e14f68c810086": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "可能还有其他可用的工具。",
       "thinking_budget": 4096
     },
     "4d72140b30776acc2efee297fb858446d2e790da095a226eaef71d8299a37ef8": {
@@ -315,6 +336,13 @@
       "text": "在当前工作目录中执行 bash 命令。返回 stdout 和 stderr。输出会截断为最后 2000 行或 50KB（以先达到者为准）。如果被截断，完整输出会保存到临时文件中。可以选择提供以秒为单位的超时时间。",
       "thinking_budget": 4096
     },
+    "8ce02c93bf6b0ada6fb685d62fedcdca7d13950f3b2be8fa13377930ffb82194": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "每个 edits[].oldText 必须与原始文件内容精确且唯一地匹配。保持匹配片段简短且互不重叠；合并相邻的修改，避免包含大段未改动的区域。",
+      "thinking_budget": 4096
+    },
     "8f1a9aea8899ec9620ab5762ea5fbc642a460917b41a80493fa4fb960dce5563": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -341,6 +369,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "bash：执行 bash 命令（ls、grep、find 等）",
+      "thinking_budget": 4096
+    },
+    "a11294a0d1425281c16c7720bcb2e4d11f3a1f4c07b6921d385b326437745630": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "在实现 Harness 的改动之前，完整阅读相关文档和示例，并跟随相关的交叉引用。",
       "thinking_budget": 4096
     },
     "a504c131797b1ed4905195fbe2add91254838fd1abfca8f9928cf047457d0049": {
@@ -404,6 +439,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "edit：通过精确文本替换进行精确的文件编辑，包括在一次调用中完成多处互不相邻的编辑",
+      "thinking_budget": 4096
+    },
+    "c0fc62d6caf3d2fdecc60657ce9c3ac97fd4c88bff849790dbbef1b16583441a": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "你是一个运行在 pi（一个编码智能体 Harness）中的编码助手。帮助用户检查文件、运行命令和修改代码。",
       "thinking_budget": 4096
     },
     "c17e41b14fa39d3d0fbbc813221f6f9eb4d4b299b18cedb384a505da828918e9": {
@@ -488,6 +530,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "始终完整阅读 pi 的 .md 文件，并跟随链接查阅相关文档（例如 tui.md 包含 TUI API 细节）\n当前日期：2026-06-13\n当前工作目录：$PHISTORY_WORKSPACE",
+      "thinking_budget": 4096
+    },
+    "f42bfa53d35a72a060a6286d0121a9d7f8bebba60dc1f5a4af68f89b9bc14a20": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "使用 edit 进行有针对性的修改。对同一文件的多处修改应在一次调用中批量完成。",
       "thinking_budget": 4096
     },
     "fa434da31cfee27c719e3f497e6b9d4be1623729cfdea77b0c9ec3e2d4a5fdc7": {

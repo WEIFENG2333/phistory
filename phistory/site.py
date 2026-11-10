@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from phistory.registry import AGENTS, agent_sort_key
-from phistory.render import _version_key, read_capture_rows
+from phistory.render import _release_key, read_capture_rows
 
 AGENT_ICONS = {
     "antigravity": "docs/agent-icons/antigravity.png",
@@ -52,7 +52,7 @@ def _build_manifest(root: Path, *, translations: Callable[[dict], dict] | None =
         for variant_id in variant_ids:
             variant_rows = sorted(
                 [row for row in agent_rows if row["variant_id"] == variant_id],
-                key=lambda row: _version_key(row["version"]),
+                key=_release_key,
                 reverse=True,
             )
             versions = _site_versions(variant_rows, root.parent, translations=translations)

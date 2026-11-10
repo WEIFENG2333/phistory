@@ -311,6 +311,9 @@ def test_capture_env_writes_agent_profile_configs(tmp_path: Path):
     opencode_config = json.loads(Path(opencode_env["OPENCODE_CONFIG"]).read_text(encoding="utf-8"))
     omp_models = json.loads((Path(omp_env["PI_CODING_AGENT_DIR"]) / "models.json").read_text(encoding="utf-8"))
     pi_models = json.loads((Path(pi_env["PI_CODING_AGENT_DIR"]) / "models.json").read_text(encoding="utf-8"))
+    assert antigravity_env["DBUS_SESSION_BUS_ADDRESS"].startswith("unix:path=" + antigravity_env["HOME"])
+    assert Path(antigravity_env["XDG_RUNTIME_DIR"]).is_dir()
+    assert Path(antigravity_env["XDG_RUNTIME_DIR"]).stat().st_mode & 0o777 == 0o700
     assert agy_token["auth_method"] == "consumer"
     assert agy_token["token"]["access_token"] == "phistory-fake-access-token"
     assert dsh_env["DSH_HOME"].endswith("/.dsh")
