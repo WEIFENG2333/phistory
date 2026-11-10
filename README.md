@@ -8,7 +8,7 @@ Open the web viewer to compare prompt snapshots across versions and see how agen
 
 **Start here:** [phistory.cc](https://phistory.cc/)
 
-> Checks for new releases hourly. Archive last updated: **2026-11-10 18:09 UTC**.
+> Checks for new releases hourly. Archive last updated: **2026-11-10 23:40 UTC**.
 
 ![Phistory prompt diff viewer](docs/screenshot.png)
 
@@ -74,12 +74,12 @@ python -m http.server --directory .phistory-cache/site
 
 ## Capture Status
 
-Last capture update: 2026-11-10 18:09 UTC
+Last capture update: 2026-11-10 23:40 UTC
 
 | Agent | Latest | Versions | Snapshots | Last Captured |
 | --- | --- | ---: | ---: | --- |
 | Claude Code | [2.1.322 - 2026-11-10](captures/claude-code/2.1.322/variants/default/prompt.md) | 453 | 786 | 2026-11-10 15:54 UTC |
-| Codex CLI | [0.167.0 - 2026-11-06](captures/codex/0.167.0/variants/default/prompt.md) | 107 | 179 | 2026-11-10 15:54 UTC |
+| Codex CLI | [0.167.1 - 2026-11-10](captures/codex/0.167.1/variants/default/prompt.md) | 108 | 182 | 2026-11-10 23:39 UTC |
 | DeepSeek Harness | [0.2.2-rc.1 - 2026-11-04](captures/dsh/0.2.2-rc.1/variants/default/prompt.md) | 16 | 87 | 2026-11-10 15:55 UTC |
 | Antigravity CLI | [1.5.5 - 2026-11-10](captures/antigravity/1.5.5/variants/default/prompt.md) | 77 | 77 | 2026-11-10 18:08 UTC |
 | Claude Tag | [2026-10-18 - 2026-10-18](captures/claude-tag/2026-10-18/variants/default/prompt.md) | 4 | 4 | 2026-10-18 08:57 UTC |
@@ -93,7 +93,7 @@ Last capture update: 2026-11-10 18:09 UTC
 | Kimi CLI | [1.51.0 - 2026-09-21](captures/kimi/1.51.0/variants/default/prompt.md) | 23 | 23 | 2026-09-21 17:12 UTC |
 | opencode | [1.19.5 - 2026-10-28](captures/opencode/1.19.5/variants/default/prompt.md) | 125 | 125 | 2026-11-10 16:00 UTC |
 | Pi | [1.5.2 - 2026-11-10](captures/pi/1.5.2/variants/default/prompt.md) | 61 | 61 | 2026-11-10 16:00 UTC |
-| Oh My Pi | [18.18.6 - 2026-11-09](captures/omp/18.18.6/variants/default/prompt.md) | 157 | 157 | 2026-11-10 16:02 UTC |
+| Oh My Pi | [18.18.7 - 2026-11-10](captures/omp/18.18.7/variants/default/prompt.md) | 158 | 158 | 2026-11-10 23:40 UTC |
 
 ## Project Trend
 

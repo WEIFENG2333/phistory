@@ -280,6 +280,13 @@
       "text": "`logs` 默认为最后 100 行。`head: true` 从开头读取。`grep` 是一个正则表达式。",
       "thinking_budget": 4096
     },
+    "045a9eb9c132b3833a1be9709e5156571d0452b10b7ea3e4b72a6563fa4e9af7": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "脚本/heredoc/`$(…)`/complex 管道 → `eval`.\n`cwd`，而非 `cd`；`pty` 仅用于交互式。\n内部 URI 可用作内建命令/coreutils、重定向和 glob 的路径。\n`async` 会推迟有限结果的返回，但保留截止时间（默认 300 秒）；`timeout: 0` 用于监视器和长时间任务。\n没有 `head`/`tail`/redirection；输出默认截断，完整结果位于 `artifact://<id>`。\n长期运行的服务：名称必须唯一；ready 需要提供名称；没有 async/timeout；pty 默认为 true。ready 需要 log 正则或 port（两者都给出时则都用）；host 默认为 127.0.0.1，ready.timeout 为 30s。\n运行超过 60 秒（或距 `timeout` 不到 1 秒时，以先到者为准）仍未完成的非 `pty` 调用，通常会转为后台作业 `bg_N` 并继续运行到 `timeout`（客户端终端运行该命令或达到作业上限时除外）；结果会作为后续消息自动送达。绝不轮询。",
+      "thinking_budget": 4096
+    },
     "04626f38eccc56f9f37af48860b0a55f7521d45aac5acc940954b4af06def142": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -8958,6 +8965,13 @@
       "text": "Python：`await browser.open(name=…, url=…)`、同步的 `browser.tab(name)` 和 `await browser.close(name=…)`。Python 方法接受关键字参数。",
       "thinking_budget": 4096
     },
+    "b88e1d5bfc871ee394e624d0eb2ec43d2690fceb7e3eb4920a796182b2d06151": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "preserved",
+      "text": "OS: linux 7.0.0-1019-azure",
+      "thinking_budget": 4096
+    },
     "b899f5805f6f76db1a0890830297f716e39e3adaf15e7d36024853a9c0fa3b53": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -9943,6 +9957,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "`name`：CamelCase，≤32 个字符（省略时自动生成）。",
+      "thinking_budget": 4096
+    },
+    "cd5e87fa5c10196e240769c1326049cae31d1085564659e2fc0b4c28003bd85a": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "持久 shell：一条实际命令/管道；依赖关系使用 `&&`。",
       "thinking_budget": 4096
     },
     "cd6bac6560f7383282b9b165ef98da21ce9f45e1bbb1ba12e552a1a3e949141c": {
