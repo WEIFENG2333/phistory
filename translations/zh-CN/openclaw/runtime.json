@@ -392,6 +392,13 @@
       "text": "\"systemEvent\"：将文本作为系统事件注入会话\n  { \"kind\": \"systemEvent\", \"text\": \"<message>\" }",
       "thinking_budget": 4096
     },
+    "0755c0d518a538171692af89ea641a93272b6dc2f5aaf2af1238eb07b018b686": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "preserved",
+      "text": "Runtime: agent=main | session=agent:main:main | host=runnervmwuk1x | repo=$PHISTORY_HOME/.openclaw/workspace | os=Linux 7.0.0-1019-azure (x64) | node=v24.22.2 | active_node=unknown | active_node_identity=unknown | model=phistory/phistory-dummy | default_model=phistory/phistory-dummy | shell=bash",
+      "thinking_budget": 4096
+    },
     "0784e40975c7c990d9cd307763ff1671f5b05e7dc45e6541c916adea642757b1": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -3997,6 +4004,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "投递账户",
+      "thinking_budget": 4096
+    },
+    "49bd5d05c9f4a2324f595aac6589a5b54a65815e4ad701a182b1a92a2d7a5653": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "[Tue 2026-11-10 18:08 UTC] 用一句简短的话回复。",
       "thinking_budget": 4096
     },
     "49cf225b7b0dc2a6cfe16211e33c3932a1f8f32ec06f37c2e5183e2193a456cb": {
