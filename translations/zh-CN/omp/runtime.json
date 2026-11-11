@@ -5864,6 +5864,13 @@
       "text": "Task: `task`",
       "thinking_budget": 4096
     },
+    "798816d10b203fc2f9f1a9bf3c3a2689ad61cc3a9fca91f743ade227fa5e69c2": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "今天：2026-11-11；当前工作目录：'$PHISTORY_WORKSPACE'。不要在回复中重复此信息。",
+      "thinking_budget": 4096
+    },
     "799290138e4bd6286eca3d98e65462acd46c5aae1c00d4d5ed6252efff9b132d": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
