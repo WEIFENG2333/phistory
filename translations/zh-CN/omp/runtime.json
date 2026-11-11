@@ -7411,6 +7411,13 @@
       "text": "SQLite（`.sqlite`、`.sqlite3`、`.db`、`.db3`）：`file.db`（表）、`file.db:table`（结构+行）、`file.db:table:key`（按主键）、`?limit=`/`?where=`/`?q=SELECT`。",
       "thinking_budget": 4096
     },
+    "9835ef474795f9a8dd3a10d9a8fa8e8e53bb816f04526904ee6f004d01203cbf": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "已知 URL/程序化数据 → `read`。查询语法：site: 或 -site:、after: 或 before: YYYY-MM-DD、inurl:、intitle:、filetype:、\"phrase\"、-term、OR。Hacker News 帖子/评论 → `site:news.ycombinator.com`。优先使用一手来源；必须为引用附上链接。",
+      "thinking_budget": 4096
+    },
     "9840b4c43f34352381499f02aaaf776056370de5bc7c10624421d0fd4cbd5f7d": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
