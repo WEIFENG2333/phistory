@@ -21,14 +21,14 @@ Paths in `captures/index.json` are relative to the site root. Archived prompts a
 - [Grokbot 2026-10-20 — Default](https://phistory.cc/captures/grokbot/2026-10-20/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
 - [Grok Build 1.0.77 — Default](https://phistory.cc/captures/grok/1.0.77/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
 - [MiniMax Code 3.1.14 — Default](https://phistory.cc/captures/minimax-code/3.1.14/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
-- [Kimi Code 2.5.3 — Default](https://phistory.cc/captures/kimi-code/2.5.3/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
+- [Kimi Code 2.6.0 — Default](https://phistory.cc/captures/kimi-code/2.6.0/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
 - [MiMo Code 0.1.16 — Default](https://phistory.cc/captures/mimo/0.1.16/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
 - [OpenClaw 2026.11.3 — Default](https://phistory.cc/captures/openclaw/2026.11.3/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
 - [Hermes Agent v0.22.4 — Default](https://phistory.cc/captures/hermes/v0.22.4/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
 - [Kimi CLI 1.51.0 — Default](https://phistory.cc/captures/kimi/1.51.0/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
 - [opencode 1.19.5 — Default](https://phistory.cc/captures/opencode/1.19.5/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
 - [Pi 1.5.2 — Default](https://phistory.cc/captures/pi/1.5.2/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
-- [Oh My Pi 18.18.9 — Default](https://phistory.cc/captures/omp/18.18.9/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
+- [Oh My Pi 18.19.0 — Default](https://phistory.cc/captures/omp/18.19.0/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
 
 ## Optional
 

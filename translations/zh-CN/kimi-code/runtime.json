@@ -63,6 +63,13 @@
       "text": "用于填充 {{item}} 的值。每个条目都会启动一个新的子智能体。",
       "thinking_budget": 4096
     },
+    "0233ed9312841683c4511d2a4827aa518c586808ee9db65a38853b99a1636840": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "update-config：查看或编辑 kimi-code 自身的配置——`config.toml`（model、provider、permission、hooks）和 `tui.toml`（theme、editor、notifications、auto-update）。当用户询问某个设置的作用、想要更改某项设置，或需要修复已弃用的 c...",
+      "thinking_budget": 4096
+    },
     "02a9711bce4ed9b7da9ce6ed9dc9484241fb208463f4fda35c8317dae66e1cf3": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -1057,6 +1064,13 @@
       "text": "后台任务完成时会自动通知你，因此你不需要为它们忙等。",
       "thinking_budget": 4096
     },
+    "2d0be94e82a536ffc2e2534549b29ef8ad30c9e7541449d75bc15cec8897ebd0": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "可选的精确路径，取自当前技能列表，用于选择同名变体。",
+      "thinking_budget": 4096
+    },
     "2d127e23d5e3b1ce72a02d7aebdab8c4fcf54e2621a0c962f16698ccb6222ad0": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -1527,6 +1541,13 @@
       "text": "一个会话最多持有 50 个存活的 cron 任务；超出此数再创建会被拒绝。（`prompt`正文同样设有上限——见其参数说明。）未来 5 年内永远不会触发的表达式（例如 `0 0 31 2 *`，一个不可能的日期）在创建时即被拒绝。",
       "thinking_budget": 4096
     },
+    "4692e48a4cf12cca54f4fbd5caf14dde245fed2e8fe253ff5860c7e13446f838": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "write-goal：帮助用户为 goal 模式撰写一个定义明确的 `/goal` 目标——把粗略的意图转化为一份带有清晰终点、验证方式、边界和停止规则的完成契约。当用户请求帮助撰写、完善或改进某个...",
+      "thinking_budget": 4096
+    },
     "46b92a0dd5b89495d7cd7810102501bbef33ae0fc031f64df44f5b83717d70d7": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -1889,6 +1910,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "在最终回答中，聚焦最重要的信息。仅在内容确有需要时才使用结构——标题、列表、表格——并让解释保持在主题允许的最简程度。优先使用平实的语言而非行话：把读者可能不熟悉的术语解释清楚。",
+      "thinking_budget": 4096
+    },
+    "5657689826d5b5179bdccef6b9d57ecfd60f63b137761e4c80ee8dcd558b434f": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "不要为了重复已完成的工作而再次调用技能：如果对话中已存在该技能具有相同 `args` 的 `<skill-loaded>` 块，请直接遵循其中的指令，而不要再次调用该工具。当需要以不同参数使用该技能时，则应再次调用该工具——已加载的块是使用先前的 `args` 展开的，不会反映新的输入。",
       "thinking_budget": 4096
     },
     "5689c58ecabc3252a9938711e4cb92ca440aadfb1e84c5eb73ce866be95d8e1a": {
@@ -2815,6 +2843,13 @@
       "text": "如果用户给出了文本文件的具体路径，直接调用 Read。不要 `Glob`、`ls`，也不要以其他方式预先检查已知的文本文件路径；缺失或无效的路径会返回可由你处理的错误。不要对目录使用 Read；已知目录请通过 Bash 使用 `ls`，需要按名称模式查找文件时用 Glob（Glob 只列出文件，绝不列出目录）。仅在任务需要搜索未知内容或位置时才使用 `Grep`。",
       "thinking_budget": 4096
     },
+    "7ed6394ccee8c2208302e96b713c8bf0dac82752d83639f2fb39302c56a47c02": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "今天的日期是 2026-11-12，采用本地客户端机器的时区（UTC）。日期每次变化时都会在提醒中重新说明当前日期；请以最新一条此类提醒中的日期为准。不得向用户明确提及这一点。",
+      "thinking_budget": 4096
+    },
     "7ef0900b0677ca7bd7e9e15c185d2c7055e12da78ca7f0a45e8c7592c0f636fb": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -2974,6 +3009,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "专用工具会显示在各工具的权限界面中，并使原始 stdout 不会进入对话；正因如此，只要存在合适的专用工具，就值得优先选用。",
+      "thinking_budget": 4096
+    },
+    "85f8aa3a72843ff8e8aa0b1026154202cc4c0c5effd89c524f737240ff021eaa": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "WaitFor 只返回等待结果。使用 TaskOutput 读取任务输出；完成通知仍会自动送达。",
       "thinking_budget": 4096
     },
     "86f8a561071a3875bd713d5d5f8135fea146ffa3f0352613c67a37b4e48f5f3c": {
@@ -4194,6 +4236,13 @@
       "text": "对于 bug 修复，通常需要检查错误日志或失败的测试，扫描代码库找出根本原因，并确定修复方案。如果用户提到了任何失败的测试，你应当确保这些测试在修改后通过。",
       "thinking_budget": 4096
     },
+    "bbb75f5fc7fd9c1a11cef17fdda0a5904792810d0495fe92e4532038493e07df": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "调用当前技能列表中已注册的技能。阻塞性要求：当列表中的某个技能与用户请求匹配时，必须调用此工具（而不是以自由文本回复）。不要通过读取技能文件来调用技能；只有在检查或编辑技能时才直接读取该文件。技能加载后，以其 `<skill-loaded>` 块的 `dir` 属性为基准，解析其指令中的相对路径。",
+      "thinking_budget": 4096
+    },
     "bc0e1e01756645a07211d42746ceba3b18901b7ba350309cf9a163d4afadaef6": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -4549,6 +4598,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "由 ripgrep 提供支持。默认遵循 `.gitignore`、`.ignore` 和 `.rgignore`——设置 `include_ignored` 可同时匹配被忽略的文件（例如构建产物 `node_modules`）。敏感文件（如 `.env`）始终会被过滤掉。",
+      "thinking_budget": 4096
+    },
+    "c7d7fd29cc8fbe4ab0e4e8fc8e74cd442a09ccebf00faf9105022285b8aac973": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "识别与当前任务相关的技能，并使用 `Skill` 工具调用它们；仅在需要时才进一步阅读技能详情，以节省上下文窗口。",
       "thinking_budget": 4096
     },
     "c7e2ecb6cb66751e0199506cfcbc36d43418bdb16aeeadffce558f7515512345": {
@@ -5347,6 +5403,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "`blocked`——真正的僵局阻碍了有效推进：外部条件、需要用户输入、缺少凭据或权限、持续的技术故障，或不可能、不安全或自相矛盾的目标。目标会停止，但之后可以恢复。不要因为工作量大、困难、缓慢、不确定、不完整、仍需验证或还需要更多目标轮数而使用 `blocked`。",
+      "thinking_budget": 4096
+    },
+    "e858cf8b39c52b41d59485592651c86e1edb28866818d18689f84c04e8352249": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "check-kimi-code-docs：使用官方文档回答有关 Kimi Code 产品的问题——CLI 用法、配置、斜杠命令、功能、会员与配额、API 接入、第三方工具设置以及错误码。当用户询问 Kimi Code 如何...",
       "thinking_budget": 4096
     },
     "e884332edf2a473ce0cd851fcadc50ef6da61349359839dad800dde7ab89fa35": {
