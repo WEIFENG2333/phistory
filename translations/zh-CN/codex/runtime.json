@@ -1340,6 +1340,13 @@
       "text": "仅在 sandbox_permissions 为 `require_escalated` 时才指定。\n                        建议一种前缀命令模式，使你今后能够满足用户的类似请求。\n                        应是简短但合理的前缀，例如 [\"git\", \"pull\"]、[\"uv\", \"run\"] 或 [\"pytest\"]。",
       "thinking_budget": 4096
     },
+    "31536daf212b3c82aec5a3791886f7480f0935686d74ea566fdf3eb8f9f1c5a4": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "openai-docs：API 初次使用者、Codex/Work 问答。如果用户已有 OpenAI API 集成，API 相关问题请跳过此技能，改用开发者文档。在回答 Codex 或 ChatGPT Work 的行为方式、某功能的位置，或如何配置或排查此应用或编码智能体的故障之前，先阅读此技能。这包括对话历史、模型与缓存行为、指令优先级、权限以及工具可用性。仅当用户首次连接 OpenAI API 时，才将此技能用于 API 入门。跳过操作类请求（如安排自动化）以及已由所提供文本或数据完全解答的任务。(file: r0/openai-docs/SKILL.md)",
+      "thinking_budget": 4096
+    },
     "319c978a151eadfae9698680ad74eeb38ecb693d1bb43f3ce24213518be86407": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-10",
