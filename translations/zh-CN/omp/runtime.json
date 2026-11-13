@@ -11450,6 +11450,13 @@
       "text": "本地路径、内部 URI 或 URL。支持内联选择器。",
       "thinking_budget": 4096
     },
+    "e309beeb7eeba3ef7472b2b89005d44f423b912608be3fb698b2a571fefffcdb": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "文件编辑：必须使用 `edit`；绝不使用 sed/perl/python 编辑。",
+      "thinking_budget": 4096
+    },
     "e30cd205e0b056b948369907728a965476619eb0dafd2f6d6cac4c51987c0d5d": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -12225,6 +12232,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "创建任务明确要求的新文件",
+      "thinking_budget": 4096
+    },
+    "f03936a6295592f25a25d3acaab43763fdd1b6cf26814a546eac9c595aef3d44": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "今天是 2026-11-13；当前工作目录为 '$PHISTORY_WORKSPACE'。不要在回复中重复此信息。",
       "thinking_budget": 4096
     },
     "f046abb912bed2b2f007fc0955198d7cb48ad3f05b6016c3d952137987f2a33c": {

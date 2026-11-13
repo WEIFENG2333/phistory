@@ -1978,6 +1978,13 @@
       "text": "由于用户在打招呼，请使用 greeting-responder 智能体以一句友好的玩笑作出回应。",
       "thinking_budget": 4096
     },
+    "1dcb4d430f0f4ec123630bc949a95d1a492673489776f64b4d764c795959e5c3": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "可用的智能体类型列在对话中来自系统的消息里。",
+      "thinking_budget": 4096
+    },
     "1df4bc9db404c0b27971dc1c27e188805f1984806570b71c56a479827a1400e0": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -4588,6 +4595,13 @@
       "text": "示例：如果用户要求“最新的 React 文档”，就用当前年份搜索 \"React documentation\"，而不是去年",
       "thinking_budget": 4096
     },
+    "468f2cc2b6987e6c3ba4dc2974e5dd83f640bc7511764feb09011dedb8ccf837": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "操作系统版本：Linux 7.0.0-1019-azure",
+      "thinking_budget": 4096
+    },
     "46970f12b52989fc92e1e046a63eb2c50f714d1b68cc6a533f9c4b2e39522c95": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",
@@ -6566,6 +6580,13 @@
       "text": "用户：11 是质数吗？\n助手：是的",
       "thinking_budget": 4096
     },
+    "675bfccd3847139490a68931131f3d474a1844f5654e0eabc6582f92636d0d35": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "技能（skill）是用户或项目为某类特定任务（部署步骤、审查清单、针对特定仓库的工作流）预先打包好的一组指令。可用技能会显示在系统提供的列表中，并附有一行描述。当手头任务属于某个已列出技能所覆盖的范围时，应首先调用此工具——该技能的指令会加载到本轮对话中，供你遵循，以替代你的默认做法；有些技能则改为在子智能体中运行并返回完成的结果。在后台运行的技能只返回智能体的名称——其结果稍后会以任务通知的形式送达，因此不要等待它，也不要在此期间再次调用它。用户也可能按名称请求某个技能（`/<name>`，或 \"slash command\"）；这就是调用该技能的请求。",
+      "thinking_budget": 4096
+    },
     "67901ee29a688835e9eafad192aa18642b9041eff626bed6c8ce069d063d371d": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",
@@ -8488,6 +8509,13 @@
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",
       "text": "读取文件时使用 Read，而不是 cat、head、tail 或 sed",
+      "thinking_budget": 4096
+    },
+    "89cdf7633bcda30e86728d2577c714f6b3983b0af881ec2e2f3c876fd1b4f951": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "本会话已开启 Ultracode（有一条来自系统的消息确认这一点）——参见工作流编写参考中的 **Ultracode**。",
       "thinking_budget": 4096
     },
     "89d9c2f62dd1e56c1fd8c99d75140102994e85c79f9dbd863943b1c26a6a1f08": {
@@ -10680,6 +10708,13 @@
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",
       "text": "用户：对，这里把 PR 合并成一个是对的，拆分这一个只会是无谓折腾\n    助手：[保存反馈记忆：对于此区域的重构，用户更倾向于一个打包的 PR 而不是多个小 PR。在我选择了这种做法后得到确认——一个已验证的判断，而非一次纠正]",
+      "thinking_budget": 4096
+    },
+    "ae12e708459e8de38888552e09da96c6a085991835405cf7909ac664c255f771": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "用户在其提示词中包含了关键字 \"ultracode\"（你会看到一条来自系统的消息对此予以确认）。",
       "thinking_budget": 4096
     },
     "ae25ca1713f0d49c24d7c32695e007c12f4eda2ac5cb477ea7e7c9022e08d0bc": {
@@ -15457,6 +15492,13 @@
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",
       "text": "使用 Edit 工具给 calculateTotal 函数添加一条注释 *",
+      "thinking_budget": 4096
+    },
+    "f91027c11149b4f4a874d076f745edb904799aea65ecf630f199d7cb77eabb4f": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "延迟工具以名称形式出现在来自系统的消息中。在获取之前，只有名称是已知的——没有参数 schema，因此无法调用该工具。此工具接受一个查询，将其与延迟工具列表进行匹配，并在 <functions> 块中返回匹配到的工具的完整 JSONSchema 定义。一旦某个工具的 schema 出现在该结果中，它就可以像提示词顶部定义的任何工具一样被调用。",
       "thinking_budget": 4096
     },
     "f91f2050a926a4ee24559ee1f74d7560bcb9393f4b420b42bcd9fae5c42a894a": {
