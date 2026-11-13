@@ -1200,6 +1200,13 @@
       "text": "可接受的形式：绝对路径、工作区相对路径、a/ 或 b/ diff 前缀，或纯文件名/后缀。",
       "thinking_budget": 4096
     },
+    "2ce90762ef8a93b5e141287c570d1255d714fffb75de9fa1ae274ce10273b1f3": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`image(imageUrlOrItem: string | { image_url: string } | ImageContent)`：追加一个图像项。`image_url` 应为 base64 编码的 `data:` URL。要转发 MCP 工具的图像，请传入 `result.content` 中的单个 `ImageContent` 块，例如 `image(result.content[0])`。",
+      "thinking_budget": 4096
+    },
     "2d1bdcd09041bdb76300625f471593cc147e4fdeebd193f5aae765d99401e489": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-10",

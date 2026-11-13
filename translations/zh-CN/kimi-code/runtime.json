@@ -2941,6 +2941,13 @@
       "text": "创建文件、向文件追加内容，或完全替换文件。",
       "thinking_budget": 4096
     },
+    "82e1bc04c7258d8b3d11d9c2578505e47cfc82291e2942141b1c283317e3bd94": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "今天的日期是 2026-11-13，时区为本地客户端机器的时区（UTC）。每当日期变化时，会在提醒中重述当前日期；请以最新的一条此类提醒为准确定当前日期。不要向用户明确提及这一点。",
+      "thinking_budget": 4096
+    },
     "83579699d560c45772ffa1ec6cd3bf201bebaa3cdc712480f1baa5d7d114062c": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
