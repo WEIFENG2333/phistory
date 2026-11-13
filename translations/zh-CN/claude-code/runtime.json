@@ -15386,6 +15386,13 @@
       "text": "最新的 Claude 模型系列是 Claude 4.X。模型 ID —— Opus 4.8：'claude-opus-4-8'，Sonnet 4.6：'claude-sonnet-4-6'，Haiku 4.5：'claude-haiku-4-5-20251001'。构建 AI 应用时，默认使用最新、能力最强的 Claude 模型。",
       "thinking_budget": 4096
     },
+    "f6c508820c4390cf0cd98cbacbfa76d5b2f8b0a58483b2c1b294749f8b6c55b7": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "plugin-authoring：制作 mod，即对 Claude 自身界面或行为的更改，例如主题、停留在聊天旁并会更新的面板或窗格、band、状态栏、toast、斜杠命令，或工具调用上的 hook。用于制作、修改或调试 mod 或其 hooks 模块。",
+      "thinking_budget": 4096
+    },
     "f6e51f810c1f9aa6b7e67433e20d7ab63f36746eeb764d75df763a3c666a3319": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",
