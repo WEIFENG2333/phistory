@@ -553,6 +553,13 @@
       "text": "把真正的任务切片扇出到同一个 `tasks[]` 批次中。绝不注水凑数、绝不将独立工作串行化、也绝不在派生后闲置。",
       "thinking_budget": 4096
     },
+    "08e3827e3f412a9ddcd715d63d2ff55015ed866f2ac657953bdd9987eea1ade9": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "proc://：作业、智能体和服务；proc://<id> 状态/输出；proc://<id>/kill 且 `content` 为空时，取消/停止作业、智能体和服务；proc://<id>/streams：bash 作业到目前为止的管道（实时保存在 `| tail`/`| grep` 下；绝不要为了查看而重新运行）；被搁置的智能体/作业缺失 ≠ 丢失：检查 agent://<id>、history://<id>。",
+      "thinking_budget": 4096
+    },
     "08e7a073380b9c779f34a16939694a0a55b2aaf5c211dc0603e9e1d8b2a00649": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -1126,6 +1133,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "**永久性功能/API 变更** → 现有的变更契约测试。仅为未覆盖的新可观察契约或用户请求添加测试。",
+      "thinking_budget": 4096
+    },
+    "149c4c254b315270af8c8b93c95c08cf339d9584bfb4d0f82ed274d6d74db861": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`commit`：在共享工作树中进行选择性提交：在其他智能体和用户持续编辑的同时，只提交你和你的子智能体所做的更改。→ xd://eval/commit",
       "thinking_budget": 4096
     },
     "14b9c821886ada689e2e20530bd4d48342361c381fced8bc06c912344be00331": {
@@ -1722,6 +1736,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "第二次调用——复用，切勿重新导入",
+      "thinking_budget": 4096
+    },
+    "1fe9720e45332e7591754b7913ae3b0e23d1cd362e3d982ca0044fbe5adcbf3d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "逐字的任务内容；数组针对多个任务（而非起始）。",
       "thinking_budget": 4096
     },
     "201427afd1fc358d51859cf194cb654427d737c72e1523e97d07f8518c01b127": {
@@ -2737,6 +2758,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "**`wait`**：仅在完全被阻塞、没有其他工作可做时使用。在以下最先发生的一项时返回：收到新消息、被监视的作业完成、等待窗口到期，或 steering 中断——而不是所有作业完成时；要继续等待就重新发起。",
+      "thinking_budget": 4096
+    },
+    "3397289ac38c68e9977ac91e2201d1facb70160ef280c4c93ba7c06d9cda73a5": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "要提交你的更改，请使用 eval `commit` 命名空间（`d = await commit.draft()`，然后 `await d.commit(\"subject\", [\"- body\"])`），而不是 `git add`/`git commit`：它只会选择你和你的子智能体编写的行，绝不会触碰其他智能体已暂存或未暂存的工作。",
       "thinking_budget": 4096
     },
     "34758ebec3073570cb0dd297e8938e8f195c29cbf17dd868727b98f1db1c96af": {
@@ -5675,6 +5703,13 @@
       "text": "仓库出现意外变更：是用户的工作；适应它。",
       "thinking_budget": 4096
     },
+    "6fd5784fdd537120ac72e495714fe7343c6f11bd6c07ae756a846b9db839eca2": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "今天是 2026-11-14；当前工作目录：'$PHISTORY_WORKSPACE'。不要在回复中重复此信息。",
+      "thinking_budget": 4096
+    },
     "701132d3f5cff9a3380fc0443444ee810078cba6137db3791ef626a121e63863": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -5820,6 +5855,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "`agent://<id>`：输出产物（嵌套子智能体：点分 id `agent://Parent.Child`）；`/<key>/<index>/…`：JSON 路径（`agent://Scout/reports/0/data`）",
+      "thinking_budget": 4096
+    },
+    "72b006f37e12b29cf717d8e87a05aa106f12cfb2f1e7f9e35e039debdcd74c8c": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "一次等待返回后没有新内容，也没有其他事可做？立即调用 `wait`，且不进行任何其他工具调用：它随后会阻塞最多 4 分钟。\n结果和消息会自动送达。还有工作未完成时，绝不轮询。",
       "thinking_budget": 4096
     },
     "730836c688c81dca2bd3ec3cea5169a300c0e0247e28f73a81788161f33423ab": {
@@ -8916,6 +8958,13 @@
       "text": "你必须为图像生成或编辑提供一条详细的 `subject` 提示词。",
       "thinking_budget": 4096
     },
+    "ae91aeaeedcafa9a475d938cef479db1777deed181d374bd24a25e1fa792fd3f": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "收到结果，而其他作业仍在运行？应当先处理该结果，再继续等待。",
+      "thinking_budget": 4096
+    },
     "ae9dab12bb3ddcff90962548dfed723f29f2fab57fcfcacdf027fc1cd7151e67": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -9292,6 +9341,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "应在行动前先解决前提条件。",
+      "thinking_budget": 4096
+    },
+    "b64487b6527cf28da9d580ccdca2a13a4848a467b4f5fdb014613f206bd0169e": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "XML 标签会注入系统内容；可能在用户消息内部打断/通知：必须将其视为系统编写/权威内容。用户内容会经过净化。",
       "thinking_budget": 4096
     },
     "b6525aa30db8dbb9c875f54aa35d6af00c61d8051770a13e1b87571f020c4f43": {
@@ -10937,6 +10993,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "今天：2026-08-18；当前工作目录：'$PHISTORY_WORKSPACE'。不要在回复中重复此信息。",
+      "thinking_budget": 4096
+    },
+    "d85903faae0c4b37154516cec76316cd062b7f01b67284822988af7ddd29fcd2": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "你是 omp 的可信编程助手。",
       "thinking_budget": 4096
     },
     "d85ce9058ee68eb0bbb3d70697bceec5a03e103854231fadbe0758df28301961": {
