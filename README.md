@@ -8,7 +8,7 @@ Open the web viewer to compare prompt snapshots across versions and see how agen
 
 **Start here:** [phistory.cc](https://phistory.cc/)
 
-> Checks for new releases hourly. Archive last updated: **2026-11-13 22:49 UTC**.
+> Checks for new releases hourly. Archive last updated: **2026-11-14 10:51 UTC**.
 
 ![Phistory prompt diff viewer](docs/screenshot.png)
 
@@ -74,18 +74,18 @@ python -m http.server --directory .phistory-cache/site
 
 ## Capture Status
 
-Last capture update: 2026-11-13 22:49 UTC
+Last capture update: 2026-11-14 10:51 UTC
 
 | Agent | Latest | Versions | Snapshots | Last Captured |
 | --- | --- | ---: | ---: | --- |
 | Claude Code | [2.1.325 - 2026-11-13](captures/claude-code/2.1.325/variants/default/prompt.md) | 455 | 790 | 2026-11-13 22:48 UTC |
 | Codex CLI | [0.169.0 - 2026-11-13](captures/codex/0.169.0/variants/default/prompt.md) | 111 | 191 | 2026-11-13 17:20 UTC |
 | DeepSeek Harness | [0.2.2-rc.1 - 2026-11-04](captures/dsh/0.2.2-rc.1/variants/default/prompt.md) | 16 | 87 | 2026-11-10 15:55 UTC |
-| Antigravity CLI | [1.5.8 - 2026-11-13](captures/antigravity/1.5.8/variants/default/prompt.md) | 80 | 80 | 2026-11-13 08:41 UTC |
+| Antigravity CLI | [1.5.9 - 2026-11-14](captures/antigravity/1.5.9/variants/default/prompt.md) | 81 | 81 | 2026-11-14 10:50 UTC |
 | Claude Tag | [2026-10-18 - 2026-10-18](captures/claude-tag/2026-10-18/variants/default/prompt.md) | 4 | 4 | 2026-10-18 08:57 UTC |
 | Grokbot | [2026-10-20 - 2026-10-20](captures/grokbot/2026-10-20/variants/default/prompt.md) | 1 | 1 | 2026-10-20 18:10 UTC |
 | Grok Build | [1.0.77 - 2026-11-05](captures/grok/1.0.77/variants/default/prompt.md) | 146 | 146 | 2026-11-10 15:56 UTC |
-| MiniMax Code | [3.1.14 - 2026-11-10](captures/minimax-code/3.1.14/variants/default/prompt.md) | 45 | 45 | 2026-11-10 16:07 UTC |
+| MiniMax Code | [3.1.15 - 2026-11-14](captures/minimax-code/3.1.15/variants/default/prompt.md) | 46 | 46 | 2026-11-14 10:51 UTC |
 | Kimi Code | [2.6.2 - 2026-11-13](captures/kimi-code/2.6.2/variants/default/prompt.md) | 88 | 88 | 2026-11-13 22:49 UTC |
 | MiMo Code | [0.1.17 - 2026-11-13](captures/mimo/0.1.17/variants/default/prompt.md) | 17 | 17 | 2026-11-13 08:42 UTC |
 | OpenClaw | [2026.11.3 - 2026-11-10](captures/openclaw/2026.11.3/variants/default/prompt.md) | 89 | 89 | 2026-11-10 18:09 UTC |
