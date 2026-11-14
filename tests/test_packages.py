@@ -341,13 +341,13 @@ def test_install_github_release_can_use_editable_source(monkeypatch, tmp_path):
 
     commands = []
 
-    def fake_run(argv, **_kwargs):
-        commands.append(argv)
+    def fake_run(argv, **kwargs):
+        commands.append((argv, kwargs))
         install_dir = Path(argv[-1]) if argv[:2] == ["uv", "venv"] else None
         if install_dir:
             (install_dir / "bin").mkdir(parents=True)
             (install_dir / "bin" / "python").touch()
-        elif "--editable" in argv:
+        elif argv[:2] == ["uv", "sync"]:
             python = Path(argv[argv.index("--python") + 1])
             (python.parent / "hermes").touch()
 
@@ -356,9 +356,12 @@ def test_install_github_release_can_use_editable_source(monkeypatch, tmp_path):
 
     bin_dir = install_agent(agent, "v1", tmp_path / "install")
 
-    editable = next(command for command in commands if "--editable" in command)
-    assert commands[0][2:4] == ["--python", "3.14"]
-    assert Path(editable[-1]).name == "hermes-v1"
+    sync, sync_kwargs = next(command for command in commands if command[0][:2] == ["uv", "sync"])
+    assert commands[0][0][2:4] == ["--python", "3.14"]
+    assert "--frozen" in sync
+    assert sync[sync.index("--python") + 1] == str(bin_dir / "python")
+    assert sync_kwargs["cwd"].name == "hermes-v1"
+    assert sync_kwargs["env"] == {"UV_PROJECT_ENVIRONMENT": str(tmp_path / "install")}
     assert (bin_dir / "hermes").exists()
 
 

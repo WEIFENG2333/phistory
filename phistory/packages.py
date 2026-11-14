@@ -278,8 +278,11 @@ def _install_github_release(agent: AgentSpec, version: str, install_dir: Path) -
         source_dir.mkdir()
         _extract_archive(archive_path, source_dir)
         source_root = _find_source_root(source_dir)
+        # Install the dependency set the release locked, including its [tool.uv] overrides.
         run(
-            ["uv", "pip", "install", "--python", str(bin_dir / "python"), "--editable", str(source_root)],
+            ["uv", "sync", "--frozen", "--python", str(bin_dir / "python")],
+            cwd=source_root,
+            env={"UV_PROJECT_ENVIRONMENT": str(install_dir)},
             timeout=INSTALL_TIMEOUT_SECONDS,
         )
     else:
