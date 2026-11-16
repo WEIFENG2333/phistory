@@ -5785,6 +5785,13 @@
       "text": "你在 MiniMax Code 中运行，这是由 MiniMax 开发的工作区。你帮助用户完成软件工程任务。\n你的对外身份是 MiniMax Code，简称 MCode。当被问到该如何称呼你时，使用 MCode。涉及模型的问题，使用 Environment 中的当前模型名称。",
       "thinking_budget": 4096
     },
+    "857fb243946d7f039f391c7cf40de6b2b6d20c078d9ec34920d74c573fcd7ab2": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "主工作目录：$PHISTORY_HOME/.minimax-code/sessions/mvs_4115428e5c80402bbc627eb45c1240ec/workspace",
+      "thinking_budget": 4096
+    },
     "85a83cf9aa9b09b6d8cc3ff1383e630203cd6308a8cc8640bdee8c0e2f96879e": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",

@@ -8,7 +8,7 @@ Phistory 追踪 Claude Code、Codex、DeepSeek Harness、Antigravity、Grok Buil
 
 **从这里开始：** [phistory.cc](https://phistory.cc/)
 
-> 每小时自动检查新版本，归档最近更新于 **2026-11-16 02:21 UTC**。
+> 每小时自动检查新版本，归档最近更新于 **2026-11-16 10:06 UTC**。
 
 ![Phistory prompt diff viewer](docs/screenshot.png)
 
@@ -74,7 +74,7 @@ python -m http.server --directory .phistory-cache/site
 
 ## 抓取状态
 
-最近抓取更新：2026-11-16 02:21 UTC
+最近抓取更新：2026-11-16 10:06 UTC
 
 | Agent | 最新版本 | 版本数 | 快照数 | 最近抓取 |
 | --- | --- | ---: | ---: | --- |
@@ -85,10 +85,10 @@ python -m http.server --directory .phistory-cache/site
 | Claude Tag | [2026-10-18 - 2026-10-18](captures/claude-tag/2026-10-18/variants/default/prompt.md) | 4 | 4 | 2026-10-18 08:57 UTC |
 | Grokbot | [2026-10-20 - 2026-10-20](captures/grokbot/2026-10-20/variants/default/prompt.md) | 1 | 1 | 2026-10-20 18:10 UTC |
 | Grok Build | [1.0.77 - 2026-11-05](captures/grok/1.0.77/variants/default/prompt.md) | 146 | 146 | 2026-11-10 15:56 UTC |
-| MiniMax Code | [3.1.15 - 2026-11-14](captures/minimax-code/3.1.15/variants/default/prompt.md) | 46 | 46 | 2026-11-14 10:51 UTC |
+| MiniMax Code | [3.1.16 - 2026-11-16](captures/minimax-code/3.1.16/variants/default/prompt.md) | 47 | 47 | 2026-11-16 10:06 UTC |
 | Kimi Code | [2.6.2 - 2026-11-13](captures/kimi-code/2.6.2/variants/default/prompt.md) | 88 | 88 | 2026-11-13 22:49 UTC |
 | MiMo Code | [0.1.17 - 2026-11-13](captures/mimo/0.1.17/variants/default/prompt.md) | 17 | 17 | 2026-11-13 08:42 UTC |
-| OpenClaw | [2026.11.3 - 2026-11-10](captures/openclaw/2026.11.3/variants/default/prompt.md) | 89 | 89 | 2026-11-10 18:09 UTC |
+| OpenClaw | [2026.11.4 - 2026-11-16](captures/openclaw/2026.11.4/variants/default/prompt.md) | 90 | 90 | 2026-11-16 10:06 UTC |
 | Hermes Agent | [v0.22.4 - 2026-10-21](captures/hermes/v0.22.4/variants/default/prompt.md) | 37 | 37 | 2026-10-21 19:31 UTC |
 | Kimi CLI | [1.51.0 - 2026-09-21](captures/kimi/1.51.0/variants/default/prompt.md) | 23 | 23 | 2026-09-21 17:12 UTC |
 | opencode | [1.19.5 - 2026-10-28](captures/opencode/1.19.5/variants/default/prompt.md) | 125 | 125 | 2026-11-10 16:00 UTC |
