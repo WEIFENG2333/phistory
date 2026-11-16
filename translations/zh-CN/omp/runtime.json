@@ -5962,6 +5962,13 @@
       "text": "今天是 2026-09-02；当前工作目录：'$PHISTORY_WORKSPACE'。不要在回复中重复此信息。",
       "thinking_budget": 4096
     },
+    "74f0ce8048431d185b667bef8f8069d19656fa0e3970bb42e5243e29831b2b57": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "今天是 2026-11-16；当前工作目录为 '$PHISTORY_WORKSPACE'。不要在回复中重复此信息。",
+      "thinking_budget": 4096
+    },
     "74f8cd6d9fcee8c39cea5704322eba3d2dfd8502ce75a5733ca0c8e55d6ff80b": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -12274,6 +12281,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "send: 正在答复的消息 id",
+      "thinking_budget": 4096
+    },
+    "ef9dd1f46c265088ad5db141269e8aacdf4aabbcd690fab675e2519172a100e9": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "共享的编辑需要一个集成负责人；为每个任务分配各自的文件。\n每个任务在执行过程中必须跳过 build/lint/tests/formatters；之后再运行一次。",
       "thinking_budget": 4096
     },
     "efa8e70f2170fcaf7d998c8e82333adfbf1a621440acb8bc22899c25aa448351": {
