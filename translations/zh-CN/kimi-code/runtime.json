@@ -4306,6 +4306,13 @@
       "text": "默认会搜索隐藏文件。",
       "thinking_budget": 4096
     },
+    "bce2c37da8f68de5968719a6e0a8f06311c727bf2bb5e0089d53e26d8731e466": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "今天的日期是 2026-11-17，时区为本地客户端机器的时区（UTC）。每当日期变化时，会在提醒中重新说明当前日期；请以最新的一条此类提醒为准。不要向用户明确提及这一点。",
+      "thinking_budget": 4096
+    },
     "bd50bc9e1f1fa2f069e271b8a35e0475f4dce8513235082cecee144e731b2970": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",

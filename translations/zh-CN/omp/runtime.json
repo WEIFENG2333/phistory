@@ -2753,11 +2753,25 @@
       "text": "今天是 2026-09-27；当前工作目录：'$PHISTORY_WORKSPACE'。不要在回复中重复此信息。",
       "thinking_budget": 4096
     },
+    "32eb02b3c15b37295d5aeef6047720f19906c9a4bac87e647d38a7d5fe7d4cd9": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "只有当页面确实完成了某步骤时，才报告该步骤已完成。绝不用脚本修改页面来让步骤看起来已完成\n  （插入控件、写入应用状态、显示隐藏元素）；当某步骤无法通过页面完成时，要如实说明。\n  当用户要求你用脚本修改页面时，照做。",
+      "thinking_budget": 4096
+    },
     "32fd6d4e2effab0f38bbbb16e08691603ff7a38d542c54a5cbe7dc3ba847d834": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "**`wait`**：仅在完全被阻塞、没有其他工作可做时使用。在以下最先发生的一项时返回：收到新消息、被监视的作业完成、等待窗口到期，或 steering 中断——而不是所有作业完成时；要继续等待就重新发起。",
+      "thinking_budget": 4096
+    },
+    "3368e340e0f9beec72c1f7b7f6ceaa14cf2f6530b3a94ea055e63bdb93d22759": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`browser`：驱动真实的浏览器标签页；从 `const tab = await browser.open({ name, url })` 开始。→ `xd://eval/browser`",
       "thinking_budget": 4096
     },
     "3397289ac38c68e9977ac91e2201d1facb70160ef280c4c93ba7c06d9cda73a5": {
@@ -3595,6 +3609,13 @@
       "text": "摘要页脚指明了被省略的范围？只重新请求这些范围。绝不猜测 `..`/`…` 的内容。",
       "thinking_budget": 4096
     },
+    "45317c3b93ae656781c70004992d2013af99337f55b0156abdbb23602fc845c9": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "在 X11 下的 Linux 上，当鼠标或触摸按压落在某个窗口正在显示的标签页内（中继的 `browser.targets()` 会将其标记为 `shown`）、而另一个窗口位于最前面时，Chrome 150 及更高版本会将其窗口带到最前面，用户随后输入的内容会进入该页面。属于按压的有：`click`、`dblclick`、`tap`、`drag`、`mouseDown`、`clickAt`、`check`/`uncheck`（除非元素已处于所请求的状态；拒绝更改的元素仍算按压，取消勾选原生单选按钮不算按压），以及对除 `<input type=file>` 之外任何对象的 `uploadFile`。按键（`type`、`fill`、`press`）、`focus`、`select`、`hover`、滚动和截图都不算按压，且其窗口未显示的标签页永远不会被带到最前面。在那里，当用户必须让自己的应用保持在最前面时，请改为在已显示的标签页上使用那些操作：按钮先 `focus()` 再 `press(\"Enter\")`，复选框用 `press(\"Space\")`，对文件输入框本身用 `uploadFile`。会打开新标签页或弹出窗口的控件，无论以何种方式激活，仍可能将 Chrome 带到最前面。",
+      "thinking_budget": 4096
+    },
     "4546fdd6e3929b68c105d2e0f5776aecf0d212e1dc23de4862750705a4235798": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -3838,6 +3859,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "持久 shell：一条 fact 命令/管道；依赖安装使用 `&&`。\n脚本/heredoc/`$(…)`/complex 管道 → `eval`。\n`cwd`，而非 `cd`；`pty` 仅限交互式使用。\n内部 URI 可在内建命令/coreutils、重定向和 glob 中作为路径使用。\n`async` 会推迟有限结果；timeout 不变。\n没有 `head`/`tail`/redirection；输出默认截断，完整结果见 `artifact://<id>`。\n长驻服务：名称必须唯一；ready 需要提供名称；无 async/timeout；pty 默认为 true。ready 需要日志正则或端口（两者都给出时则都用）；host 默认为 127.0.0.1，ready.timeout 为 30s。\n后台结果随后返回；绝不要轮询；前台等待行为不变。",
+      "thinking_budget": 4096
+    },
+    "4a27eac56da4234c4e82c37920c8d72c7435d2156bf2d1f5d7a7880baad2ae03": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "浏览器用户会话",
       "thinking_budget": 4096
     },
     "4a51eb1671b9048f18d3c2db21363aca6353e68e8fdbe7017c167994578d19fd": {
@@ -5073,6 +5101,13 @@
       "text": "替换模板",
       "thinking_budget": 4096
     },
+    "63c39674848551427ba33d35f20b2cdbf1ed12e9e9ad99f3ef22f43f1cd19c67": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`dsm`：打开、检查、编辑二进制分析数据库并为其编写脚本。→ xd://eval/dsm\n首次使用前无需 `read`；指南会跟随首次调用的结果（完整参考已链接）：",
+      "thinking_budget": 4096
+    },
     "6413fa88d760dbf8c942c877c3ed6546442ce79976e5858383b8e3c53ba80322": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -5918,6 +5953,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "测试：永久的负担，而非工作证明。只有当合理可能的 bug 会让它失败时，测试才配占有一席之地。",
+      "thinking_budget": 4096
+    },
+    "739068d698bfdee73c3b516224c80e6b8facd4229fb8869177d0373c4a0d858c": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`target` 借用用户自己的标签页或 Tern block：未经授权，绝不导航它（`url`、`goto`）。",
       "thinking_budget": 4096
     },
     "73a73254cd406305706fb8ae52cd3989f85a08adc83c7978e48e49e850d48744": {
