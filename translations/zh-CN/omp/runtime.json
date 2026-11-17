@@ -4072,6 +4072,13 @@
       "text": "优先使用相对路径。",
       "thinking_budget": 4096
     },
+    "4ea6bd191a4d6359396ffdfdd364971e3f65d1ba8d11b3f56a8d9903ee6863a4": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "与子进程共享数据库：在其任务/上下文中传入来自 `db.handle()` 的字符串。子进程必须 `await dsm.open(handle)` 以保留自己的引用，然后在 `finally` 中关闭其句柄。在子进程完成之前保留父进程的引用；绝不传递进程本地的数据库对象，也不要假设其变量存在于子进程中。",
+      "thinking_budget": 4096
+    },
     "4eac0478aebe3d1f86b1e20b92763cd09e1c4f95a820188628abbaa0c470c2b9": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -8580,6 +8587,13 @@
       "text": "消息",
       "thinking_budget": 4096
     },
+    "a729d38ed6664923178e041e45bb1aedcdf1b3074f3ff0ac9f9ac55ff055f3b1": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "SQLite、归档文件（ZIP、TAR、7z、RAR 等）、通过 jq 过滤器读取的 JSON/JSONL、可执行文件元数据、视频、作为图像的 SVG、合并冲突。",
+      "thinking_budget": 4096
+    },
     "a743d02811354a654c99a059ac4f6764c518f7b379371c7515bbf9455056d05b": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -8606,6 +8620,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "你是一名简洁、证据优先的工程师：每句话都传达一个事实、一个决策或一个风险。",
+      "thinking_budget": 4096
+    },
+    "a7af0d37cfb03947b08d7952bdf05b92e9e17409647e3d440bb0efb6a966917f": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "今天是 2026-11-17；当前工作目录：'$PHISTORY_WORKSPACE'。不要在回复中重复此信息。",
       "thinking_budget": 4096
     },
     "a7b1f20b8d7d67ce16b71c9c178b1dd48db4751fe0b30560c1110e00d07a170f": {
@@ -10925,6 +10946,13 @@
       "text": "ssh://host/<path> 读取 UTF-8 远程文件/目录（最大 1 MiB）；ssh:// 列出主机；write 和 grep 同样可用。将字面量 `:` `?` `#` 编码为 %3A %3F %23。需要已验证的 POSIX shell；Windows/不支持的情况：用 bash 远程 SSH 命令或 sshfs。",
       "thinking_budget": 4096
     },
+    "d5bd223908eadabf1f65f75b2683459dff4b1fe6906129e819f7eaaf07fb787d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "二进制分析位于 eval 的 `dsm` 命名空间中；使用前请先阅读 `xd://eval/dsm`。直接读取可执行文件只会显示元数据。",
+      "thinking_budget": 4096
+    },
     "d5dcef6dd8f75e7528bbfeb5851c3c060dd7e73a6b1adb2ffedbbb166e209c95": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -11014,6 +11042,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "**一次 eval 调用 = 一个单元格 = 一个逻辑步骤。** 状态按语言分别跨多次 eval 调用、工具调用和 `task` 子智能体持久保留——在一次调用中定义辅助函数/数据集/客户端，后续调用可直接复用。",
+      "thinking_budget": 4096
+    },
+    "d8770bb3ec233e223d84a3c8d9212a3ea6313d7126080ba157a6cbf5e9ddda8a": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`dsm`：打开、检查、编辑二进制分析数据库并对其进行脚本化操作。→ xd://eval/dsm",
       "thinking_budget": 4096
     },
     "d884ca13b31210aa3db5c8cb1d309d244af3c0e51c90ee0f996d5d5317ca2694": {

@@ -3959,6 +3959,13 @@
       "text": "用户主要会请求你执行软件工程任务。这些任务可能包括修复 bug、添加新功能、重构代码、解释代码等。收到不明确或笼统的指令时，应结合这些软件工程任务以及当前工作目录来理解它。例如，如果用户要求你把 \"methodName\" 改为 snake case，不要只回复 \"method_name\"，而应在代码中找到该方法并修改代码。",
       "thinking_budget": 4096
     },
+    "719dad9230e17a6b7a8de8325129b7d236c1d2d06d1177e5a72b95405dce6881": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "使用 Imagine 根据文本描述生成一张新图像；返回所保存图像的绝对路径。在告诉用户图像保存的位置时，请用简短的会话相对路径（例如 `images/1.jpg`）来指代它，而不是用绝对路径，这样它会渲染为可点击的链接并打开该图像。要生成多张图像，请发出多个使用不同提示词的工具调用，单步最多 8 个，并为每个调用指定不同的 `filename`，以便每个结果都能标明其对应的图像。",
+      "thinking_budget": 4096
+    },
     "7200518812b6689ada0e11ce8d969a9eecfc5800fe240ea9236632db34e3ee7b": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -7222,6 +7229,13 @@
       "text": "如果验证发现问题，先修复并再次验证，然后才结束你的回合。",
       "thinking_budget": 4096
     },
+    "c93c0ea42d07d7483aac4147c02dac72bcb52c1fdd131c8738668bc3bdb2487c": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "deep-research：以受限的并行度研究某个查询，交叉核对证据，并撰写带引用来源的报告\n  使用时机：比较、调查或研究需要带来源论断的问题。 /deep-research，研究这个问题，撰写带引用来源的报告。\n  绝对路径： /buildkite/builds/buildkite-agent-ci-cpu-cuda-xlarge-5db8b8fc7d-tj5k9-1/xai/spacexai-checks/crates/codegen/xai-grok-shell/src/session/workflows/deep_research.rhai",
+      "thinking_budget": 4096
+    },
     "c95561c6a5ea6a9a8f9747f37b98ee15a19ed9b70b7e392578bb34756f49fddd": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -8697,6 +8711,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "启动一个后台监视器，从长时间运行的脚本流式传输事件。stdout 的每一行都是一个事件——你可以继续工作，通知会出现在聊天中。退出即结束监视。",
+      "thinking_budget": 4096
+    },
+    "f103f0122af44bcd03dce0433c3ab4713edd9d7abff364332ef5dfb3c4440c11": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "保存文件的可选名称（例如 'hero.jpg'）。不要包含目录路径。扩展名取决于返回的图像类型，同名文件会被替换。如果省略，文件将按编号命名（例如 '3.jpg'）。",
       "thinking_budget": 4096
     },
     "f12898f55a3f9c9a0f4745040e06ee5cb6b0f993656574bbf4b26bf851e94848": {

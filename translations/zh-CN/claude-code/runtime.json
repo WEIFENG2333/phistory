@@ -530,6 +530,13 @@
       "text": "指南：",
       "thinking_budget": 4096
     },
+    "088f20758718e4c4b5e3dda8375967c9a2ddb0444c1dd823a816644d561f4d6d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "要从中恢复的先前一次 Workflow 调用的 Run ID。缓存按位置匹配：agent() 调用会从缓存重放，直到第一个失败、不再与先前运行匹配（被编辑、添加、移除或重排）或在先前运行中从未启动的调用为止；该调用及其后的每个调用都会重新运行，即使它们各自的 (prompt, opts) 未改变也是如此。被用量限制拒绝的调用，或运行停止时仍在执行的调用，通常会重新运行，而不会终止复用：其后的已完成调用仍来自缓存。仅限同一会话。恢复前先停止先前的运行（TaskStop）。",
+      "thinking_budget": 4096
+    },
     "08e026b09fd19707b5c00bf8d8c896b7fe0392598bfa3a49ff13ea51171445b6": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",

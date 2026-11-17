@@ -8,7 +8,7 @@ Phistory 追踪 Claude Code、Codex、DeepSeek Harness、Antigravity、Grok Buil
 
 **从这里开始：** [phistory.cc](https://phistory.cc/)
 
-> 每小时自动检查新版本，归档最近更新于 **2026-11-16 20:39 UTC**。
+> 每小时自动检查新版本，归档最近更新于 **2026-11-17 04:08 UTC**。
 
 ![Phistory prompt diff viewer](docs/screenshot.png)
 
@@ -74,17 +74,17 @@ python -m http.server --directory .phistory-cache/site
 
 ## 抓取状态
 
-最近抓取更新：2026-11-16 20:39 UTC
+最近抓取更新：2026-11-17 04:08 UTC
 
 | Agent | 最新版本 | 版本数 | 快照数 | 最近抓取 |
 | --- | --- | ---: | ---: | --- |
-| Claude Code | [2.1.325 - 2026-11-13](captures/claude-code/2.1.325/variants/default/prompt.md) | 455 | 790 | 2026-11-13 22:48 UTC |
+| Claude Code | [2.1.326 - 2026-11-16](captures/claude-code/2.1.326/variants/default/prompt.md) | 456 | 792 | 2026-11-17 04:08 UTC |
 | Codex CLI | [0.169.0 - 2026-11-13](captures/codex/0.169.0/variants/default/prompt.md) | 111 | 191 | 2026-11-13 17:20 UTC |
 | DeepSeek Harness | [0.2.2-rc.1 - 2026-11-04](captures/dsh/0.2.2-rc.1/variants/default/prompt.md) | 16 | 87 | 2026-11-10 15:55 UTC |
 | Antigravity CLI | [1.5.9 - 2026-11-14](captures/antigravity/1.5.9/variants/default/prompt.md) | 81 | 81 | 2026-11-14 10:50 UTC |
 | Claude Tag | [2026-10-18 - 2026-10-18](captures/claude-tag/2026-10-18/variants/default/prompt.md) | 4 | 4 | 2026-10-18 08:57 UTC |
 | Grokbot | [2026-10-20 - 2026-10-20](captures/grokbot/2026-10-20/variants/default/prompt.md) | 1 | 1 | 2026-10-20 18:10 UTC |
-| Grok Build | [1.0.77 - 2026-11-05](captures/grok/1.0.77/variants/default/prompt.md) | 146 | 146 | 2026-11-10 15:56 UTC |
+| Grok Build | [1.0.88 - 2026-11-16](captures/grok/1.0.88/variants/default/prompt.md) | 147 | 147 | 2026-11-17 04:08 UTC |
 | MiniMax Code | [3.1.16 - 2026-11-16](captures/minimax-code/3.1.16/variants/default/prompt.md) | 47 | 47 | 2026-11-16 10:06 UTC |
 | Kimi Code | [2.6.2 - 2026-11-13](captures/kimi-code/2.6.2/variants/default/prompt.md) | 88 | 88 | 2026-11-13 22:49 UTC |
 | MiMo Code | [0.1.17 - 2026-11-13](captures/mimo/0.1.17/variants/default/prompt.md) | 17 | 17 | 2026-11-13 08:42 UTC |
@@ -93,7 +93,7 @@ python -m http.server --directory .phistory-cache/site
 | Kimi CLI | [1.51.0 - 2026-09-21](captures/kimi/1.51.0/variants/default/prompt.md) | 23 | 23 | 2026-09-21 17:12 UTC |
 | opencode | [1.19.5 - 2026-10-28](captures/opencode/1.19.5/variants/default/prompt.md) | 125 | 125 | 2026-11-10 16:00 UTC |
 | Pi | [1.5.2 - 2026-11-10](captures/pi/1.5.2/variants/default/prompt.md) | 61 | 61 | 2026-11-10 16:00 UTC |
-| Oh My Pi | [18.21.0 - 2026-11-16](captures/omp/18.21.0/variants/default/prompt.md) | 165 | 165 | 2026-11-16 20:39 UTC |
+| Oh My Pi | [18.22.0 - 2026-11-16](captures/omp/18.22.0/variants/default/prompt.md) | 166 | 166 | 2026-11-17 04:08 UTC |
 
 ## 项目趋势
 
