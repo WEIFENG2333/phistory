@@ -1186,6 +1186,13 @@
       "text": "**监视重新发布**：发布 artifact 会让本会话开始在后台订阅它的实时变更，结果行会说明该订阅是已开始、被跳过，还是本来就已连接——该列表会显示它是否真正连接上，如果无法连接也会告知你；连接中断时，监视会自行重连。要监视一个你不是刚刚发布的 artifact（或重启已停止的监视），请传入 `action: \"watch\"` 并附上它的 `url`；之后来自别处的重新发布——来自另一个会话，或来自某人在可发布自身新版本的页面上的保存——会作为通知到达，提醒你在编辑之前重新读取它。被监视的 artifact 上发送给 Claude 的评论也会唤醒本会话，但仅当该列表中该 artifact 所在行显示 auto-replies armed 时才如此（当本会话开启了评论自动回复时，发布会为其启用自动回复，对用户可编辑且用户在自己消息中给出其链接的 artifact 执行 `action: \"watch\"` 也会如此——绝不会对用户只能查看的 artifact 启用）；普通评论绝不会通知本会话——当用户要求时，用 `action: \"read\"` 读取它们。`action: \"watch\"` 不带 `url` 时会列出本会话的监视；`action: \"watch\"` 附上 `on: false` 及其 `url` 可停止其中一个。监视是会话局部的，用户可以在 /tasks 中查看并停止它们。在交互式终端中执行 `--resume` 或 `--continue` 之后，本会话最近发布或读取的 artifact 上的监视通常会恢复，同时恢复的还有每一个正在回复评论的监视（会再次回复，除非用户此前已将其停止）；其他客户端可能什么都不会恢复。该列表会显示哪些已启用。除非监视结果、该列表或发布结果中的 \"already connected\" 行表明你在监视某个 artifact，否则不要声称你在监视它——它的 \"arming\" 行还不等于一次监视。只有主循环会话（交互式、SDK 或后台）持有监视，子智能体、teammate 或 print 会话则不能。",
       "thinking_budget": 4096
     },
+    "11987a6d241a4d78a23fe28ce3d641b2ee6fa057b1c06f86a6da9b21bb140139": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "不要提交可能包含机密信息的文件（.env、credentials.json、.claude/settings.local.json 等）。如果用户明确要求提交这些文件，应警告用户。",
+      "thinking_budget": 4096
+    },
     "11ca699f47d2755f57c4ddd1c434e115584b43edb252f89033769f802419d042": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -1340,6 +1347,13 @@
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",
       "text": "重要：对于需要身份验证或私有的 URL，WebFetch 将会失败。在使用此工具之前，先检查 URL 是否指向需要身份验证的服务（例如 Google Docs、Confluence、Jira、GitHub）。如果是，必须先使用 ToolSearch 查找提供身份验证访问的专用工具。",
+      "thinking_budget": 4096
+    },
+    "139c650b07a7ae4818aab8ab55a12234911aed926d2168c2c8f1bd81b5dba5f9": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "长列表最后一行给出的游标，用于获取其下一页。省略则从头开始列出。",
       "thinking_budget": 4096
     },
     "13c0540e4318c7e932fe26bd32e9b797f7f589e25cdd35a230293e51a3d49aec": {
@@ -10423,6 +10437,13 @@
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",
       "text": "在文件中执行精确字符串替换，并对出现次数进行严格校验。",
+      "thinking_budget": 4096
+    },
+    "a96a0a0a940e52cd1cad83781a0dd8235c0b214178600ed1779b4058fc65ff36": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "列出你可以向其 SendMessage 的智能体——你启动的进程内子智能体、你所在团队的队友、本机上的其他本地 Claude 会话、你在云端运行的 Claude 会话（当本会话具有云端访问权限时；云端会话可以接收你的消息，但目前无法向任何会话回发消息——不要要求它回复，请在它自己的对话记录中读取其回答），以及（当 Remote Control 在此处连接时）你账户的其他会话——其他机器上的 Remote Control 会话和云端会话，每行按类型标注。名称即地址：使用 `SendMessage({to: \"<name>\", message: \"...\"})` 发送，名称要完全按照某行打印的原样复制。仅当光用名称不够时——两行共用同一名称，或某个错误要求你消歧——才追加该行的 ` [ref]`。较长的列表会分页显示：要获取下一页，传入其最后一行给出的 `cursor`——要向已知名称的会话发送消息时无需此操作。",
       "thinking_budget": 4096
     },
     "a96cf72fb3bcf396c41d696a0f59f0af81dd78c6a397d1adbea0d7b4af12d419": {

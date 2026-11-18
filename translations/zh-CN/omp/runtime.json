@@ -1030,6 +1030,13 @@
       "text": "绝不给未完成的工作重新贴上“脚手架”“MVP”“v1”“基础”“后续”之类的标签来暗示已经完成。没做完？就直说。",
       "thinking_budget": 4096
     },
+    "122c70476bac55d644723d77484c654c771d5a370cb40e19f49c3072ec1a4f73": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "今天：2026-11-18；当前工作目录：'$PHISTORY_WORKSPACE'。不要在回复中重复此信息。",
+      "thinking_budget": 4096
+    },
     "125d0a1e77fa5d452e9f6500e261f1c543c43de193c3e9798b61dcbc0efd4963": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
