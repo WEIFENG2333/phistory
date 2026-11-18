@@ -8,7 +8,7 @@ Phistory 追踪 Claude Code、Codex、DeepSeek Harness、Antigravity、Grok Buil
 
 **从这里开始：** [phistory.cc](https://phistory.cc/)
 
-> 每小时自动检查新版本，归档最近更新于 **2026-11-18 03:51 UTC**。
+> 每小时自动检查新版本，归档最近更新于 **2026-11-18 13:21 UTC**。
 
 ![Phistory prompt diff viewer](docs/screenshot.png)
 
@@ -74,17 +74,17 @@ python -m http.server --directory .phistory-cache/site
 
 ## 抓取状态
 
-最近抓取更新：2026-11-18 03:51 UTC
+最近抓取更新：2026-11-18 13:21 UTC
 
 | Agent | 最新版本 | 版本数 | 快照数 | 最近抓取 |
 | --- | --- | ---: | ---: | --- |
 | Claude Code | [2.1.327 - 2026-11-17](captures/claude-code/2.1.327/variants/default/prompt.md) | 457 | 794 | 2026-11-18 03:50 UTC |
-| Codex CLI | [0.169.1 - 2026-11-17](captures/codex/0.169.1/variants/default/prompt.md) | 112 | 194 | 2026-11-17 22:35 UTC |
+| Codex CLI | [0.170.0 - 2026-11-18](captures/codex/0.170.0/variants/default/prompt.md) | 113 | 197 | 2026-11-18 13:21 UTC |
 | DeepSeek Harness | [0.2.2-rc.1 - 2026-11-04](captures/dsh/0.2.2-rc.1/variants/default/prompt.md) | 16 | 87 | 2026-11-10 15:55 UTC |
-| Antigravity CLI | [1.5.10 - 2026-11-17](captures/antigravity/1.5.10/variants/default/prompt.md) | 82 | 82 | 2026-11-17 13:45 UTC |
+| Antigravity CLI | [1.5.11 - 2026-11-18](captures/antigravity/1.5.11/variants/default/prompt.md) | 83 | 83 | 2026-11-18 13:21 UTC |
 | Claude Tag | [2026-10-18 - 2026-10-18](captures/claude-tag/2026-10-18/variants/default/prompt.md) | 4 | 4 | 2026-10-18 08:57 UTC |
 | Grokbot | [2026-10-20 - 2026-10-20](captures/grokbot/2026-10-20/variants/default/prompt.md) | 1 | 1 | 2026-10-20 18:10 UTC |
-| Grok Build | [1.0.88 - 2026-11-16](captures/grok/1.0.88/variants/default/prompt.md) | 147 | 147 | 2026-11-17 04:08 UTC |
+| Grok Build | [1.0.89 - 2026-11-17](captures/grok/1.0.89/variants/default/prompt.md) | 148 | 148 | 2026-11-18 13:21 UTC |
 | MiniMax Code | [3.1.16 - 2026-11-16](captures/minimax-code/3.1.16/variants/default/prompt.md) | 47 | 47 | 2026-11-16 10:06 UTC |
 | Kimi Code | [2.6.3 - 2026-11-17](captures/kimi-code/2.6.3/variants/default/prompt.md) | 89 | 89 | 2026-11-17 22:35 UTC |
 | MiMo Code | [0.1.17 - 2026-11-13](captures/mimo/0.1.17/variants/default/prompt.md) | 17 | 17 | 2026-11-13 08:42 UTC |
