@@ -70,6 +70,11 @@ def render_archive_markdown(trace_path: Path) -> str:
             "> Model self-report, redacted before publication. Not a captured network request; "
             "completeness and accuracy are unverified.\n\n" + markdown
         )
+    if any(record.get("capture_environment", {}).get("kind") == "mocked-bootstrap" for record in records):
+        markdown = (
+            "> Captured with locally simulated startup settings. See meta.json for the exact configuration.\n\n"
+            + markdown
+        )
     return markdown
 
 

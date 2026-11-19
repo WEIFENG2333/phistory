@@ -21,6 +21,7 @@ _CAPTURE_PATHS = (
 
 _VOLATILE = (
     (re.compile(r"\bcch=[^;\s]+"), "cch=<normalized>"),
+    (re.compile(r"\bcc_prompt_id=[^;\s]+"), "cc_prompt_id=<normalized>"),
     # Local service URLs carry a per-run port; the scheme marks them as live endpoints.
     (re.compile(r"http://(?:127\.0\.0\.1|localhost):\d+"), "http://127.0.0.1:$PHISTORY_PORT"),
     (re.compile(r"(?m)^ - OS Version: .+$"), " - OS Version: $PHISTORY_OS_VERSION"),

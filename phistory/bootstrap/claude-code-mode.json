@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "responses": [
+    {
+      "method": "GET",
+      "url": "https://api.anthropic.com/api/claude_code/settings",
+      "status": 200,
+      "body": {"uuid": "00000000-0000-4000-8000-000000000000", "checksum": "phistory-empty-settings", "settings": {}}
+    },
+    {
+      "method": "GET",
+      "url": "https://api.anthropic.com/api/claude_code/policy_limits",
+      "status": 200,
+      "body": {"restrictions": {}, "compliance_taints": []}
+    },
+    {
+      "method": "POST",
+      "url": "https://api.anthropic.com/api/eval/sdk-zAZezfDKGoZuXXKe",
+      "status": 200,
+      "body": {"features": {"tengu_rustling_blossom": {"defaultValue": true}}}
+    }
+  ]
+}

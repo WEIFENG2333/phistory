@@ -37,6 +37,9 @@ class CaptureVariant:
     extra_env: dict[str, str] = field(default_factory=dict)
     # Text typed into an interactive TUI to make it issue one prompt-bearing request.
     pty_message: str = ""
+    tap_mode: TapMode | None = None
+    bootstrap_responses: str | None = None
+    required_tools: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True)
