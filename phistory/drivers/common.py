@@ -35,6 +35,7 @@ def tap_command(target: CaptureTarget, tap_output_dir: Path) -> list[str]:
         "--output-dir",
         str(tap_output_dir),
         *_tap_mode_args(target),
+        *_bootstrap_args(target),
         "--",
         *upstream_client_args(target.variant.run_args),
     ]
@@ -50,12 +51,23 @@ def upstream_client_args(run_args: tuple[str, ...]) -> list[str]:
 
 
 def _tap_mode_args(target: CaptureTarget) -> list[str]:
-    if target.agent.tap_mode == "auto":
+    mode = target.variant.tap_mode or target.agent.tap_mode
+    if mode == "auto":
         return []
-    return ["--mode", target.agent.tap_mode]
+    return ["--mode", mode]
 
 
 def _tap_yolo_args(target: CaptureTarget) -> list[str]:
     if target.variant.run_args[:1] == ("--no-yolo",):
         return ["--no-yolo"]
     return []
+
+
+def bootstrap_path(target: CaptureTarget) -> Path | None:
+    name = target.variant.bootstrap_responses
+    return Path(__file__).resolve().parents[1] / "bootstrap" / name if name else None
+
+
+def _bootstrap_args(target: CaptureTarget) -> list[str]:
+    path = bootstrap_path(target)
+    return ["--bootstrap-responses", str(path)] if path else []

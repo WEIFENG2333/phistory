@@ -127,12 +127,14 @@ def _site_row(row: dict, base: Path) -> dict:
         "observed": row["observed"],
         "trace_redacted": row["trace_redacted"],
         "self_report": row.get("self_report", False),
+        "mocked_bootstrap": row.get("mocked_bootstrap", False),
         "published_compact": _compact_date(row["published_at"]),
         "published_display": _display_time(row["published_at"]),
         "captured_display": _display_time(row.get("captured_at") or ""),
         "prompt": asset_path("prompt"),
         "prompt_fingerprint": _file_fingerprint(row["prompt"]),
         "trace": asset_path("trace"),
+        "meta": asset_path("meta"),
         "trace_fingerprint": _file_fingerprint(row["trace"]),
     }
 
@@ -2623,6 +2625,7 @@ function traceDetailHtml(item, detail) {
       <div class="trace-eyebrow">${traceKind}${item.self_report ? '' : ` · request ${detail.index + 1} of ${detail.total}`}</div>
       <div class="trace-title"><h2>${escapeHtml(title)}</h2><span>${escapeHtml(item.published_compact)}</span></div>
       ${item.self_report ? '<p>Model-exported content, not a captured network request. Completeness and accuracy are unverified.</p>' : ''}
+      ${item.mocked_bootstrap ? '<p>Captured with locally simulated startup settings. <a href="' + escapeHtml(item.meta) + '">View capture configuration</a></p>' : ''}
       <div class="trace-meta">${metaItem(item.self_report ? 'Format' : 'Provider', detail.provider)}${metaItem(item.self_report ? 'Reported model' : 'Model', detail.model || 'unknown')}${item.self_report ? '' : metaItem('Endpoint', `${detail.method} ${detail.path}`)}${item.published_display ? metaItem(item.self_report ? 'Reported date' : 'Published', item.published_display) : ''}${!item.self_report && item.captured_display ? metaItem('Captured', item.captured_display) : ''}</div>
     </header>
     ${detail.translation ? translationNoticeHtml(detail.translation) : ''}

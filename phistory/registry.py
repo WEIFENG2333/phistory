@@ -71,6 +71,18 @@ CLAUDE_CODE = AgentSpec(
             ),
             dimensions={"surface": "headless"},
         ),
+        CaptureVariant(
+            id="code-mode",
+            label="Code Mode",
+            run_args=("--no-yolo",),
+            driver="pty",
+            dimensions={"surface": "terminal", "mode": "code"},
+            extra_env={"CLAUDE_CODE_EXPERIMENTAL_CODE_MODE": "1"},
+            pty_message="Reply with one short sentence.",
+            tap_mode="forward",
+            bootstrap_responses="claude-code-mode.json",
+            required_tools=("REPL",),
+        ),
     ),
 )
 

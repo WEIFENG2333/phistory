@@ -7,11 +7,14 @@ import time
 from pathlib import Path
 from tempfile import TemporaryDirectory, mkdtemp
 
+from claude_tap.bootstrap import BootstrapResponses
+
 from phistory import packages
 from phistory.drivers import CaptureRunContext, run_capture
+from phistory.drivers.common import bootstrap_path
 from phistory.models import CaptureResult, CaptureTarget
 from phistory.packages import agent_executable
-from phistory.prompt import render_archive_markdown, snapshot_from_trace
+from phistory.prompt import read_records, render_archive_markdown, snapshot_from_trace
 from phistory.sanitize import sanitize
 from phistory.storage import copy_trace, is_captured, latest_trace, prepare_version_dir, remove_if_exists, write_meta
 from phistory.subprocesses import run
@@ -75,6 +78,13 @@ def capture_target(
                 detail = (result.stderr or result.stdout).strip()[-4000:]
                 raise RuntimeError(f"capture produced no trace ({result.returncode}): {exc}\n{detail}") from exc
         try:
+            snapshot = snapshot_from_trace(working_target.trace_path)
+            missing = set(target.variant.required_tools) - {tool.name for tool in snapshot.tools}
+            if missing:
+                raise ValueError(
+                    f"capture did not activate {target.variant.id}: missing tools {', '.join(sorted(missing))}"
+                )
+            environment = _capture_environment(working_target)
             prompt_path.write_text(render_archive_markdown(working_target.trace_path), encoding="utf-8")
         except ValueError as exc:
             detail = (result.stderr or result.stdout).strip()[-4000:]
@@ -92,7 +102,8 @@ def capture_target(
                     "dimensions": target.variant.dimensions,
                 },
                 "requested": target.variant.dimensions,
-                "observed": {**snapshot_from_trace(working_target.trace_path).observation, **execution.observed},
+                "observed": {**snapshot.observation, **execution.observed},
+                **({"capture_environment": environment} if environment else {}),
                 "published_at": target.version.published_at,
                 "tarball_url": target.version.tarball_url,
                 "binary_version": binary_version,
@@ -161,7 +172,7 @@ def _capture_env(
     if target.agent.fake_chatgpt_auth:
         _write_fake_chatgpt_auth(home)
     if target.agent.home_profile == "claude":
-        _write_claude_config(home, work_dir)
+        _write_claude_config(home, work_dir, code_mode=target.variant.dimensions.get("mode") == "code")
     if target.agent.home_profile == "antigravity":
         _write_antigravity_config(home)
     if target.agent.home_profile == "hermes":
@@ -275,7 +286,7 @@ def _write_openclaw_config(home: Path) -> None:
     (state_dir / "openclaw.json").write_text(json.dumps(config, indent=2), encoding="utf-8")
 
 
-def _write_claude_config(home: Path, work_dir: Path | None) -> None:
+def _write_claude_config(home: Path, work_dir: Path | None, *, code_mode: bool = False) -> None:
     """Pre-answer first-run gates so an interactive session reaches the prompt."""
     api_key = os.environ.get("ANTHROPIC_API_KEY", "fake")
     config = {
@@ -300,6 +311,8 @@ def _write_claude_config(home: Path, work_dir: Path | None) -> None:
             }
         },
     }
+    if code_mode:
+        config.update(codeModeCaveatsAcceptedV1=True, codeModeAutoModeCaveatAcceptedV1=True)
     payload = json.dumps(config, indent=2)
     for path in (home / ".claude.json", home / ".claude" / ".claude.json"):
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -530,3 +543,14 @@ def _iso_now() -> str:
     from datetime import datetime, timezone
 
     return datetime.now(timezone.utc).isoformat()
+
+
+def _capture_environment(target: CaptureTarget) -> dict | None:
+    path = bootstrap_path(target)
+    if path is None:
+        return None
+    expected = BootstrapResponses.load(path).provenance()
+    records = read_records(target.trace_path)
+    if not records or any(record.get("capture_environment") != expected for record in records):
+        raise ValueError("capture is missing the requested bootstrap provenance")
+    return expected
