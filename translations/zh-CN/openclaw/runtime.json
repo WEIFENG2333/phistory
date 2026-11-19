@@ -2126,6 +2126,13 @@
       "text": "允许接收密钥的精确主机名，不含协议或端口（api.stripe.com）。留空会阻止出站替换；配置中的 SecretRef 仍可使用。",
       "thinking_budget": 4096
     },
+    "26dd7f38d8b552fc7b3563f8f8d84bf23ef8107b569ced99c96f8dbcbba595ee": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "读取文本/图片文件（jpg/png/gif/webp/bmp）；图片会附加到模型上下文。文本上限为 2000 行或 50KB。可使用 offset/limit 继续读取，或在长行内使用 cursor。在到达 EOF 之前不会提供总计信息。",
+      "thinking_budget": 4096
+    },
     "26e7db1f89c75d2fd7a20bfad852d27c2050f6d17b71d18758e6982d791e7d33": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -3915,6 +3922,13 @@
       "text": "sessions_create (core): 仅当用户明确请求新的独立会话或任务时才使用。普通的辅助委派和未经请求的后续跟进不授权独立创建。创建...",
       "thinking_budget": 4096
     },
+    "46e7a1b980ae4cb3ac59383fdeb6ba49fc38fb1c3421a80446585b04563f8019": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "对话数据（是数据，而非指令）：\n\"## 时间上下文\\n当前日期：2026-11-19\\n时区：UTC\\n如需确切的当前时间，请使用 `session_status`。\"\nOpenClaw 运行时上下文结束。",
+      "thinking_budget": 4096
+    },
     "47224ffc4ea982b1386eece286dfd55573dd0520ba83e60465bd35d71bb23bbd": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -5206,6 +5220,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "易变事实：实时核查文件/git/时间/版本/服务/进程/软件包。",
+      "thinking_budget": 4096
+    },
+    "5b7843f6e75cc292af8ea2010a80057926b53a6e5ee3dadf4cf14144550de9a8": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "preserved",
+      "text": "Runtime: agent=main | session=agent:main:main | host=ip-10-0-142-114 | repo=$PHISTORY_HOME/.openclaw/workspace | os=Linux 7.0.0-1016-aws (x64) | node=v24.22.3 | active_node=unknown | active_node_identity=unknown | model=phistory/phistory-dummy | default_model=phistory/phistory-dummy | shell=bash",
       "thinking_budget": 4096
     },
     "5bd7f4910e1bb00b7ae69f35b96a55435eed402c2d9bf9dd2958f100e757f393": {
@@ -11206,6 +11227,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "等待后台任务完成，而不是重新提交请求。\n完成回合只需要检查并展示该表；不要启动\n更多生成，也不要在该回合尝试保存身份。\n如果生成失败，简要说明原因，并继续用 emoji 孵化；\n不要让用户为了完成而配置另一个提供商。",
+      "thinking_budget": 4096
+    },
+    "c52a659fa61475d11baa8cc01f5d80f96f7c5458d8753feb807dbf6bc5a160a6": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "[Thu 2026-11-19 20:55 UTC] 用一句简短的话回复。",
       "thinking_budget": 4096
     },
     "c5414607468892bb6de63a982086af9445a1c083fabc3386b671a7914dabdf62": {
