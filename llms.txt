@@ -21,7 +21,7 @@ Paths in `captures/index.json` are relative to the site root. Archived prompts a
 - [Grokbot 2026-10-20 — Default](https://phistory.cc/captures/grokbot/2026-10-20/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
 - [Grok Build 1.0.89 — Default](https://phistory.cc/captures/grok/1.0.89/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
 - [MiniMax Code 3.1.16 — Default](https://phistory.cc/captures/minimax-code/3.1.16/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
-- [Kimi Code 2.6.3 — Default](https://phistory.cc/captures/kimi-code/2.6.3/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
+- [Kimi Code 2.7.0 — Default](https://phistory.cc/captures/kimi-code/2.7.0/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
 - [MiMo Code 0.1.17 — Default](https://phistory.cc/captures/mimo/0.1.17/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
 - [OpenClaw 2026.11.5 — Default](https://phistory.cc/captures/openclaw/2026.11.5/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.
 - [Hermes Agent v0.22.4 — Default](https://phistory.cc/captures/hermes/v0.22.4/variants/default/prompt.md): Latest archived normalized prompt snapshot for this agent.

@@ -2731,6 +2731,13 @@
       "text": "进入计划模式后，会有一个提醒引导你完成整个工作流程（探索 → 设计 → 编写计划文件 → `ExitPlanMode`），并强制只读访问。",
       "thinking_budget": 4096
     },
+    "77c48112f6e5e8e3dc41a90404df3b61a313ff391d3265216586b7b473b3b1f1": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "今天的日期是 2026-11-19，采用本地客户端机器的时区（UTC）。每当日期变化时，会在提醒中重新说明当前日期；请以最新的一条此类提醒为准。不要向用户明确提及这一点。",
+      "thinking_budget": 4096
+    },
     "780736ee4364955469a3005a60f5776fbd7eaf0248c4965c368455b32ade0150": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
