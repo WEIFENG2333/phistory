@@ -2214,6 +2214,13 @@
       "text": "xd://lsp — 向 LSP（语言服务器）查询诊断、悬停信息和引用",
       "thinking_budget": 4096
     },
+    "29291eac50da625816fc77835d631348620c885bfd5883885434771dea9f02a7": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`notify`（正则）会在服务运行期间把每条匹配的输出行作为后续消息发送。\n运行超过 60 秒（或早于 `timeout` 1 秒，以先到者为准）的非 `pty` 调用通常会转为后台任务 `bg_N`，并继续运行到 `timeout`。\n当客户端终端在运行该命令或已达到任务数量上限时，不会转入后台。\n结果会自动作为后续消息送达。切勿轮询。",
+      "thinking_budget": 4096
+    },
     "292b285ff296471c00df3cd8ef948af6d304dcc150888074569aa25931f89498": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -3427,6 +3434,13 @@
       "text": "空闲标签页会在回合结束时自动冻结（动画页面不再消耗 CPU/GPU），并在下次使用时解冻；空闲超过 idle-close timeout 的标签页会被关闭。在 `open` 上传递 `persist: true` 可让标签页跨回合保持活跃（例如多步登录）；`browser.close` 仍会显式释放。",
       "thinking_budget": 4096
     },
+    "41eece5579f511b2d50c582a31bb133ac07261eb6729cd92eb834d16e36b569c": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": ":50 第 50 行；:50- 从第 50 行起；:50-200 含两端；:50+150 按行数计；:-60 最后 60 行。",
+      "thinking_budget": 4096
+    },
     "42044f10f921c8dbd2224f3396b0de3a25ffba9f06000ccde19e550a3557228d": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -3992,6 +4006,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "导出符号变更：必须先运行 `xd://lsp` 引用。",
+      "thinking_budget": 4096
+    },
+    "4c5ba7e593294332861d10f738caf77935b7c766e32d82512b88bb6f2bc18e66": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "你等待的智能体正在等你？先答复它。",
       "thinking_budget": 4096
     },
     "4c77b36a476ed01f65bcc6f832de264e33e30da1e6f11cfaf8339bab41b6c4fc": {
@@ -5423,6 +5444,13 @@
       "text": "Read: `read`",
       "thinking_budget": 4096
     },
+    "6a47ecb982ff9b48c630950dc32714a9c39622635332ef7ef3b0f1e67a7e8afe": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "服务就绪后用于接受连接的 TCP 端口",
+      "thinking_budget": 4096
+    },
     "6a6ca4a76aa37ed299c38a7a09ac897641d465551bf88ee6e5635f6c4d5519ed": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -6235,6 +6263,13 @@
       "text": "探索",
       "thinking_budget": 4096
     },
+    "79dc941677f5d147760268e2d88a81e44ee012c42cea996d76fd1e3af920a8f2": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "ready 需要 log 正则或 port（若同时给出则两者都用）；host 默认 localhost，ready.timeout 为 30 秒。",
+      "thinking_budget": 4096
+    },
     "79f3cfc5253015fc52699c04d68fa147ef49bf9e93c9c0acf24a574cd3d52620": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -6494,6 +6529,13 @@
       "text": "上述输出与证据要求均已满足。",
       "thinking_budget": 4096
     },
+    "7ff26e6e487f369a0c4c8270b6488dde6771c4c46e1ca2e2e03b96b5c247cc9e": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "服务就绪后输出行所匹配的正则表达式",
+      "thinking_budget": 4096
+    },
     "80254a49a45f507b350318d254faaea699e4367c4643cda62b25c3d306f49a8d": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -6520,6 +6562,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "今天是 2026-11-10；当前工作目录为 '$PHISTORY_WORKSPACE'。不要在回复中重复此信息。",
+      "thinking_budget": 4096
+    },
+    "8108d4e70e9a9ad0766cd693ee6e46a69ffb9bc1cb32946e0ad07ff8133f31d6": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "一次等待返回后没有新内容，也没有别的事可做？立即调用 `wait`，且不进行任何其他工具调用：此时它会阻塞最多 4 分钟，若在等待答复则更久。\n结果和消息会自动送达。还有工作未完成时，绝不轮询。",
       "thinking_budget": 4096
     },
     "811fa641150bd4681d8175127c539a8ca635906f29864c80aadd5de4205cff59": {
@@ -6562,6 +6611,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "**格式：**消息必须是纯文本行文。绝不发送 JSON 状态对象。保持简洁，路径通过 `local://` 或 `artifact://` URL 共享，而不是粘贴大段内容。",
+      "thinking_budget": 4096
+    },
+    "81c1dae8d54df7ad06eb34f688d3aa5f8a207da0010a37f2dfd391b4febe982d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "local://<name>.md：共享工件。\nlocal://<N>.log：溢出内容（截断的工具输出，整形后的原始版本）；分页使用 :N-M 或 :raw:N-M。",
       "thinking_budget": 4096
     },
     "81c43ccb31574640f3ae8fc12aa5d34864d5c2589970ba0ddae3dc792d6d8d41": {
@@ -6835,6 +6891,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "会话工具名称：read、bash、edit、eval、glob、grep、task、wait、todo、web_search、write、ast_edit、debug、lsp。",
+      "thinking_budget": 4096
+    },
+    "870eac3d1fe5b694b540a5121373568e76e2c8d485a3d6a3ed1aec96a0b17f8f": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "持久化的 bash 5.3。\ncwd 在每轮之后会重置，不要依赖 cd；`pty` = 交互式。\n内部 URI 可作为路径用于内建命令/coreutils、重定向和 glob。\n进程内的内建命令，优先于 PATH 查找：ast-grep, awk, b2sum, base32, base64, basename, cat, chmod, cksum, cmp, combine, comm, cp, cut, date, dd, df, diff, direnv, dirname, du, entr, env, errno, fd, file, find, flock, fold, fswatch, grep, head, hostname, id, ifne, isutf8, jq, ln, ls, lsof, md5, md5sum, mkdir, mktemp, mv, nl, nohup, nproc, od, open, paste, pgrep, pidwait, pkill, printenv, ps, readlink, realpath, rg, rm, rmdir, rsync, say, sd, sed, seq, sg, sha1sum, sha224sum, sha256sum, sha384sum, sha512sum, shasum, sleep, sort, sponge, stat, strings, tac, tail, tar, tee, timeout, top, touch, tr, truncate, ts, uname, uniq, uptime, urlmap, watchexec, wc, which, whoami, xargs, xdg-open, yes.\n`async` 会推迟返回有限结果，但保留截止时间（默认 300 秒）；`timeout: 0` 用于监视器和长任务。\n`notify`（正则；隐含 `async`）会在任务运行期间把每条匹配的输出行作为后续消息发送，先于其结果送达。只匹配你会据其采取行动的行：匹配过多会将其关闭。\n不要习惯性地截断输出，结果会被摘要并保存为工件。\n长期运行的服务：",
       "thinking_budget": 4096
     },
     "872ac13aa63367dd505b59c442ebb2f5c5865c8298a70f6e27a72b5be4f662b5": {
@@ -7367,6 +7430,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "`rename`——在所有位置重命名该符号；**默认应用**，`apply: false` 则预览；需要 `new_name`",
+      "thinking_budget": 4096
+    },
+    "8f83a78a39b5d6f851bad1c84c6d9c0ff109c12a911ebc3210bf5b72af69c469": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "等待就绪的秒数；默认 30",
       "thinking_budget": 4096
     },
     "8fc934277cf5e0d0102d69049d0b93f79ce54086d79bfb47eb7fb074c98a79d0": {
@@ -8333,6 +8403,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "无环的句柄波次：",
+      "thinking_budget": 4096
+    },
+    "a1587d1c8869df37c17dd3b012a035f4c2126511df3a1701b3166a56450345b7": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "只有在被阻塞且没有别的事可做时才等待。\n它会阻塞等待你启动的后台任务/服务，或等待你在本次运行中所发问题的答复。\n没有你启动且正在运行的任务，也没有待收的答复？立即返回；等待一个空闲且无事可唤醒它的智能体，或等待一个正在等你的智能体，同样会立即返回。",
       "thinking_budget": 4096
     },
     "a1904d40e78785a09d409d2575cc74bc0eb28473baba1131baeb03a479a677b4": {
@@ -10134,6 +10211,13 @@
       "text": "数据断点 id",
       "thinking_budget": 4096
     },
+    "c540c3dd0d1b8098d1d854141ce88c286328238bf82cfe52104d773b46d8fb1e": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "服务就绪条件；需要 log 或 port",
+      "thinking_budget": 4096
+    },
     "c570a5b13cf59bbcd75433a654c5366e5d4fa3745cc70768373d7f71da53324d": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -10659,6 +10743,13 @@
       "text": "**TUI/CLI** → 启动实际程序，验证终端交互、输出或状态。",
       "thinking_budget": 4096
     },
+    "ce920478cb1ff141fb93c9a769196b21bad7f4775c2aa40f1e8b9e064196464f": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "端口探测所用的主机；默认 localhost（127.0.0.1 和 ::1）",
+      "thinking_budget": 4096
+    },
     "cef48f7f1f56973bee251af0438312a68db12c9fec751e8339d8ae29f51af16d": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -11028,6 +11119,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "Markdown：标题行就是一个块起始符——作用于 `##`/`###` 标题的 `SWAP.BLK`/`DEL.BLK`/`INS.BLK.POST` 解析的是它的整个区块（从该标题起，涵盖所有嵌套的更深级标题，直到下一个同级或更高级标题为止）。因此 `DEL.BLK` 会丢弃该区块，`SWAP.BLK` 会重写它，`INS.BLK.POST` 会落在它之后（插入的正文要以空行结尾，以保持与下一个标题分隔）。",
+      "thinking_budget": 4096
+    },
+    "d6429194a147085596d5be13cdf5a67430d8f18260591817090fa35a1e38865a": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "PDF/DOCX/PPTX/XLSX/EPUB：提取的文本；笔记本：可编辑单元格；图片：解码后内联显示。",
       "thinking_budget": 4096
     },
     "d64790d23f082e11b2d4509dcb0b0e1310dba70a99b58f753cfed79afb8678e8": {
@@ -11728,6 +11826,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "可用的辅助工具：mkdir, wc, sort, comm, diff, uniq, base64, cmp, md5sum, sha{1,224,256,384,512}sum, b2sum, basename, dirname, readlink, realpath, touch, stat, date, mktemp, seq, yes, printenv, truncate, tac, nproc, uname, whoami, hostname, which, ps, pgrep, pkill, pidwait, top, cut, tee, tr, paste, sed, xargs, jq, rm, mv, ln, ts, sponge, ifne, isutf8, combine, errno",
+      "thinking_budget": 4096
+    },
+    "e550b078349385f92a3cf1c889afc5951e17c4b4b71ae06da251fe28ad600dc3": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "今天是 2026-11-19；当前工作目录：'$PHISTORY_WORKSPACE'。不要在回复中重复此信息。",
       "thinking_budget": 4096
     },
     "e55abbef16256544ca4a2cff5535ba12be31237616fe1bd067a92465430e4a1b": {
@@ -13163,6 +13268,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "等待的秒数；默认 30",
+      "thinking_budget": 4096
+    },
+    "ffd0ad9b7682276290dd21cafc618a5f149f7429062306e11fe0b8f4770d2e5a": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "以该名称启动一个长期运行的受监督服务；对有限命令（包括异步任务）请省略此参数。长度为 1-48 个 [A-Za-z0-9._-] 中的字符。",
       "thinking_budget": 4096
     },
     "ffd96af0f559d85c24a45934e409de14cd82418a14cc02de85db4e17fa68bfad": {
