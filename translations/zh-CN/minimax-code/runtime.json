@@ -427,6 +427,13 @@
       "text": "完成的工作要及时标记为 `completed`，过时的工作要标记为 `cancelled`。",
       "thinking_budget": 4096
     },
+    "0a3a54cf6927ec2d5cfb4c1a3e1a3b804c198db76575973611bfc2979c9591cf": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "主工作目录：$PHISTORY_HOME/.minimax-code/sessions/mvs_13be6a50f6a54c67a7f6f126d02ca882/workspace",
+      "thinking_budget": 4096
+    },
     "0a3e4932278cfbf2c5fb616c2f09bde42cf7bf92c960d2eec8d2ae860618cad6": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -5433,6 +5440,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "不要谄媚。不说“你太棒了！”之类的空洞赞美；但在值得认可的地方，要给予真诚的认可。",
+      "thinking_budget": 4096
+    },
+    "7b4a7b3c69f13f6b74efd40866f046d61a0f51dcad97d03632c456956db23121": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "操作系统版本：Ubuntu 26.04.1 LTS (linux 7.0.0-1020-azure x64)",
       "thinking_budget": 4096
     },
     "7b87d6636b9e8c6b48d6c70d6eebb279b1314ad7a96a9351783cdf99ea272273": {
