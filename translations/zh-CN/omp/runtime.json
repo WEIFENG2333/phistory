@@ -3903,6 +3903,13 @@
       "text": "与输出匹配的正则表达式",
       "thinking_budget": 4096
     },
+    "4b0df3962e2607f188678714a8a1a6c872be2d0a6a225ca95292ee5178c3f48b": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "今天：2026-11-20；当前工作目录：'$PHISTORY_WORKSPACE'。不要在回复中重复此信息。",
+      "thinking_budget": 4096
+    },
     "4b271f4914161e3126be780c3cb008eb01a84e0f541e5aa0530d4e2b1ef754b0": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",

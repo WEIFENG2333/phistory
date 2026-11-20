@@ -146,6 +146,13 @@
       "text": "不要亲自重做已委派的子智能体任务；专注于整合结果或处理不重叠的工作。",
       "thinking_budget": 4096
     },
+    "0652f18192c93d2b47bee707c93a1310123736b30bb7a8b4d54e1a68fea8c5fa": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`gpt-5.6-luna`：用于较简单任务的旧版快速模型。推理力度：low、medium（默认）、high、xhigh、max。服务层级：priority。",
+      "thinking_budget": 4096
+    },
     "067b21728b10123fc118bcd4b23edb97b739f319a61371871b1c6288e0ebf6b8": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-10",
@@ -333,6 +340,20 @@
       "prompt_version": "zh-CN-10",
       "status": "translated",
       "text": "当 `SKILL.md` 文件引用另一个文件或资源时，使用与该技能相同的访问机制。相对路径应以包含基于文件系统的 `SKILL.md` 的目录为基准进行解析。对于编排器技能，应将所引用资源的精确标识符连同相同的 authority 和包传递给 `skills.read`；不要把 `skill://` 标识符当作文件系统路径。",
+      "thinking_budget": 4096
+    },
+    "0edf95682e2ab128756c75e7bf90f5823a7e2a3109a91ab01743e7db2edf80a8": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`gpt-5.6-sol`：用于编程和日常工作的旧版模型。推理力度：low（默认）、medium、high、xhigh、max、ultra。服务层级：priority。",
+      "thinking_budget": 4096
+    },
+    "0ef29b0433eafcc87b323a26b348e996f2592b18047d41bbe3f88accd2d91603": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "请求以登录 shell 启动。省略则继承。",
       "thinking_budget": 4096
     },
     "0fda58c353f307e077e04ca54c312834bc1a4b466674d9d30fd4127273a5dabf": {
@@ -1017,6 +1038,13 @@
       "prompt_version": "zh-CN-10",
       "status": "translated",
       "text": "尽可能并行执行工具调用——尤其是文件读取，例如 `cat`、`rg`、`sed`、`ls`、`git show`、`nl`、`wc`。使用 `multi_tool_use.parallel` 来并行执行工具调用，且仅限于此。",
+      "thinking_budget": 4096
+    },
+    "25744ca22e07c9c4df504c23ef00fe39bd05fc57cbc92fab633f486a271d3795": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`gpt-5.6-terra`：用于智能体编程的旧版均衡模型。推理力度：low、medium（默认）、high、xhigh、max、ultra。服务层级：priority。",
       "thinking_budget": 4096
     },
     "25e9057afddc445b5d80ec0c48cabf469ff8e9fc48eecc91175157e237ff9236": {
@@ -3914,6 +3942,13 @@
       "text": "默认：非常简洁；采用友好的编码队友语气。",
       "thinking_budget": 4096
     },
+    "882899b652ea7e1d4ea3f82b8d622d7761f1d9c3ac9b159698e0741b52ff4e53": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`gpt-6-sol`：用于编程和日常工作的旧版模型。推理力度：low、medium（默认）、high、xhigh、max、ultra。服务层级：priority。",
+      "thinking_budget": 4096
+    },
     "88349c0f56de79cd6240a756c17c24bab817bac088d595dbff059fabf1520242": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -3926,6 +3961,13 @@
       "prompt_version": "zh-CN-10",
       "status": "translated",
       "text": "在可能的情况下，优先选择并行而非顺序的工具调用，因为这有助于降低往返延迟，让你更快完成工作。",
+      "thinking_budget": 4096
+    },
+    "88787d4c3aac9810ab8dcf32e6eaaa0f3ba384be89e8cb3c8471becad0721981": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`gpt-5.5`：旧版编程模型。推理力度：low、medium（默认）、high、xhigh。服务层级：priority。\n        生成一个智能体来处理指定任务。如果你当前的任务是 `/root/task1`，并且你以 task_name \"task_3\" 调用 spawn_agent，该智能体将拥有规范任务名 `/root/task1/task_3`。\n之后你可以用 `task_3` 或 `/root/task1/task_3` 指代该智能体，两者可互换使用。不过，智能体 `/root/task2/task_3` 只能通过其规范名称 `/root/task1/task_3` 与该智能体通信。\n生成的智能体将拥有与你相同的工具，并能够生成自己的子智能体。",
       "thinking_budget": 4096
     },
     "888eee0a553835da27ed85787a79d6df29f25c1bf9793c11f3bc1b25e1adb13e": {
@@ -4271,6 +4313,13 @@
       "prompt_version": "zh-CN-10",
       "status": "translated",
       "text": "使用行内代码使文件路径可点击。",
+      "thinking_budget": 4096
+    },
+    "9649c7db1b0ad4380a0ce4e2b602900865fb7eac7505e83a1fe0066329678095": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`gpt-5.5`：旧版编程模型。推理力度：low、medium（默认）、high、xhigh。服务层级：priority。\n        为范围明确的任务生成一个子智能体。返回所生成智能体的 id，以及面向用户的昵称（如有）。生成的子智能体默认继承你当前的模型。省略 `model` 即使用该首选默认值；仅在需要显式覆盖时才设置 `model`。\n此 spawn_agent 工具让你可以使用默认继承你当前模型的子智能体。除非用户明确要求使用其他模型，否则不要设置 `model` 字段。你应当遵循以下规则和指南来使用此工具。",
       "thinking_budget": 4096
     },
     "964c46101d482c3a8d1ac69094cd2639aa7c17b50f5a2a5f285952d5bb6488e9": {
@@ -7075,6 +7124,13 @@
       "prompt_version": "zh-CN-10",
       "status": "translated",
       "text": "将相关的要点放在一起；不要在同一章节中混杂无关的概念。",
+      "thinking_budget": 4096
+    },
+    "f0e82bbe1dcd245e7343b044b0df9bc69bfdfcee647208481226dc4924b625ff": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`gpt-6-astra`：面向复杂编程和专业工作的上一代模型。推理力度：low（默认）、medium、high、xhigh、max、ultra。服务层级：priority。",
       "thinking_budget": 4096
     },
     "f14084485764138bbfd9bd6820a9589a8d2912a5e7f6394ead69b7e15dd2d4f2": {

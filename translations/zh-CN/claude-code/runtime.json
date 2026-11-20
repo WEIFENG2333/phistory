@@ -11779,6 +11779,13 @@
       "text": "**浏览器存储**：`localStorage`、`sessionStorage` 和 IndexedDB 可以正常工作，但每个 artifact 都有各自的源，页面存储的内容只存在于该查看者的浏览器中。即使重新发布到同一 URL，这些内容也会保留，但绝不会到达其他查看者、其他设备或 Claude 那里。在隐私窗口中、站点数据被清除或被阻止时、在预览中或在缩略图捕获期间，它可能返回空，或访问器抛出异常，因此 Claude 将每次读写都包在 try/catch 中，并使页面在没有它的情况下也能正确渲染。Claude 只将其用于针对单个查看者的便利功能，例如记住的标签页或筛选条件、折叠的区块或未发送的草稿，绝不用于必须可靠持久保存、在查看者之间共享或由 Claude 读回的状态。这类状态应属于运行时能力。",
       "thinking_budget": 4096
     },
+    "ba86712b70879651fcb3302840b9550dc59c15c7c7706dd939fea6fd0d059b48": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "你有一个基于文件的持久记忆，位于 `$PHISTORY_HOME/.claude/projects/$PHISTORY_PROJECT/memory/`。该目录已存在——请在 REPL 脚本中使用 `write(path, content)` 直接写入（不要运行 mkdir，也不要检查它是否存在）。每条记忆是一个文件，保存一个事实，并带有 frontmatter：",
+      "thinking_budget": 4096
+    },
     "bad9f660232a4ae56eb54acf767a6743e836f382f78c1ee3d2076d4be750e47c": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",
