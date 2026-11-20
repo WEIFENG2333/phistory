@@ -1653,6 +1653,13 @@
       "text": "要写入的原始完整文件内容，完全按原样提供。不使用 Read/Edit 文本视图。",
       "thinking_budget": 4096
     },
+    "4a04f44a6607eaac0e701b72f033e6e13c8f5c26d4c2d5913bef0c65a4e4aaa5": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "今天的日期是 2026-11-20，以本地客户端机器的时区（UTC）为准。每当日期变化时，会在提醒中重新说明当前日期；请以最新一条此类提醒中的日期为准。不要向用户明确提及这一点。",
+      "thinking_budget": 4096
+    },
     "4a6572c8ea5e6a735b1fdb84c32f7d1cd0abfd380dbe3ad77bd7fd72f38de765": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",

@@ -8,7 +8,7 @@ Open the web viewer to compare prompt snapshots across versions and see how agen
 
 **Start here:** [phistory.cc](https://phistory.cc/)
 
-> Checks for new releases hourly. Archive last updated: **2026-11-20 02:33 UTC**.
+> Checks for new releases hourly. Archive last updated: **2026-11-20 10:22 UTC**.
 
 ![Phistory prompt diff viewer](docs/screenshot.png)
 
@@ -74,7 +74,7 @@ python -m http.server --directory .phistory-cache/site
 
 ## Capture Status
 
-Last capture update: 2026-11-20 02:33 UTC
+Last capture update: 2026-11-20 10:22 UTC
 
 | Agent | Latest | Versions | Snapshots | Last Captured |
 | --- | --- | ---: | ---: | --- |
@@ -86,7 +86,7 @@ Last capture update: 2026-11-20 02:33 UTC
 | Grokbot | [2026-10-20 - 2026-10-20](captures/grokbot/2026-10-20/variants/default/prompt.md) | 1 | 1 | 2026-10-20 18:10 UTC |
 | Grok Build | [1.0.89 - 2026-11-17](captures/grok/1.0.89/variants/default/prompt.md) | 148 | 148 | 2026-11-18 13:21 UTC |
 | MiniMax Code | [3.1.16 - 2026-11-16](captures/minimax-code/3.1.16/variants/default/prompt.md) | 47 | 47 | 2026-11-16 10:06 UTC |
-| Kimi Code | [2.7.0 - 2026-11-19](captures/kimi-code/2.7.0/variants/default/prompt.md) | 90 | 90 | 2026-11-19 12:02 UTC |
+| Kimi Code | [2.7.2 - 2026-11-20](captures/kimi-code/2.7.2/variants/default/prompt.md) | 91 | 91 | 2026-11-20 10:22 UTC |
 | MiMo Code | [0.1.17 - 2026-11-13](captures/mimo/0.1.17/variants/default/prompt.md) | 17 | 17 | 2026-11-13 08:42 UTC |
 | OpenClaw | [2026.11.6 - 2026-11-19](captures/openclaw/2026.11.6/variants/default/prompt.md) | 92 | 92 | 2026-11-19 20:55 UTC |
 | Hermes Agent | [v0.22.4 - 2026-10-21](captures/hermes/v0.22.4/variants/default/prompt.md) | 37 | 37 | 2026-10-21 19:31 UTC |
