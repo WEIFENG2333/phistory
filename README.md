@@ -2,7 +2,7 @@
 
 [中文](README_zh.md)
 
-Phistory tracks how system prompts change across popular coding-agent CLIs like Claude Code, Codex, DeepSeek Harness, Antigravity, Grok Build, MiniMax Code, Kimi Code, MiMo Code, OpenClaw, Hermes, Kimi CLI, opencode, Pi, and Oh My Pi.
+Phistory tracks how system prompts change across popular coding-agent CLIs like Claude Code, Codex, DeepSeek Harness, Antigravity, Grok Build, Kimi Code, MiMo Code, OpenClaw, Hermes, Kimi CLI, opencode, Pi, and Oh My Pi.
 
 Open the web viewer to compare prompt snapshots across versions and see how agent design changes through prompts, tools, policies, and runtime instructions.
 
@@ -36,7 +36,7 @@ Use the hosted viewer at [phistory.cc](https://phistory.cc/). These commands are
 uv sync --all-groups
 
 # Capture the latest release and every configured snapshot for each CLI.
-uv run phistory capture --latest --agents claude-code,codex,dsh,antigravity,grok,minimax-code,kimi-code,mimo,openclaw,hermes,kimi,opencode,pi,omp
+uv run phistory capture --latest --agents claude-code,codex,dsh,antigravity,grok,kimi-code,mimo,openclaw,hermes,kimi,opencode,pi,omp
 
 # Capture only selected Codex snapshots.
 uv run phistory capture --latest --agents codex --variants default,gpt-5.5,gpt-5.6
@@ -62,7 +62,6 @@ python -m http.server --directory .phistory-cache/site
 - DeepSeek Harness (`@deepseek-ai/dsh`)
 - Antigravity CLI (`google-antigravity/antigravity-cli`)
 - Grok Build (`@xai-official/grok`)
-- MiniMax Code desktop app ([official download](https://agent.minimax.io/download))
 - Kimi Code (`@moonshot-ai/kimi-code`)
 - MiMo Code (`@mimo-ai/cli`)
 - OpenClaw (`openclaw`)
@@ -85,7 +84,6 @@ Last capture update: 2026-11-21 00:56 UTC
 | Claude Tag | [2026-10-18 - 2026-10-18](captures/claude-tag/2026-10-18/variants/default/prompt.md) | 4 | 4 | 2026-10-18 08:57 UTC |
 | Grokbot | [2026-10-20 - 2026-10-20](captures/grokbot/2026-10-20/variants/default/prompt.md) | 1 | 1 | 2026-10-20 18:10 UTC |
 | Grok Build | [1.0.92 - 2026-11-20](captures/grok/1.0.92/variants/default/prompt.md) | 149 | 149 | 2026-11-21 00:56 UTC |
-| MiniMax Code | [3.1.17 - 2026-11-20](captures/minimax-code/3.1.17/variants/default/prompt.md) | 48 | 48 | 2026-11-20 18:45 UTC |
 | Kimi Code | [2.7.2 - 2026-11-20](captures/kimi-code/2.7.2/variants/default/prompt.md) | 91 | 91 | 2026-11-20 10:22 UTC |
 | MiMo Code | [0.1.17 - 2026-11-13](captures/mimo/0.1.17/variants/default/prompt.md) | 17 | 17 | 2026-11-13 08:42 UTC |
 | OpenClaw | [2026.11.6 - 2026-11-19](captures/openclaw/2026.11.6/variants/default/prompt.md) | 92 | 92 | 2026-11-19 20:55 UTC |

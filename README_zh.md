@@ -2,7 +2,7 @@
 
 [English](README.md)
 
-Phistory 追踪 Claude Code、Codex、DeepSeek Harness、Antigravity、Grok Build、MiniMax Code、Kimi Code、MiMo Code、OpenClaw、Hermes、Kimi CLI、opencode、Pi、Oh My Pi 等热门 coding-agent CLI 的系统提示词如何随版本变化。
+Phistory 追踪 Claude Code、Codex、DeepSeek Harness、Antigravity、Grok Build、Kimi Code、MiMo Code、OpenClaw、Hermes、Kimi CLI、opencode、Pi、Oh My Pi 等热门 coding-agent CLI 的系统提示词如何随版本变化。
 
 打开网页查看器，可以对比不同版本的提示词快照，从 prompts、tools、策略和运行时指令里观察 agent 设计如何变化。
 
@@ -36,7 +36,7 @@ GitHub Actions 每小时检查一次已自动追踪的 CLI 版本；发现新版
 uv sync --all-groups
 
 # 抓取每个 CLI 的最新版本及其全部已配置快照。
-uv run phistory capture --latest --agents claude-code,codex,dsh,antigravity,grok,minimax-code,kimi-code,mimo,openclaw,hermes,kimi,opencode,pi,omp
+uv run phistory capture --latest --agents claude-code,codex,dsh,antigravity,grok,kimi-code,mimo,openclaw,hermes,kimi,opencode,pi,omp
 
 # 只抓取 Codex 的指定快照。
 uv run phistory capture --latest --agents codex --variants default,gpt-5.5,gpt-5.6
@@ -62,7 +62,6 @@ python -m http.server --directory .phistory-cache/site
 - DeepSeek Harness (`@deepseek-ai/dsh`)
 - Antigravity CLI (`google-antigravity/antigravity-cli`)
 - Grok Build (`@xai-official/grok`)
-- MiniMax Code 桌面应用（[官方下载](https://agent.minimax.io/download)）
 - Kimi Code (`@moonshot-ai/kimi-code`)
 - MiMo Code (`@mimo-ai/cli`)
 - OpenClaw (`openclaw`)
@@ -85,7 +84,6 @@ python -m http.server --directory .phistory-cache/site
 | Claude Tag | [2026-10-18 - 2026-10-18](captures/claude-tag/2026-10-18/variants/default/prompt.md) | 4 | 4 | 2026-10-18 08:57 UTC |
 | Grokbot | [2026-10-20 - 2026-10-20](captures/grokbot/2026-10-20/variants/default/prompt.md) | 1 | 1 | 2026-10-20 18:10 UTC |
 | Grok Build | [1.0.92 - 2026-11-20](captures/grok/1.0.92/variants/default/prompt.md) | 149 | 149 | 2026-11-21 00:56 UTC |
-| MiniMax Code | [3.1.17 - 2026-11-20](captures/minimax-code/3.1.17/variants/default/prompt.md) | 48 | 48 | 2026-11-20 18:45 UTC |
 | Kimi Code | [2.7.2 - 2026-11-20](captures/kimi-code/2.7.2/variants/default/prompt.md) | 91 | 91 | 2026-11-20 10:22 UTC |
 | MiMo Code | [0.1.17 - 2026-11-13](captures/mimo/0.1.17/variants/default/prompt.md) | 17 | 17 | 2026-11-13 08:42 UTC |
 | OpenClaw | [2026.11.6 - 2026-11-19](captures/openclaw/2026.11.6/variants/default/prompt.md) | 92 | 92 | 2026-11-19 20:55 UTC |

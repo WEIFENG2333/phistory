@@ -19,7 +19,6 @@ def test_parse_default_agents():
         "dsh",
         "antigravity",
         "grok",
-        "minimax-code",
         "kimi-code",
         "mimo",
         "openclaw",
@@ -64,7 +63,6 @@ def test_new_agents_define_install_and_capture_profiles():
     antigravity = get_agent("antigravity")
     dsh = get_agent("dsh")
     grok = get_agent("grok")
-    minimax_code = get_agent("minimax-code")
     kimi_code = get_agent("kimi-code")
     mimo = get_agent("mimo")
     openclaw = get_agent("openclaw")
@@ -105,12 +103,6 @@ def test_new_agents_define_install_and_capture_profiles():
     assert grok.home_profile == "grok"
     assert "--no-auto-update" in grok.default_variant.run_args
     assert "--single" in grok.default_variant.run_args
-
-    assert minimax_code.source == "minimax-code"
-    assert minimax_code.package == "MiniMax Code desktop app"
-    assert minimax_code.tap_client == "minimax-code"
-    assert minimax_code.tap_mode == "reverse"
-    assert minimax_code.default_variant.run_args == ()
 
     assert kimi_code.source == "npm"
     assert kimi_code.package == "@moonshot-ai/kimi-code"

@@ -97,11 +97,6 @@
     ]
   },
   {
-    "id": "minimax-tool-order",
-    "source": "captures/minimax-code/3.0.68/variants/default/prompt.md",
-    "contains": "Every skill listed below is eligible for selection"
-  },
-  {
     "id": "omp-rfc-constraints",
     "source": "captures/omp/16.3.3/variants/default/prompt.md",
     "contains": "RFC 2119: MUST, REQUIRED"
@@ -147,11 +142,6 @@
     "contains": "Enable multiline mode where `.` matches newlines"
   },
   {
-    "id": "fresh-minimax-terminal",
-    "source": "captures/minimax-code/3.0.68/variants/default/prompt.md",
-    "contains": "Terminal mode only. Set to `complete` only when"
-  },
-  {
     "id": "fresh-grok-directory",
     "source": "captures/grok/1.0.13/variants/default/prompt.md",
     "contains": "Explicit working directory for the subagent."
@@ -175,11 +165,6 @@
     "id": "fresh-mimo-intent",
     "source": "captures/mimo/0.1.14/variants/default/prompt.md",
     "contains": "When a file is mentioned, focus on WHAT the user wants to do WITH the file"
-  },
-  {
-    "id": "fresh-minimax-mixed",
-    "source": "captures/minimax-code/3.0.68/variants/default/prompt.md",
-    "contains": "mavis-doctor: Diagnose current MiniMax Code local-runtime-v2 sessions"
   },
   {
     "id": "git-trailer",

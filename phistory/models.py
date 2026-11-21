@@ -5,7 +5,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Literal
 
-PackageSource = Literal["npm", "pypi", "github-release", "github-release-asset", "minimax-code"]
+PackageSource = Literal["npm", "pypi", "github-release", "github-release-asset"]
 GitHubReleaseInstall = Literal["wheel", "editable"]
 CaptureDriver = Literal["oneshot", "dsh-web", "pty"]
 HomeProfile = Literal[

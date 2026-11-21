@@ -35,19 +35,6 @@ _VOLATILE = (
     (re.compile(r"The current local time is: [^\n]+"), "The current local time is: $PHISTORY_DATETIME."),
     (re.compile(r"(?m)^Conversation started: .+$"), "Conversation started: $PHISTORY_DATETIME"),
     (re.compile(r"Conversation ID: [0-9a-f-]{36}"), "Conversation ID: $PHISTORY_CONVERSATION"),
-    (re.compile(r"(?m)^(  YOUR SESSION ID:) mvs_[A-Za-z0-9_]+$"), r"\1 $PHISTORY_SESSION"),
-    (
-        re.compile(r"(?m)^(  YOUR SCRATCHPAD: .*/scratchpads/)mvs_[A-Za-z0-9_]+(/scratchpad\.md)$"),
-        r"\1$PHISTORY_SESSION\2",
-    ),
-    (re.compile(r"(?m)^(  daemonPort:) \d+$"), r"\1 $PHISTORY_PORT"),
-    (
-        re.compile(
-            r"(?m)^(  date:) (?:\d{4}-\d{2}-\d{2} .+ \(UTC, UTC[+-]\d+(?::\d+)?\)|"
-            r"(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun) .+ GMT[+-]\d{4} \([^)]+\))$"
-        ),
-        r"\1 $PHISTORY_DATETIME",
-    ),
     (re.compile(r"<current_date>\d{4}-\d{2}-\d{2}</current_date>"), "<current_date>$PHISTORY_DATE</current_date>"),
     (re.compile(r"<timezone>[^<]+</timezone>"), "<timezone>$PHISTORY_TIMEZONE</timezone>"),
     (

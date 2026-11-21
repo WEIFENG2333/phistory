@@ -17,7 +17,6 @@ AGENT_ICONS = {
     "hermes": "docs/agent-icons/hermes.png",
     "kimi": "docs/agent-icons/kimi.png",
     "kimi-code": "docs/agent-icons/kimi-code.png",
-    "minimax-code": "docs/agent-icons/minimax-code.svg",
     "mimo": "docs/agent-icons/mimo.png",
     "omp": "docs/agent-icons/omp.svg",
     "openclaw": "docs/agent-icons/openclaw.png",

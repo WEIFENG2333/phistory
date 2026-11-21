@@ -258,23 +258,6 @@ GROK = AgentSpec(
     ),
 )
 
-MINIMAX_CODE = AgentSpec(
-    id="minimax-code",
-    display_name="MiniMax Code",
-    package="MiniMax Code desktop app",
-    source="minimax-code",
-    tap_client="minimax-code",
-    fake_env={},
-    extra_env={
-        "DISABLE_AUTOUPDATER": "1",
-        "DISABLE_UPDATES": "1",
-        "LOG_LEVEL": "fatal",
-        "CI": "1",
-    },
-    tap_mode="reverse",
-    default_variant=_default(),
-)
-
 KIMI_CODE = AgentSpec(
     id="kimi-code",
     display_name="Kimi Code",
@@ -536,7 +519,6 @@ AGENTS: dict[str, AgentSpec] = {
         DSH,
         ANTIGRAVITY,
         GROK,
-        MINIMAX_CODE,
         KIMI_CODE,
         MIMO,
         OPENCLAW,

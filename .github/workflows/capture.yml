@@ -15,7 +15,6 @@ concurrency:
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
   GH_TOKEN: ${{ github.token }}
-  CAPTURE_AGENTS: claude-code,codex,dsh,antigravity,grok,minimax-code,kimi-code,mimo,openclaw,hermes,kimi,opencode,pi,omp
 
 jobs:
   capture:
@@ -35,7 +34,7 @@ jobs:
         id: latest
         run: |
           set +e
-          uv run phistory capture --latest --agents "$CAPTURE_AGENTS" --summary-title "Latest capture"
+          uv run phistory capture --latest --summary-title "Latest capture"
           status=$?
           echo "status=$status" >> "$GITHUB_OUTPUT"
           exit 0
@@ -89,7 +88,7 @@ jobs:
           git push
       - name: Smoke capture
         if: github.event_name == 'workflow_dispatch'
-        run: uv run phistory --root /tmp/phistory-smoke --cache-dir /tmp/phistory-smoke-cache capture --latest --agents "$CAPTURE_AGENTS" --force --summary-title "Smoke capture"
+        run: uv run phistory --root /tmp/phistory-smoke --cache-dir /tmp/phistory-smoke-cache capture --latest --force --summary-title "Smoke capture"
       - uses: actions/upload-artifact@v7
         if: github.event_name == 'workflow_dispatch' && always()
         with:

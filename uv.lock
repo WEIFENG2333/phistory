@@ -278,7 +278,7 @@ wheels = [
 [[package]]
 name = "claude-tap"
 version = "0.2.0"
-source = { git = "https://github.com/WEIFENG2333/claude-tap.git?rev=main#d05069e87dd425e2fdd6d7d91c0deda0c6717709" }
+source = { git = "https://github.com/WEIFENG2333/claude-tap.git?rev=main#6a0046818244803da325396d000f527f3f5b0831" }
 dependencies = [
     { name = "aiohttp" },
     { name = "backports-zstd" },
