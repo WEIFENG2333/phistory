@@ -4192,6 +4192,13 @@
       "text": "不要包含机密信息或凭据。用角色指代人员（如 \"a teammate\"、\"the PR reviewer\"），绝不使用姓名、电子邮件地址或聊天/用户 ID——引用的用户原话中也是如此：将姓名或昵称替换为带方括号的角色（例如 \"[a teammate]\"），其余部分保持原样。不要包含面向客户的渠道或私信 ID，也不要包含客户内容的摘录。会话、请求和运行 ID，时间戳，仓库/PR 编号，以及文件路径（相对于工作目录书写，或以 ~ 为前缀——而非用户主目录下的绝对路径）仍是合适的证据。",
       "thinking_budget": 4096
     },
+    "3e6fe029f1d80afe4bc8f99174356fdfa1aa59eacbead293e26de48ac870f869": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "脚本的输出是它最后一个表达式的值，加上它在执行过程中 `self.log(...)` 的所有内容。脚本返回的内容会被加入你的上下文并一直留在那里；而值本身无论你是否返回，都留在 REPL 中。所以，返回你现在想读取的内容，其余的保存在变量里，以便之后切片或搜索。脚本返回内容的每个部分（返回对象的每个键、它记录的内容）在显示时会被截断到约 30,000 个字符，保留开头和结尾，并在中间被截去的位置放置一个标记。在脚本返回、记录或抛出的内容中，`&`、`<` 和 `>` 会以 `&amp;`、`&lt;` 和 `&gt;` 的形式显示给你。这只是输出的显示方式：你的文件和值并不会被修改，所以在代码中写入原本的字符即可。返回对象中的 Promise 值会自动为你 await（`({status: $`git status`, branches: $`git branch`})` 不需要 await）；而内联使用的 promise——被拼接、插值或传给另一个调用——则需要 `await`。`console.*` 会进入一个有界的内存环形缓冲区，而不是进入你的上下文；`console.tail(n)` 可以把它读回来。要查看图片、截图或 PDF，请对它调用 `await Read({file_path})`：它会随脚本的结果一起显示给你（每个脚本最多 8 张图片和 4 个 PDF，如果脚本抛出异常则一个也不显示）。",
+      "thinking_budget": 4096
+    },
     "3e75c3b5bc551983b5faeef401de030c401e172b064723f9a8eb9c322a4b6855": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",
@@ -15706,6 +15713,13 @@
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-9",
       "text": "用户：src/ 目录下有哪些文件？\n助手：[运行 ls，看到 foo.c、bar.c、baz.c]\n用户：哪个文件包含 foo 的实现？\n助手：src/foo.c",
+      "thinking_budget": 4096
+    },
+    "f86cd1e92b0d381a3572eb21048be413f27bffa7d9d9b5ceaca9ec32324b711f": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "操作系统版本：Linux 7.0.0-1020-azure",
       "thinking_budget": 4096
     },
     "f8aa1c90ebac20ded3850d3f4da266262fb55e77015cc36e6ace9040cf844dc8": {

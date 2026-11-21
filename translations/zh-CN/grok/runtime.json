@@ -7544,6 +7544,13 @@
       "text": "行号（从 1 开始）以锚点形式出现，格式为 LINE_NUMBER→LINE_CONTENT，位于返回的第一行以及文件中的每第 10 行；中间的各行只显示内容。引用特定行时，从最近的锚点起计数",
       "thinking_budget": 4096
     },
+    "d24f8dc747b5e4e6fa8bb142a684f5cddad3e72d192d5a3e2aeafb6c097f66f9": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "deep-research：以有界并行度研究一个查询，交叉核对证据，并撰写带引用的报告\n  使用时机：比较、调查或研究需要来源支持的问题。/deep-research，研究这个问题，撰写带引用的报告。\n  绝对路径：/buildkite/builds/buildkite-agent-ci-cpu-cuda-xlarge-5db8b8fc7d-8rjlz-1/xai/spacexai-checks/crates/codegen/xai-grok-shell/src/session/workflows/deep_research.rhai",
+      "thinking_budget": 4096
+    },
     "d29abb808ae4fc07a8f2eaa8f8d4f4dfbb846b6d2cf6bf29bda7473246cedf7f": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",

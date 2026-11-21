@@ -1,0 +1,92 @@
+{
+  "agent_id": "claude-code",
+  "agent": "Claude Code",
+  "package": "@anthropic-ai/claude-code",
+  "version": "2.1.330",
+  "variant": {
+    "id": "code-mode",
+    "label": "Code Mode",
+    "dimensions": {
+      "surface": "terminal",
+      "mode": "code"
+    }
+  },
+  "requested": {
+    "surface": "terminal",
+    "mode": "code"
+  },
+  "observed": {
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "tool_count": 2,
+    "surface": "interactive-tty"
+  },
+  "capture_environment": {
+    "kind": "mocked-bootstrap",
+    "sha256": "2c293faebf89254a3e1d5f143af28f049595ebac5b654bd05e529d08916e33b3",
+    "configuration": {
+      "version": 1,
+      "responses": [
+        {
+          "method": "GET",
+          "url": "https://api.anthropic.com/api/claude_code/settings",
+          "status": 200,
+          "body": {
+            "uuid": "00000000-0000-4000-8000-000000000000",
+            "checksum": "phistory-empty-settings",
+            "settings": {}
+          }
+        },
+        {
+          "method": "GET",
+          "url": "https://api.anthropic.com/api/claude_code/policy_limits",
+          "status": 200,
+          "body": {
+            "restrictions": {},
+            "compliance_taints": []
+          }
+        },
+        {
+          "method": "POST",
+          "url": "https://api.anthropic.com/api/eval/sdk-zAZezfDKGoZuXXKe",
+          "status": 200,
+          "body": {
+            "features": {
+              "tengu_rustling_blossom": {
+                "defaultValue": true
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "published_at": "2026-11-20T19:16:01.070Z",
+  "tarball_url": "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-2.1.330.tgz",
+  "binary_version": "2.1.330 (Claude Code)",
+  "captured_at": "2026-11-21T00:56:13.408816+00:00",
+  "tap_client": "claude",
+  "target": "claude-tap capture-only",
+  "client_exit_code": 0,
+  "duration_seconds": 14.573,
+  "command": [
+    "python",
+    "-m",
+    "claude_tap",
+    "run",
+    "claude",
+    "--no-yolo",
+    "--export-prompt",
+    ".tap/tap-export.md",
+    "--no-live",
+    "--no-open",
+    "--no-update-check",
+    "--output-dir",
+    ".tap",
+    "--mode",
+    "forward",
+    "--bootstrap-responses",
+    "$PHISTORY_USER_HOME/work/phistory/phistory/phistory/bootstrap/claude-code-mode.json",
+    "--"
+  ]
+}

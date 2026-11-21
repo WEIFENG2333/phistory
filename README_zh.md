@@ -8,7 +8,7 @@ Phistory 追踪 Claude Code、Codex、DeepSeek Harness、Antigravity、Grok Buil
 
 **从这里开始：** [phistory.cc](https://phistory.cc/)
 
-> 每小时自动检查新版本，归档最近更新于 **2026-11-20 18:46 UTC**。
+> 每小时自动检查新版本，归档最近更新于 **2026-11-21 00:56 UTC**。
 
 ![Phistory prompt diff viewer](docs/screenshot.png)
 
@@ -74,17 +74,17 @@ python -m http.server --directory .phistory-cache/site
 
 ## 抓取状态
 
-最近抓取更新：2026-11-20 18:46 UTC
+最近抓取更新：2026-11-21 00:56 UTC
 
 | Agent | 最新版本 | 版本数 | 快照数 | 最近抓取 |
 | --- | --- | ---: | ---: | --- |
-| Claude Code | [2.1.329 - 2026-11-19](captures/claude-code/2.1.329/variants/default/prompt.md) | 459 | 800 | 2026-11-20 02:32 UTC |
+| Claude Code | [2.1.330 - 2026-11-20](captures/claude-code/2.1.330/variants/default/prompt.md) | 460 | 803 | 2026-11-21 00:55 UTC |
 | Codex CLI | [0.171.0 - 2026-11-20](captures/codex/0.171.0/variants/default/prompt.md) | 114 | 200 | 2026-11-20 02:32 UTC |
 | DeepSeek Harness | [0.2.2-rc.5 - 2026-11-18](captures/dsh/0.2.2-rc.5/variants/default/prompt.md) | 17 | 93 | 2026-11-19 08:50 UTC |
 | Antigravity CLI | [1.5.13 - 2026-11-19](captures/antigravity/1.5.13/variants/default/prompt.md) | 85 | 85 | 2026-11-20 02:32 UTC |
 | Claude Tag | [2026-10-18 - 2026-10-18](captures/claude-tag/2026-10-18/variants/default/prompt.md) | 4 | 4 | 2026-10-18 08:57 UTC |
 | Grokbot | [2026-10-20 - 2026-10-20](captures/grokbot/2026-10-20/variants/default/prompt.md) | 1 | 1 | 2026-10-20 18:10 UTC |
-| Grok Build | [1.0.89 - 2026-11-17](captures/grok/1.0.89/variants/default/prompt.md) | 148 | 148 | 2026-11-18 13:21 UTC |
+| Grok Build | [1.0.92 - 2026-11-20](captures/grok/1.0.92/variants/default/prompt.md) | 149 | 149 | 2026-11-21 00:56 UTC |
 | MiniMax Code | [3.1.17 - 2026-11-20](captures/minimax-code/3.1.17/variants/default/prompt.md) | 48 | 48 | 2026-11-20 18:45 UTC |
 | Kimi Code | [2.7.2 - 2026-11-20](captures/kimi-code/2.7.2/variants/default/prompt.md) | 91 | 91 | 2026-11-20 10:22 UTC |
 | MiMo Code | [0.1.17 - 2026-11-13](captures/mimo/0.1.17/variants/default/prompt.md) | 17 | 17 | 2026-11-13 08:42 UTC |
