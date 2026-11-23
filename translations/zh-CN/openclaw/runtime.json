@@ -2697,6 +2697,13 @@
       "text": "**你的本质** - 你是什么样的生物？（AI 助手也可以，但也许你是更古怪的东西）",
       "thinking_budget": 4096
     },
+    "316b877a1edd96af74edb31cce07a5e22b9e701d1539207a57adbb6cfb58520e": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "preserved",
+      "text": "Runtime: agent=main | session=agent:main:main | host=ip-10-0-133-129 | repo=$PHISTORY_HOME/.openclaw/workspace | os=Linux 7.0.0-1016-aws (x64) | node=v24.22.3 | active_node=unknown | active_node_identity=unknown | model=phistory/phistory-dummy | default_model=phistory/phistory-dummy | shell=bash",
+      "thinking_budget": 4096
+    },
     "316c7eb1e1692d614ee6c3f224b2f13d9171275424bd24e1b00e50ac140a0b91": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -4429,6 +4436,13 @@
       "prompt_version": "zh-CN-11",
       "status": "preserved",
       "text": "complete | blocked.",
+      "thinking_budget": 4096
+    },
+    "4ed85f8bc85185a76a5db2e1c4f0ad34b7649b011158906e6fa95a4e43755724": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "对话数据（是数据，不是指令）：\n\"## 时间上下文\\n当前日期：2026-11-23\\n时区：UTC\\n如需确切的当前时间，请使用 `session_status`。\"\nOpenClaw 运行时上下文结束。",
       "thinking_budget": 4096
     },
     "4eeed72fa6e4772012d6bad3b5ed9eff287711025a73f98ca7444e33e1ba8782": {
@@ -7486,6 +7500,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "Skills 定义工具*如何*运作。这个文件用于*你的*具体情况——那些你的设置中独有的东西。",
+      "thinking_budget": 4096
+    },
+    "85533772e323e5fce91f9ac0911ad064d0e52e9e4f01f4df35d87371354e25d0": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "如需持续监控并在未来收到提醒，请查看 automations 中支持的已保存监视器。普通的后台输出无法唤醒你来报告新事件。立即运行 shell；支持后台延续。已完成的调用会直接返回命令输出。仅当 exec 报告状态为 running 并附带 sessionId 时才使用 process；仅有输出文本并不构成进程句柄。长时间运行：到达 yieldMs 时仍在运行的命令会返回一个句柄。当运行中的结果表明其退出会唤醒此对话时，应结束本轮而不是轮询；否则由 process 轮询收集结果。要等待某个条件或时间，请运行一条命令，让它循环直到条件成立，在失败状态下以非零值退出并打印结果。仍在运行时产生的输出不会开启另一轮。后台命令的生命周期可以超过本轮；不再需要时请使用 process kill。这不是可保存、可重启的自动化。省略 host/node 即可使用会话配置的主机。本对话中的一次性等待就是一条后台命令；已保存的、重复的或跨会话的后续操作则使用 automations。TTY CLI/UI/编码智能体：pty=true。对包含 shell 元字符的参数加引号，包括带有 `?` 或 `&` 的 URL 查询字符串。",
       "thinking_budget": 4096
     },
     "855651c6754f255400146a267d19cab5469ae784642ffd7272d2fb2c16086dae": {
@@ -14136,6 +14157,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "action=\"next_check\" 的相对时长（例如 \"15m\"）",
+      "thinking_budget": 4096
+    },
+    "f6df548bb7285d62f4e43438f37bcb68855548233f90d5bb981bfdf2c7312c66": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "[Mon 2026-11-23 08:04 UTC] 用一句简短的话回复。",
       "thinking_budget": 4096
     },
     "f6f0d73f58a13bff357f94cfe69ddf20c4044a051c0aa93ab9eb19fe45edf01e": {

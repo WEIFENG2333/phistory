@@ -792,6 +792,13 @@
       "text": "`app.path` → 绝不篡改真实的桌面应用（不打 stealth 补丁）。",
       "thinking_budget": 4096
     },
+    "0ce545bf4a8d6ea36d830944c70013a7fc21ba3db365adcb65b1124a4b568e1a": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "今天是 2026-11-23；当前工作目录：'$PHISTORY_WORKSPACE'。不要在回复中重复此信息。",
+      "thinking_budget": 4096
+    },
     "0d0b11cc5ce246611466d72c597c204b07a8e732e8c6ff669b957b87bde23dab": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -3735,6 +3742,13 @@
       "text": "仅在命令需要真实终端（`sudo`、`ssh` 需要输入）时使用 `pty: true`；默认为 `false`",
       "thinking_budget": 4096
     },
+    "45eb7ac6c8da4c394558b6e1cd1feaa3b2a63f8e57fb6dbb07995476ebda924d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "持久 bash 5.3。\ncwd 在每轮之后会重置，不要依赖 cd；`pty` = 交互式。\n内部 URI 可作为路径用于内建命令/coreutils、重定向和 glob。\n进程内的内建命令，优先于 PATH：ast-grep、awk、b2sum、base32、base64、basename、cat、chmod、cksum、cmp、column、combine、comm、cp、cut、date、dd、df、diff、direnv、dirname、du、entr、env、errno、fd、file、find、flock、fold、fswatch、grep、head、hostname、id、ifne、isutf8、jq、ln、ls、lsof、md5、md5sum、mkdir、mktemp、mv、nl、nohup、nproc、od、open、paste、pgrep、pidwait、pkill、printenv、ps、readlink、realpath、rg、rm、rmdir、rsync、say、sd、sed、seq、sg、sha1sum、sha224sum、sha256sum、sha384sum、sha512sum、shasum、sleep、sort、sponge、stat、strings、tac、tail、tar、tee、timeout、top、touch、tr、truncate、ts、uname、uniq、uptime、urlmap、watchexec、wc、which、whoami、xargs、xdg-open、yes。\n`async` 会推迟有限结果的返回，但保留截止时间（默认 300 秒）；`timeout: 0` 用于监视器和长时间任务。\n`notify`（正则；隐含 `async`）会在任务运行期间将每条匹配的输出行作为后续消息发送，先于其结果。只匹配你会据以行动的行：匹配过多会将其关闭。\n不要习惯性地截断输出，结果会被摘要并保存为 artifact。\n长期运行的服务：",
+      "thinking_budget": 4096
+    },
     "461b5f56fe1d17fa221b8fadb4cd1964998a139278d408de6578390f7f78518b": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -5535,6 +5549,13 @@
       "text": "Read: `read`",
       "thinking_budget": 4096
     },
+    "6a44733f049403bfef5f476940964225b7527559304a71d7f74f8417ea406685": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": ":raw 逐字输出，不带锚点/前缀（跳过折叠和显示宽度限制）；组合 :2-4:raw 或 :raw:2-4 可只取这些行。",
+      "thinking_budget": 4096
+    },
     "6a47ecb982ff9b48c630950dc32714a9c39622635332ef7ef3b0f1e67a7e8afe": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -6107,6 +6128,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "**Bug 修复** → 复现、修复、确认复现不再触发。",
+      "thinking_budget": 4096
+    },
+    "73cf46d37d544e461ce4fb99e95f6ecffa429d9b4a15ac7f69ada016e83837f8": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "单元格截止时间，单位为秒（默认 30）；非零值会限制在 1–3600 之间；0 表示禁用。",
       "thinking_budget": 4096
     },
     "7427d649b68f85e3bedda6a6158aacca019de081e9a708bbd1943ddb1a11b67a": {
@@ -11394,6 +11422,13 @@
       "text": "PUT >3*:\n+after()",
       "thinking_budget": 4096
     },
+    "d8db5cb4821ad2fd8b1b166e2f7a0022905ee11724a24e37bcd5ec4ce185de8c": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "每次调用一个单元格；顶层状态会保留，包括压缩之后。子智能体有独立的内核。\n没有 `timeout` 的单元格会在 30 秒后停止；为慢速子进程、网络调用或大规模扫描传入更大的 `timeout`。\nPython：普通 Python 子进程，不是 IPython（没有 `get_ipython()`、`obj?`，也没有 %matplotlib）。\n%pip、%load、%time 和 `!cmd` 这类魔法命令会被改写为 Python。\n顶层 `await` 可用；`asyncio.run(…)` 会失败。\nJS：Bun（Bun.file、Bun.write、Bun.$）；顶层 `await`/`return` 可用。\n出错时，只重试失败的那一步；之前的步骤可能已经生效。\n打印图像或图表会将其附上。",
+      "thinking_budget": 4096
+    },
     "d97fec8bb504baf0f39fbd1327d96fa83724bc13f1928ea3ee6d6156af2bf0d3": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -12421,6 +12456,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "查找结果为空、不完整或窄得可疑？换一种策略重试。",
+      "thinking_budget": 4096
+    },
+    "eca192fd194c118c2806748157b51d29baa3c8f130d4ce19f18f401020f2b8cf": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "preserved",
+      "text": "OS: linux 7.0.0-1016-aws",
       "thinking_budget": 4096
     },
     "ecb363fcd3b67d18c9bfedcd478afd9306cfb5d1b894a706bf0595791b3775ba": {
