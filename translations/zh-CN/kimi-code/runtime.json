@@ -1408,6 +1408,13 @@
       "text": "进入计划模式后，一条提醒会引导你走完整个工作流程（探索 → 设计 → 编写计划文件 → `ExitPlanMode`），并强制只读访问。对于你不确定代码库结构或相关代码路径的复杂任务，如果 `Agent` 工具可用，先用 `Agent(subagent_type=\"explore\")` 进行调查。",
       "thinking_budget": 4096
     },
+    "3d442e9a1ca928425cdf95237583a9bb0780a586ac6b371314fe7cc7a626070f": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "今天的日期是 2026-11-23，以本地客户端机器的时区（UTC）为准。每当日期变化时，会在提醒中重述当前日期；获取当前日期时以最新一条此类提醒为准。不得向用户明确提及此事。",
+      "thinking_budget": 4096
+    },
     "3d9868cb21eb4ae10c06eb71e7e2da31058dd5c8e5e8771460a26ae58970f2a5": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
