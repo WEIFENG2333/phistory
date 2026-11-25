@@ -3188,6 +3188,13 @@
       "text": "模型：phistory/gpt-4.1",
       "thinking_budget": 4096
     },
+    "3aa3d35f45d1abde4c06b211737e875a84bc0a4622e67edccd51448922ce8e3d": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "持久化 bash 5.3。\n每次调用都在会话 cwd 中启动，且 `set -e` 处于关闭状态；使用 `cwd`，而不是 `cd`；`pty` = 交互式。\n内部 URI 可作为路径用于内建命令/coreutils、重定向和 glob。\n进程内内建命令，优先于 PATH：ast-grep, awk, b2sum, base32, base64, basename, cat, chmod, cksum, cmp, column, combine, comm, cp, cut, date, dd, df, diff, direnv, dirname, du, entr, env, errno, fd, file, find, flock, fold, fswatch, grep, head, hostname, id, ifne, isutf8, jq, ln, ls, lsof, md5, md5sum, mkdir, mktemp, mv, nl, nohup, nproc, od, open, paste, perl, pgrep, pidwait, pkill, printenv, ps, readlink, realpath, rg, rm, rmdir, rsync, say, sd, sed, seq, sg, sha1sum, sha224sum, sha256sum, sha384sum, sha512sum, shasum, sleep, sort, sponge, stat, strings, tac, tail, tar, tee, time, timeout, top, touch, tr, truncate, ts, uname, uniq, uptime, urlmap, watchexec, wc, which, whoami, xargs, xdg-open, yes.\n`async` 会推迟有限结果的返回，但保留截止时间（默认 300 秒）；`timeout: 0` 用于监视器和长时间任务。\n`notify`（正则表达式；隐含 `async`）会在任务运行期间将每条匹配的输出行作为后续消息发送，先于其结果。只匹配你会据以行动的行：匹配过多会将其关闭。\n不要习惯性地截断输出，结果会被摘要并保存为 artifact。\n长期运行的服务：",
+      "thinking_budget": 4096
+    },
     "3ab5420ad8963e5089770f44c12cc8805ca081373acb5f8cd9252c7971fb95e5": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -5178,6 +5185,13 @@
       "text": "驱动真实的 Chromium 标签页；可通过 JS 完整访问 puppeteer。",
       "thinking_budget": 4096
     },
+    "60b22c09b3a169ab39465be3eb2e30794955a4c5d5fb7227f01f28a0068254eb": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "agent://<id>：最近一次已完成的输出（未发布时为状态 + 进度）；嵌套 ID 以点分隔，/key/index 为 JSON 路径；写入 = 消息，agent://all 仅用于广播。此文件夹中的其他 omp 实例：agent://peers 会列出它们；agent://<pid> 是其中某个实例的主智能体，agent://<pid>/<id> 是其子智能体（读 + 写）。\n对于你自己或你派生的仍在运行的子智能体，写入 agent://<id>/model 并指定允许的任务智能体类型（例如 `task:high` 或 `m1`），或写入 agent://<id>/effort 并指定级别（例如 `high` 或 `auto`）。不支持的级别会归并到某个受支持的投入级别；写入仅改变该会话。",
+      "thinking_budget": 4096
+    },
     "60c22005055ac600f7e335a24659ea7f071366f1671ebed6cb22637392f15f69": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -5876,6 +5890,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "`%load` 只有在显式调用时才会再次执行。仅编辑文件不会重新加载它。",
+      "thinking_budget": 4096
+    },
+    "6d778777fb0a4eb92088aae2a80d1cd73277d8da98bcc14a44365a76c08fccf5": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "`notify`（正则表达式）会在服务运行期间将每条匹配的输出行作为后续消息发送。",
       "thinking_budget": 4096
     },
     "6d7fcf7aacde0319380641906ba4139b24d4990fb40094263608ad15670e3b7c": {
@@ -9392,6 +9413,13 @@
       "text": "寻址与发现",
       "thinking_budget": 4096
     },
+    "ae825c39f8548b30ca141b32a6ee3270772b81a4b824e7a69f2e983e237a89a5": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "Shell 命令 `o2ctl services add <name> <pid|%job>` 会将一个已在运行的进程（`cmd &`、`nohup cmd &`）保留为服务，而不重启它；`o2ctl services ls`；`o2ctl services stop <name>`。\n非 `pty` 的调用在运行超过 60 秒后（或距 `timeout` 仅剩 1 秒时，以先到者为准）通常会转入后台作业 `bg_N` 并继续运行至 `timeout`。\n当由客户端终端运行该命令或达到作业上限时，不会转入后台。\n结果会作为后续消息自动送达。绝不轮询。",
+      "thinking_budget": 4096
+    },
     "ae86562eb9319f08b5f7e7808559697a53f2bab05d8ddbaf43766b14c97b74c8": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -9607,6 +9635,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "`program` 必须是可执行文件或调试目标，不能是目录或裸解释器名称。",
+      "thinking_budget": 4096
+    },
+    "b313b3a2b887bc42a8b20ae4e99f10f646f47380c2acccab9ccfda2d4485f29f": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "history://<id>：只读对话记录，按用户轮次编号：用户和智能体的文本完整保留，每次工具调用占一行，思考内容和结果省略。以 `archive.transcript` 查询：`?budget=4000` 会压缩以适应长度；`?detail=brief` 或 `user:full,thinking:brief,result:normal`；`?turns=-1` 或 `3,5`。不带参数的 history:// 列出已注册且保留在磁盘上的智能体，而不列出已持久化的未注册顶层会话。",
       "thinking_budget": 4096
     },
     "b343282799200fd402f565b84e33728e84290de47bd0f8cc7c26807e0244f00d": {

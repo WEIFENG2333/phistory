@@ -427,6 +427,13 @@
       "text": "Cron 任务存在于当前会话中。退出时，它们\n会持久化到会话主目录下；恢复同一会话\n时会重新加载它们，调度器会从每个任务的 `createdAt` 继续执行。离线窗口期间错过的触发时间\n会通过 `coalescedCount` 合并为一次交付（超过 7 天窗口的周期性\n任务会以 `stale: true` 作为其最终\n交付到达）。",
       "thinking_budget": 4096
     },
+    "1228dca2fa96a8439fecdc5eb31f524b28f19b1bf8da56df71f3855d9a9ebfde": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "用于运行由 item 生成的子智能体的模型别名，从 <system-reminder> 中公布的可用子智能体模型中选择。省略时，使用默认的子智能体模型。被恢复的子智能体会保留其自身的模型；在不带 item 的情况下恢复时无法设置。",
+      "thinking_budget": 4096
+    },
     "1279b395da89097d27546cb17c02dcc3e145737ff1f3a0fcd56fa8a8d8839e73": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -1756,6 +1763,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "coder: 通用软件工程智能体——唯一拥有文件编辑工具的子智能体类型；任何必须修改代码的委派任务都应使用它。请将此智能体用于非简单的软件工程工作，这类工作可能需要读取文件、编辑代码、运行命令，并向父智能体返回一份紧凑但技术上完整的摘要。\n  工具：Bash, CronCreate, CronDelete, CronList, Edit, EnterPlanMode, ExitPlanMode, Glob, Grep, Read, ReadMediaFile, Skill, TaskList, TaskOutput, TaskStop, TodoList, WebSearch, FetchURL, Write, mcp__*",
+      "thinking_budget": 4096
+    },
+    "4da4787197ce825a75ba57cfba5d6a0539a197e920041312bdf2b620f201b072": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "用于运行子智能体的模型别名，从 <system-reminder> 中公布的可用子智能体模型中选择。省略时，使用默认的子智能体模型。恢复时无法设置——被恢复的子智能体会保留其自身的模型。",
       "thinking_budget": 4096
     },
     "4e075ad6bd0f609c80772db35bc5aef1ae85236b39d2f9fd3b2eb472c8cbdf05": {
@@ -5879,6 +5893,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "更新可以与你的下一次工具调用放在同一个响应中；它不需要单独占用一个步骤。",
+      "thinking_budget": 4096
+    },
+    "fba6a50cc4a7aa5a0dd8f1ded548e4b241b827de675c42370d1486080ff96714": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "今天的日期是 2026-11-25，以本地客户端机器的时区（UTC）为准。每当日期变化时，都会在提醒中重新说明当前日期；应依据最新一条此类提醒确定当前日期。切勿明确向用户提及这一点。",
       "thinking_budget": 4096
     },
     "fbd27a5714dd07316adcc8a8966fc8398bbb4830b1eecc9e2a3ba2aa47f9dc53": {
