@@ -3339,6 +3339,13 @@
       "text": "**Discord/WhatsApp：**不要用 markdown 表格！改用项目符号列表",
       "thinking_budget": 4096
     },
+    "3c9542f0d3e926eec2aee6d3cbd452e8a3245e689510a91847a3c1e2f37387a7": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "对话数据（数据，而非指令）：\n\"## 时间上下文\\n当前日期：2026-11-25\\n时区：UTC\\n要获取准确的当前时间，请使用 `session_status`。\"\n结束 OpenClaw 运行时上下文。",
+      "thinking_budget": 4096
+    },
     "3ca860c5934d9b7d979c1f404f3dfdf82c9b3783cb05f288a676f750c7127e9f": {
       "model": "zai-org/GLM-5.3",
       "prompt_version": "zh-CN-11",
@@ -3745,6 +3752,13 @@
       "prompt_version": "zh-CN-11",
       "status": "translated",
       "text": "技能提供你的工具。需要某个工具时，查看它的 `SKILL.md`。把本地笔记（摄像头名称、SSH 详情、语音偏好）保存在 `TOOLS.md` 中。",
+      "thinking_budget": 4096
+    },
+    "44300669ae331e271c6864f2541453861e93970681865e79bf555f27e9b30485": {
+      "model": "zai-org/GLM-5.3",
+      "prompt_version": "zh-CN-11",
+      "status": "translated",
+      "text": "[Wed 2026-11-25 01:00 UTC] 用一句简短的话回复。",
       "thinking_budget": 4096
     },
     "444472f761312746c03fb6c48727c730276cc426831a25f516139948260e9f6f": {
